@@ -8,6 +8,12 @@ abstract class Routes {
   static const LANGUAGE = _Paths.LANGUAGE;
   static const MOBILE = _Paths.MOBILE;
   static const OTP = _Paths.OTP;
+  static const RECORDS = _Paths.RECORDS;
+  static const REFERNEARN = _Paths.REFERNEARN;
+  static const REELS = _Paths.REELS;
+
+
+
 }
 
 abstract class _Paths {
@@ -17,4 +23,9 @@ abstract class _Paths {
   static const LANGUAGE = "/language";
   static const MOBILE = "/mobile";
   static const OTP = '/otp';
+  static const RECORDS = "/records";
+  static const REFERNEARN = "/refernearn";
+  static const REELS = "/reels";
+
+
 }
