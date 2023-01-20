@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_00/app/modules/MyVideos/views/my_videos_view.dart';
+import 'package:flutter_application_00/app/modules/Status/views/status_view.dart';
 import 'package:flutter_application_00/app/modules/records/views/records_view.dart';
 import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
 import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_view.dart';
@@ -31,13 +33,13 @@ class MyNavigator extends StatelessWidget {
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           GestureDetector(
-              onTap: () {
-                print("object");
-              },
+                         onTap: () => Get.to(MyVideosView()),
+
               child: Container(
                 decoration: const BoxDecoration(
                     border:
-                        Border(bottom: BorderSide(color: Color(0xFFFEBA0F)))),
+                        Border(bottom: BorderSide(color: Color(0xFFFEBA0F)))
+                        ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -82,7 +84,8 @@ class MyNavigator extends StatelessWidget {
               ],
             ),
           ),
-          GestureDetector(
+          GestureDetector( 
+            onTap: () => Get.to(StatusView()),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
