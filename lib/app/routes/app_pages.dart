@@ -3,12 +3,16 @@ import 'package:flutter_application_00/app/modules/language/views/language_view.
 import 'package:flutter_application_00/app/modules/mobile/bindings/mobile_binding.dart';
 import 'package:flutter_application_00/app/modules/otp/bindings/otp_binding.dart';
 import 'package:flutter_application_00/app/modules/otp/views/otp_view.dart';
+import 'package:flutter_application_00/app/modules/profile/bindings/profile_binding.dart';
+import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
 import 'package:flutter_application_00/app/modules/records/bindings/records_binding.dart';
 import 'package:flutter_application_00/app/modules/records/views/records_view.dart';
 import 'package:flutter_application_00/app/modules/reels/bindings/reels_binding.dart';
 import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
 import 'package:flutter_application_00/app/modules/referNearn/bindings/refer_nearn_binding.dart';
 import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_view.dart';
+import 'package:flutter_application_00/app/modules/settings/bindings/settings_binding.dart';
+import 'package:flutter_application_00/app/modules/settings/views/settings_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
@@ -65,6 +69,14 @@ class AppPages {
     GetPage(
         name: _Paths.REELS,
         page: () => const ReelsView(),
-        binding: ReelsBinding())
+        binding: ReelsBinding()),
+    GetPage(
+        name: _Paths.SETTINGS,
+        page: () => const SettingsView(),
+        binding: SettingsBinding()),
+    GetPage(
+        name: _Paths.SETTINGS,
+        page: () => ProfileView(),
+        binding: ProfileBinding()),
   ];
 }

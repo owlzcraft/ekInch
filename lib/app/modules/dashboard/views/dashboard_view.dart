@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/services_news.widget.dart';
+import 'package:flutter_application_00/app/modules/settings/views/settings_view.dart';
 import "package:flutter_screenutil/flutter_screenutil.dart";
 import 'package:flutter_application_00/app/modules/dashboard/widgets/awards.widgets.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
@@ -60,7 +61,7 @@ class _DashboardStateView extends State<DashboardView>
             icon: Image.asset('assets/images/burger.png',
                 width: 24.sp, height: 24.sp),
             onPressed: () {
-              // Add your onPressed code here
+              Get.to(SettingsView());
             },
           ),
           actions: <Widget>[

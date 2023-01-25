@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class DynamicButton extends StatelessWidget {
+class GreyButton extends StatelessWidget {
   final String text;
   final bool active;
   final Function onPressed;
 
-  DynamicButton(this.text, this.active, this.onPressed);
+  GreyButton(this.text, this.active, this.onPressed);
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +21,11 @@ class DynamicButton extends StatelessWidget {
           },
           child: Text(
             text,
-            style: TextStyle(
+            style: GoogleFonts.kadwa(
                 color: Colors.black,
                 fontSize: 27,
                 letterSpacing: 1,
                 fontWeight: FontWeight.w700,
-                fontFamily: "kadwa",
                 height: 1.2),
           ),
           style: ElevatedButton.styleFrom(
@@ -35,7 +35,7 @@ class DynamicButton extends StatelessWidget {
                 : Colors.grey, //change text color of button
             elevation: 0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(09.0),
             ),
             // backgroundColor: const Color(0xFFFEBA0F),
           ),

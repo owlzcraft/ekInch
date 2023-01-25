@@ -11,9 +11,8 @@ abstract class Routes {
   static const RECORDS = _Paths.RECORDS;
   static const REFERNEARN = _Paths.REFERNEARN;
   static const REELS = _Paths.REELS;
-
-
-
+  static const SETTINGS = _Paths.SETTINGS;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -26,6 +25,6 @@ abstract class _Paths {
   static const RECORDS = "/records";
   static const REFERNEARN = "/refernearn";
   static const REELS = "/reels";
-
-
+  static const SETTINGS = '/settings';
+  static const PROFILE = '/profile';
 }
