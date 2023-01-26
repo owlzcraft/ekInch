@@ -6,7 +6,14 @@ environment:
   sdk: ">=2.18.6 <3.0.0"
 
 dependencies:
+
+  //-- 26-Jan-2023 --Ruchika --//
   cupertino_icons: ^1.0.2
+  flutter_svg: ^1.1.6
+  linear_progress_bar: ^1.1.0
+  im_stepper: ^1.0.1+1
+  step_progress_indicator: ^1.0.2
+  //-----//
   get: 4.6.5
   smooth_page_indicator: ^1.0.0+2
   flutter:
