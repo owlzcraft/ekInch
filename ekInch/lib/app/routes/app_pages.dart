@@ -53,6 +53,7 @@ class AppPages {
         name: _Paths.MOBILE,
         page: () => const MobileView(),
         binding: MobileBinding()),
+        // line added
     GetPage(
         name: _Paths.LANGUAGE,
         page: () => LanguageView(),
