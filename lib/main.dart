@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
-import 'app/routes/app_pages.dart';
+import 'Screen/PostJob/PostDetails.dart';
+import 'Screen/PostJob/TabPostJob.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(
-  const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  const device_height = 802.9090909090909;
-  const device_width = 392.72727272727275;
+  runApp(const MyApp());
+}
 
-  runApp(ScreenUtilInit(builder: ((context, child) {
-    return GetMaterialApp(
-      title: "Application",
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: PostJobTabs(),
       debugShowCheckedModeBanner: false,
     );
-  })));
+  }
 }
