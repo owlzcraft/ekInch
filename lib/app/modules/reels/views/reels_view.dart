@@ -33,7 +33,7 @@ class _VideoAppState extends State<ReelsView> {
       videoPlayerController: _controller,
       // autoPlay: true,
       // looping: true,
-      aspectRatio: 16 / 9,
+      // aspectRatio: 16 / 9,
       // autoInitialize: true,
       // autoPlay: true,
       // looping: true,
