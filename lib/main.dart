@@ -11,7 +11,7 @@ void main() {
   const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   const device_height = 802.9090909090909;
   const device_width = 392.72727272727275;
-
+//comment
   runApp(ScreenUtilInit(builder: ((context, child) {
     return GetMaterialApp(
       title: "Application",
