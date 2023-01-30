@@ -1,23 +1,25 @@
-import 'package:flutter_application_00/app/modules/language/bindings/language_binding.dart';
-import 'package:flutter_application_00/app/modules/language/views/language_view.dart';
-import 'package:flutter_application_00/app/modules/mobile/bindings/mobile_binding.dart';
-import 'package:flutter_application_00/app/modules/otp/bindings/otp_binding.dart';
-import 'package:flutter_application_00/app/modules/otp/views/otp_view.dart';
-import 'package:flutter_application_00/app/modules/profile/bindings/profile_binding.dart';
-import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
-import 'package:flutter_application_00/app/modules/records/bindings/records_binding.dart';
-import 'package:flutter_application_00/app/modules/records/views/records_view.dart';
-import 'package:flutter_application_00/app/modules/reels/bindings/reels_binding.dart';
-import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
-import 'package:flutter_application_00/app/modules/referNearn/bindings/refer_nearn_binding.dart';
-import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_view.dart';
-import 'package:flutter_application_00/app/modules/settings/bindings/settings_binding.dart';
-import 'package:flutter_application_00/app/modules/settings/views/settings_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/language/bindings/language_binding.dart';
+import '../modules/language/views/language_view.dart';
+import '../modules/mobile/bindings/mobile_binding.dart';
 import '../modules/mobile/views/mobile_view.dart';
+import '../modules/otp/bindings/otp_binding.dart';
+import '../modules/otp/views/otp_view.dart';
+import '../modules/postjob/bindings/postjob_binding.dart';
+import '../modules/postjob/views/postjob_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
+import '../modules/records/bindings/records_binding.dart';
+import '../modules/records/views/records_view.dart';
+import '../modules/reels/bindings/reels_binding.dart';
+import '../modules/reels/views/reels_view.dart';
+import '../modules/referNearn/bindings/refer_nearn_binding.dart';
+import '../modules/referNearn/views/refer_nearn_view.dart';
+import '../modules/settings/bindings/settings_binding.dart';
+import '../modules/settings/views/settings_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 
@@ -78,5 +80,10 @@ class AppPages {
         name: _Paths.SETTINGS,
         page: () => ProfileView(),
         binding: ProfileBinding()),
+    GetPage(
+      name: _Paths.POSTJOB,
+      page: () => const PostjobView(),
+      binding: PostjobBinding(),
+    ),
   ];
 }

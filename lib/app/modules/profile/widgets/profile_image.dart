@@ -9,8 +9,13 @@ Widget ProfileImage() {
       clipBehavior: Clip.none,
       fit: StackFit.expand,
       children: [
-        const CircleAvatar(
-          backgroundImage: AssetImage("assets/images/profile.jpg"),
+        CircleAvatar(
+          radius: 50,
+          backgroundColor:  Color(0xFFE0E0E0),
+          child: const CircleAvatar(
+            radius: 48,
+            backgroundImage: AssetImage("assets/images/profile.jpg"),
+          ),
         ),
         Positioned(
             bottom: 0,

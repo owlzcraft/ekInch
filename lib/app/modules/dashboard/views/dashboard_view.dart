@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/services_news.widget.dart';
+import 'package:flutter_application_00/app/modules/language/views/language_view.dart';
+import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
 import 'package:flutter_application_00/app/modules/settings/views/settings_view.dart';
 import "package:flutter_screenutil/flutter_screenutil.dart";
 import 'package:flutter_application_00/app/modules/dashboard/widgets/awards.widgets.dart';
@@ -11,6 +13,8 @@ import 'package:flutter_application_00/app/modules/dashboard/widgets/recentlyAdd
 import 'package:flutter_application_00/app/modules/dashboard/widgets/video.widget.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/videoCategory.widget.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/work.widget.dart';
+import 'package:flutter_svg/svg.dart';
+import '../../../generated/assets.dart';
 import '../controllers/dashboard_controller.dart';
 import 'package:get/get.dart';
 
@@ -31,6 +35,7 @@ class _DashboardStateView extends State<DashboardView>
     super.initState();
   }
 
+  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     var videoCategoryData = [
@@ -53,40 +58,30 @@ class _DashboardStateView extends State<DashboardView>
     ];
     return Stack(children: [
       Scaffold(
+        key: scaffoldKey,
         bottomNavigationBar: MyNavigator(),
+        drawer: const SettingsView(),
         appBar: AppBar(
-          elevation: 0,
+          elevation: 0.0,
           backgroundColor: Colors.black,
           leading: IconButton(
-            icon: Image.asset('assets/images/burger.png',
-                width: 24.sp, height: 24.sp),
+            icon: SvgPicture.asset(Assets.drawerIcon),
             onPressed: () {
-              Get.to(SettingsView());
+              if (!scaffoldKey.currentState!.isDrawerOpen) {
+                //check if drawer is closed
+                scaffoldKey.currentState!.openDrawer(); //open drawer
+              }
             },
           ),
           actions: <Widget>[
+            IconButton(
+                onPressed: (() => {Get.to(() => LanguageView())}),
+                icon: SvgPicture.asset(Assets.languageIcon)),
             Padding(
-              padding: EdgeInsets.only(right: 15.0.sp),
-              child: SizedBox(
-                width: 150,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Image.asset('assets/images/msg.png'),
-                    SizedBox(width: 10.sp),
-                    Stack(
-                      children: [
-                        Image.asset('assets/images/bell.png'),
-                        Positioned(
-                          top: 0.sp,
-                          right: 1.0.sp,
-                          child: Image.asset('assets/images/redDot.png'),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              padding: const EdgeInsets.only(right:8.0),
+              child:IconButton(
+                onPressed: (() => {Get.to(() => NotificationView())}),
+                icon: Icon(Icons.notifications_outlined)), 
             ),
           ],
           bottom: PreferredSize(

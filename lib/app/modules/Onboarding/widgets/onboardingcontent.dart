@@ -8,7 +8,7 @@ Widget onBoradingContent(
       padding: EdgeInsets.only(top: (Get.height / 30)),
       decoration: BoxDecoration(
           // color: Colors.green,
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+          borderRadius: BorderRadius.circular(10)),
       child: Column(
         children: [
           Container(

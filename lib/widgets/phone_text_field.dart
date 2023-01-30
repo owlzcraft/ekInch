@@ -15,7 +15,7 @@ TextFormField MobileTextField(TextEditingController numberController) {
         contentPadding: EdgeInsets.symmetric(horizontal: 20),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFFEBA0F))),
-        hintText: " Enter your mobile",
+        hintText: "    Enter your mobile",
         hintStyle: TextStyle(fontSize: 18, color: Color(0xFF999898)),
         prefixIcon: Container(
           decoration: const BoxDecoration(

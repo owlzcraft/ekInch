@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_application_00/app/modules/Onboarding/controllers/onboarding_controller.dart';
 import 'package:flutter_application_00/app/modules/Onboarding/widgets/onboardingcontent.dart';
 import 'package:flutter_application_00/app/modules/mobile/views/mobile_view.dart';
-import 'package:flutter_application_00/app/modules/register/views/register.view.dart.dart';
+import 'package:flutter_application_00/app/modules/register/views/register.view.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -26,7 +26,7 @@ class OnboardingView extends GetView<OnboardingController> {
                   Get.to(MobileView());
                 },
                 child: Text('Skip >>',
-                    style: TextStyle(fontSize: 20, color: Color(0xFFE55425))),
+                    style: TextStyle(fontSize: 18, color: Color(0xFFE55425))),
               )),
         ],
         backgroundColor: Colors.white,
@@ -39,8 +39,8 @@ class OnboardingView extends GetView<OnboardingController> {
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(40.sp),
-                  bottomRight: Radius.circular(40.sp))),
+                  bottomLeft: Radius.circular(40),
+                  bottomRight: Radius.circular(40))),
           child: PageView(
             controller: pageController,
             children: [
@@ -88,7 +88,7 @@ class OnboardingView extends GetView<OnboardingController> {
             ),
             GestureDetector(
               onTap: () {
-                (pageController.page == 2.0) ? Get.to(RegisterView()) :
+                (pageController.page == 2.0) ? Get.to(MobileView()) :
                 pageController.nextPage(
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.easeInOut);

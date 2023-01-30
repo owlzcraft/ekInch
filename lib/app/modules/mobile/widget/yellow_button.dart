@@ -22,7 +22,7 @@ class DynamicButton extends StatelessWidget {
             text,
             style: TextStyle(
                 color: Colors.black,
-                fontSize: 27,
+                fontSize:20 ,
                 letterSpacing: 1,
                 fontWeight: FontWeight.w700,
                 fontFamily: "kadwa",
