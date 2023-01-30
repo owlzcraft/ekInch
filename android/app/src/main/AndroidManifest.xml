@@ -1,8 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ekinch">
-    <uses-permission android:name="android.permission.INTERNET"/>
+    package="com.example.flutter_application_00">
    <application
-        android:label="ekinch"
+        android:label="एक इंच"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
