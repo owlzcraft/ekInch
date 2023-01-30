@@ -65,7 +65,7 @@ class _DashboardStateView extends State<DashboardView>
           elevation: 0.0,
           backgroundColor: Colors.black,
           leading: IconButton(
-            icon: SvgPicture.asset(Assets.drawerIcon),
+            icon: SvgPicture.asset(Assets.notification),
             onPressed: () {
               if (!scaffoldKey.currentState!.isDrawerOpen) {
                 //check if drawer is closed
@@ -78,10 +78,10 @@ class _DashboardStateView extends State<DashboardView>
                 onPressed: (() => {Get.to(() => LanguageView())}),
                 icon: SvgPicture.asset(Assets.languageIcon)),
             Padding(
-              padding: const EdgeInsets.only(right:8.0),
-              child:IconButton(
-                onPressed: (() => {Get.to(() => NotificationView())}),
-                icon: Icon(Icons.notifications_outlined)), 
+              padding: const EdgeInsets.only(right: 8.0),
+              child: IconButton(
+                  onPressed: (() => {Get.to(() => NotificationView())}),
+                  icon: Icon(Icons.notifications_outlined)),
             ),
           ],
           bottom: PreferredSize(

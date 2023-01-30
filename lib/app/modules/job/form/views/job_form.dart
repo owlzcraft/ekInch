@@ -34,8 +34,11 @@ class formFillView extends StatelessWidget {
           bottom: PreferredSize(
             preferredSize: const Size(0.0, 4.0),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 16.0, right: 16.0, top: 16.0, bottom: 30),
+              padding: EdgeInsets.only(
+                  left: getHorizontalSize(16.0),
+                  right: getHorizontalSize(16.0),
+                  top: getVerticalSize(16.0),
+                  bottom: getVerticalSize(30)),
               child: Row(
                 children: [
                   Column(
@@ -50,7 +53,7 @@ class formFillView extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: getVerticalSize(5),
                       ),
                       const Text(
                         "Please tell us about yourself",
@@ -62,7 +65,7 @@ class formFillView extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    width: getHorizontalSize(110),
+                    width: getVerticalSize(10),
                   ),
                   CircleAvatar(
                     radius: 20.sp,
@@ -105,15 +108,12 @@ class formFillView extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  height: 30,
+                  height: getVerticalSize(30),
                   color: Colors.black,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 8.0, right: 8.0, bottom: 16.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Container(
-                    width: getHorizontalSize(408),
-                    height: getVerticalSize(142),
                     decoration: BoxDecoration(
                         border: Border.all(color: KColors.greyLine),
                         color: Colors.white,
@@ -131,42 +131,41 @@ class formFillView extends StatelessWidget {
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold),
                           ),
-                          const SizedBox(
-                            height: 10,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            child: TextFormField(
+                                onTap: () {
+                                  // setState(() {
+                                  //   drop = false;
+                                  // });
+                                },
+                                // controller: nameController,
+                                validator: ((value) {
+                                  // print(value);
+                                  if (value!.isEmpty) {
+                                    return "This Field Can't be Empty.";
+                                  }
+                                  return null;
+                                }),
+                                // cursorColor: const Color(0xFFFEBA0F),
+                                style: const TextStyle(fontSize: 16),
+                                decoration: const InputDecoration(
+                                    prefixIcon: Icon(Icons.contacts_outlined,
+                                        color: Colors.black),
+                                    hintStyle: TextStyle(
+                                        fontSize: 18, color: Color(0xFF999898)),
+                                    hintText: "eg. electrician",
+                                    focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(4)),
+                                        borderSide: BorderSide(
+                                            color: KColors.greyLine)),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(4)),
+                                        borderSide: BorderSide(
+                                            color: KColors.greyLine)))),
                           ),
-                          // Text
-                          TextFormField(
-                              onTap: () {
-                                // setState(() {
-                                //   drop = false;
-                                // });
-                              },
-                              // controller: nameController,
-                              validator: ((value) {
-                                // print(value);
-                                if (value!.isEmpty) {
-                                  return "This Field Can't be Empty.";
-                                }
-                                return null;
-                              }),
-                              // cursorColor: const Color(0xFFFEBA0F),
-                              style: const TextStyle(fontSize: 16),
-                              decoration: const InputDecoration(
-                                  prefixIcon: Icon(Icons.contacts_outlined,
-                                      color: Colors.black),
-                                  hintStyle: TextStyle(
-                                      fontSize: 18, color: Color(0xFF999898)),
-                                  hintText: "eg. electrician",
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(4)),
-                                      borderSide:
-                                          BorderSide(color: KColors.greyLine)),
-                                  border: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(4)),
-                                      borderSide: BorderSide(
-                                          color: KColors.greyLine)))),
                         ],
                       ),
                     ),
@@ -175,11 +174,8 @@ class formFillView extends StatelessWidget {
               ],
             ),
             Padding(
-              padding:
-                  const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 16.0),
+              padding: const EdgeInsets.all(10),
               child: Container(
-                width: getHorizontalSize(408),
-                height: getVerticalSize(142),
                 decoration: BoxDecoration(
                     border: Border.all(color: KColors.greyLine),
                     color: Colors.white,
@@ -197,51 +193,48 @@ class formFillView extends StatelessWidget {
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(
-                        height: 10,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: TextFormField(
+                            onTap: () {
+                              // setState(() {
+                              //   drop = false;
+                              // });
+                            },
+                            validator: ((value) {
+                              if (value!.isEmpty) {
+                                return "This Field Can't be Empty.";
+                              }
+                              return null;
+                            }),
+                            // cursorColor: const Color(0xFFFEBA0F),
+                            style: const TextStyle(fontSize: 16),
+                            decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.person_outline,
+                                    color: Colors.black),
+                                hintStyle: TextStyle(
+                                    fontSize: 18, color: Color(0xFF999898)),
+                                hintText: "eg. electrician at Ek Inch",
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(4)),
+                                    borderSide:
+                                        BorderSide(color: KColors.greyLine)),
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(4)),
+                                    borderSide:
+                                        BorderSide(color: KColors.greyLine)))),
                       ),
-                      // Text
-                      TextFormField(
-                          onTap: () {
-                            // setState(() {
-                            //   drop = false;
-                            // });
-                          },
-                          validator: ((value) {
-                            if (value!.isEmpty) {
-                              return "This Field Can't be Empty.";
-                            }
-                            return null;
-                          }),
-                          // cursorColor: const Color(0xFFFEBA0F),
-                          style: const TextStyle(fontSize: 16),
-                          decoration: const InputDecoration(
-                              prefixIcon: Icon(Icons.person_outline,
-                                  color: Colors.black),
-                              hintStyle: TextStyle(
-                                  fontSize: 18, color: Color(0xFF999898)),
-                              hintText: "eg. electrician at Ek Inch",
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4)),
-                                  borderSide:
-                                      BorderSide(color: KColors.greyLine)),
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4)),
-                                  borderSide:
-                                      BorderSide(color: KColors.greyLine)))),
                     ],
                   ),
                 ),
               ),
             ),
             Padding(
-              padding:
-                  const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Container(
-                width: getHorizontalSize(408),
-                height: getVerticalSize(142),
+                width: Get.width,
                 decoration: BoxDecoration(
                     border: Border.all(color: KColors.greyLine),
                     color: Colors.white,
@@ -329,11 +322,9 @@ class formFillView extends StatelessWidget {
               ),
             ),
             Padding(
-              padding:
-                  const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 16.0),
+              padding: const EdgeInsets.all(10.0),
               child: Container(
-                width: getHorizontalSize(408),
-                height: getVerticalSize(142),
+                width: Get.width,
                 decoration: BoxDecoration(
                     border: Border.all(color: KColors.greyLine),
                     color: Colors.white,
@@ -341,7 +332,6 @@ class formFillView extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
@@ -351,8 +341,9 @@ class formFillView extends StatelessWidget {
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(
-                        height: 4,
+                      Text(
+                        "",
+                        style: TextStyle(fontSize: 14),
                       ),
                       const Text(
                         "Do you have any skills ?",
@@ -361,19 +352,16 @@ class formFillView extends StatelessWidget {
                           fontSize: 14,
                         ),
                       ),
-                      const SizedBox(
-                        height: 12,
-                      ),
+                      Text(""),
                       Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           InkWell(
                             onTap: () {},
                             child: Container(
-                              height: getVerticalSize(46),
-                              width: getVerticalSize(260),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 40),
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black),
                                   color: Colors.white,
@@ -388,9 +376,6 @@ class formFillView extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            width: 14,
                           ),
                           InkWell(
                             onTap: () {
