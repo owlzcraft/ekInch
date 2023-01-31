@@ -41,11 +41,31 @@ class _RecordsViewState extends State<RecordsView> {
       visibilitylights = !visibilitylights;
     });
   }
-void showdrop2() {
+
+  void showdrop2() {
     setState(() {
       visibilityhospitals = !visibilityhospitals;
     });
   }
+
+  void showdrop3() {
+    setState(() {
+      visibilitycivil = !visibilitycivil;
+    });
+  }
+
+  void showdrop4() {
+    setState(() {
+      visibilityplumber = !visibilityplumber;
+    });
+  }
+
+  void showdrop5() {
+    setState(() {
+      visibilitypainiting = !visibilitypainiting;
+    });
+  }
+
   final CarouselController carouselController = CarouselController();
 
   int currentIndex = 0;
@@ -73,11 +93,11 @@ void showdrop2() {
         ),
         actions: [
           IconButton(
-              onPressed: (() => {Get.to(() =>  ReferNearnView())}),
+              onPressed: (() => {Get.to(() => const ReferNearnView())}),
               icon: SvgPicture.asset(Assets.share)),
           IconButton(
             padding: const EdgeInsetsDirectional.only(end: 9.11),
-            onPressed: (() => {Get.to(() =>  NotificationView())}),
+            onPressed: (() => {Get.to(() => NotificationView())}),
             icon: SvgPicture.asset(Assets.notification),
           ),
         ],
@@ -113,8 +133,8 @@ void showdrop2() {
                             height: getVerticalSize(80),
                             child: Image.asset(Assets.Recordimg1),
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                )),
+                              borderRadius: BorderRadius.circular(15),
+                            )),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
@@ -124,45 +144,43 @@ void showdrop2() {
                             height: getVerticalSize(80),
                             child: Image.asset(Assets.Recordimg1),
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15
-                                ))),
+                                borderRadius: BorderRadius.circular(15))),
                       ),
                     ],
                   ),
                 ),
               ),
             ),
-            SizedBox(
-              height: getHorizontalSize(20.38),
-            ),
             Column(children: [
-              Container(
-                width: getHorizontalSize(396),
-                height: getVerticalSize(50),
-                decoration: BoxDecoration(
-                    color: KColors.greybg,
-                    borderRadius: BorderRadius.circular(6)),
+              InkWell(
+                onTap: showdrop1,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      const Text(
-                        "Lights",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Kadwa",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Container(
+                    width: getHorizontalSize(396),
+                    height: getVerticalSize(50),
+                    decoration: BoxDecoration(
+                        color: KColors.greybg,
+                        borderRadius: BorderRadius.circular(6)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 14.9, right: 14.9),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          const Text(
+                            "Lights",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Kadwa",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                          ),
+                          const Icon(Icons.arrow_drop_down_sharp, size: 30),
+                        ],
                       ),
-                      InkWell(
-                        child:
-                            const Icon(Icons.arrow_drop_down_sharp, size: 30),
-                        onTap: showdrop1,
-                      )
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -212,7 +230,7 @@ void showdrop2() {
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                          MainAxisAlignment.spaceEvenly,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
@@ -221,36 +239,33 @@ void showdrop2() {
                                           size: 18,
                                           color: Colors.grey,
                                         ),
-                                        const SizedBox(
-                                          width: 2.9,
-                                        ),
-                                        const Text(
-                                          "429",
-                                          style: TextStyle(
-                                              fontSize: 14, color: Colors.grey),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          child: Text(
+                                            "429",
+                                            style: TextStyle(
+                                                fontSize: 14, color: Colors.grey),
+                                          ),
                                         ),
                                         SvgPicture.asset(Assets.watch,
                                             color: Colors.grey),
-                                        const SizedBox(
-                                          width: 2.9,
-                                        ),
-                                        const Text(
-                                          "00 Min 20 Sec",
-                                          style: TextStyle(
-                                              fontSize: 14, color: Colors.grey),
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          child: Text(
+                                            "00 Min 20 Sec",
+                                            style: TextStyle(
+                                                fontSize: 14, color: Colors.grey),
+                                          ),
                                         ),
                                       ],
                                     )
                                   ],
                                 ),
                               ),
-                              const SizedBox(
-                                width: 65,
-                              ),
-                              const Icon(Icons.check_circle_outline)
+                              const Padding(
+                                padding: EdgeInsets.only(left: 45.0),
+                                child: Icon(Icons.check_circle_outline),
+                              )
                             ],
                           ),
                         ),
@@ -292,7 +307,7 @@ void showdrop2() {
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                          MainAxisAlignment.spaceEvenly,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
@@ -301,72 +316,69 @@ void showdrop2() {
                                           size: 18,
                                           color: Colors.grey,
                                         ),
-                                        const SizedBox(
-                                          width: 2.9,
-                                        ),
-                                        const Text(
-                                          "429",
-                                          style: TextStyle(
-                                              fontSize: 14, color: Colors.grey),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
+                                          child: Text(
+                                            "429",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.grey),
+                                          ),
                                         ),
                                         SvgPicture.asset(Assets.watch,
                                             color: Colors.grey),
-                                        const SizedBox(
-                                          width: 2.9,
-                                        ),
-                                        const Text(
-                                          "00 Min 20 Sec",
-                                          style: TextStyle(
-                                              fontSize: 14, color: Colors.grey),
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
+                                          child: Text(
+                                            "00 Min 20 Sec",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.grey),
+                                          ),
                                         ),
                                       ],
                                     )
                                   ],
                                 ),
                               ),
-                              const SizedBox(
-                                width: 65,
-                              ),
-                              const Icon(Icons.check_circle_outline)
+                              const Padding(
+                                padding: EdgeInsets.only(left: 45.0),
+                                child: Icon(Icons.check_circle_outline),
+                              )
                             ],
                           ),
                         ),
                       ]),
                 ),
               ),
-              SizedBox(
-                height: getVerticalSize(14),
-              ),
-              Container(
-                width: getHorizontalSize(396),
-                height: getVerticalSize(50),
-                decoration: BoxDecoration(
-                    color: KColors.greybg,
-                    borderRadius: BorderRadius.circular(6)),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      const Text(
-                        "Hospitals",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Kadwa",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
-                      ),
-                      InkWell(
-                        child:
-                            const Icon(Icons.arrow_drop_down_sharp, size: 30),
-                        onTap: showdrop2,
-                      )
-                    ],
+              InkWell(
+                onTap: showdrop2,
+                child: Container(
+                  width: getHorizontalSize(396),
+                  height: getVerticalSize(50),
+                  decoration: BoxDecoration(
+                      color: KColors.greybg,
+                      borderRadius: BorderRadius.circular(6)),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 14.9, right: 14.9),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      // ignore: prefer_const_literals_to_create_immutables
+                      children: [
+                        const Text(
+                          "Hospitals",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: "Kadwa",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        const Icon(Icons.arrow_drop_down_sharp, size: 30),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -416,7 +428,7 @@ void showdrop2() {
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                          MainAxisAlignment.spaceEvenly,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
@@ -425,36 +437,33 @@ void showdrop2() {
                                           size: 18,
                                           color: Colors.grey,
                                         ),
-                                        const SizedBox(
-                                          width: 2.9,
-                                        ),
-                                        const Text(
-                                          "429",
-                                          style: TextStyle(
-                                              fontSize: 14, color: Colors.grey),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          child: Text(
+                                            "429",
+                                            style: TextStyle(
+                                                fontSize: 14, color: Colors.grey),
+                                          ),
                                         ),
                                         SvgPicture.asset(Assets.watch,
                                             color: Colors.grey),
-                                        const SizedBox(
-                                          width: 2.9,
-                                        ),
-                                        const Text(
-                                          "00 Min 20 Sec",
-                                          style: TextStyle(
-                                              fontSize: 14, color: Colors.grey),
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          child: Text(
+                                            "00 Min 20 Sec",
+                                            style: TextStyle(
+                                                fontSize: 14, color: Colors.grey),
+                                          ),
                                         ),
                                       ],
                                     )
                                   ],
                                 ),
                               ),
-                              const SizedBox(
-                                width: 65,
-                              ),
-                              const Icon(Icons.check_circle_outline)
+                              const Padding(
+                                padding: EdgeInsets.only(left: 45.0),
+                                child: Icon(Icons.check_circle_outline),
+                              )
                             ],
                           ),
                         ),
@@ -496,7 +505,7 @@ void showdrop2() {
                                     ),
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                          MainAxisAlignment.spaceEvenly,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
@@ -505,73 +514,243 @@ void showdrop2() {
                                           size: 18,
                                           color: Colors.grey,
                                         ),
-                                        const SizedBox(
-                                          width: 2.9,
-                                        ),
-                                        const Text(
-                                          "429",
-                                          style: TextStyle(
-                                              fontSize: 14, color: Colors.grey),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
+                                          child: Text(
+                                            "429",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.grey),
+                                          ),
                                         ),
                                         SvgPicture.asset(Assets.watch,
                                             color: Colors.grey),
-                                        const SizedBox(
-                                          width: 2.9,
-                                        ),
-                                        const Text(
-                                          "00 Min 20 Sec",
-                                          style: TextStyle(
-                                              fontSize: 14, color: Colors.grey),
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
+                                          child: Text(
+                                            "00 Min 20 Sec",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.grey),
+                                          ),
                                         ),
                                       ],
                                     )
                                   ],
                                 ),
                               ),
-                              const SizedBox(
-                                width: 65,
-                              ),
-                              const Icon(Icons.check_circle_outline)
+                              const Padding(
+                                padding: EdgeInsets.only(left: 45.0),
+                                child: Icon(Icons.check_circle_outline),
+                              )
                             ],
                           ),
                         ),
                       ]),
                 ),
               ),
-              SizedBox(
-                height: getVerticalSize(14),
-              ),
-              Container(
-                width: getHorizontalSize(396),
-                height: getVerticalSize(50),
-                decoration: BoxDecoration(
-                    color: KColors.greybg,
-                    borderRadius: BorderRadius.circular(6)),
+              InkWell(
+                onTap: showdrop3,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      const Text(
-                        "Civil",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Kadwa",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Container(
+                    width: getHorizontalSize(396),
+                    height: getVerticalSize(50),
+                    decoration: BoxDecoration(
+                        color: KColors.greybg,
+                        borderRadius: BorderRadius.circular(6)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 14.9, right: 14.9),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          const Text(
+                            "Civil",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Kadwa",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                          ),
+                          const Icon(Icons.arrow_drop_down_sharp, size: 30),
+                        ],
                       ),
-                      const Icon(Icons.arrow_drop_down_sharp, size: 30)
-                    ],
+                    ),
                   ),
                 ),
               ),
-              SizedBox(
-                height: getVerticalSize(14),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Visibility(
+                  visible: visibilitycivil,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: getHorizontalSize(420),
+                          height: getVerticalSize(100),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: getHorizontalSize(74),
+                                height: getVerticalSize(74),
+                                decoration: const BoxDecoration(
+                                    color: KColors.greybg,
+                                    shape: BoxShape.rectangle),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Light work part 1",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    const Text(
+                                      "Electrician ",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        const Icon(
+                                          Icons.remove_red_eye_outlined,
+                                          size: 18,
+                                          color: Colors.grey,
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          child: Text(
+                                            "429",
+                                            style: TextStyle(
+                                                fontSize: 14, color: Colors.grey),
+                                          ),
+                                        ),
+                                        SvgPicture.asset(Assets.watch,
+                                            color: Colors.grey),
+                                        const Padding(
+                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          child: Text(
+                                            "00 Min 20 Sec",
+                                            style: TextStyle(
+                                                fontSize: 14, color: Colors.grey),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 45.0),
+                                child: Icon(Icons.check_circle_outline),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: getHorizontalSize(420),
+                          height: getVerticalSize(100),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: getHorizontalSize(74),
+                                height: getVerticalSize(74),
+                                decoration: const BoxDecoration(
+                                    color: KColors.greybg,
+                                    shape: BoxShape.rectangle),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Light work part 1",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    const Text(
+                                      "Electrician ",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        const Icon(
+                                          Icons.remove_red_eye_outlined,
+                                          size: 18,
+                                          color: Colors.grey,
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
+                                          child: Text(
+                                            "429",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.grey),
+                                          ),
+                                        ),
+                                        SvgPicture.asset(Assets.watch,
+                                            color: Colors.grey),
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
+                                          child: Text(
+                                            "00 Min 20 Sec",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.grey),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 45.0),
+                                child: Icon(Icons.check_circle_outline),
+                              )
+                            ],
+                          ),
+                        ),
+                      ]),
+                ),
               ),
               Container(
                 width: getHorizontalSize(396),
@@ -599,37 +778,37 @@ void showdrop2() {
                   ),
                 ),
               ),
-              SizedBox(
-                height: getVerticalSize(14),
-              ),
-              Container(
-                width: getHorizontalSize(396),
-                height: getVerticalSize(50),
-                decoration: BoxDecoration(
-                    color: KColors.greybg,
-                    borderRadius: BorderRadius.circular(6)),
+              InkWell(
+                onTap: showdrop5,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      const Text(
-                        "Painting",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Kadwa",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: Container(
+                    width: getHorizontalSize(396),
+                    height: getVerticalSize(50),
+                    decoration: BoxDecoration(
+                        color: KColors.greybg,
+                        borderRadius: BorderRadius.circular(6)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 14.9, right: 14.9),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          const Text(
+                            "Painting",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Kadwa",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18),
+                          ),
+                          const Icon(Icons.arrow_drop_down_sharp, size: 30)
+                        ],
                       ),
-                      const Icon(Icons.arrow_drop_down_sharp, size: 30)
-                    ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: getVerticalSize(14),
               ),
             ]),
           ],

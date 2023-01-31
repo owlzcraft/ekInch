@@ -52,28 +52,28 @@ class formFillView extends StatelessWidget {
                             fontSize: 27,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
-                        height: getVerticalSize(5),
-                      ),
-                      const Text(
-                        "Please tell us about yourself",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical:1.9),
+                        child: const Text(
+                          "Please tell us about yourself",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
-                    width: getVerticalSize(10),
-                  ),
-                  CircleAvatar(
-                    radius: 20.sp,
-                    backgroundColor: const Color(0xFFBFBCBC),
+                  Padding(
+                    padding: const EdgeInsets.only(left:80),
                     child: CircleAvatar(
-                      radius: 18.sp,
-                      backgroundImage:
-                          const AssetImage("assets/images/profile.jpg"),
+                      radius: 30,
+                      backgroundColor: const Color(0xFFBFBCBC),
+                      child: CircleAvatar(
+                        radius: 28,
+                        backgroundImage:
+                            const AssetImage("assets/images/profile.jpg"),
+                      ),
                     ),
                   ),
                 ],
@@ -252,64 +252,64 @@ class formFillView extends StatelessWidget {
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Text(
-                        "How many years of experience in ?",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 132, 131, 131),
-                          fontSize: 14,
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 2.9),
+                        child: Text(
+                          "How many years of experience in ?",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 132, 131, 131),
+                            fontSize: 14,
+                          ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 12,
-                      ),
                       Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           InkWell(
-                            onTap: () {
-                              Get.to(ProfileFormView());
-                            },
-                            child: Container(
-                              height: getVerticalSize(46),
-                              width: getVerticalSize(260),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black),
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: const Center(
-                                child: Text(
-                                  "Click to fill your experience",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold),
+                            onTap: () {},
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 12, horizontal: 50),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(100)),
+                                child: const Center(
+                                  child: Text(
+                                    "Click to fill your Skills",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 14,
-                          ),
                           InkWell(
-                            child: Container(
-                              height: getVerticalSize(46),
-                              width: getVerticalSize(99),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: KColors.orange),
-                                  color: KColors.orange,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: const Center(
-                                child: Text(
-                                  "Add",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w100),
+                            onTap: () {
+                              Get.to(AddSkillView());
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Container(
+                                height: getVerticalSize(46),
+                                width: getVerticalSize(99),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: KColors.orange),
+                                    color: KColors.orange,
+                                    borderRadius: BorderRadius.circular(100)),
+                                child: const Center(
+                                  child: Text(
+                                    "Add",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w100),
+                                  ),
                                 ),
                               ),
                             ),
@@ -341,38 +341,39 @@ class formFillView extends StatelessWidget {
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text(
-                        "",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      const Text(
-                        "Do you have any skills ?",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 132, 131, 131),
-                          fontSize: 14,
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 2.9),
+                        child: Text(
+                          "Do you have any skills ?",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 132, 131, 131),
+                            fontSize: 14,
+                          ),
                         ),
                       ),
-                      Text(""),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           InkWell(
                             onTap: () {},
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 40),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black),
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: const Center(
-                                child: Text(
-                                  "Click to fill your Skills",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 12, horizontal: 50),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(100)),
+                                child: const Center(
+                                  child: Text(
+                                    "Click to fill your Skills",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
                             ),
@@ -381,20 +382,111 @@ class formFillView extends StatelessWidget {
                             onTap: () {
                               Get.to(AddSkillView());
                             },
-                            child: Container(
-                              height: getVerticalSize(46),
-                              width: getVerticalSize(99),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: KColors.orange),
-                                  color: KColors.orange,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: const Center(
-                                child: Text(
-                                  "Add",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w100),
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Container(
+                                height: getVerticalSize(46),
+                                width: getVerticalSize(99),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: KColors.orange),
+                                    color: KColors.orange,
+                                    borderRadius: BorderRadius.circular(100)),
+                                child: const Center(
+                                  child: Text(
+                                    "Add",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w100),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                width: Get.width,
+                decoration: BoxDecoration(
+                    border: Border.all(color: KColors.greyLine),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(4)),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "What is your qualification?",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 2.9),
+                        child: Text(
+                          "Put your qualification here",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 132, 131, 131),
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 12, horizontal: 50),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(100)),
+                                child: const Center(
+                                  child: Text(
+                                    "Click to fill your Skills",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: Container(
+                                height: getVerticalSize(46),
+                                width: getVerticalSize(99),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: KColors.orange),
+                                    color: KColors.orange,
+                                    borderRadius: BorderRadius.circular(100)),
+                                child: const Center(
+                                  child: Text(
+                                    "Add",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w100),
+                                  ),
                                 ),
                               ),
                             ),
@@ -408,96 +500,7 @@ class formFillView extends StatelessWidget {
             ),
             Padding(
               padding:
-                  const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 16.0),
-              child: Container(
-                width: getHorizontalSize(408),
-                height: getVerticalSize(142),
-                decoration: BoxDecoration(
-                    border: Border.all(color: KColors.greyLine),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4)),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "What is your qualification?",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      const Text(
-                        "Put your qualification here",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 132, 131, 131),
-                          fontSize: 14,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: getVerticalSize(46),
-                              width: getVerticalSize(260),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black),
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: const Center(
-                                child: Text(
-                                  "Click to add your qualification",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 14,
-                          ),
-                          InkWell(
-                            child: Container(
-                              height: getVerticalSize(46),
-                              width: getVerticalSize(99),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: KColors.orange),
-                                  color: KColors.orange,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: const Center(
-                                child: Text(
-                                  "Add",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w100),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
               child: GFButton(
                 onPressed: () {
                   Get.to(JobListView());

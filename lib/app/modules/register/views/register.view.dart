@@ -124,7 +124,7 @@ class _RegisterViewState extends State<RegisterView> {
                   validator: ((value) {
                     // print(value);
                     if (value!.isEmpty) {
-                      return "This Field Can't be Empty.";
+                      return "Please Enter Your Name";
                     }
                     return null;
                   }),

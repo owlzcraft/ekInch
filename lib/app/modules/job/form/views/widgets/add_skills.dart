@@ -34,7 +34,7 @@ class AddSkillView extends StatelessWidget {
         title: const Text(
           "Add Your Skills",
           style: TextStyle(
-              color: Colors.white, fontSize: 27, fontWeight: FontWeight.bold),
+              color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.black,
         elevation: 0.0,
@@ -69,7 +69,7 @@ class AddSkillView extends StatelessWidget {
                   border: Border.all(color: Colors.black),
                 ),
               ),
-              // SizedBox(height:40),
+              
               Padding(
                 padding:
                     const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 0.0),
@@ -130,44 +130,46 @@ class AddSkillView extends StatelessWidget {
             child:  Column(
                 children: [
                   SkillOptions.textField("  Light Fitting"),
-                  const SizedBox(
-                    height: 12,
+                  
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical:11.0),
+                    child: SkillOptions.textField("  Light Fitting"),
+                  ),
+                 
+                 SkillOptions.textField("  Light Fitting"),
+                  
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical:11.0),
+                    child: SkillOptions.textField("  Light Fitting"),
+                  ),SkillOptions.textField("  Light Fitting"),
+                  
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical:11.0),
+                    child: SkillOptions.textField("  Light Fitting"),
                   ),
                   SkillOptions.textField("  Light Fitting"),
-                  const SizedBox(
-                    height: 12,
+                  
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical:11.0),
+                    child: SkillOptions.textField("  Light Fitting"),
                   ),
-                  SkillOptions.textField("  Light Fitting"),
-                  const SizedBox(
-                    height: 12,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: GFButton(
+                                  onPressed: () {
+                    // check();
+                                  },
+                                  color: KColors.orange,
+                                  fullWidthButton: true,
+                                  size: 50.2,
+                                  text: "Save & Next",
+                                  textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 24.0,
+                      fontFamily: 'Kadwa'),
+                                ),
                   ),
-                  SkillOptions.textField("  Light Fitting"),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  SkillOptions.textField("  Light Fitting"),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  SkillOptions.textField("  Light Fitting"),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  SkillOptions.textField("  Light Fitting"),
-                  SizedBox(height: getVerticalSize(26.5),),GFButton(
-                onPressed: () {
-                  // check();
-                },
-                color: KColors.orange,
-                fullWidthButton: true,
-                size: 50.2,
-                text: "Save & Next",
-                textStyle: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 24.0,
-                    fontFamily: 'Kadwa'),
-              ),
                 ],
               ),
             ),

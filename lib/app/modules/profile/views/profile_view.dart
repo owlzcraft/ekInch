@@ -7,6 +7,7 @@ import 'package:flutter_application_00/widgets/phone_text_field.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../generated/assets.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
@@ -30,10 +31,15 @@ class ProfileView extends GetView<ProfileController> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          leading: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-            size: 30,
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+              size: 30,
+            ),
           ),
         ),
         body: Container(
@@ -55,7 +61,11 @@ class ProfileView extends GetView<ProfileController> {
                   style: GoogleFonts.kadwa(
                       fontSize: getFontSize(20), color: Color(0xFF6A6A6A)),
                 ),
-                Image.asset('assets/images/verified_icon.png'),
+                Image.asset(
+                  Assets.verified,
+                  width: getHorizontalSize(114),
+                  height: getVerticalSize(28),
+                ),
               ],
             ),
             Expanded(
