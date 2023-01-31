@@ -80,36 +80,39 @@ class JobProfileView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          width: getHorizontalSize(80),
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "Sanjay Singh",
-                              style: GoogleFonts.kadwa(
-                                  color: const Color(0xFF1A1D1E),
-                                  fontSize: 27,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                            Text(
-                              'Electrician Mechanic',
-                              style: GoogleFonts.kadwa(
-                                  fontSize: 16, color: const Color(0xFF6A6A6A)),
-                            ),
-                           Image.asset(Assets.verified,width: getHorizontalSize(114),height: getVerticalSize(28),),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 9,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 50, right: 10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Sanjay Singh",
+                                style: GoogleFonts.kadwa(
+                                    color: const Color(0xFF1A1D1E),
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              Text(
+                                'Electrician Mechanic',
+                                style: GoogleFonts.kadwa(
+                                    fontSize: 16,
+                                    color: const Color(0xFF6A6A6A)),
+                              ),
+                              Image.asset(
+                                Assets.verified,
+                                width: getHorizontalSize(114),
+                                height: getVerticalSize(28),
+                              ),
+                            ],
+                          ),
                         ),
                         InkWell(
                           onTap: () {},
                           child: Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: Container(
-                              height: getVerticalSize(18.9),
-                              width: getHorizontalSize(60.6),
+                              width: getHorizontalSize(55),
                               decoration: BoxDecoration(
                                   border: Border.all(color: KColors.orange),
                                   color: KColors.orange,
@@ -139,8 +142,7 @@ class JobProfileView extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  width: getHorizontalSize(378),
-                  height: getVerticalSize(350),
+                  width: Get.width,
                   decoration: BoxDecoration(
                       border: Border.all(color: KColors.greyLine),
                       color: Colors.white,
@@ -151,7 +153,7 @@ class JobProfileView extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             top: 16.0, right: 8.0, left: 16.0),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
@@ -161,10 +163,10 @@ class JobProfileView extends StatelessWidget {
                                   fontSize: 18,
                                   fontWeight: FontWeight.w400),
                             ),
-                            SizedBox(
-                              width: getHorizontalSize(55),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: SvgPicture.asset(Assets.certified),
                             ),
-                            SvgPicture.asset(Assets.certified),
                             Text(
                               "View Certificate",
                               style: GoogleFonts.kadwa(
@@ -176,7 +178,7 @@ class JobProfileView extends StatelessWidget {
                         ),
                       ),
                       const Padding(
-                        padding: EdgeInsets.all(4.0),
+                        padding: EdgeInsets.all(16.0),
                         child: Divider(
                           color: KColors.greyLine,
                         ),
@@ -185,83 +187,62 @@ class JobProfileView extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                         child: Row(
                           children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(Assets.location),
-                                    SizedBox(
-                                      width: getHorizontalSize(10),
-                                    ),
-                                    Text(
-                                      "Rorkee",
-                                      style: GoogleFonts.kadwa(
-                                          color: KColors.textGrey,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(6),
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(Assets.edu),
-                                    SizedBox(
-                                      width: getHorizontalSize(10),
-                                    ),
-                                    Text(
-                                      "Intermediate",
-                                      style: GoogleFonts.kadwa(
-                                          color: KColors.textGrey,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(6),
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(Assets.speak),
-                                    SizedBox(
-                                      width: getHorizontalSize(10),
-                                    ),
-                                    Text(
-                                      "Good Hindi",
-                                      style: GoogleFonts.kadwa(
-                                          color: KColors.textGrey,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(6),
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(Assets.birth),
-                                    SizedBox(
-                                      width: getHorizontalSize(8),
-                                    ),
-                                    Text(
-                                      "20 April, 1991",
-                                      style: GoogleFonts.kadwa(
-                                          color: KColors.textGrey,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: getHorizontalSize(20),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 30),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(Assets.location),
+                                      Text(
+                                        "Rorkee",
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(Assets.edu),
+                                      Text(
+                                        "Intermediate",
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(Assets.speak),
+                                      Text(
+                                        "Good Hindi",
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(Assets.birth),
+                                      Text(
+                                        "20 April, 1991",
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -270,9 +251,6 @@ class JobProfileView extends StatelessWidget {
                                 Row(
                                   children: [
                                     SvgPicture.asset(Assets.money),
-                                    SizedBox(
-                                      width: getHorizontalSize(10),
-                                    ),
                                     Text(
                                       "1800-2500/month",
                                       style: GoogleFonts.kadwa(
@@ -282,15 +260,9 @@ class JobProfileView extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: getVerticalSize(6),
-                                ),
                                 Row(
                                   children: [
                                     SvgPicture.asset(Assets.exp),
-                                    SizedBox(
-                                      width: getHorizontalSize(10),
-                                    ),
                                     Text(
                                       "3 Years Experience",
                                       style: GoogleFonts.kadwa(
@@ -300,15 +272,9 @@ class JobProfileView extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: getVerticalSize(6),
-                                ),
                                 Row(
                                   children: [
                                     SvgPicture.asset(Assets.mobile),
-                                    SizedBox(
-                                      width: getHorizontalSize(10),
-                                    ),
                                     Text(
                                       "+91 7878787891",
                                       style: GoogleFonts.kadwa(
@@ -318,9 +284,6 @@ class JobProfileView extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: getVerticalSize(6),
-                                ),
                                 Row(
                                   children: [
                                     const Icon(
@@ -328,9 +291,7 @@ class JobProfileView extends StatelessWidget {
                                       color: KColors.textGrey,
                                     ),
                                     // SvgPicture.asset(Assets.birth),
-                                    SizedBox(
-                                      width: getHorizontalSize(10),
-                                    ),
+
                                     Text(
                                       "Male",
                                       style: GoogleFonts.kadwa(
@@ -346,13 +307,10 @@ class JobProfileView extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 18.0, top: 2.0),
+                        padding: const EdgeInsets.only(left: 18.0, top: 2.0,bottom: 10),
                         child: Row(
                           children: [
                             SvgPicture.asset(Assets.suitcase),
-                            SizedBox(
-                              width: getHorizontalSize(10),
-                            ),
                             Text(
                               "Light Fitting, Invertor, Motor and Electric",
                               style: GoogleFonts.kadwa(
@@ -363,36 +321,32 @@ class JobProfileView extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: getVerticalSize(7.9),
-                      ),
                       Container(
-                        width: getHorizontalSize(378),
-                        height: getVerticalSize(80),
+                        width: Get.width,
+                        // height: getVerticalSize(80),
                         decoration: const BoxDecoration(
                             color: KColors.greybg,
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(4),
                                 bottomRight: Radius.circular(4))),
                         child: Padding(
-                          padding: const EdgeInsets.all(7.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                width: getHorizontalSize(55)
-                              ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 3.0),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    SvgPicture.asset(
-                                      Assets.call,
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 3),
+                                      child: SvgPicture.asset(
+                                        Assets.call,
+                                      ),
                                     ),
-                                    SizedBox(height: getVerticalSize(4),),
                                     Text(
                                       "Call",
                                       style: GoogleFonts.kadwa(
@@ -403,15 +357,14 @@ class JobProfileView extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(width: getHorizontalSize(55),),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SvgPicture.asset(
                                     Assets.whatsapp,
-                                    width: getHorizontalSize(30),
-                                    height: getVerticalSize(30),
+                                    // width: getHorizontalSize(30),
+                                    // height: getVerticalSize(30),
                                   ),
                                   Text(
                                     "WhatsApp",
@@ -422,9 +375,8 @@ class JobProfileView extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              SizedBox(width: getHorizontalSize(55),),
                               Padding(
-                                padding: const EdgeInsets.only(top:3.0),
+                                padding: const EdgeInsets.only(top: 3.0),
                                 child: Column(
                                   children: [
                                     SvgPicture.asset(Assets.msg),
@@ -445,31 +397,32 @@ class JobProfileView extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: getVerticalSize(25),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical:28.0),
+                  child: GFButton(
+                    onPressed: () {
+                      // check();
+                    },
+                    color: KColors.orange,
+                    fullWidthButton: true,
+                    size: 50.2,
+                    text: "Hire Me",
+                    textStyle: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 24.0,
+                        fontFamily: 'Kadwa'),
+                  ),
                 ),
-                GFButton(
-                  onPressed: () {
-                    // check();
-                  },
-                  color: KColors.orange,
-                  fullWidthButton: true,
-                  size: 50.2,
-                  text: "Hire Me",
-                  textStyle: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 24.0,
-                      fontFamily: 'Kadwa'),
+                Center(
+                  child: Text(
+                    "   Upoad Resume",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700),
+                  ),
                 ),
-                SizedBox(height: getVerticalSize(13),),
-                 Center(
-                   child: Text(
-          "   Upoad Resume",
-          style: TextStyle(
-              color: Colors.black, fontSize: 17, fontWeight: FontWeight.w700),
-        ),
-                 ),
               ],
             ),
           ),
