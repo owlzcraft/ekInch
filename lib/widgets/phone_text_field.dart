@@ -4,6 +4,7 @@ import 'package:flutter_application_00/widgets/math_utils.dart';
 
 TextFormField MobileTextField(TextEditingController numberController) {
   return TextFormField(
+    
     style: TextStyle(fontSize: getFontSize(22), color: Color(0xFF999898)),
     scrollPadding: EdgeInsets.symmetric(horizontal: 10),
     keyboardType: TextInputType.number,

@@ -63,7 +63,7 @@ class JobLanding extends StatelessWidget {
             Text(
               'एक इंच',
               style:
-                  GoogleFonts.jaldi(fontWeight: FontWeight.w500, fontSize: 40),
+                  GoogleFonts.jaldi(fontWeight: FontWeight.w400, fontSize: 40),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
