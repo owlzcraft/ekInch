@@ -36,7 +36,7 @@ class JobLanding extends StatelessWidget {
         ),
         actions: [
           IconButton(
-              onPressed: (() => {Get.to(() => const ReferNearnView())}),
+              onPressed: (() => {Get.to(() =>  ReferNearnView())}),
               icon: SvgPicture.asset(Assets.share_black)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),

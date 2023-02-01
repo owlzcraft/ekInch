@@ -15,19 +15,14 @@ class JobInterestedController extends GetxController {
       "title": "Plaster Mistri",
     },
     {
-      "inactive_icon": "assets/icons/tilesMistri_inactive.svg",
-      "active_icon": "assets/icons/tilesMistri_active.svg",
-      "title": "Tiles Mistri",
+      "inactive_icon": "assets/icons/welding_inactive.svg",
+      "active_icon": "assets/icons/welding_active.svg",
+      "title": "Welding",
     },
     {
-      "inactive_icon": "assets/icons/labour_inactive.svg",
-      "active_icon": "assets/icons/labour_active.svg",
-      "title": "Labour",
-    },
-    {
-      "inactive_icon": "assets/icons/labour_inactive.svg",
-      "active_icon": "assets/icons/labour_active.svg",
-      "title": "Labour",
+      "inactive_icon": "assets/icons/plumber_inactive.svg",
+      "active_icon": "assets/icons/plumber_active.svg",
+      "title": "Plumber",
     },
     {
       "inactive_icon": "assets/icons/electrician_inactive.svg",
@@ -50,24 +45,29 @@ class JobInterestedController extends GetxController {
       "title": "TilesMistri",
     },
     {
-      "inactive_icon": "assets/icons/labour_inactive.svg",
-      "active_icon": "assets/icons/labour_active.svg",
-      "title": "Labour",
+      "inactive_icon": "assets/icons/welding_inactive.svg",
+      "active_icon": "assets/icons/welding_active.svg",
+      "title": "Welding",
     },
     {
-      "inactive_icon": "assets/icons/labour_inactive.svg",
-      "active_icon": "assets/icons/labour_active.svg",
-      "title": "Labour",
+      "inactive_icon": "assets/icons/plumber_inactive.svg",
+      "active_icon": "assets/icons/plumber_active.svg",
+      "title": "Plumber",
     },
-    {
+   {
       "inactive_icon": "assets/icons/electrician_inactive.svg",
       "active_icon": "assets/icons/electrician_active.svg",
       "title": "Electrician",
     },
     {
-      "inactive_icon": "assets/icons/labour_inactive.svg",
-      "active_icon": "assets/icons/labour_active.svg",
-      "title": "Labour",
+      "inactive_icon": "assets/icons/welding_inactive.svg",
+      "active_icon": "assets/icons/welding_active.svg",
+      "title": "Welding",
+    },
+    {
+      "inactive_icon": "assets/icons/plumber_inactive.svg",
+      "active_icon": "assets/icons/plumber_active.svg",
+      "title": "Plumber",
     },
     {
       "inactive_icon": "assets/icons/labour_inactive.svg",

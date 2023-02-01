@@ -75,7 +75,6 @@ class _RecordsViewState extends State<RecordsView> {
     return Scaffold(
       key: scaffoldKey,
       drawer: const SettingsView(),
-      // appBar: UpperBar("Records", "Records", true, true),
       appBar: AppBar(
         title: const Text(
           "Records",
@@ -86,14 +85,13 @@ class _RecordsViewState extends State<RecordsView> {
           icon: SvgPicture.asset(Assets.drawerIcon_white),
           onPressed: () {
             if (!scaffoldKey.currentState!.isDrawerOpen) {
-              //check if drawer is closed
-              scaffoldKey.currentState!.openDrawer(); //open drawer
+              scaffoldKey.currentState!.openDrawer();
             }
           },
         ),
         actions: [
           IconButton(
-              onPressed: (() => {Get.to(() => const ReferNearnView())}),
+              onPressed: (() => {Get.to(() => ReferNearnView())}),
               icon: SvgPicture.asset(Assets.share_white)),
           IconButton(
             padding: const EdgeInsetsDirectional.only(end: 9.11),
@@ -101,10 +99,8 @@ class _RecordsViewState extends State<RecordsView> {
             icon: SvgPicture.asset(Assets.notification),
           ),
         ],
-        backgroundColor:
-            // Colors.white.withOpacity(0.3),
-            Colors.black, //You can make this transparent
-        elevation: 0.0, //No shadow
+        backgroundColor: Colors.black,
+        elevation: 0.0,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -240,21 +236,25 @@ class _RecordsViewState extends State<RecordsView> {
                                           color: Colors.grey,
                                         ),
                                         const Padding(
-                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
                                           child: Text(
                                             "429",
                                             style: TextStyle(
-                                                fontSize: 14, color: Colors.grey),
+                                                fontSize: 14,
+                                                color: Colors.grey),
                                           ),
                                         ),
                                         SvgPicture.asset(Assets.watch,
                                             color: Colors.grey),
                                         const Padding(
-                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
                                           child: Text(
                                             "00 Min 20 Sec",
                                             style: TextStyle(
-                                                fontSize: 14, color: Colors.grey),
+                                                fontSize: 14,
+                                                color: Colors.grey),
                                           ),
                                         ),
                                       ],
@@ -382,7 +382,7 @@ class _RecordsViewState extends State<RecordsView> {
                   ),
                 ),
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.only(left: 16.0),
                 child: Visibility(
                   visible: visibilityhospitals,
@@ -438,21 +438,25 @@ class _RecordsViewState extends State<RecordsView> {
                                           color: Colors.grey,
                                         ),
                                         const Padding(
-                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
                                           child: Text(
                                             "429",
                                             style: TextStyle(
-                                                fontSize: 14, color: Colors.grey),
+                                                fontSize: 14,
+                                                color: Colors.grey),
                                           ),
                                         ),
                                         SvgPicture.asset(Assets.watch,
                                             color: Colors.grey),
                                         const Padding(
-                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
                                           child: Text(
                                             "00 Min 20 Sec",
                                             style: TextStyle(
-                                                fontSize: 14, color: Colors.grey),
+                                                fontSize: 14,
+                                                color: Colors.grey),
                                           ),
                                         ),
                                       ],
@@ -639,21 +643,25 @@ class _RecordsViewState extends State<RecordsView> {
                                           color: Colors.grey,
                                         ),
                                         const Padding(
-                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
                                           child: Text(
                                             "429",
                                             style: TextStyle(
-                                                fontSize: 14, color: Colors.grey),
+                                                fontSize: 14,
+                                                color: Colors.grey),
                                           ),
                                         ),
                                         SvgPicture.asset(Assets.watch,
                                             color: Colors.grey),
                                         const Padding(
-                                          padding: EdgeInsets.only(left: 2.9,right: 13),
+                                          padding: EdgeInsets.only(
+                                              left: 2.9, right: 13),
                                           child: Text(
                                             "00 Min 20 Sec",
                                             style: TextStyle(
-                                                fontSize: 14, color: Colors.grey),
+                                                fontSize: 14,
+                                                color: Colors.grey),
                                           ),
                                         ),
                                       ],
