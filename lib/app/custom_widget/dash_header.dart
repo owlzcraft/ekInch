@@ -6,8 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-AppBar DynamicAppBar(String name, String greetMsg, bool lang) {
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+AppBar DynamicAppBar(String name, String greetMsg, bool lang, GlobalKey<ScaffoldState> scaffoldKey) {
   return AppBar(
     elevation: 0.0,
     backgroundColor: Colors.black,

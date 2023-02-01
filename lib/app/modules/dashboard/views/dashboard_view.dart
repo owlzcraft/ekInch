@@ -62,7 +62,7 @@ class _DashboardStateView extends State<DashboardView>
         key: scaffoldKey,
         bottomNavigationBar: MyNavigator(),
         drawer: const SettingsView(),
-        appBar: DynamicAppBar("Sanjay Singh", "Welcome !", true),
+        appBar: DynamicAppBar("Sanjay Singh", "Welcome !", true, scaffoldKey),
         body: Container(
           color: Colors.white,
           child: SingleChildScrollView(

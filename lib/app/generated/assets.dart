@@ -27,8 +27,9 @@ class Assets {
   static const String notification = 'assets/icons/notifi.svg';
   static const String notification_black = 'assets/icons/notification_black.svg';
   static const String notification_white = 'assets/icons/notification_white.svg';
-  static const String Recordimg1 = 'assets/images/imagerecords.png';
+  static const String search_icon = 'assets/icons/search_icon.svg';
   static const String earnimg1 = 'assets/images/earnimg.svg';
+  static const String Recordimg1 = 'assets/images/imagerecords.png';
+  static const String referNearnBG = 'assets/images/refer_and_earn_bg.png';
   static const String ek_inch_logo = 'assets/images/ek_inch_logo.svg';
-
 }

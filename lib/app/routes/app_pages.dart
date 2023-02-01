@@ -66,7 +66,7 @@ class AppPages {
         binding: RecordsBinding()),
     GetPage(
         name: _Paths.RECORDS,
-        page: () => const ReferNearnView(),
+        page: () => ReferNearnView(),
         binding: ReferNearnBinding()),
     GetPage(
         name: _Paths.REELS,

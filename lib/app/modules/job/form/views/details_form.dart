@@ -25,7 +25,7 @@ class DetailsForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: const SettingsView(),
-        appBar: DynamicAppBar("Sanjay Singh", "Hello,", false),
+        appBar: DynamicAppBar("Sanjay Singh", "Hello,", false, scaffoldKey),
         body: SingleChildScrollView(
           child: Container(
             width: Get.width,
