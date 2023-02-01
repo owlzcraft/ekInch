@@ -46,6 +46,30 @@ class ReferNearnView extends GetView<ReferNearnController> {
             // indicatorColor: Color(0xFFFEBA0F),
             tabs: [Tab(text: 'Invite'), Tab(text: 'Status')],
           ),
+          actions: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
+                child: Row(
+                  children: [
+                    Center(
+                      child: Text(
+                        "1500  ",
+                        style: GoogleFonts.kadwa(
+                            fontWeight: FontWeight.w700, color: Colors.black),
+                      ),
+                    ),
+                    Center(child: SvgPicture.asset(Assets.reward_icon)),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
         body: const TabBarView(
           children: [InviteScreen(), StatusScreen()],
