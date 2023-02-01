@@ -32,4 +32,5 @@ class Assets {
   static const String Recordimg1 = 'assets/images/imagerecords.png';
   static const String referNearnBG = 'assets/images/refer_and_earn_bg.png';
   static const String ek_inch_logo = 'assets/images/ek_inch_logo.svg';
+  static const String reward_icon = 'assets/icons/rewards_icon.svg';
 }
