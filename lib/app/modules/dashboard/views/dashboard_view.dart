@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_application_00/app/custom_widget/dash_header.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/services_news.widget.dart';
 import 'package:flutter_application_00/app/modules/language/views/language_view.dart';
 import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
@@ -61,73 +62,7 @@ class _DashboardStateView extends State<DashboardView>
         key: scaffoldKey,
         bottomNavigationBar: MyNavigator(),
         drawer: const SettingsView(),
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.black,
-          leading: IconButton(
-            icon: SvgPicture.asset(Assets.drawerIcon),
-            onPressed: () {
-              if (!scaffoldKey.currentState!.isDrawerOpen) {
-                //check if drawer is closed
-                scaffoldKey.currentState!.openDrawer(); //open drawer
-              }
-            },
-          ),
-          actions: <Widget>[
-            IconButton(
-                onPressed: (() => {Get.to(() => LanguageView())}),
-                icon: SvgPicture.asset(Assets.languageIcon,color: Colors.white,)),
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: IconButton(
-                  onPressed: (() => {Get.to(() => NotificationView())}),
-                  icon: Icon(Icons.notifications_outlined)),
-            ),
-          ],
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(70.sp),
-            child: Container(
-              color: Colors.black,
-              child: Container(
-                padding: EdgeInsets.all(10.sp),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(left: 10.sp),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Welcome !',
-                            style: TextStyle(
-                                fontSize: 16.sp,
-                                color: const Color(0xffE0E0E0)),
-                          ),
-                          Text("Sanjay Singh",
-                              style: TextStyle(
-                                  fontSize: 24.sp,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: 20.sp,
-                      backgroundColor: const Color(0xFFBFBCBC),
-                      child: CircleAvatar(
-                        radius: 18.sp,
-                        backgroundImage:
-                            const AssetImage("assets/images/profile.jpg"),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
+        appBar: DynamicAppBar("Sanjay Singh", "Welcome !", true),
         body: Container(
           color: Colors.white,
           child: SingleChildScrollView(

@@ -30,7 +30,7 @@ class JobListView extends StatelessWidget {
           ),
           centerTitle: true,
           leading: IconButton(
-            icon: SvgPicture.asset(Assets.drawerIcon),
+            icon: SvgPicture.asset(Assets.drawerIcon_white),
             onPressed: () {
               if (!notDrawerKey.currentState!.isDrawerOpen) {
                 //check if drawer is closed
@@ -72,7 +72,7 @@ class JobListView extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: (() => (Get.to(JobListView()))),
-                icon: SvgPicture.asset(Assets.share)),
+                icon: SvgPicture.asset(Assets.share_white)),
             IconButton(
               padding: const EdgeInsetsDirectional.only(end: 9.11),
               onPressed: (() => {Get.to(() => NotificationView())}),

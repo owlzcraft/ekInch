@@ -83,7 +83,7 @@ class _RecordsViewState extends State<RecordsView> {
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: SvgPicture.asset(Assets.drawerIcon),
+          icon: SvgPicture.asset(Assets.drawerIcon_white),
           onPressed: () {
             if (!scaffoldKey.currentState!.isDrawerOpen) {
               //check if drawer is closed
@@ -94,7 +94,7 @@ class _RecordsViewState extends State<RecordsView> {
         actions: [
           IconButton(
               onPressed: (() => {Get.to(() => const ReferNearnView())}),
-              icon: SvgPicture.asset(Assets.share)),
+              icon: SvgPicture.asset(Assets.share_white)),
           IconButton(
             padding: const EdgeInsetsDirectional.only(end: 9.11),
             onPressed: (() => {Get.to(() => NotificationView())}),

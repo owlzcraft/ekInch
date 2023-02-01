@@ -38,7 +38,7 @@ class JobProfileView extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: (() => (Get.to(JobProfileView()))),
-              icon: SvgPicture.asset(Assets.share)),
+              icon: SvgPicture.asset(Assets.share_white)),
           IconButton(
             padding: const EdgeInsetsDirectional.only(end: 9.11),
             onPressed: (() => {Get.to(() => NotificationView())}),

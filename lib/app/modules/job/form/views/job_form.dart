@@ -4,6 +4,7 @@ import 'package:flutter_application_00/app/custom_widget/color.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/widgets/add_skills.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/widgets/profile_form.dart';
 import 'package:flutter_application_00/app/modules/job/profile/view/job_profile.dart';
+import 'package:flutter_application_00/app/modules/mobile/widget/yellow_button.dart';
 import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -53,7 +54,7 @@ class formFillView extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical:1.9),
+                        padding: const EdgeInsets.symmetric(vertical: 1.9),
                         child: const Text(
                           "Please tell us about yourself",
                           style: TextStyle(
@@ -65,7 +66,7 @@ class formFillView extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:80),
+                    padding: const EdgeInsets.only(left: 80),
                     child: CircleAvatar(
                       radius: 30,
                       backgroundColor: const Color(0xFFBFBCBC),
@@ -81,7 +82,7 @@ class formFillView extends StatelessWidget {
             ),
           ),
           leading: IconButton(
-            icon: SvgPicture.asset(Assets.drawerIcon),
+            icon: SvgPicture.asset(Assets.drawerIcon_black),
             onPressed: () {
               if (!notDrawerKey.currentState!.isDrawerOpen) {
                 //check if drawer is closed
@@ -410,7 +411,6 @@ class formFillView extends StatelessWidget {
                 ),
               ),
             ),
-          
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
@@ -498,23 +498,10 @@ class formFillView extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
-              child: GFButton(
-                onPressed: () {
-                  Get.to(JobListView());
-                },
-                color: KColors.orange,
-                fullWidthButton: true,
-                size: 50.2,
-                text: "Submit",
-                textStyle: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 24.0,
-                    fontFamily: 'Kadwa'),
-              ),
+            Center(
+              child: DynamicButton("Submit", true, () {
+                Get.to(JobListView());
+              }),
             ),
           ],
         ),

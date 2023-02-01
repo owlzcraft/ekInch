@@ -70,7 +70,7 @@ class ProfileFormView extends StatelessWidget {
               ),
             ),
             leading: IconButton(
-              icon: SvgPicture.asset(Assets.drawerIcon),
+              icon: SvgPicture.asset(Assets.drawerIcon_white),
               onPressed: () {
                 if (!notDrawerKey.currentState!.isDrawerOpen) {
                   //check if drawer is closed

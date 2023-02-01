@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/job_form.dart';
+import 'package:flutter_application_00/app/modules/job/form/views/jobs_landing.dart';
 import 'package:flutter_application_00/app/modules/job/profile/view/job_profile.dart';
 import 'package:flutter_application_00/app/modules/records/views/records_view.dart';
 import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
@@ -86,7 +87,7 @@ class MyNavigator extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Get.to(formFillView());
+              Get.to(JobLanding());
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

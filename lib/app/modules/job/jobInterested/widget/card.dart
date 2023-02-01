@@ -1,61 +1,61 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
-class cards extends StatelessWidget {
-  final String imageUrl1;
-  
-  final String textB;
+import '../controllers/job_interested_controller.dart';
 
+class JobCategoryCard extends StatelessWidget {
+  final Map<String, String> data;
+  final bool active;
   // ignore: use_key_in_widget_constructors
-  const cards({this.imageUrl1 = "", this.textB = ""});
-
+  JobCategoryCard({required this.data, required this.active});
+  JobInterestedController controller = Get.put(JobInterestedController());
   @override
   Widget build(BuildContext context) {
-    return  
-    
-     
-Container(
-  width: 116,height: 140,
-
-decoration: BoxDecoration(
-boxShadow: [
-  
-                BoxShadow(
-                  color: Colors.grey.shade300,
-                  blurRadius: 1,
-                  spreadRadius: 5,
-                  offset: Offset(0, 0),
-                ),
-              ],
-        border: Border.all(
-        
-          width: 0,
-          color: Colors.grey,
-        ),
-      
-        borderRadius: const BorderRadius.all(Radius.circular(7.5)
-        ),
-color: Colors.white,
-      ),
-      
-child: Center(child: Column(
-children: [
-
-  Image.asset(
-            imageUrl1,
-            width: 40.0,
-            height: 40.0,
-            // scale: 1,
-          ),
-          Text(textB,style:TextStyle(fontSize:16,color: Colors.black )),
-],
-
-)),
-);
-
-  
-  
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+      child: Card(
+          elevation: 1,
+          shadowColor: Color(0xFF000000),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          color: Colors.transparent,
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Color(0xFFDBDBDB), width: 1)),
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: (active) ? Colors.black : Color(0xFFDBDBDB),
+                      width: 0.2),
+                  borderRadius: BorderRadius.circular(20),
+                  color: (active) ? Colors.black : Colors.white),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    (active)
+                        ? data['active_icon'].toString()
+                        : data['inactive_icon'].toString(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    child: Text(data['title'].toString(),
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: (active) ? Colors.white : Colors.black,
+                            fontWeight: FontWeight.w400)),
+                  ),
+                ],
+              ),
+            ),
+          )),
+    );
   }
 }
 // onTap: () => Get.to(JobInterestedView()),

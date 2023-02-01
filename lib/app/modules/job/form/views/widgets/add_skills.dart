@@ -39,7 +39,7 @@ class AddSkillView extends StatelessWidget {
         backgroundColor: Colors.black,
         elevation: 0.0,
         leading: IconButton(
-          icon: SvgPicture.asset(Assets.drawerIcon),
+          icon: SvgPicture.asset(Assets.drawerIcon_white),
           onPressed: () {
             if (!notDrawerKey.currentState!.isDrawerOpen) {
               //check if drawer is closed

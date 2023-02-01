@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:flutter_application_00/app/utils/math_utils.dart';
 import 'package:flutter_application_00/widgets/snack_bar.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -76,7 +77,7 @@ class _RegisterViewState extends State<RegisterView> {
           )),
       body: SingleChildScrollView(
           child: Padding(
-        padding: const EdgeInsets.all(25.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,8 +142,8 @@ class _RegisterViewState extends State<RegisterView> {
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Color(0xFFCDCDCD))))),
             ),
-            const SizedBox(
-              height: 25,
+            SizedBox(
+              height: getVerticalSize(25),
             ),
             (!drop)
                 ? GestureDetector(
@@ -151,26 +152,29 @@ class _RegisterViewState extends State<RegisterView> {
                       Timer(const Duration(milliseconds: 500), openCategories);
                     },
                     child: Container(
-                      height: 60,
+                      height: getVerticalSize(60),
                       width: Get.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
                               width: 1, color: const Color(0xFFCDCDCD))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            cat_list[selected[0]][selected[1]],
-                            style: const TextStyle(
-                                color: Color(0xFF999898), fontSize: 20),
-                          ),
-                          const Icon(
-                            Icons.keyboard_arrow_down,
-                            color: Color(0xFF999999),
-                            size: 30,
-                          )
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              cat_list[selected[0]][selected[1]],
+                              style: const TextStyle(
+                                  color: Color(0xFF999898), fontSize: 20),
+                            ),
+                            const Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Color(0xFF999999),
+                              size: 30,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   )
@@ -184,7 +188,6 @@ class _RegisterViewState extends State<RegisterView> {
                             onTap: () {
                               setState(() {
                                 FocusManager.instance.primaryFocus?.unfocus();
-
                                 drop = false;
                                 selected = [cat_list.indexOf(e), 0];
                               });
@@ -251,7 +254,7 @@ class _RegisterViewState extends State<RegisterView> {
                     }).toList()),
                   ),
             SizedBox(
-              height: 30,
+              height: getVerticalSize(30),
             ),
             GFButton(
               onPressed: () {
