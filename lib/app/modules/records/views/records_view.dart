@@ -890,7 +890,7 @@ class _RecordsViewState extends State<RecordsView> {
       //     ],
       //   ),
       // ]),
-      bottomNavigationBar: MyNavigator(),
+      // bottomNavigationBar: MyNavigator(),
     );
   }
 }

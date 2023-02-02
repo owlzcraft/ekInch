@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_00/app/custom_widget/dash_header.dart';
+import 'package:flutter_application_00/app/modules/dashboard/widgets/bottom_bar.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/services_news.widget.dart';
 import 'package:flutter_application_00/app/modules/language/views/language_view.dart';
 import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
@@ -15,13 +16,16 @@ import 'package:flutter_application_00/app/modules/dashboard/widgets/video.widge
 import 'package:flutter_application_00/app/modules/dashboard/widgets/videoCategory.widget.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/work.widget.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
 import '../controllers/dashboard_controller.dart';
 import 'package:get/get.dart';
 
 class DashboardView extends StatefulWidget {
-  final String name;
-  DashboardView({required this.name});
+  
+  final int? crrPage;
+
+   DashboardView({ this.crrPage,});
 
   @override
   State<DashboardView> createState() => _DashboardStateView();
@@ -29,6 +33,8 @@ class DashboardView extends StatefulWidget {
 
 class _DashboardStateView extends State<DashboardView>
     with SingleTickerProviderStateMixin {
+      
+      DashboardController controller = Get.put(DashboardController());
   late TabController _tabController;
   @override
   void initState() {
@@ -60,7 +66,23 @@ class _DashboardStateView extends State<DashboardView>
     return Stack(children: [
       Scaffold(
         key: scaffoldKey,
-        bottomNavigationBar: MyNavigator(),
+        bottomNavigationBar:BottomBar(),
+        //  BottomNavigationBar(
+        //   type: BottomNavigationBarType.fixed,
+        //   showUnselectedLabels: true,
+        //   backgroundColor: Colors.white,
+        //   fixedColor: KColors.orange,
+        //   currentIndex: controller.currentIndex.value,
+        //   onTap: controller.changePage,
+        //   items: [
+        //     BottomNavigationBarItem(icon: SvgPicture.asset(Assets.home),
+        //     activeIcon: SvgPicture.asset(Assets.home),label: "Home"),
+        //     BottomNavigationBarItem(icon: SvgPicture.asset(Assets.home),
+        //     activeIcon: SvgPicture.asset(Assets.home),label: "Home"),
+        //     BottomNavigationBarItem(icon: SvgPicture.asset(Assets.home),
+        //     activeIcon: SvgPicture.asset(Assets.home),label: "Home"),
+        //   ],
+        // ),
         drawer: const SettingsView(),
         appBar: DynamicAppBar("Sanjay Singh", "Welcome !", true, scaffoldKey),
         body: Container(

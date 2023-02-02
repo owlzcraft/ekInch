@@ -4,6 +4,7 @@ import 'package:flutter_application_00/app/modules/Onboarding/controllers/onboar
 import 'package:flutter_application_00/app/modules/Onboarding/widgets/onboardingcontent.dart';
 import 'package:flutter_application_00/app/modules/mobile/views/mobile_view.dart';
 import 'package:flutter_application_00/app/modules/register/views/register.view.dart';
+import 'package:flutter_application_00/app/utils/localStorage.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -23,6 +24,7 @@ class OnboardingView extends GetView<OnboardingController> {
               padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 10.sp),
               child: GestureDetector(
                 onTap: () {
+                  LocalStorage.shared.saveWalkthrough();
                   Get.to(MobileView());
                 },
                 child: Text('Skip >>',
@@ -88,10 +90,12 @@ class OnboardingView extends GetView<OnboardingController> {
             ),
             GestureDetector(
               onTap: () {
-                (pageController.page == 2.0) ? Get.to(MobileView()) :
-                pageController.nextPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut);
+                LocalStorage.shared.saveWalkthrough();
+                (pageController.page == 2.0)
+                    ? Get.to(MobileView())
+                    : pageController.nextPage(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeInOut);
               },
               child: CircleAvatar(
                 backgroundColor: const Color(0xFFFEBA0F),

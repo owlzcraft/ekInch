@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:flutter_application_00/app/utils/localStorage.dart';
 import 'package:flutter_application_00/app/utils/math_utils.dart';
 import 'package:flutter_application_00/widgets/snack_bar.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -473,7 +474,8 @@ class _RegisterViewState extends State<RegisterView> {
     final _isValid = _globalKey.currentState!.validate();
     print(_isValid);
     if (_isValid) {
-      Get.to(DashboardView(name: "Demo"));
+      LocalStorage.shared.saveLoggedIn();
+      Get.to(DashboardView());
     } else {
       createSnackBar("Please enter your Name", context);
     }

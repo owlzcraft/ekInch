@@ -18,6 +18,11 @@ class Assets {
   static const String mobile = 'assets/icons/mobile.svg';
   static const String money = 'assets/icons/money.svg';
   static const String msg = 'assets/icons/msg.svg';
+  static const String home = 'assets/icons/home.png';
+  static const String lib_icon = 'assets/icons/library.png';
+  static const String job = 'assets/icons/job.png';
+  static const String profile = 'assets/icons/profile.png';
+  static const String records = 'assets/icons/records.png';
   static const String verified = 'assets/icons/verified.png';
   static const String notifi = 'assets/icons/notifi.svg';
   static const String speak = 'assets/icons/speak.svg';
