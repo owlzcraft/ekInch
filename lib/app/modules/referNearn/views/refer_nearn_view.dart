@@ -38,15 +38,26 @@ class ReferNearnView extends GetView<ReferNearnController> {
           backgroundColor: Colors.black,
           title: const Text(
             'Refer and Earn',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
           ),
           centerTitle: true,
-          bottom: const TabBar(
+          bottom: TabBar(
             indicator: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(width: 3, color: Color(0xFFFEBA0F)))),
             // indicatorColor: Color(0xFFFEBA0F),
-            tabs: [Tab(text: 'Invite'), Tab(text: 'Status')],
+            tabs: [
+              Tab(
+                  child: Text(
+                "Invite",
+                style: TextStyle(fontSize: 16),
+              )),
+              Tab(
+                  child: Text(
+                'Status',
+                style: TextStyle(fontSize: 16),
+              ))
+            ],
           ),
           actions: [
             Padding(
@@ -66,7 +77,12 @@ class ReferNearnView extends GetView<ReferNearnController> {
                             fontWeight: FontWeight.w700, color: Colors.black),
                       ),
                     ),
-                    Center(child: SvgPicture.asset(Assets.reward_icon)),
+                    Center(
+                      child: Image.asset(
+                        Assets.reward_icon,
+                        scale: 1.3,
+                      ),
+                    ),
                   ],
                 ),
               ),
