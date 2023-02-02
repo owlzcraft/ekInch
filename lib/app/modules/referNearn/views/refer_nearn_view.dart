@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/generated/assets.dart';
+import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:flutter_application_00/app/modules/postjob/Style.dart';
 import 'package:flutter_application_00/app/modules/referNearn/views/inviteScreen.dart';
 import 'package:flutter_application_00/app/modules/referNearn/views/statusScreen.dart';
@@ -22,6 +23,7 @@ class ReferNearnView extends GetView<ReferNearnController> {
       length: 2,
       child: Scaffold(
         key: notDrawerKey,
+        bottomNavigationBar: MyNavigator(),
         drawer: const SettingsView(),
         appBar: AppBar(
           elevation: 0,
@@ -71,7 +73,7 @@ class ReferNearnView extends GetView<ReferNearnController> {
             )
           ],
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [InviteScreen(), StatusScreen()],
         ),
       ),
