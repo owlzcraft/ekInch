@@ -4,6 +4,9 @@ import 'package:flutter_application_00/app/modules/language/bindings/language_bi
 import 'package:flutter_application_00/app/modules/language/views/language_view.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
+import '../../../utils/localStorage.dart';
+
 class SplashController extends GetxController {
   //TODO: Implement SplashController
 
@@ -12,8 +15,17 @@ class SplashController extends GetxController {
   void onInit() {
     print('get');
     Timer(const Duration(seconds: 5), () {
-      print('insplash');
-      Get.to(LanguageView());
+      if (LocalStorage.shared.isWalkthroughComplete()) {
+          Get.offAllNamed(Routes.MOBILE);
+        } else {
+          if (LocalStorage.shared.isLoggedIn()) {
+          Get.offAllNamed(Routes.HOME);
+        } else {
+         Get.offAllNamed(Routes.LANGUAGE);
+        }
+          
+        }
+      
     });
     super.onInit();
   }

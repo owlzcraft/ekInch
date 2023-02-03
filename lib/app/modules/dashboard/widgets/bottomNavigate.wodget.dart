@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/job_form.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/jobs_landing.dart';
 import 'package:flutter_application_00/app/modules/job/profile/view/job_profile.dart';
+import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
 import 'package:flutter_application_00/app/modules/records/views/records_view.dart';
 import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
 import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_view.dart';
@@ -9,6 +11,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class MyNavigator extends StatelessWidget {
+  bool onHome = true;
+  bool onLib = false;
+  bool onJobs = false;
+  bool onRecords = false;
+  bool onProfile = false;
   @override
   Widget build(BuildContext context) {
     // print( MediaQuery.of(context).size.width);
@@ -35,17 +42,23 @@ class MyNavigator extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           GestureDetector(
               onTap: () {
-                print("object");
+                onHome = true;
+                bool onLib = false;
+                bool onJobs = false;
+                bool onRecords = false;
+                bool onProfile = false;
+                Get.to(DashboardView());
               },
               child: Container(
                 decoration: const BoxDecoration(
                     border:
-                        Border(bottom: BorderSide(color: Color(0xFFFEBA0F)))),
+                        Border( bottom: BorderSide(color: Color(0xFFFEBA0F)))),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Image.asset(
-                      "assets/images/home.jpeg",
+                      "assets/images/home.png",
+                      color: Colors.red,
                       width: (MediaQuery.of(context).size.width / 19.8879551821)
                           .sp,
                       height:
@@ -64,12 +77,12 @@ class MyNavigator extends StatelessWidget {
                 ),
               )),
           GestureDetector(
-            onTap: () => Get.to(ReferNearnView()),
+            onTap: () => Get.to(ReelsView()),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.asset(
-                  "assets/images/library.jpeg",
+                  "assets/images/library.png",
                   width: (MediaQuery.of(context).size.width / 14.1724137931).sp,
                   height:
                       (MediaQuery.of(context).size.height / 34.2857142857).sp,
@@ -93,7 +106,7 @@ class MyNavigator extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.asset(
-                  "assets/images/job.jpeg",
+                  "assets/images/job.png",
                   width: (MediaQuery.of(context).size.width / 19.8879551821).sp,
                   height:
                       (MediaQuery.of(context).size.height / 42.1792618629).sp,
@@ -115,7 +128,7 @@ class MyNavigator extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.asset(
-                  "assets/images/record.jpeg",
+                  "assets/images/records.png",
                   width: (MediaQuery.of(context).size.width / 19.8879551821).sp,
                   height:
                       (MediaQuery.of(context).size.height / 42.1792618629).sp,
@@ -132,12 +145,12 @@ class MyNavigator extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Get.to(ReelsView()),
+            onTap: () => Get.to(ProfileView()),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.asset(
-                  "assets/images/profile.jpeg",
+                  "assets/images/profile.png",
                   width: (MediaQuery.of(context).size.width / 19.8879551821).sp,
                   height:
                       (MediaQuery.of(context).size.height / 42.1792618629).sp,

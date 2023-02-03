@@ -78,9 +78,9 @@ class _LanguageViewState extends State<LanguageView> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: GridView.count(
-          childAspectRatio: 1.45.sp,
-          crossAxisSpacing: 1.sp,
-          mainAxisSpacing: 15.sp,
+          childAspectRatio: 1.5.sp, 
+          crossAxisSpacing: 0.sp,
+          mainAxisSpacing: 20.sp,
           crossAxisCount: 2,
           children: controller.lang_data.map((l) {
             return GestureDetector(

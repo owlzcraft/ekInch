@@ -1,3 +1,6 @@
+import 'package:flutter_application_00/app/modules/dashboard/bindings/dashboard_binding.dart';
+import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:flutter_application_00/app/modules/job/form/views/jobs_landing.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';
@@ -33,8 +36,8 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
+      page: () =>  DashboardView(),
+      binding: DashboardBinding(),
       children: [
         GetPage(
           name: _Paths.SPLASH,
@@ -76,14 +79,18 @@ class AppPages {
         name: _Paths.SETTINGS,
         page: () => const SettingsView(),
         binding: SettingsBinding()),
+        GetPage(
+        name: _Paths.SETTINGS,
+        page: () => const SettingsView(),
+        binding: SettingsBinding()),
     GetPage(
         name: _Paths.SETTINGS,
         page: () => ProfileView(),
         binding: ProfileBinding()),
     GetPage(
-      name: _Paths.POSTJOB,
-      page: () => const PostjobView(),
-      binding: PostjobBinding(),
+      name: _Paths.JOB,
+      page: () =>  JobLanding(),
+      // binding: PostjobBinding(),
     ),
   ];
 }
