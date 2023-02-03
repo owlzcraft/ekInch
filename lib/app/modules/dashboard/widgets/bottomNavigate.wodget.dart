@@ -11,6 +11,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class MyNavigator extends StatelessWidget {
+  bool onHome = true;
+  bool onLib = false;
+  bool onJobs = false;
+  bool onRecords = false;
+  bool onProfile = false;
   @override
   Widget build(BuildContext context) {
     // print( MediaQuery.of(context).size.width);
@@ -37,17 +42,23 @@ class MyNavigator extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           GestureDetector(
               onTap: () {
+                onHome = true;
+                bool onLib = false;
+                bool onJobs = false;
+                bool onRecords = false;
+                bool onProfile = false;
                 Get.to(DashboardView());
               },
               child: Container(
                 decoration: const BoxDecoration(
                     border:
-                        Border(bottom: BorderSide(color: Color(0xFFFEBA0F)))),
+                        Border( bottom: BorderSide(color: Color(0xFFFEBA0F)))),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Image.asset(
                       "assets/images/home.png",
+                      color: Colors.red,
                       width: (MediaQuery.of(context).size.width / 19.8879551821)
                           .sp,
                       height:
