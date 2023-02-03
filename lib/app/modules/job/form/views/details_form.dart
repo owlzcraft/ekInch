@@ -6,6 +6,7 @@ import 'package:flutter_application_00/app/generated/assets.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:flutter_application_00/app/modules/job/form/controllers/job.controller.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/job_form.dart';
+import 'package:flutter_application_00/app/modules/job/form/views/widgets/profile_form.dart';
 import 'package:flutter_application_00/app/modules/job/jobInterested/views/job_interested_view.dart';
 import 'package:flutter_application_00/app/modules/mobile/widget/black_button.dart';
 import 'package:flutter_application_00/app/modules/mobile/widget/yellow_button.dart';
@@ -643,7 +644,7 @@ class DetailsForm extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20.0),
                       child: DynamicButton("Submit", true, () {
-                        Get.to(JobInterestedView());
+                        Get.to(formFillView());
                       }),
                     )
                   ]),

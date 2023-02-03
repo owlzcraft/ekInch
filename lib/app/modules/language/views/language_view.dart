@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/modules/Onboarding/views/onboarding_view.dart';
+import 'package:flutter_application_00/app/utils/localStorage.dart';
 import 'package:flutter_application_00/app/utils/math_utils.dart';
 import 'package:flutter_application_00/widgets/shape.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import '../../dashboard/views/dashboard_view.dart';
 import '../controllers/language_controller.dart';
 import '../widgets/language.dart';
 
@@ -34,10 +36,17 @@ class _LanguageViewState extends State<LanguageView> {
               children: [
                 InkWell(
                     onTap: () {
-                      var lang = controller.lang_data
+                     if( LocalStorage.shared.isLoggedIn())
+                     { var lang = controller.lang_data
+                          .firstWhere((element) => element['isActive'] == 1);
+                      box.write("lang", lang['textT']);
+                      Get.to(DashboardView());}
+                      else{
+                        var lang = controller.lang_data
                           .firstWhere((element) => element['isActive'] == 1);
                       box.write("lang", lang['textT']);
                       Get.to(OnboardingView());
+                      }
                     },
                     child: Icon(
                       Icons.arrow_forward,

@@ -69,7 +69,6 @@ class AddSkillView extends StatelessWidget {
                   border: Border.all(color: Colors.black),
                 ),
               ),
-              
               Padding(
                 padding:
                     const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 0.0),
@@ -82,43 +81,40 @@ class AddSkillView extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                  
-                        children: [
-                          TextFormField(
-                            onTap: () {
-                              // setState(() {
-                              //   drop = false;
-                              // });
-                            },
-                            // controller: nameController,
-                            validator: ((value) {
-                              // print(value);
-                              if (value!.isEmpty) {
-                                return "This Field Can't be Empty.";
-                              }
-                              return null;
-                            }),
-                            // cursorColor: const Color(0xFFFEBA0F),
-                            style: const TextStyle(fontSize: 18),
-                            decoration: const InputDecoration(
-                                prefixIcon:
-                                    Icon(Icons.search, color: KColors.borderGrey),
-                                hintStyle: TextStyle(
-                                    fontSize: 18, color: Color(0xFF999898)),
-                                hintText: "Start type your skills",
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(4)),
-                                    borderSide:
-                                        BorderSide(color: KColors.greyLine)),
-                                border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(4)),
-                                    borderSide:
-                                        BorderSide(color: KColors.greyLine))),
-                          ),
-                         
-                        
+                    children: [
+                      TextFormField(
+                        onTap: () {
+                          // setState(() {
+                          //   drop = false;
+                          // });
+                        },
+                        // controller: nameController,
+                        validator: ((value) {
+                          // print(value);
+                          if (value!.isEmpty) {
+                            return "This Field Can't be Empty.";
+                          }
+                          return null;
+                        }),
+                        // cursorColor: const Color(0xFFFEBA0F),
+                        style: const TextStyle(fontSize: 18),
+                        decoration: const InputDecoration(
+                            prefixIcon:
+                                Icon(Icons.search, color: KColors.borderGrey),
+                            hintStyle: TextStyle(
+                                fontSize: 18, color: Color(0xFF999898)),
+                            hintText: "Start type your skills",
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(4)),
+                                borderSide:
+                                    BorderSide(color: KColors.greyLine)),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(4)),
+                                borderSide:
+                                    BorderSide(color: KColors.greyLine))),
+                      ),
                     ],
                   ),
                 ),
@@ -127,52 +123,48 @@ class AddSkillView extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child:  Column(
-                children: [
-                  SkillOptions.textField("  Light Fitting"),
-                  
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical:11.0),
-                    child: SkillOptions.textField("  Light Fitting"),
+            child: Column(
+              children: [
+                SkillOptions.textField("  Light Fitting"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 11.0),
+                  child: SkillOptions.textField("  Light Fitting"),
+                ),
+                SkillOptions.textField("  Light Fitting"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 11.0),
+                  child: SkillOptions.textField("  Light Fitting"),
+                ),
+                SkillOptions.textField("  Light Fitting"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 11.0),
+                  child: SkillOptions.textField("  Light Fitting"),
+                ),
+                SkillOptions.textField("  Light Fitting"),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 11.0),
+                  child: SkillOptions.textField("  Light Fitting"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: GFButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    color: KColors.orange,
+                    fullWidthButton: true,
+                    size: 50.2,
+                    text: "Save & Next",
+                    textStyle: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 24.0,
+                        fontFamily: 'Kadwa'),
                   ),
-                 
-                 SkillOptions.textField("  Light Fitting"),
-                  
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical:11.0),
-                    child: SkillOptions.textField("  Light Fitting"),
-                  ),SkillOptions.textField("  Light Fitting"),
-                  
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical:11.0),
-                    child: SkillOptions.textField("  Light Fitting"),
-                  ),
-                  SkillOptions.textField("  Light Fitting"),
-                  
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical:11.0),
-                    child: SkillOptions.textField("  Light Fitting"),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: GFButton(
-                                  onPressed: () {
-                    // check();
-                                  },
-                                  color: KColors.orange,
-                                  fullWidthButton: true,
-                                  size: 50.2,
-                                  text: "Save & Next",
-                                  textStyle: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 24.0,
-                      fontFamily: 'Kadwa'),
-                                ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
+          ),
         ],
       )),
       bottomNavigationBar: MyNavigator(),
