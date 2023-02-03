@@ -643,7 +643,7 @@ class DetailsForm extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20.0),
                       child: DynamicButton("Submit", true, () {
-                        Get.to(JobInterestedView());
+                        Get.to(formFillView());
                       }),
                     )
                   ]),

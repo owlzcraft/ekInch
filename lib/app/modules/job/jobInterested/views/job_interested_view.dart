@@ -4,6 +4,7 @@ import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavig
 import 'package:flutter_application_00/app/modules/job/jobInterested/widget/card.dart';
 import 'package:flutter_application_00/app/modules/mobile/widget/yellow_button.dart';
 import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
+import 'package:flutter_application_00/app/modules/postjob/views/postjob_view.dart';
 import 'package:flutter_application_00/app/modules/settings/views/settings_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -24,9 +25,10 @@ class JobInterestedView extends GetView<JobInterestedController> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(70),
         child: AppBar(
-          title:  Text(
+          title: Text(
             "I am Interested in",
-            style: GoogleFonts.kadwa(color: Colors.white, fontWeight: FontWeight.bold),
+            style: GoogleFonts.kadwa(
+                color: Colors.white, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           leading: IconButton(
@@ -80,7 +82,12 @@ class JobInterestedView extends GetView<JobInterestedController> {
                 }).toList(),
               ),
             ),
-            DynamicButton("Proceed", true, () {})
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: DynamicButton("Proceed", true, () {
+                Get.to(PostjobView());
+              }),
+            )
           ],
         ),
       ),
