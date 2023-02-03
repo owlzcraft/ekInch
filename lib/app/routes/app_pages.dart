@@ -71,10 +71,10 @@ class AppPages {
         name: _Paths.RECORDS,
         page: () => ReferNearnView(),
         binding: ReferNearnBinding()),
-    GetPage(
-        name: _Paths.REELS,
-        page: () => const ReelsView(),
-        binding: ReelsBinding()),
+    // GetPage(
+    //     name: _Paths.REELS,
+    //     page: () => const ReelsView(),
+    //     binding: ReelsBinding()),
     GetPage(
         name: _Paths.SETTINGS,
         page: () => const SettingsView(),

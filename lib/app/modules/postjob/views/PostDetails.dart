@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/modules/postjob/Style.dart';
+import 'package:flutter_application_00/app/modules/postjob/views/jobDescription.dart';
 import 'package:flutter_application_00/app/modules/postjob/widgets/shortDropDown.dart';
+import 'package:get/get.dart';
 
 class PostDetails extends StatefulWidget {
   const PostDetails({
@@ -166,7 +168,9 @@ class _PostDetailsState extends State<PostDetails> {
                   color: yellow,
                   child: MaterialButton(
                       minWidth: MediaQuery.of(context).size.width,
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(JobDescription());
+                      },
                       child: Center(
                         child: Text(
                           'Next',

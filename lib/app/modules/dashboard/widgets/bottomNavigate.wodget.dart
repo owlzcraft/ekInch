@@ -6,6 +6,7 @@ import 'package:flutter_application_00/app/modules/job/profile/view/job_profile.
 import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
 import 'package:flutter_application_00/app/modules/records/views/records_view.dart';
 import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
+import 'package:flutter_application_00/app/modules/reels/views/video_viewer.dart';
 import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -52,7 +53,7 @@ class MyNavigator extends StatelessWidget {
               child: Container(
                 decoration: const BoxDecoration(
                     border:
-                        Border( bottom: BorderSide(color: Color(0xFFFEBA0F)))),
+                        Border(bottom: BorderSide(color: Color(0xFFFEBA0F)))),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

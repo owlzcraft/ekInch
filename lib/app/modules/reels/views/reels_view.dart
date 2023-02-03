@@ -1,49 +1,29 @@
-import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
-import 'package:chewie/chewie.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/work.widget.dart';
-import 'package:get/get.dart';
-// import '../controllers/reels_controller.dart';
+import 'package:flutter_application_00/app/modules/reels/views/video.dart';
+
 class ReelsView extends StatefulWidget {
   const ReelsView({Key? key}) : super(key: key);
 
   @override
   _VideoAppState createState() => _VideoAppState();
 }
+
 class _VideoAppState extends State<ReelsView> {
   // const ReelsView({Key? key}) : super(key: key);
-  late VideoPlayerController _controller;
   @override
-  void initState() {
-    super.initState();
-
-    
-
-    _controller = VideoPlayerController.network(
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-    )..initialize().then((_) {
-        setState(() {});
-      });
-  }
+  // void initState() {
+  //   super.initState();
+  //   _controller = VideoPlayerController.network(
+  //     'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+  //   )..initialize().then((_) {
+  //       setState(() {});
+  //     });
+  // }
   Widget build(BuildContext context) {
     @override
     _VideoAppState createState() => _VideoAppState();
-    final chewieController = ChewieController(
-      videoPlayerController: _controller,
-      // autoPlay: true,
-      // looping: true,
-      aspectRatio: 16 / 9,
-      // autoInitialize: true,
-      // autoPlay: true,
-      // looping: true,
-      // showControls: true,
-      materialProgressColors: ChewieProgressColors(
-        playedColor: Colors.white,
-        handleColor: Colors.white,
-      ),
-      allowFullScreen: true,
-    );
     return Scaffold(
       appBar: AppBar(
         leading: Icon(Icons.arrow_back),
@@ -60,14 +40,8 @@ class _VideoAppState extends State<ReelsView> {
             children: [
               Container(
                 margin: EdgeInsets.only(bottom: 14),
-                child: _controller.value.isInitialized
-                    ? AspectRatio(
-                        aspectRatio: _controller.value.aspectRatio,
-                        child: Chewie(
-                          controller: chewieController,
-                        ),
-                      )
-                    : Container(),
+                child: VideoWidget(
+                    "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4"),
               ),
               Container(
                 width: 90,
@@ -267,9 +241,9 @@ class _VideoAppState extends State<ReelsView> {
     );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-}
+//   @override
+//   void dispose() {
+//     super.dispose();
+//     _controller.dispose();
+// }
 }

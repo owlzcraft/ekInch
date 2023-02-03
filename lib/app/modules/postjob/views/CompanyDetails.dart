@@ -4,7 +4,6 @@ import 'package:flutter_application_00/app/modules/postjob/Style.dart';
 import 'package:flutter_application_00/app/modules/postjob/views/PostJobProfile.dart';
 import 'package:flutter_application_00/app/modules/postjob/widgets/shortDropDown.dart';
 
-
 class CompanyDetails extends StatefulWidget {
   const CompanyDetails({Key? key}) : super(key: key);
 
