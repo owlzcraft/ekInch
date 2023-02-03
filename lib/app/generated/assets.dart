@@ -35,12 +35,12 @@ class Assets {
   static const String search_icon = 'assets/icons/search_icon.svg';
   static const String earnimg1 = 'assets/images/earnimg.svg';
   static const String Recordimg1 = 'assets/images/imagerecords.png';
-  static const String facebook_icon = 'assets/icons/facebook_icon.svg';
-  static const String instagram_icon = 'assets/icons/instagram_icon.svg';
-  static const String twitter_icon = 'assets/icons/twitter_icon.svg';
-  static const String whatsapp_icon = 'assets/icons/whatsapp_icon.svg';
-  static const String google_plus_icon = 'assets/icons/google_plus_icon.svg';
+  static const String facebook_icon = 'assets/images/facebook_icon.png';
+  static const String instagram_icon = 'assets/images/instagram_icon.png';
+  static const String twitter_icon = 'assets/images/twitter_icon.png';
+  static const String whatsapp_icon = 'assets/images/whatsapp_icon.png';
+  static const String google_plus_icon = 'assets/images/google_plus_icon.png';
   static const String referNearnBG = 'assets/images/refer_and_earn_bg.png';
   static const String ek_inch_logo = 'assets/images/ek_inch_logo.svg';
-  static const String reward_icon = 'assets/icons/rewards_icon.svg';
+  static const String reward_icon = 'assets/images/reward_icon.png';
 }

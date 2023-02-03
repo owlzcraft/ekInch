@@ -170,8 +170,10 @@ class InviteScreen extends StatelessWidget {
                                     children: controller.referalIcons
                                         .map((e) => Column(
                                               children: [
-                                                SvgPicture.asset(
-                                                    e['asset'].toString()),
+                                                Image.asset(
+                                                  e['asset'].toString(),
+                                                  scale: 2,
+                                                ),
                                                 Text(e['title'].toString())
                                               ],
                                             ))
