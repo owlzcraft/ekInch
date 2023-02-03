@@ -23,9 +23,8 @@ import 'package:get/get.dart';
 
 class DashboardView extends StatefulWidget {
   
-  final int? crrPage;
 
-   DashboardView({ this.crrPage,});
+   const DashboardView({super.key,  });
 
   @override
   State<DashboardView> createState() => _DashboardStateView();
@@ -66,7 +65,7 @@ class _DashboardStateView extends State<DashboardView>
     return Stack(children: [
       Scaffold(
         key: scaffoldKey,
-        bottomNavigationBar:BottomBar(),
+        bottomNavigationBar:BottomAppBar(child: BottomBar()),
         //  BottomNavigationBar(
         //   type: BottomNavigationBarType.fixed,
         //   showUnselectedLabels: true,

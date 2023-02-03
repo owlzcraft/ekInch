@@ -25,10 +25,10 @@ class BottomBar extends StatelessWidget {
       items: _navBarsItems(),
       confineInSafeArea: true,
       navBarHeight: getVerticalSize(79),
-      backgroundColor: KColors.greybg, // Default is Colors.white.
+      backgroundColor: Color.fromARGB(255, 254, 252, 252), // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset:
-          true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+          false, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
       stateManagement: true, // Default is true.
       hideNavigationBarWhenKeyboardShows:
           true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
@@ -71,34 +71,34 @@ List<Widget> _buildScreens() {
 List<PersistentBottomNavBarItem> _navBarsItems() {
   return [
     PersistentBottomNavBarItem(
-      icon: Icon(Icons.home_sharp),
+      icon: Image.asset(Assets.home),
       title: ("Home"),
       activeColorPrimary: KColors.orange,
-      inactiveColorPrimary: KColors.grey,
+      inactiveColorPrimary: Colors.black,
     ),
     PersistentBottomNavBarItem(
-      icon: Icon(Icons.my_library_add_sharp),
+      icon: Image.asset(Assets.lib_icon),
       title: ("Library"),
       activeColorPrimary: KColors.orange,
-      inactiveColorPrimary: KColors.grey,
+      inactiveColorPrimary: Colors.black,
     ),
     PersistentBottomNavBarItem(
-      icon: Icon(Icons.home_repair_service),
+      icon: Image.asset(Assets.job,),
       title: ("Job"),
       activeColorPrimary: KColors.orange,
-      inactiveColorPrimary: KColors.grey,
+      inactiveColorPrimary: Colors.black,
     ),
     PersistentBottomNavBarItem(
-      icon: Icon(Icons.video_collection_outlined),
+      icon: Image.asset(Assets.records),
       title: ("Records"),
       activeColorPrimary: KColors.orange,
-      inactiveColorPrimary: KColors.grey,
+      inactiveColorPrimary: Colors.black,
     ),
     PersistentBottomNavBarItem(
-      icon: Icon(Icons.person_2_outlined),
+      icon: Image.asset(Assets.profile),
       title: ("Profile"),
       activeColorPrimary: KColors.orange,
-      inactiveColorPrimary: KColors.grey,
+      inactiveColorPrimary: Colors.black,
     ),
   ];
 }

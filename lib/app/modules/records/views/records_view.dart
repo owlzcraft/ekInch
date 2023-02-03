@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_application_00/app/custom_widget/color.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
+import 'package:flutter_application_00/app/modules/dashboard/widgets/bottom_bar.dart';
 import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_view.dart';
 import 'package:flutter_application_00/app/modules/settings/views/settings_view.dart';
 import 'package:flutter_application_00/widgets/Upperbar.dart';
@@ -890,7 +891,7 @@ class _RecordsViewState extends State<RecordsView> {
       //     ],
       //   ),
       // ]),
-      // bottomNavigationBar: MyNavigator(),
+      // bottomNavigationBar: BottomBar(),
     );
   }
 }
