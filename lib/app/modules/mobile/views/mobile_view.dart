@@ -8,6 +8,7 @@ import 'package:flutter_application_00/widgets/snack_bar.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../custom_widget/color.dart';
 import '../controllers/mobile_controller.dart';
 
@@ -34,104 +35,122 @@ class _MobileViewState extends State<MobileView> {
   Widget build(BuildContext context) {
 //yamini
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white.withOpacity(0.0),
-        elevation: 0.0,
-        automaticallyImplyLeading: false,
+        appBar: AppBar(
+          backgroundColor: Colors.white.withOpacity(0.0),
+          elevation: 0.0,
+          automaticallyImplyLeading: false,
         ),
-        body:SingleChildScrollView(child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [ const Text(
-                "Welcome to EkInch",
-                style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 30,
-                    color: Color(0xFF525252)),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const Text(
-                "Enter your mobile number, We will \nsend you confirmation code",
-                style: TextStyle(fontWeight: FontWeight.normal,
-                    fontSize: 16, color: Color(0xFF525252)),
-              ),
-              const SizedBox(
-                height: 19,
-              ),
-              MobileTextField(numberController),
-              const SizedBox(
-                height: 15,
-              ),Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        checkButton();
-                      });
-                    },
-                    child: Container(
-                        child: (checked)
-                            ? Icon(
-                                Icons.check_box,
-                                color: Color(0xFFFEBA0F),
-                                size: 16,
-                              )
-                            : Container(),
-                        width: 20,
-                        height: 20,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              style: BorderStyle.solid,
-                              color:
-                                  (checked) ? Color(0xFF808080) : Colors.grey,
-                              width: 2),
-                        )),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Welcome to EkInch",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 30,
+                      color: Color(0xFF525252)),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                const Text(
+                  "Enter your mobile number, We will \nsend you confirmation code",
+                  style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16,
+                      color: Color(0xFF525252)),
+                ),
+                const SizedBox(
+                  height: 19,
+                ),
+                IntlPhoneField(
+                  decoration: InputDecoration(
+                    hintText: "Enter Phone Number",
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(),
+                    ),
                   ),
-                  SizedBox(
-                height: 10,
-              ),
-                  Text(
-                    ' I agree to the Terms & Conditions',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF787878),
-                        fontWeight: FontWeight.w400),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 35,
-              ),
-              GFButton(
-                            onPressed: () {
-                              (!checked)
-                    ? createSnackBar(
-                        "Please check the aggrement checkbox", context)
-                    : (numberController.text.length != 10)
+                  initialCountryCode: 'IN',
+                  onChanged: (phone) {
+                    print(phone.completeNumber);
+                  },
+                ),
+                // MobileTextField(numberController),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          checkButton();
+                        });
+                      },
+                      child: Container(
+                          child: (checked)
+                              ? Icon(
+                                  Icons.check_box,
+                                  color: Color(0xFFFEBA0F),
+                                  size: 16,
+                                )
+                              : Container(),
+                          width: 20,
+                          height: 20,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                style: BorderStyle.solid,
+                                color:
+                                    (checked) ? Color(0xFF808080) : Colors.grey,
+                                width: 2),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      ' I agree to the Terms & Conditions',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF787878),
+                          fontWeight: FontWeight.w400),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 35,
+                ),
+                GFButton(
+                  onPressed: () {
+                    (!checked)
                         ? createSnackBar(
-                            "Please enter a valid mobile number", context)
-                        : Get.to(OtpView(
-                            mobile_number: numberController.text,
-                          ));
-                            },
-                            color: KColors.orange,
-                            fullWidthButton: true,
-                            size: 50.2,
-                            text: "Continue",
-                            textStyle: const TextStyle(
-                              color: Colors.black,fontWeight: FontWeight.bold,
-                                fontSize: 18.0, fontFamily: 'Kadwa'),
-                            // shape: GFButtonShape.standard,
-                          ),
+                            "Please check the aggrement checkbox", context)
+                        : (numberController.text.length != 10)
+                            ? createSnackBar(
+                                "Please enter a valid mobile number", context)
+                            : Get.to(OtpView(
+                                mobile_number: numberController.text,
+                              ));
+                  },
+                  color: KColors.orange,
+                  fullWidthButton: true,
+                  size: 50.2,
+                  text: "Continue",
+                  textStyle: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.0,
+                      fontFamily: 'Kadwa'),
+                  // shape: GFButtonShape.standard,
+                ),
               ],
+            ),
           ),
-        ),)
-
-    );
+        ));
 
     //old
     // return Scaffold(

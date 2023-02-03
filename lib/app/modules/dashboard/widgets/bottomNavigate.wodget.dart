@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_00/app/generated/assets.dart';
 import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/job_form.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/jobs_landing.dart';
 import 'package:flutter_application_00/app/modules/job/profile/view/job_profile.dart';
+import 'package:flutter_application_00/app/modules/postjob/Style.dart';
 import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
 import 'package:flutter_application_00/app/modules/records/views/records_view.dart';
 import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
@@ -10,12 +12,22 @@ import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class MyNavigator extends StatelessWidget {
-  bool onHome = true;
+class MyNavigator extends StatefulWidget {
+  @override
+  State<MyNavigator> createState() => _MyNavigatorState();
+}
+
+class _MyNavigatorState extends State<MyNavigator> {
+  bool onHome = false;
+
   bool onLib = false;
+
   bool onJobs = false;
+
   bool onRecords = false;
+
   bool onProfile = false;
+
   @override
   Widget build(BuildContext context) {
     // print( MediaQuery.of(context).size.width);
@@ -43,39 +55,67 @@ class MyNavigator extends StatelessWidget {
           GestureDetector(
               onTap: () {
                 onHome = true;
-                bool onLib = false;
-                bool onJobs = false;
-                bool onRecords = false;
-                bool onProfile = false;
+                onLib = false;
+                onJobs = false;
+                onRecords = false;
+                onProfile = false;
+
+                print(onRecords);
                 Get.to(DashboardView());
               },
-              child: Container(
-                decoration: const BoxDecoration(
-                    border:
-                        Border( bottom: BorderSide(color: Color(0xFFFEBA0F)))),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Image.asset(
-                      "assets/images/home.png",
-                      color: Colors.red,
-                      width: (MediaQuery.of(context).size.width / 19.8879551821)
-                          .sp,
-                      height:
-                          (MediaQuery.of(context).size.height / 42.1792618629)
-                              .sp,
-                    ),
-                    Text(
-                      "Home",
-                      style: TextStyle(
-                          fontSize: 10.sp,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                          fontFamily: "kadwa"),
+              child: onHome == true
+                  ? Container(
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(color: Color(0xFFFEBA0F)))),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset(
+                            "assets/images/home.png",
+                            width: (MediaQuery.of(context).size.width /
+                                    19.8879551821)
+                                .sp,
+                            height: (MediaQuery.of(context).size.height /
+                                    42.1792618629)
+                                .sp,
+                          ),
+                          Text(
+                            "Home",
+                            style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                                fontFamily: "kadwa"),
+                          )
+                        ],
+                      ),
                     )
-                  ],
-                ),
-              )),
+                  : Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset(
+                            "assets/images/home.png",
+                            color: Colors.grey,
+                            width: (MediaQuery.of(context).size.width /
+                                    19.8879551821)
+                                .sp,
+                            height: (MediaQuery.of(context).size.height /
+                                    42.1792618629)
+                                .sp,
+                          ),
+                          Text(
+                            "Home",
+                            style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey,
+                                fontFamily: "kadwa"),
+                          )
+                        ],
+                      ),
+                    )),
           GestureDetector(
             onTap: () => Get.to(ReelsView()),
             child: Column(
@@ -123,12 +163,17 @@ class MyNavigator extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Get.to(RecordsView()),
+            onTap: () => {
+              onHome = false,
+              onRecords = true,
+              print(onRecords),
+              Get.to(RecordsView()),
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.asset(
-                  "assets/images/records.png",
+                  Assets.records,
                   width: (MediaQuery.of(context).size.width / 19.8879551821).sp,
                   height:
                       (MediaQuery.of(context).size.height / 42.1792618629).sp,
