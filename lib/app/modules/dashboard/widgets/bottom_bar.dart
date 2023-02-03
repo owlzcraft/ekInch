@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/custom_widget/color.dart';
 import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:flutter_application_00/app/modules/home/views/home_view.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/jobs_landing.dart';
 import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
 import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
