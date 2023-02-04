@@ -16,16 +16,15 @@ class SplashController extends GetxController {
     print('get');
     Timer(const Duration(seconds: 5), () {
       if (LocalStorage.shared.isWalkthroughComplete()) {
-          Get.offAllNamed(Routes.MOBILE);
-        } else {
-          if (LocalStorage.shared.isLoggedIn()) {
+        Get.offAllNamed(Routes.MOBILE);
+      } else {
+        if (LocalStorage.shared.isLoggedIn()) {
           Get.offAllNamed(Routes.HOME);
         } else {
-         Get.offAllNamed(Routes.LANGUAGE);
+          print(LocalStorage.shared.isLoggedIn());
+          Get.offAllNamed(Routes.LANGUAGE);
         }
-          
-        }
-      
+      }
     });
     super.onInit();
   }

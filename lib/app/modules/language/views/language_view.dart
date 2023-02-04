@@ -36,16 +36,18 @@ class _LanguageViewState extends State<LanguageView> {
               children: [
                 InkWell(
                     onTap: () {
-                     if( LocalStorage.shared.isLoggedIn())
-                     { var lang = controller.lang_data
-                          .firstWhere((element) => element['isActive'] == 1);
-                      box.write("lang", lang['textT']);
-                      Get.to(DashboardView());}
-                      else{
+                      if (LocalStorage.shared.isLoggedIn()) {
+                        print(LocalStorage.shared.isLoggedIn());
+
                         var lang = controller.lang_data
-                          .firstWhere((element) => element['isActive'] == 1);
-                      box.write("lang", lang['textT']);
-                      Get.to(OnboardingView());
+                            .firstWhere((element) => element['isActive'] == 1);
+                        box.write("lang", lang['textT']);
+                        Get.to(DashboardView());
+                      } else {
+                        var lang = controller.lang_data
+                            .firstWhere((element) => element['isActive'] == 1);
+                        box.write("lang", lang['textT']);
+                        Get.to(OnboardingView());
                       }
                     },
                     child: Icon(
@@ -87,7 +89,7 @@ class _LanguageViewState extends State<LanguageView> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: GridView.count(
-          childAspectRatio: 1.5.sp, 
+          childAspectRatio: 1.5.sp,
           crossAxisSpacing: 0.sp,
           mainAxisSpacing: 20.sp,
           crossAxisCount: 2,

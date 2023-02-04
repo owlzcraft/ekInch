@@ -54,16 +54,18 @@ class _MyNavigatorState extends State<MyNavigator> {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           GestureDetector(
               onTap: () {
-                onHome = true;
-                onLib = false;
-                onJobs = false;
-                onRecords = false;
-                onProfile = false;
+                setState(() {
+                  onHome = true;
+                  onLib = false;
+                  onJobs = false;
+                  onRecords = false;
+                  onProfile = false;
+                });
 
                 print(onRecords);
                 Get.to(DashboardView());
               },
-              child: onHome == true
+              child: onHome
                   ? Container(
                       decoration: const BoxDecoration(
                           border: Border(
