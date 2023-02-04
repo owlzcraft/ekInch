@@ -176,6 +176,8 @@ class _MobileViewState extends State<MobileView> {
                   height: 19,
                 ),
                 IntlPhoneField(
+                  autofocus: true,
+                  autovalidateMode: AutovalidateMode.disabled,
                   decoration: InputDecoration(
                     hintText: "Enter Phone Number",
                     border: OutlineInputBorder(
@@ -234,15 +236,16 @@ class _MobileViewState extends State<MobileView> {
                 ),
                 GFButton(
                   onPressed: () {
-                    (!checked)
-                        ? createSnackBar(
-                            "Please check the aggrement checkbox", context)
-                        : (numberController.text.length != 10)
-                            ? createSnackBar(
-                                "Please enter a valid mobile number", context)
-                            : Get.to(OtpView(
-                                mobile_number: numberController.text,
-                              ));
+                    // (!checked)
+                    //     ? createSnackBar(
+                    //         "Please check the aggrement checkbox", context)
+                    //     : (numberController.text.split('+91')[1].length != 10)
+                    //         ? createSnackBar(
+                    //             "Please enter a valid mobile number", context)
+                    //         :
+                    Get.to(OtpView(
+                      mobile_number: numberController.text,
+                    ));
                   },
                   color: KColors.orange,
                   fullWidthButton: true,

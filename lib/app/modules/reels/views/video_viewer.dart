@@ -81,6 +81,7 @@ class CustomVideoViewerStyle extends VideoViewerStyle {
             Positioned.fill(
               child: Image.network(movie.thumbnail, fit: BoxFit.cover),
             ),
+            
           ]),
         );
 }

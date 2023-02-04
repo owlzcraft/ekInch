@@ -65,22 +65,6 @@ class _DashboardStateView extends State<DashboardView>
     return Scaffold(
       key: scaffoldKey,
       bottomNavigationBar: MyNavigator(),
-      //  BottomNavigationBar(
-      //   type: BottomNavigationBarType.fixed,
-      //   showUnselectedLabels: true,
-      //   backgroundColor: Colors.white,
-      //   fixedColor: KColors.orange,
-      //   currentIndex: controller.currentIndex.value,
-      //   onTap: controller.changePage,
-      //   items: [
-      //     BottomNavigationBarItem(icon: SvgPicture.asset(Assets.home),
-      //     activeIcon: SvgPicture.asset(Assets.home),label: "Home"),
-      //     BottomNavigationBarItem(icon: SvgPicture.asset(Assets.home),
-      //     activeIcon: SvgPicture.asset(Assets.home),label: "Home"),
-      //     BottomNavigationBarItem(icon: SvgPicture.asset(Assets.home),
-      //     activeIcon: SvgPicture.asset(Assets.home),label: "Home"),
-      //   ],
-      // ),
       drawer: const SettingsView(),
       appBar: DynamicAppBar("Sanjay Singh", "Welcome !", true, scaffoldKey),
       body: Container(

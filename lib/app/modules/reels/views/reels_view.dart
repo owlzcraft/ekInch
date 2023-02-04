@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_00/app/generated/assets.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/work.widget.dart';
 import 'package:flutter_application_00/app/modules/reels/views/video.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class ReelsView extends StatefulWidget {
   const ReelsView({Key? key}) : super(key: key);
@@ -25,214 +28,173 @@ class _VideoAppState extends State<ReelsView> {
     @override
     _VideoAppState createState() => _VideoAppState();
     return Scaffold(
-      appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
-        actions: [
-          Icon(
-            Icons.share,
-          ),
-          Icon(Icons.notification_add_outlined)
-        ],
-      ),
+      // appBar: AppBar(
+      //   leading: Icon(Icons.arrow_back),
+      //   actions: [
+      //     Icon(
+      //       Icons.share,
+      //     ),
+      //     Icon(Icons.notification_add_outlined)
+      //   ],
+      // ),
       body: Container(
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                margin: EdgeInsets.only(bottom: 14),
-                child: VideoWidget(
-                    "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4"),
-              ),
-              Container(
-                width: 90,
-                height: 25,
-                margin: EdgeInsets.only(right: 300),
-
-                // alignment:AlignmentDirectional.topStart,
-
-                decoration: BoxDecoration(
-                    color: Colors.yellow,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Center(child: Text("Civil Work")),
-              ),
-              Container(
-                padding: EdgeInsets.all(14),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              const VideoWidget(
+                  "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4"),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      child: Text(
-                        "Cement Mortar",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Container(
+                        width: 80,
+                        height: 20,
+                        decoration: BoxDecoration(
+                            color: const Color(0xFFFEBA0F),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Center(
+                          child: Text(
+                            "Civil Work",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 12),
+                          ),
+                        ),
                       ),
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          child: Row(children: [
-                            Icon(Icons.thumb_up_off_alt_outlined),
-                            Text("123")
-                          ]),
+                        Text(
+                          "Cement Mortar",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 25),
                         ),
-                        Container(
-                          child: Row(children: [
-                            Icon(Icons.thumb_down_off_alt_outlined),
-                            Text("123")
-                          ]),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                  margin: EdgeInsets.only(right: 300),
-                  child: Text("12,765 views")),
-              Container(
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            child: Image.asset("./assets/image/Mask.png"),
-                            backgroundColor: Colors.red,
+                        IntrinsicHeight(
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5.0),
+                                child: SvgPicture.asset(Assets.like_icon),
+                              ),
+                              Text(
+                                "4.2k",
+                                style: TextStyle(color: Color(0xFF767676)),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5.0),
+                                child: VerticalDivider(
+                                  color: Color(0xFF767676),
+                                  width: 5,
+                                  thickness: 1,
+                                ),
+                              ),
+                              SvgPicture.asset(
+                                Assets.dislike_icon,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 3.0),
+                                child: Text(
+                                  "125 ",
+                                  style: TextStyle(color: Color(0xFF767676)),
+                                ),
+                              ),
+                            ],
                           ),
-                          Column(
-                            children: [
-                              Text(
-                                "Sanjay Singh",
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w400),
-                              ),
-                              Text(
-                                "Electrician Mechanic",
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w400),
-                              )
-                            ],
-                          )
-                        ],
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Text(
+                        "12,765 views",
+                        style: TextStyle(color: Color(0xFF767676)),
                       ),
-                      Image.asset("./assets/image/Line.png"),
-                      Container(
-                        child: Row(children: [
-                          Icon(Icons.calendar_month_outlined),
-                          Column(
-                            children: [
-                              Text(
-                                "22-10-2022",
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: IntrinsicHeight(
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 34,
+                              backgroundColor: Color(0xFFE0E0E0),
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundImage:
+                                    AssetImage("assets/images/profile.jpg"),
                               ),
-                              Text(
-                                "Last Update",
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w400),
-                              )
-                            ],
-                          )
-                        ]),
+                            ),
+                            Container(
+                              // width: Get.width / 2,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Sanjay Singh",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 5.0,
+                                    ),
+                                    child: Text(
+                                      "Electrician Mechanic",
+                                      style:
+                                          TextStyle(color: Color(0xFF6A6A6A)),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              child: VerticalDivider(
+                                color: Color(0xFF767676),
+                                width: 3,
+                                thickness: 1,
+                              ),
+                            ),
+                            SvgPicture.asset(Assets.calender_icon),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "22-10-2022",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5.0),
+                                    child: Text(
+                                      "Electrician Mechanic",
+                                      style:
+                                          TextStyle(color: Color(0xFF6A6A6A)),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ]),
+                    )
+                  ],
+                ),
               ),
-              Image.asset("./assets/image/LineH.png"),
-              Column(children: [
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [work(), work(), work(), work()],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 18),
-                      child: Text(
-                        "Plaster",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 12),
-                      child: Text(
-                        "6 videos",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey),
-                      ),
-                    )
-                  ],
-                ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [work(), work(), work(), work()],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 18),
-                      child: Text(
-                        "Concrete Wrok",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 12),
-                      child: Text(
-                        "6 videos",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey),
-                      ),
-                    )
-                  ],
-                ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [work(), work(), work(), work()],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 18),
-                      child: Text(
-                        "Chokhat",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 12),
-                      child: Text(
-                        "6 videos",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey),
-                      ),
-                    )
-                  ],
-                ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [work(), work(), work(), work()],
-                  ),
-                ),
-              ])
             ],
           ),
         ),
@@ -240,10 +202,4 @@ class _VideoAppState extends State<ReelsView> {
       bottomNavigationBar: MyNavigator(),
     );
   }
-
-//   @override
-//   void dispose() {
-//     super.dispose();
-//     _controller.dispose();
-// }
 }
