@@ -51,14 +51,14 @@ class ProfileView extends GetView<ProfileController> {
                 ProfileImage(),
                 Text(
                   "Sanjay Singh",
-                  style: GoogleFonts.kadwa(
+                  style: TextStyle(
                       color: Color(0xFF1A1D1E),
                       fontSize: getFontSize(28),
                       fontWeight: FontWeight.w400),
                 ),
                 Text(
                   'Electrician Mechanic',
-                  style: GoogleFonts.kadwa(
+                  style: TextStyle(
                       fontSize: getFontSize(20), color: Color(0xFF6A6A6A)),
                 ),
                 Image.asset(

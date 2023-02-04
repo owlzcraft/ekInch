@@ -1,8 +1,11 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_00/app/modules/MyVideos/views/my_videos_view.dart';
+import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
 import 'package:flutter_application_00/app/modules/postjob/views/postjob_view.dart';
 import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
+import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_view.dart';
 import 'package:flutter_application_00/widgets/math_utils.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +20,16 @@ Widget SettingListItem(String image, String title) {
         case "Feedback":
           Get.to(PostjobView());
           break;
+        case "My Videos(Reels)":
+          Get.to(MyVideosView());
+          break;
+        case "Notifications":
+          Get.to(NotificationView());
+          break;
+        case "Share and Earn":
+          Get.to(ReferNearnView());
+          break;
+
         default:
       }
     },

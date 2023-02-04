@@ -8,6 +8,7 @@ import 'package:flutter_application_00/app/modules/postjob/Style.dart';
 import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
 import 'package:flutter_application_00/app/modules/records/views/records_view.dart';
 import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
+import 'package:flutter_application_00/app/modules/reels/views/video_viewer.dart';
 import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

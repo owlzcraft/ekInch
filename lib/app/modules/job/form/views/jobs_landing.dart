@@ -5,6 +5,7 @@ import 'package:flutter_application_00/app/generated/assets.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/details_form.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/job_form.dart';
+import 'package:flutter_application_00/app/modules/job/jobInterested/views/job_interested_view.dart';
 import 'package:flutter_application_00/app/modules/mobile/widget/black_button.dart';
 import 'package:flutter_application_00/app/modules/mobile/widget/yellow_button.dart';
 import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
@@ -38,7 +39,7 @@ class JobLanding extends StatelessWidget {
         ),
         actions: [
           IconButton(
-              onPressed: (() => {Get.to(() =>  ReferNearnView())}),
+              onPressed: (() => {Get.to(() => ReferNearnView())}),
               icon: SvgPicture.asset(Assets.share_black)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),

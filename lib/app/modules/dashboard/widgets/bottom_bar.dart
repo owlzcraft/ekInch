@@ -5,6 +5,7 @@ import 'package:flutter_application_00/app/modules/home/views/home_view.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/jobs_landing.dart';
 import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
 import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
+import 'package:flutter_application_00/app/modules/reels/views/video_viewer.dart';
 import 'package:flutter_application_00/widgets/math_utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -62,7 +63,7 @@ List<Widget> _buildScreens() {
     //   name: 'Sanjay',
     // ),
     Container(),
-    ReelsView(),
+    VideoView(),
     JobLanding(),
     RecordsView(),
     ProfileView(),

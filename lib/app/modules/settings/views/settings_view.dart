@@ -77,30 +77,6 @@ class SettingsView extends GetView<SettingsController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.end,
-              //   children: [
-              //     // Container(
-              //     //   padding: EdgeInsets.symmetric(horizontal: 20),
-              //     //   child: CircleAvatar(
-              //     //     backgroundColor: Color(0xFFFEBA0F),
-              //     //     radius: 10,
-              //     //     child: Icon(
-              //     //       Icons.close,
-              //     //       size: 20,
-              //     //       color: Colors.black,
-              //     //     ),
-              //     //   ),
-              //     //   decoration: BoxDecoration(
-              //     //     shape: BoxShape.circle,
-              //     //     border: Border.all(
-              //     //       color: Colors.black,
-              //     //       width: 2.0,
-              //     //     ),
-              //     //   ),
-              //     // ),
-              //   ],
-              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

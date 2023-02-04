@@ -30,10 +30,14 @@ class Assets {
   static const String whatsapp = 'assets/icons/whatapp.svg';
   static const String languageIcon = 'assets/icons/languageIcon.svg';
   static const String notification = 'assets/icons/notifi.svg';
-  static const String notification_black = 'assets/icons/notification_black.svg';
-  static const String notification_white = 'assets/icons/notification_white.svg';
+  static const String notification_black =
+      'assets/icons/notification_black.svg';
+  static const String notification_white =
+      'assets/icons/notification_white.svg';
   static const String search_icon = 'assets/icons/search_icon.svg';
   static const String earnimg1 = 'assets/images/earnimg.svg';
+  static const String like_icon = 'assets/icons/like_icon.svg';
+  static const String dislike_icon = 'assets/icons/dislike_icon.svg';
   static const String Recordimg1 = 'assets/images/imagerecords.png';
   static const String facebook_icon = 'assets/images/facebook_icon.png';
   static const String instagram_icon = 'assets/images/instagram_icon.png';
@@ -41,6 +45,7 @@ class Assets {
   static const String whatsapp_icon = 'assets/images/whatsapp_icon.png';
   static const String google_plus_icon = 'assets/images/google_plus_icon.png';
   static const String referNearnBG = 'assets/images/refer_and_earn_bg.png';
+  static const String calender_icon = 'assets/icons/calender_icon.svg';
   static const String ek_inch_logo = 'assets/images/ek_inch_logo.svg';
   static const String reward_icon = 'assets/images/reward_icon.png';
 }

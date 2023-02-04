@@ -56,7 +56,8 @@ Widget StatusWidget(String image, String name, String sentOn, String code,
             children: [
               accepted
                   ? Container(
-                      padding: EdgeInsets.all(5),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 2, horizontal: 10),
                       decoration: BoxDecoration(
                           color: Color(0xFF000B46),
                           borderRadius: BorderRadius.circular(5)),
@@ -71,7 +72,7 @@ Widget StatusWidget(String image, String name, String sentOn, String code,
                           ),
                           Image.asset(
                             Assets.reward_icon,
-                            scale: 1.3,
+                            scale: 1.5,
                           ),
                         ],
                       ))

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/modules/postjob/Style.dart';
+import 'package:flutter_application_00/app/modules/postjob/views/CompanyDetails.dart';
 import 'package:flutter_application_00/app/modules/postjob/widgets/shortDropDown.dart';
-
+import 'package:get/get.dart';
 
 class JobDescriptions extends StatefulWidget {
   const JobDescriptions({Key? key}) : super(key: key);
@@ -36,10 +37,7 @@ class _JobDescriptionsState extends State<JobDescriptions> {
               height: 5,
             ),
             Dropdownprefix(
-              //  prefixicon:BoxDecoration()
-
               dropdownvalue: '10th',
-
               items: [
                 '10th',
                 '11th',
@@ -202,7 +200,9 @@ class _JobDescriptionsState extends State<JobDescriptions> {
                 color: yellow,
                 child: MaterialButton(
                     minWidth: MediaQuery.of(context).size.width,
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(CompanyDetails());
+                    },
                     child: Center(
                       child: Text(
                         'Next',
