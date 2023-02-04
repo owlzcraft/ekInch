@@ -1,10 +1,12 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_00/app/utils/hide_keyboard.dart';
 import 'package:flutter_application_00/widgets/math_utils.dart';
 
 TextFormField MobileTextField(TextEditingController numberController) {
   return TextFormField(
-    
+    textInputAction: TextInputAction.done,
+// onTapOutside: hideKeyboard,
     style: TextStyle(fontSize: getFontSize(22), color: Color(0xFF999898)),
     scrollPadding: EdgeInsets.symmetric(horizontal: 10),
     keyboardType: TextInputType.number,
@@ -12,11 +14,11 @@ TextFormField MobileTextField(TextEditingController numberController) {
     maxLength: 10,
     decoration: InputDecoration(
         counterText: "",
-        isDense: true,
+        isDense: false,
         contentPadding: EdgeInsets.symmetric(horizontal: 20),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFFEBA0F))),
-        hintText: "    Enter your mobile",
+        hintText: "  Enter your mobile",
         hintStyle: TextStyle(fontSize: 18, color: Color(0xFF999898)),
         prefixIcon: Container(
           decoration: const BoxDecoration(

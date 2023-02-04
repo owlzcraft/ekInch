@@ -11,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../widgets/math_utils.dart';
 import '../../../../../widgets/shape.dart';
@@ -19,11 +20,242 @@ import '../../../dashboard/widgets/bottomNavigate.wodget.dart';
 import '../../../settings/views/settings_view.dart';
 import '../../job_list/view/job_list.dart';
 
-class formFillView extends StatelessWidget {
+class formFillView extends StatefulWidget {
   formFillView({super.key});
+
+  @override
+  State<formFillView> createState() => _formFillViewState();
+}
+
+class _formFillViewState extends State<formFillView> {
   GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
+    showDataAlertExp() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    4.0,
+                  ),
+                ),
+              ),
+              title: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "How many years of experience in",
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Text(
+                      "Add your experience",
+                      style: TextStyle(fontSize: 14.0, color: KColors.textGrey),
+                    ),
+                  ),
+                ],
+              ),
+              content: Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: Color(0xFFCDCDCD))),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            hint: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                "Fresher",
+                                style: GoogleFonts.kadwa(
+                                    fontSize: getFontSize(22),
+                                    color: Color(0xFF636363)),
+                              ),
+                            ),
+                            icon: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Icon(
+                                Icons.keyboard_arrow_down,
+                                color: Color(0xFF999999),
+                              ),
+                            ),
+                            isExpanded: true,
+                            focusColor: Color(0xFFFEBA0F),
+                            items: ["Fresher", "1-5 Years", "5-10 Years"]
+                                .map((String value) {
+                              return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10.0),
+                                      child: Text(
+                                        value,
+                                        style: GoogleFonts.kadwa(
+                                            fontSize: getFontSize(22),
+                                            color: Color(0xFF636363)),
+                                      ),
+                                    ),
+                                  ));
+                            }).toList(),
+                            onChanged: (_) {},
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 25.0),
+                        child: GFButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          color: KColors.orange,
+                          fullWidthButton: true,
+                          size: 50.2,
+                          text: "Submit",
+                          textStyle: GoogleFonts.kadwa(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 24.0,
+                          ),
+                          // shape: GFButtonShape.standard,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          });
+    }
+
+    showDataAlertqualification() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    4.0,
+                  ),
+                ),
+              ),
+              title: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Add Your Degree or Qualification",
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Text(
+                      "Add your degree",
+                      style: TextStyle(fontSize: 14.0, color: KColors.textGrey),
+                    ),
+                  ),
+                ],
+              ),
+              content: Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: Color(0xFFCDCDCD))),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            hint: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                "10th Pass",
+                                style: GoogleFonts.kadwa(
+                                    fontSize: getFontSize(22),
+                                    color: Color(0xFF636363)),
+                              ),
+                            ),
+                            icon: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Icon(
+                                Icons.keyboard_arrow_down,
+                                color: Color(0xFF999999),
+                              ),
+                            ),
+                            isExpanded: true,
+                            focusColor: Color(0xFFFEBA0F),
+                            items: ["10th Pass", "12th Pass", "Graduated"]
+                                .map((String value) {
+                              return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10.0),
+                                      child: Text(
+                                        value,
+                                        style: GoogleFonts.kadwa(
+                                            fontSize: getFontSize(22),
+                                            color: Color(0xFF636363)),
+                                      ),
+                                    ),
+                                  ));
+                            }).toList(),
+                            onChanged: (_) {},
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 25.0),
+                        child: GFButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          color: KColors.orange,
+                          fullWidthButton: true,
+                          size: 50.2,
+                          text: "Submit",
+                          textStyle: GoogleFonts.kadwa(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 24.0,
+                          ),
+                          // shape: GFButtonShape.standard,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          });
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       key: notDrawerKey, drawer: const SettingsView(),
@@ -268,7 +500,9 @@ class formFillView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              showDataAlertExp();
+                            },
                             child: Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Container(
@@ -290,27 +524,22 @@ class formFillView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
-                              Get.to(AddSkillView());
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Container(
-                                height: getVerticalSize(46),
-                                width: getVerticalSize(99),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: KColors.orange),
-                                    color: KColors.orange,
-                                    borderRadius: BorderRadius.circular(100)),
-                                child: const Center(
-                                  child: Text(
-                                    "Add",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w100),
-                                  ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Container(
+                              height: getVerticalSize(46),
+                              width: getVerticalSize(99),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: KColors.orange),
+                                  color: KColors.orange,
+                                  borderRadius: BorderRadius.circular(100)),
+                              child: const Center(
+                                child: Text(
+                                  "Add",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w100),
                                 ),
                               ),
                             ),
@@ -356,10 +585,12 @@ class formFillView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(AddSkillView());
+                              },
                               child: Container(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 12, horizontal: 50),
@@ -446,7 +677,9 @@ class formFillView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              showDataAlertqualification();
+                            },
                             child: Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Container(

@@ -15,6 +15,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../jobInterested/views/job_interested_view.dart';
+
 class JobLanding extends StatelessWidget {
   JobLanding({super.key});
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -93,9 +95,7 @@ class JobLanding extends StatelessWidget {
                 Get.to(DetailsForm());
               }),
             ),
-            BlackButton("Hire Mechanic", true, () {
-              Get.to(JobInterestedView());
-            })
+            BlackButton("Hire Mechanic", true, () {Get.to(JobInterestedView());})
           ],
         ),
       )),
