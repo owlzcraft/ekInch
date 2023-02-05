@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/generated/assets.dart';
 import 'package:flutter_application_00/app/modules/language/views/language_view.dart';
 import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
+import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,13 +64,16 @@ AppBar DynamicAppBar(String name, String greetMsg, bool lang, GlobalKey<Scaffold
                   ],
                 ),
               ),
-              CircleAvatar(
-                radius: 20,
-                backgroundColor: const Color(0xFFBFBCBC),
+              InkWell(
+                onTap: () => {Get.to(ProfileView())},
                 child: CircleAvatar(
-                  radius: 18,
-                  backgroundImage:
-                      const AssetImage("assets/images/profile.jpg"),
+                  radius: 20,
+                  backgroundColor: const Color(0xFFBFBCBC),
+                  child: CircleAvatar(
+                    radius: 18,
+                    backgroundImage:
+                        const AssetImage("assets/images/profile.jpg"),
+                  ),
                 ),
               ),
             ],

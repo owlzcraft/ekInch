@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_00/app/custom_widget/color.dart';
 import 'package:flutter_application_00/app/generated/assets.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/work.widget.dart';
 import 'package:flutter_application_00/app/modules/reels/views/video.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -57,10 +59,10 @@ class _VideoAppState extends State<ReelsView> {
                         decoration: BoxDecoration(
                             color: const Color(0xFFFEBA0F),
                             borderRadius: BorderRadius.circular(20)),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "Civil Work",
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontWeight: FontWeight.w500, fontSize: 12),
                           ),
                         ),
@@ -69,7 +71,7 @@ class _VideoAppState extends State<ReelsView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Cement Mortar",
                           style: TextStyle(
                               fontWeight: FontWeight.w700, fontSize: 25),
@@ -82,13 +84,12 @@ class _VideoAppState extends State<ReelsView> {
                                     const EdgeInsets.symmetric(horizontal: 5.0),
                                 child: SvgPicture.asset(Assets.like_icon),
                               ),
-                              Text(
+                              const Text(
                                 "4.2k",
                                 style: TextStyle(color: Color(0xFF767676)),
                               ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 5.0),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 5.0),
                                 child: VerticalDivider(
                                   color: Color(0xFF767676),
                                   width: 5,
@@ -98,9 +99,8 @@ class _VideoAppState extends State<ReelsView> {
                               SvgPicture.asset(
                                 Assets.dislike_icon,
                               ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 3.0),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 3.0),
                                 child: Text(
                                   "125 ",
                                   style: TextStyle(color: Color(0xFF767676)),
@@ -111,8 +111,8 @@ class _VideoAppState extends State<ReelsView> {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 5.0),
                       child: Text(
                         "12,765 views",
                         style: TextStyle(color: Color(0xFF767676)),
@@ -123,7 +123,7 @@ class _VideoAppState extends State<ReelsView> {
                       child: IntrinsicHeight(
                         child: Row(
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               radius: 34,
                               backgroundColor: Color(0xFFE0E0E0),
                               child: CircleAvatar(
@@ -132,10 +132,8 @@ class _VideoAppState extends State<ReelsView> {
                                     AssetImage("assets/images/profile.jpg"),
                               ),
                             ),
-                            Container(
-                              // width: Get.width / 2,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 5.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -145,7 +143,7 @@ class _VideoAppState extends State<ReelsView> {
                                     style: TextStyle(fontSize: 20),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(
+                                    padding: EdgeInsets.only(
                                       top: 5.0,
                                     ),
                                     child: Text(
@@ -157,9 +155,8 @@ class _VideoAppState extends State<ReelsView> {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 5.0),
                               child: VerticalDivider(
                                 color: Color(0xFF767676),
                                 width: 3,
@@ -167,9 +164,8 @@ class _VideoAppState extends State<ReelsView> {
                               ),
                             ),
                             SvgPicture.asset(Assets.calender_icon),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 5.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -178,9 +174,9 @@ class _VideoAppState extends State<ReelsView> {
                                     style: TextStyle(fontSize: 20),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
+                                    padding: EdgeInsets.only(top: 5.0),
                                     child: Text(
-                                      "Electrician Mechanic",
+                                      "Last Update",
                                       style:
                                           TextStyle(color: Color(0xFF6A6A6A)),
                                     ),
@@ -192,6 +188,141 @@ class _VideoAppState extends State<ReelsView> {
                         ),
                       ),
                     )
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Divider(
+                  color: KColors.greyLine,
+                ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                child: Row(
+                  children: [
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg')
+                  ],
+                ),
+              ),
+               Container(
+                padding: EdgeInsets.all(10.0.sp),
+                margin: EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                        child: Text(
+                          'Plaster',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 18.sp),
+                        )),
+                    const Text(
+                      '6 videos',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF767676),
+                          fontWeight: FontWeight.w400),
+                    )
+                  ],
+                ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                child: Row(
+                  children: [
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg')
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(10.0.sp),
+                margin: EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                        child: Text(
+                          'Concrete Wrok',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 18.sp),
+                        )),
+                    const Text(
+                      '7 videos',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF767676),
+                          fontWeight: FontWeight.w400),
+                    )
+                  ],
+                ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                child: Row(
+                  children: [
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg')
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(10.0.sp),
+                margin: EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                        child: Text(
+                          'Chokhat',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 18.sp),
+                        )),
+                    const Text(
+                      '4 videos',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF767676),
+                          fontWeight: FontWeight.w400),
+                    )
+                  ],
+                ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                child: Row(
+                  children: [
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg')
                   ],
                 ),
               ),

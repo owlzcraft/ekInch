@@ -17,6 +17,7 @@ import '../../../../../widgets/math_utils.dart';
 import '../../../../../widgets/shape.dart';
 import '../../../../generated/assets.dart';
 import '../../../dashboard/widgets/bottomNavigate.wodget.dart';
+import '../../../profile/views/profile_view.dart';
 import '../../../settings/views/settings_view.dart';
 import '../../job_list/view/job_list.dart';
 
@@ -299,13 +300,16 @@ class _formFillViewState extends State<formFillView> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 80),
-                    child: CircleAvatar(
-                      radius: 30,
-                      backgroundColor: const Color(0xFFBFBCBC),
+                    child: InkWell(
+                      onTap: () => {Get.to(ProfileView())},
                       child: CircleAvatar(
-                        radius: 28,
-                        backgroundImage:
-                            const AssetImage("assets/images/profile.jpg"),
+                        radius: 30,
+                        backgroundColor: const Color(0xFFBFBCBC),
+                        child: CircleAvatar(
+                          radius: 28,
+                          backgroundImage:
+                              const AssetImage("assets/images/profile.jpg"),
+                        ),
                       ),
                     ),
                   ),
