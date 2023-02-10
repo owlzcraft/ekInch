@@ -1,8 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MobileController extends GetxController {
-  //TODO: Implement MobileController
+import '../../../../widgets/loader.dart';
+import '../../../../widgets/snack_bar.dart';
+import '../../../models/login_model.dart';
+import '../../../networking/api_result.dart';
+import '../../../networking/app_repo.dart';
+import '../../../routes/app_pages.dart';
+import '../../../utils/localStorage.dart';
 
+class MobileController extends GetxController {
+  late TextEditingController loginEmail;
+  late TextEditingController loginPass;
+final APIRepository apiRepository = APIRepository(isTokenRequired: false);
   final count = 0.obs;
   @override
   void onInit() {
@@ -20,4 +30,35 @@ class MobileController extends GetxController {
   }
 
   void increment() => count.value++;
+
+    Future<void> loginWithEmail() async {
+    final fcmToken = LocalStorage.shared.getFCMToken();
+    Get.showOverlay(
+        asyncFunction: () async {
+          final Map<String, dynamic> data = <String, dynamic>{};
+          data["mobile"] = loginEmail.text.trim().toLowerCase();
+          data["password"] = loginPass.text;
+          data["FcmToken"] = fcmToken;
+          await apiRepository.login(data).then((ApiResult<LoginModel> value) {
+            value.when(
+                success: (value) {
+                  loginEmail.clear();
+                  loginPass.clear();
+                  //todo
+                  debugPrint(value?.token);
+                  if (value!.success! == true && value.isVerified! == true) {
+                    LocalStorage.shared.saveUserData(value);
+                    LocalStorage.shared.saveLoggedIn();
+                    Get.offAndToNamed(Routes.HOME); 
+                  } else if (value.success! == true &&
+                      value.isVerified! == false) {
+                  } else {
+                    errorSnackbar(value.message!);
+                  }
+                },
+                failure: (networkExceptions) {});
+          });
+        },
+        loadingWidget: const LoadingIndicator());
+  }
 }
