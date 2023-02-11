@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_application_00/app/models/otp_model.dart';
 import 'package:flutter_application_00/app/networking/service_routes.dart';
 
 import '../../widgets/snack_bar.dart';
@@ -51,9 +52,24 @@ class APIRepository {
    Future<ApiResult<LoginModel>> login(Map<String, dynamic> data) async {
     try {
       final response =
-          await dioClient!.post(ServiceConstants.LOGIN, data: data);
+          await dioClient!.post(ServiceConstants.LOGIN, data: data );
       final LoginModel loginModel = LoginModel.fromJson(response.data);
       return ApiResult.success(data: loginModel);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  Future<ApiResult<OTPModel>> otp(Map<String, dynamic> data) async {
+    try {
+      final response =
+      await dioClient!.post(ServiceConstants.OTP, data: data );
+      final OTPModel otpModel = OTPModel.fromJson(response.data);
+      return ApiResult.success(data: otpModel);
     } catch (e) {
       if (kDebugMode) {
         print(e);

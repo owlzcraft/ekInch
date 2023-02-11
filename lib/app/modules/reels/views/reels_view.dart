@@ -9,14 +9,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class ReelsView extends StatefulWidget {
-  const ReelsView({Key? key}) : super(key: key);
+   ReelsView({Key? key}) : super(key: key);
 
   @override
   _VideoAppState createState() => _VideoAppState();
 }
 
 class _VideoAppState extends State<ReelsView> {
-  // const ReelsView({Key? key}) : super(key: key);
+  //  ReelsView({Key? key}) : super(key: key);
   @override
   // void initState() {
   //   super.initState();
@@ -44,22 +44,22 @@ class _VideoAppState extends State<ReelsView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const VideoWidget(
+               VideoWidget(
                   "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4"),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding:  EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      padding:  EdgeInsets.symmetric(vertical: 10.0),
                       child: Container(
                         width: 80,
                         height: 20,
                         decoration: BoxDecoration(
-                            color: const Color(0xFFFEBA0F),
+                            color:  Color(0xFFFEBA0F),
                             borderRadius: BorderRadius.circular(20)),
-                        child: const Center(
+                        child:  Center(
                           child: Text(
                             "Civil Work",
                             style: TextStyle(
@@ -71,7 +71,7 @@ class _VideoAppState extends State<ReelsView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                         Text(
                           "Cement Mortar",
                           style: TextStyle(
                               fontWeight: FontWeight.w700, fontSize: 25),
@@ -81,14 +81,14 @@ class _VideoAppState extends State<ReelsView> {
                             children: [
                               Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(horizontal: 5.0),
+                                     EdgeInsets.symmetric(horizontal: 5.0),
                                 child: SvgPicture.asset(Assets.like_icon),
                               ),
-                              const Text(
+                               Text(
                                 "4.2k",
                                 style: TextStyle(color: Color(0xFF767676)),
                               ),
-                              const Padding(
+                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 5.0),
                                 child: VerticalDivider(
                                   color: Color(0xFF767676),
@@ -99,7 +99,7 @@ class _VideoAppState extends State<ReelsView> {
                               SvgPicture.asset(
                                 Assets.dislike_icon,
                               ),
-                              const Padding(
+                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 3.0),
                                 child: Text(
                                   "125 ",
@@ -111,7 +111,7 @@ class _VideoAppState extends State<ReelsView> {
                         ),
                       ],
                     ),
-                    const Padding(
+                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 5.0),
                       child: Text(
                         "12,765 views",
@@ -119,11 +119,11 @@ class _VideoAppState extends State<ReelsView> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      padding:  EdgeInsets.symmetric(vertical: 10.0),
                       child: IntrinsicHeight(
                         child: Row(
                           children: [
-                            const CircleAvatar(
+                             CircleAvatar(
                               radius: 34,
                               backgroundColor: Color(0xFFE0E0E0),
                               child: CircleAvatar(
@@ -132,7 +132,7 @@ class _VideoAppState extends State<ReelsView> {
                                     AssetImage("assets/images/profile.jpg"),
                               ),
                             ),
-                            const Padding(
+                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +155,7 @@ class _VideoAppState extends State<ReelsView> {
                                 ],
                               ),
                             ),
-                            const Padding(
+                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5.0),
                               child: VerticalDivider(
                                 color: Color(0xFF767676),
@@ -164,7 +164,7 @@ class _VideoAppState extends State<ReelsView> {
                               ),
                             ),
                             SvgPicture.asset(Assets.calender_icon),
-                            const Padding(
+                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 5.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,7 +191,7 @@ class _VideoAppState extends State<ReelsView> {
                   ],
                 ),
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
                 child: Divider(
                   color: KColors.greyLine,
@@ -225,7 +225,7 @@ class _VideoAppState extends State<ReelsView> {
                           style: TextStyle(
                               fontWeight: FontWeight.w700, fontSize: 18.sp),
                         )),
-                    const Text(
+                     Text(
                       '6 videos',
                       style: TextStyle(
                           fontSize: 18,
@@ -263,7 +263,7 @@ class _VideoAppState extends State<ReelsView> {
                           style: TextStyle(
                               fontWeight: FontWeight.w700, fontSize: 18.sp),
                         )),
-                    const Text(
+                     Text(
                       '7 videos',
                       style: TextStyle(
                           fontSize: 18,
@@ -301,7 +301,7 @@ class _VideoAppState extends State<ReelsView> {
                           style: TextStyle(
                               fontWeight: FontWeight.w700, fontSize: 18.sp),
                         )),
-                    const Text(
+                     Text(
                       '4 videos',
                       style: TextStyle(
                           fontSize: 18,

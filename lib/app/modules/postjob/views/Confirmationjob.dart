@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/modules/postjob/Style.dart';
-import 'package:flutter_application_00/app/modules/postjob/views/jobs_view.dart';
+import 'package:flutter_application_00/app/modules/listpostjob/views/jobs_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Confirmationjob extends StatefulWidget {

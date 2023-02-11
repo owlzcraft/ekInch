@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/modules/postjob/Style.dart';
-import 'package:flutter_application_00/app/modules/postjob/views/jobDescription.dart';
+import 'package:flutter_application_00/app/modules/listpostjob/views/jobDescription.dart';
 import 'package:flutter_application_00/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:get/get.dart';
 

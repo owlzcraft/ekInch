@@ -127,6 +127,50 @@ class Dropdownprefix extends StatelessWidget {
     );
   }
 }
+class DescriptionLong extends StatelessWidget {
+  final String? hintText;
+  final String? initialValue;
+  final TextEditingController? controller;
+  final EdgeInsetsGeometry? margin;
+  DescriptionLong(
+      {Key? key,
+      this.hintText,
+      this.margin,
+      this.initialValue,
+      this.controller})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    return Expanded(
+      child: Container(
+        height: MediaQuery.of(context).size.height*0.2,
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+          //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
+          decoration: BoxDecoration(
+              // color: theme.backgroundColor,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Boxborder, width: 1)),
+          child: TextFormField(
+            controller: controller,
+            textInputAction: TextInputAction.newline,
+            keyboardType: TextInputType.multiline,
+            maxLines: null,
+//style:TextStyle( color: grey,fontFamily: 'Kadwa') ,
+            decoration: InputDecoration(
+                contentPadding: const EdgeInsets.all(5),
+                hintText: hintText,
+                hintStyle:
+                    TextStyle(color: grey, fontFamily: 'Kadwa', fontSize: 14),
+                border: const UnderlineInputBorder(borderSide: BorderSide.none),
+                focusedBorder:
+                    const UnderlineInputBorder(borderSide: BorderSide.none),
+                enabledBorder:
+                    const UnderlineInputBorder(borderSide: BorderSide.none)),
+          )),
+    );
+  }
+}
 
 class Description extends StatelessWidget {
   final String? hintText;

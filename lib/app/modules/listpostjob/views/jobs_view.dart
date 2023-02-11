@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_00/app/modules/postjob/Style.dart';
-import 'package:flutter_application_00/app/modules/postjob/views/jobDescription.dart';
+import 'package:flutter_application_00/app/modules/listpostjob/views/jobDescription.dart';
 import 'package:flutter_application_00/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
