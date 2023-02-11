@@ -3,7 +3,7 @@ version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
 environment:
-  sdk: ">=2.18.6 <3.0.0"
+  sdk: ">=2.18.4 <3.0.0"
 
 dependencies:
   cupertino_icons: ^1.0.2
@@ -48,6 +48,10 @@ dependency_overrides:
       path: modal_bottom_sheet
 
 flutter:
+  fonts:
+    - family: Kadwa
+      fonts:
+        - asset: assets/fonts/Kadwa-Regular.ttf
   assets:
     - assets/images/
     - assets/icons/

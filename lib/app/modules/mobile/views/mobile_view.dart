@@ -172,8 +172,8 @@ class _MobileViewState extends State<MobileView> {
                   ),
                   
                   Padding(
-                    padding: const EdgeInsets.only(top:16.0,bottom: 8.0),
-                    child: const Text(
+                    padding:  EdgeInsets.only(top:16.0,bottom: 8.0),
+                    child:  Text(
                       "Enter your mobile number, We will ",
                       style: TextStyle(
                           fontWeight: FontWeight.normal,
@@ -182,7 +182,7 @@ class _MobileViewState extends State<MobileView> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom:16.0),
+                    padding:  EdgeInsets.only(bottom:16.0),
                     child: Text(
                         "send you confirmation code",
                         style: TextStyle(

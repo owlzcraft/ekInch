@@ -62,7 +62,7 @@ class ReferNearnView extends GetView<ReferNearnController> {
           actions: [
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
+                   EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
