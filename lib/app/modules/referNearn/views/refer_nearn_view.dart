@@ -36,9 +36,9 @@ class ReferNearnView extends GetView<ReferNearnController> {
             },
           ),
           backgroundColor: Colors.black,
-          title: const Text(
+          title:  Text(
             'Refer and Earn',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+            style: GoogleFonts.kadwa(color: Colors.white, fontWeight: FontWeight.w700),
           ),
           centerTitle: true,
           bottom: TabBar(
@@ -50,12 +50,12 @@ class ReferNearnView extends GetView<ReferNearnController> {
               Tab(
                   child: Text(
                 "Invite",
-                style: TextStyle(fontSize: 16),
+                style: GoogleFonts.kadwa(fontSize: 16),
               )),
               Tab(
                   child: Text(
                 'Status',
-                style: TextStyle(fontSize: 16),
+                style: GoogleFonts.kadwa(fontSize: 16),
               ))
             ],
           ),

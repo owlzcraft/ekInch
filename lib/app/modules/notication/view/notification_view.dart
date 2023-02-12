@@ -4,6 +4,7 @@ import 'package:flutter_application_00/app/generated/assets.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../custom_widget/color.dart';
 import '../../referNearn/views/refer_nearn_view.dart';
@@ -15,14 +16,14 @@ class NotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: notDrawerKey, drawer: const SettingsView(),
+      key: notDrawerKey, drawer:   SettingsView(),
       // appBar: UpperBar("Records", "Records", true, true),
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(70),
+        preferredSize:   Size.fromHeight(70),
         child: AppBar(
-          title: const Text(
+          title:   Text(
             "Notification",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: GoogleFonts.kadwa(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           leading: IconButton(
@@ -36,7 +37,7 @@ class NotificationView extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              padding: const EdgeInsetsDirectional.only(end: 9.11),
+              padding:   EdgeInsetsDirectional.only(end: 9.11),
               onPressed: (() => {Get.to(() => NotificationView())}),
               icon: SvgPicture.asset(Assets.notification),
             ),
@@ -52,18 +53,18 @@ class NotificationView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
+             Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
                 "Latest ",
-                style: TextStyle(
+                style: GoogleFonts.kadwa(
                     color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.w700),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,16 +80,16 @@ class NotificationView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        const Text(
+                          Text(
                           "Wecome to Ek Inch App",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
-                        const Text(
+                          Text(
                           "Learn and get more rewards from ekinch",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.grey,
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
@@ -96,11 +97,11 @@ class NotificationView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Padding(
+                    Padding(
                     padding: EdgeInsets.only(left: 4.0),
                     child: Text(
                       "1:00PM",
-                      style: TextStyle(
+                      style: GoogleFonts.kadwa(
                           color: Colors.grey,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
@@ -109,14 +110,14 @@ class NotificationView extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
+              Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Divider(
                 color: KColors.greyLine,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding:   EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,22 +130,22 @@ class NotificationView extends StatelessWidget {
                     Icon(Icons.play_arrow)
                   ]),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding:   EdgeInsets.only(left: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
+                      // ignore: prefer_ _literals_to_create_immutables
                       children: [
-                        const Text(
+                          Text(
                           "New updated reels",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
-                        const Text(
+                          Text(
                           "Learn and get more rewards from ekinch",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.grey,
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
@@ -152,11 +153,11 @@ class NotificationView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Padding(
+                    Padding(
                     padding: EdgeInsets.only(left: 4.0),
                     child: Text(
                       "3:15PM",
-                      style: TextStyle(
+                      style: GoogleFonts.kadwa(
                           color: Colors.grey,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
@@ -165,14 +166,14 @@ class NotificationView extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
+              Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Divider(
                 color: KColors.greyLine,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding:   EdgeInsets.symmetric(horizontal:  8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,22 +186,22 @@ class NotificationView extends StatelessWidget {
                     Icon(Icons.play_arrow)
                   ]),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding:   EdgeInsets.only(left: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
+                      // ignore: prefer_ _literals_to_create_immutables
                       children: [
-                        const Text(
+                          Text(
                           "New updated reels",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
-                        const Text(
+                          Text(
                           "Learn and get more rewards from ekinch",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.grey,
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
@@ -208,11 +209,11 @@ class NotificationView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Padding(
+                    Padding(
                     padding: EdgeInsets.only(left: 4.0),
                     child: Text(
-                      "2 day ago",
-                      style: TextStyle(
+                      " 3:15PM",
+                      style: GoogleFonts.kadwa(
                           color: Colors.grey,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
@@ -221,14 +222,14 @@ class NotificationView extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
+              Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Divider(
                 color: KColors.greyLine,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding:   EdgeInsets.symmetric(horizontal:  8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -241,22 +242,22 @@ class NotificationView extends StatelessWidget {
                     Icon(Icons.play_arrow)
                   ]),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding:   EdgeInsets.only(left: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
+                      // ignore: prefer_ _literals_to_create_immutables
                       children: [
-                        const Text(
+                          Text(
                           "New updated reels",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
-                        const Text(
+                          Text(
                           "Learn and get more rewards from ekinch",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.grey,
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
@@ -264,11 +265,11 @@ class NotificationView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Padding(
+                    Padding(
                     padding: EdgeInsets.only(left: 4.0),
                     child: Text(
-                      "2 day ago",
-                      style: TextStyle(
+                      " 3:15PM",
+                      style: GoogleFonts.kadwa(
                           color: Colors.grey,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
@@ -277,14 +278,14 @@ class NotificationView extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
+              Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Divider(
                 color: KColors.greyLine,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding:   EdgeInsets.symmetric(horizontal:  8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -297,22 +298,22 @@ class NotificationView extends StatelessWidget {
                     Icon(Icons.play_arrow)
                   ]),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding:   EdgeInsets.only(left: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
+                      // ignore: prefer_ _literals_to_create_immutables
                       children: [
-                        const Text(
+                          Text(
                           "New updated reels",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
-                        const Text(
+                          Text(
                           "Learn and get more rewards from ekinch",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.grey,
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
@@ -320,11 +321,11 @@ class NotificationView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Padding(
+                    Padding(
                     padding: EdgeInsets.only(left: 4.0),
                     child: Text(
-                      "2 day ago",
-                      style: TextStyle(
+                      " 3:15PM",
+                      style: GoogleFonts.kadwa(
                           color: Colors.grey,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
@@ -333,14 +334,14 @@ class NotificationView extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
+              Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Divider(
                 color: KColors.greyLine,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding:   EdgeInsets.symmetric(horizontal:  8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -353,22 +354,22 @@ class NotificationView extends StatelessWidget {
                     Icon(Icons.play_arrow)
                   ]),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding:   EdgeInsets.only(left: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
+                      // ignore: prefer_ _literals_to_create_immutables
                       children: [
-                        const Text(
+                          Text(
                           "New updated reels",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
-                        const Text(
+                          Text(
                           "Learn and get more rewards from ekinch",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.grey,
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
@@ -376,11 +377,11 @@ class NotificationView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Padding(
+                    Padding(
                     padding: EdgeInsets.only(left: 4.0),
                     child: Text(
-                      "2 day ago",
-                      style: TextStyle(
+                      " 3:15PM",
+                      style: GoogleFonts.kadwa(
                           color: Colors.grey,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
@@ -389,14 +390,14 @@ class NotificationView extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
+              Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Divider(
                 color: KColors.greyLine,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding:   EdgeInsets.symmetric(horizontal:  8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -409,22 +410,22 @@ class NotificationView extends StatelessWidget {
                     Icon(Icons.play_arrow)
                   ]),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding:   EdgeInsets.only(left: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
+                      // ignore: prefer_ _literals_to_create_immutables
                       children: [
-                        const Text(
+                          Text(
                           "New updated reels",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
-                        const Text(
+                          Text(
                           "Learn and get more rewards from ekinch",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.grey,
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
@@ -432,11 +433,11 @@ class NotificationView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Padding(
+                    Padding(
                     padding: EdgeInsets.only(left: 4.0),
                     child: Text(
-                      "2 day ago",
-                      style: TextStyle(
+                      " 3:15PM",
+                      style: GoogleFonts.kadwa(
                           color: Colors.grey,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
@@ -445,14 +446,14 @@ class NotificationView extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
+              Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Divider(
                 color: KColors.greyLine,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding:   EdgeInsets.symmetric(horizontal:  8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -465,22 +466,22 @@ class NotificationView extends StatelessWidget {
                     Icon(Icons.play_arrow)
                   ]),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding:   EdgeInsets.only(left: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
+                      // ignore: prefer_ _literals_to_create_immutables
                       children: [
-                        const Text(
+                          Text(
                           "New updated reels",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
-                        const Text(
+                          Text(
                           "Learn and get more rewards from ekinch",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.grey,
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
@@ -488,11 +489,11 @@ class NotificationView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Padding(
+                    Padding(
                     padding: EdgeInsets.only(left: 4.0),
                     child: Text(
-                      "2 day ago",
-                      style: TextStyle(
+                      " 3:15PM",
+                      style: GoogleFonts.kadwa(
                           color: Colors.grey,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
@@ -501,14 +502,14 @@ class NotificationView extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
+              Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Divider(
                 color: KColors.greyLine,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding:   EdgeInsets.symmetric(horizontal:  8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -521,22 +522,22 @@ class NotificationView extends StatelessWidget {
                     Icon(Icons.play_arrow)
                   ]),
                   Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
+                    padding:   EdgeInsets.only(left: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
+                      // ignore: prefer_ _literals_to_create_immutables
                       children: [
-                        const Text(
+                          Text(
                           "New updated reels",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.black,
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
-                        const Text(
+                          Text(
                           "Learn and get more rewards from ekinch",
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               color: Colors.grey,
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
@@ -544,11 +545,11 @@ class NotificationView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Padding(
+                    Padding(
                     padding: EdgeInsets.only(left: 4.0),
                     child: Text(
-                      "2 day ago",
-                      style: TextStyle(
+                      " 3:15PM",
+                      style: GoogleFonts.kadwa(
                           color: Colors.grey,
                           fontSize: 12,
                           fontWeight: FontWeight.w400),
@@ -557,7 +558,7 @@ class NotificationView extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
+              Padding(
               padding: EdgeInsets.symmetric(vertical: 8.0),
               child: Divider(
                 color: KColors.greyLine,

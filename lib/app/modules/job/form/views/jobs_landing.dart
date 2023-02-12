@@ -23,6 +23,7 @@ class JobLanding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       drawer: const SettingsView(),
       bottomNavigationBar: MyNavigator(),
       appBar: AppBar(
