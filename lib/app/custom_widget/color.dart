@@ -4,7 +4,7 @@ mixin KColors {
   static const Color greybg = Color.fromRGBO(238, 238, 238, 3);
   static const Color orange = Color(0xFfFEBA0F);
 static const Color textGrey= Color.fromARGB(252, 102, 101, 101);
-  static const Color green = Color(0xFF13B78B);
+  static const Color green = Color(0xFF36B13E);
   static const Color greenShade2 = Color(0xFF16AC84);
   static const Color darkBg = Color(0xFF090335);
   static const Color bg = Color(0xFFFBF3EA);
