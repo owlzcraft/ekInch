@@ -6,7 +6,7 @@ Widget servicesAndNews(String heading, String sub_heading, bool isLive,
     String bottom_image, String date, String time) {
   return Container(
     padding: EdgeInsets.all(10),
-    width: (Get.width / 2.5).sp,
+    width: (Get.width / 2.1).sp,
     margin: EdgeInsets.symmetric(horizontal: 10),
     height: (Get.height / 4.04809009283).sp,
     decoration: BoxDecoration(

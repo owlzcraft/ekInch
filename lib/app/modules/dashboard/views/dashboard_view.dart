@@ -16,6 +16,7 @@ import 'package:flutter_application_00/app/modules/dashboard/widgets/video.widge
 import 'package:flutter_application_00/app/modules/dashboard/widgets/videoCategory.widget.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/work.widget.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
 import '../controllers/dashboard_controller.dart';
@@ -82,7 +83,7 @@ class _DashboardStateView extends State<DashboardView>
                         padding: EdgeInsets.symmetric(horizontal: 10.sp),
                         child: Text(
                           'Short Videos',
-                          style: TextStyle(
+                          style: GoogleFonts.kadwa(
                               fontWeight: FontWeight.w700, fontSize: 18.sp),
                         )),
                     const Text(
@@ -119,7 +120,7 @@ class _DashboardStateView extends State<DashboardView>
                       margin: EdgeInsets.only(top: 10),
                       child: Text(
                         'Learn from the Videos',
-                        style: TextStyle(
+                        style:  GoogleFonts.kadwa(
                             fontWeight: FontWeight.w700, fontSize: 18.sp),
                       )),
                 ],

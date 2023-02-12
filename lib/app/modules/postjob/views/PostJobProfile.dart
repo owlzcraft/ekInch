@@ -27,30 +27,33 @@ class _PostJobProfileState extends State<PostJobProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        centerTitle: true,
-        leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(Icons.arrow_back)),
-        //Icon(Icons.menu),
-        title: Text(
-          'Post Job',
-          style: TextStyle(
-              fontSize: 18, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),
-        ),
-        actions: [
-          Icon(
-            Icons.share_outlined,
-            size: 20,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80),
+        child: AppBar(
+          backgroundColor: Colors.black,
+          elevation: 0,
+          centerTitle: true,
+          leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_back)),
+          //Icon(Icons.menu),
+          title: Text(
+            'Post Job',
+            style: TextStyle(
+                fontSize: 20, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.05,
-          )
-        ],
+          actions: [
+            Icon(
+              Icons.share_outlined,
+              size: 20,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.05,
+            )
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -273,7 +276,7 @@ class _PostJobProfileState extends State<PostJobProfile> {
                               ),
                             ),
                             Text(
-                              'Good in Plumbing and home basic work of plumbing',
+                              'Good in Plumbing and home \n basic work of plumbing',
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                   color: greylight,
@@ -443,7 +446,7 @@ class _PostJobProfileState extends State<PostJobProfile> {
                               ),
                             ),
                             Text(
-                              widget.address ?? '',
+                             "Rorkee, Uttrakhand",
                               style: TextStyle(
                                   color: greylight,
                                   fontSize: 12,

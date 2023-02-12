@@ -5,6 +5,9 @@ import 'package:flutter_application_00/app/modules/postjob/widgets/shortDropDown
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../generated/assets.dart';
+import '../../settings/views/settings_view.dart';
+
 class JobDescription extends StatefulWidget {
   const JobDescription({Key? key}) : super(key: key);
 
@@ -15,6 +18,7 @@ class JobDescription extends StatefulWidget {
 class JobDescriptionState extends State<JobDescription>
     with TickerProviderStateMixin {
   TabController? _tabController;
+  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
   void initState() {
     _tabController = new TabController(length: 2, vsync: this);
@@ -26,19 +30,32 @@ class JobDescriptionState extends State<JobDescription>
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        
+  
+       key: scaffoldKey,
+       drawer: const SettingsView(),
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
-          leading: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Icon(Icons.arrow_back)),
+          leading:  IconButton(
+      icon: SvgPicture.asset(Assets.drawerIcon_white),
+      onPressed: () {
+        if (!scaffoldKey.currentState!.isDrawerOpen) {
+          //check if drawer is closed
+          scaffoldKey.currentState!.openDrawer(); //open drawer
+        }
+      },
+    ),
+          // InkWell(
+          //     onTap: () {
+          //       Navigator.pop(context);
+          //     },
+          //     child: Icon(Icons.arrow_back)),
           backgroundColor: Colors.black,
           title: Text(
             'UltraTech',
             style: TextStyle(
-                fontSize: 18, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),
+                fontSize: 20, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),
           ),
           actions: [
             Icon(
@@ -53,6 +70,8 @@ class JobDescriptionState extends State<JobDescription>
             controller: _tabController,
             indicatorColor: yellow,
             indicatorWeight: 3,
+            unselectedLabelStyle:TextStyle(fontSize: 14) ,
+            labelStyle: TextStyle(fontSize: 14),
             tabs: [Tab(text: "Details"), Tab(text: "Reviews")],
           ),
         ),

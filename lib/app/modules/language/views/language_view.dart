@@ -58,17 +58,18 @@ class _LanguageViewState extends State<LanguageView> {
               ],
             ),
             SizedBox(
-              height: getVerticalSize(40),
+              height: getVerticalSize(30),
             ),
             Text(
               'भाषा चुने / Select Language ',
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 28,
+                  fontSize: 25,
+                  fontFamily: "Kadwa",
                   fontWeight: FontWeight.w800),
             ),
             SizedBox(
-              height: getVerticalSize(120),
+              height: getVerticalSize(180),
             )
           ],
         ),
@@ -78,7 +79,7 @@ class _LanguageViewState extends State<LanguageView> {
         flexibleSpace: ClipPath(
           clipper: Customshape(),
           child: Container(
-              height: getVerticalSize(250),
+              height: getVerticalSize(260),
               width: MediaQuery.of(context).size.width,
               color: Colors.white),
         ),

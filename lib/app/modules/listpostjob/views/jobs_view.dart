@@ -5,6 +5,14 @@ import 'package:flutter_application_00/app/modules/postjob/Style.dart';
 import 'package:flutter_application_00/app/modules/listpostjob/views/jobDescription.dart';
 import 'package:flutter_application_00/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../../custom_widget/dash_header.dart';
+import '../../../generated/assets.dart';
+import '../../dashboard/widgets/bottomNavigate.wodget.dart';
+import '../../notication/view/notification_view.dart';
+import '../../settings/views/settings_view.dart';
 
 class JobView extends StatefulWidget {
   const JobView({super.key});
@@ -15,17 +23,31 @@ class JobView extends StatefulWidget {
 
 class _JobViewState extends State<JobView> {
   TextEditingController _searchcontroller = TextEditingController();
+   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+       key: scaffoldKey,
+       drawer: const SettingsView(),
       appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: true,
         elevation: 0,
-        leading: Image.asset(
-          'assets/images/menu.png',
-          cacheHeight: 18,
-        ),
+        leading:
+         IconButton(
+      icon: SvgPicture.asset(Assets.drawerIcon_white),
+      onPressed: () {
+        if (!scaffoldKey.currentState!.isDrawerOpen) {
+          //check if drawer is closed
+          scaffoldKey.currentState!.openDrawer(); //open drawer
+        }
+      },
+    ),
+        //  Image.asset(
+        //   'assets/images/menu.png',
+        //   cacheHeight: 18,
+        // ),
         title: Text(
           'Ek Inch',
           style: TextStyle(
@@ -39,15 +61,19 @@ class _JobViewState extends State<JobView> {
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.03,
           ),
-          Icon(
-            Icons.notifications_none,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.03,
-          )
+         Padding(
+        padding: const EdgeInsets.only(right: 8.0),
+        child: IconButton(
+            onPressed: (() => {Get.to(() => NotificationView())}),
+            icon: SvgPicture.asset(Assets.notification_white)),
+      ),
+          // SizedBox(
+          //   width: MediaQuery.of(context).size.width * 0.03,
+          // )
         ],
       ),
       body: SingleChildScrollView(
+       
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -56,19 +82,20 @@ class _JobViewState extends State<JobView> {
               color: black,
               child: Padding(
                 padding:
-                    EdgeInsets.only(left: 15.0, right: 10, top: 10, bottom: 10),
+                    EdgeInsets.only(left: 15.0, right: 15, top: 10, bottom: 10),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
+                    SizedBox(height: 50,
+                     width: Get.width / 1.4,
                       child: TextFeildWhite(
                         controller: _searchcontroller,
                         hintText: 'Job, location and other',
                       ),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.05,
-                    ),
+                    // SizedBox(
+                    //   width: MediaQuery.of(context).size.width * 0.07,
+                    // ),
                     Container(
                       width: 50,
                       height: 50,
@@ -86,88 +113,91 @@ class _JobViewState extends State<JobView> {
                 ),
               ),
             ),
-            Container(
-              color: whitedark,
-              height: 80,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        OutlinedButton(
-                            style: OutlinedButton.styleFrom(
-                              backgroundColor: yellow,
-                              side: BorderSide.none,
-                              fixedSize: Size(170, 0),
-                              shape: StadiumBorder(),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Upload Resume',
-                                  style: TextStyle(
-                                      color: black,
-                                      fontSize: 14,
-                                      fontFamily: "Kadwa",
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.03,
-                                ),
-                                SvgPicture.asset(
-                                  'assets/images/upload.svg',
-                                  height: 15,
-                                ),
-                              ],
-                            )),
-                        Text(
-                          '35 Jobs',
-                          style: TextStyle(
-                              color: black,
-                              fontSize: 16,
-                              fontFamily: "Kadwa",
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Expanded(child: ()),
-                ],
-              ),
-            ),
+            // Container(
+            //   color: whitedark,
+            //   height: 80,
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Padding(
+            //         padding: EdgeInsets.all(15.0),
+            //         child: Row(
+            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //           children: [
+            //             OutlinedButton(
+            //                 style: OutlinedButton.styleFrom(
+            //                   backgroundColor: yellow,
+            //                   side: BorderSide.none,
+            //                   fixedSize: Size(170, 0),
+            //                   shape: StadiumBorder(),
+            //                 ),
+            //                 onPressed: () {},
+            //                 child: Row(
+            //                   mainAxisAlignment: MainAxisAlignment.center,
+            //                   children: [
+            //                     Text(
+            //                       'Upload Resume',
+            //                       style: TextStyle(
+            //                           color: black,
+            //                           fontSize: 14,
+            //                           fontFamily: "Kadwa",
+            //                           fontWeight: FontWeight.w700),
+            //                     ),
+            //                     SizedBox(
+            //                       width:
+            //                           MediaQuery.of(context).size.width * 0.03,
+            //                     ),
+            //                     SvgPicture.asset(
+            //                       'assets/images/upload.svg',
+            //                       height: 15,
+            //                     ),
+            //                   ],
+            //                 )),
+            //             Text(
+            //               '35 Jobs',
+            //               style: TextStyle(
+            //                   color: black,
+            //                   fontSize: 16,
+            //                   fontFamily: "Kadwa",
+            //                   fontWeight: FontWeight.w400),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //       // Expanded(child: ()),
+            //     ],
+            //   ),
+            // ),
             Padding(
               padding:
                   EdgeInsets.only(left: 10.0, right: 15, top: 15, bottom: 20),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Dropdownshort(
-                          dropdownvalue: 'Full-time job',
-                          items: [
-                            'Full-time job',
-                            'Part-time job',
-                          ],
+                  Padding(
+                    padding: const EdgeInsets.only(right:5.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(height: 40,
+                         width: Get.width / 2.4,
+                          child: Dropdownshort(
+                            dropdownvalue: 'Full-time job',
+                            items: [
+                              'Full-time job',
+                              'Part-time job',
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                      ),
-                      Positioned(
-                          right: 0,
-                          child: SvgPicture.asset(
-                            "assets/images/refresh.svg",
-                            color: grey,
-                          ))
-                    ],
+                        // SizedBox(
+                        //   width: MediaQuery.of(context).size.width * 0.5,
+                        // ),
+                        SvgPicture.asset(
+                          
+                          "assets/images/refresh.svg",
+                          color: grey,
+                        )
+                      ],
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -177,7 +207,7 @@ class _JobViewState extends State<JobView> {
                               builder: (context) => JobDescription()));
                     },
                     child: Container(
-                      height: MediaQuery.of(context).size.height * 0.4,
+                     // height: MediaQuery.of(context).size.height * 0.4,
                       width: MediaQuery.of(context).size.width,
                       child: Card(
                         elevation: 1,
@@ -236,7 +266,7 @@ class _JobViewState extends State<JobView> {
                                               ],
                                             ),
                                             SizedBox(
-                                              width: 5,
+                                              width: 15,
                                             ),
                                             Column(
                                               crossAxisAlignment:
@@ -472,7 +502,7 @@ class _JobViewState extends State<JobView> {
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.4,
+                   // height: MediaQuery.of(context).size.height * 0.4,
                     width: MediaQuery.of(context).size.width,
                     child: Card(
                       elevation: 1,
@@ -529,9 +559,9 @@ class _JobViewState extends State<JobView> {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
+                                           SizedBox(
+                                              width: 15,
+                                            ),
                                           Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,

@@ -42,7 +42,7 @@ class _CompanyDetailsState extends State<CompanyDetails> {
               ),
               TextFeild(
                 controller: _companynamecontroller,
-                hintText: 'Ekinch Pvt. Ltd.',
+                hintText: 'Company Name ',
                 keyboardtype: TextInputType.name,
               ),
               SizedBox(
@@ -61,7 +61,7 @@ class _CompanyDetailsState extends State<CompanyDetails> {
               ),
               TextFeild(
                   controller: _namecontroller,
-                  hintText: 'Sanjay Pal',
+                  hintText: 'Person Name',
                   keyboardtype: TextInputType.name,
                   inputFormatter:
                       FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]'))),
@@ -81,7 +81,7 @@ class _CompanyDetailsState extends State<CompanyDetails> {
               ),
               TextFeild(
                 controller: _emailcontroller,
-                hintText: 'info@ekinch.com',
+                hintText: 'Email ID',
                 keyboardtype: TextInputType.emailAddress,
               ),
               SizedBox(
@@ -100,7 +100,7 @@ class _CompanyDetailsState extends State<CompanyDetails> {
               ),
               TextFeildNumber(
                 controller: _numbercontroller,
-                hintText: '989898989812',
+                hintText: 'Mobile Number',
                 dropdownvalue: '+91',
                 items: ['+91', '+1', '+44'],
               ),
@@ -120,39 +120,39 @@ class _CompanyDetailsState extends State<CompanyDetails> {
               ),
               TextFeild(
                 controller: _addresscontroller,
-                hintText: 'F-123, 2nd Floor, Roorkee',
+                hintText: 'Company Address',
                 keyboardtype: TextInputType.streetAddress,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
-              Material(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: yellow,
-                  child: MaterialButton(
-                      minWidth: MediaQuery.of(context).size.width,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PostJobProfile(
-                                      companyname: _companynamecontroller.text,
-                                      name: _namecontroller.text,
-                                      email: _emailcontroller.text,
-                                      number: _numbercontroller.text,
-                                      address: _addresscontroller.text,
-                                    )));
-                      },
-                      child: Center(
-                        child: Text(
-                          'Done',
-                          style: TextStyle(
-                              color: black,
-                              fontSize: 18,
-                              fontFamily: 'Kadwa',
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ))),
+              // Material(
+              //     borderRadius: BorderRadius.circular(10.0),
+              //     color: yellow,
+              //     child: MaterialButton(
+              //         minWidth: MediaQuery.of(context).size.width,
+              //         onPressed: () {
+              //           Navigator.push(
+              //               context,
+              //               MaterialPageRoute(
+              //                   builder: (context) => PostJobProfile(
+              //                         companyname: _companynamecontroller.text,
+              //                         name: _namecontroller.text,
+              //                         email: _emailcontroller.text,
+              //                         number: _numbercontroller.text,
+              //                         address: _addresscontroller.text,
+              //                       )));
+              //         },
+              //         child: Center(
+              //           child: Text(
+              //             'Done',
+              //             style: TextStyle(
+              //                 color: black,
+              //                 fontSize: 18,
+              //                 fontFamily: 'Kadwa',
+              //                 fontWeight: FontWeight.w700),
+              //           ),
+              //         ))),
             ],
           ),
         ),

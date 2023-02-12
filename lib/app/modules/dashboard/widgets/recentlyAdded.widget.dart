@@ -12,7 +12,7 @@ Widget HeroProfile(String image, String job, String name, String location,
     color: Colors.transparent,
     child: Container(
       padding: EdgeInsets.all(10),
-      width: (Get.width / 1.3).sp,
+      width: (Get.width / 1.1).sp,
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(width: 1.sp, color: const Color(0xFFE6E6E6)),

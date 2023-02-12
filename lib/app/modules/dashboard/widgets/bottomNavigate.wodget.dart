@@ -37,7 +37,7 @@ class _MyNavigatorState extends State<MyNavigator> {
         height: (MediaQuery.of(context).size.height / 10.1518987342).sp,
         padding: EdgeInsets.symmetric(vertical: 17.sp, horizontal: 25.sp),
         decoration: BoxDecoration(
-          color: const Color(0xffFFFFFF),
+          color:  Color(0xffFFFFFF),
           boxShadow: [
             BoxShadow(
               color: Colors.grey,

@@ -38,7 +38,8 @@ class LangCom extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 child: Text(textT,
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
+                         fontFamily: "Kadwa",
                         color: (active == 1) ? Colors.white : Color(0xFF525252))),
               )
             ],
@@ -50,13 +51,13 @@ class LangCom extends StatelessWidget {
                 Center(
                   child: Image.asset(
                     (active == 1) ? active_img : inactive_img,
-                    scale: 1.6,
+                    scale: 1.7,
                   ),
                 ),
                 Center(
                   child: Text(textB,
                       style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 22, fontFamily: "Kadwa",
                           color: (active == 1)
                               ? Colors.white
                               : Color.fromARGB(255, 116, 115, 115))),

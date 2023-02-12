@@ -60,7 +60,8 @@ class JobInterestedView extends GetView<JobInterestedController> {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 25),
               color: Colors.white,
               child: GridView.count(
-                scrollDirection: Axis.vertical,
+                 physics:NeverScrollableScrollPhysics(),scrollDirection:Axis.vertical,
+                
                 // scrollDirection: Axis.,
                 shrinkWrap: true,
                 crossAxisCount: 3,

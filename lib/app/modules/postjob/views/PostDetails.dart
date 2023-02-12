@@ -9,6 +9,7 @@ class PostDetails extends StatefulWidget {
   const PostDetails({
     Key? key,
   }) : super(key: key);
+  
 
   @override
   _PostDetailsState createState() => _PostDetailsState();
@@ -111,8 +112,8 @@ class _PostDetailsState extends State<PostDetails> {
                       dropdownvalue: '12,000/pm',
                       items: [
                         '12,000/pm',
-                        'Indore',
-                        'Mumbai',
+                        '13,000/pm',
+                        '14,000/pm',
                       ],
                     ),
                   ),
@@ -132,11 +133,11 @@ class _PostDetailsState extends State<PostDetails> {
                   ),
                   Expanded(
                     child: DropdownFieldFull(
-                      dropdownvalue: '12,000/pm',
+                      dropdownvalue: '14,000/pm',
                       items: [
-                        '12,000/pm',
-                        'Indore',
-                        'Mumbai',
+                        '14,000/pm',
+                        '16,000/pm',
+                        '18,000/pm',
                       ],
                     ),
                   )
@@ -163,24 +164,24 @@ class _PostDetailsState extends State<PostDetails> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
-              Material(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: yellow,
-                  child: MaterialButton(
-                      minWidth: MediaQuery.of(context).size.width,
-                      onPressed: () {
-                        Get.to(JobDescription());
-                      },
-                      child: Center(
-                        child: Text(
-                          'Next',
-                          style: TextStyle(
-                              color: black,
-                              fontSize: 18,
-                              fontFamily: 'Kadwa',
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ))),
+              // Material(
+              //     borderRadius: BorderRadius.circular(10.0),
+              //     color: yellow,
+              //     child: MaterialButton(
+              //         minWidth: MediaQuery.of(context).size.width,
+              //         onPressed: () {
+              //           Get.to(JobDescription());
+              //         },
+              //         child: Center(
+              //           child: Text(
+              //             'Next',
+              //             style: TextStyle(
+              //                 color: black,
+              //                 fontSize: 18,
+              //                 fontFamily: 'Kadwa',
+              //                 fontWeight: FontWeight.w700),
+              //           ),
+              //         ))),
             ],
           ),
         ),

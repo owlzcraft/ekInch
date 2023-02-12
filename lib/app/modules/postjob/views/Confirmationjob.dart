@@ -14,20 +14,23 @@ class _ConfirmationjobState extends State<Confirmationjob> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        centerTitle: true,
-        leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(Icons.arrow_back)),
-        //Icon(Icons.menu),
-        title: Text(
-          'Post Job',
-          style: TextStyle(
-              fontSize: 18, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80),
+        child: AppBar(
+          backgroundColor: Colors.black,
+          elevation: 0,
+          centerTitle: true,
+          leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_back)),
+          //Icon(Icons.menu),
+          title: Text(
+            'Post Job',
+            style: TextStyle(
+                fontSize: 20, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),
+          ),
         ),
       ),
       body: Padding(
@@ -56,7 +59,7 @@ class _ConfirmationjobState extends State<Confirmationjob> {
               height: MediaQuery.of(context).size.height * 0.03,
             ),
             Text(
-              'Job has been Post,We have procced your appication',
+              'Job has been Post,\n We have procced your\n appication',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: 'Kadwa',
@@ -73,7 +76,10 @@ class _ConfirmationjobState extends State<Confirmationjob> {
                 color: yellow,
                 child: MaterialButton(
                     minWidth: MediaQuery.of(context).size.width,
-                    onPressed: () {},
+                    onPressed: () {
+                         Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => JobView()));
+                    },
                     child: Center(
                       child: Text(
                         'View Job',
@@ -93,8 +99,8 @@ class _ConfirmationjobState extends State<Confirmationjob> {
                 child: MaterialButton(
                     minWidth: MediaQuery.of(context).size.width,
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => JobView()));
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => JobView()));
                     },
                     child: Center(
                       child: Text(

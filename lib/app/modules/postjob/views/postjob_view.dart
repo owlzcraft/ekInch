@@ -4,10 +4,14 @@ import 'package:flutter_application_00/app/modules/postjob/views/CompanyDetails.
 import 'package:flutter_application_00/app/modules/postjob/views/JobDescriptions.dart';
 import 'package:flutter_application_00/app/modules/postjob/views/PostDetails.dart';
 import 'package:flutter_application_00/app/modules/postjob/views/stepProgressView.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 
+import '../../../generated/assets.dart';
+import '../../settings/views/settings_view.dart';
 import '../controllers/postjob_controller.dart';
+import 'PostJobProfile.dart';
 
 class PostjobView extends StatefulWidget {
   const PostjobView({super.key});
@@ -17,6 +21,8 @@ class PostjobView extends StatefulWidget {
 }
 
 class _PostjobViewState extends State<PostjobView> {
+  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  PageController controller = PageController(initialPage: 0);
   final _stepsText = ["Job Details", "Job Descriptions", "Company Details"];
 
   final _stepCircleRadius = 8.0;
@@ -64,19 +70,30 @@ class _PostjobViewState extends State<PostjobView> {
     var mediaQD = MediaQuery.of(context);
     _safeAreaSize = mediaQD.size;
     return Scaffold(
+       key: scaffoldKey,
+       drawer: const SettingsView(),
         appBar: AppBar(
           backgroundColor: Colors.black,
           elevation: 0,
           centerTitle: true,
-          leading: Image.asset(
-            'assets/images/menu.png',
-            cacheHeight: 18,
-          ),
+          leading: IconButton(
+      icon: SvgPicture.asset(Assets.drawerIcon_white),
+      onPressed: () {
+        if (!scaffoldKey.currentState!.isDrawerOpen) {
+          //check if drawer is closed
+          scaffoldKey.currentState!.openDrawer(); //open drawer
+        }
+      },
+    ),
+          //  Image.asset(
+          //   'assets/images/menu.png',
+          //   cacheHeight: 18,
+          // ),
           //Icon(Icons.menu),
           title: Text(
             'Post Job',
             style: TextStyle(
-                fontSize: 18, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),
+                fontSize: 20, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),
           ),
         ),
         body: Column(
@@ -85,7 +102,12 @@ class _PostjobViewState extends State<PostjobView> {
             Container(height: 100.0, child: _getStepProgress()),
             Expanded(
               child: PageView(
+                controller: controller,
+
+                 
                 onPageChanged: (i) {
+
+
                   setState(() {
                     _curPage = i + 1;
                   });
@@ -108,7 +130,9 @@ class _PostjobViewState extends State<PostjobView> {
                                 fontFamily: 'Kadwa'),
                           ),
                         ),
-                        Expanded(child: PostDetails()),
+                        Expanded(child: PostDetails(
+
+                        )),
                       ],
                     ),
                   ),
@@ -158,9 +182,51 @@ class _PostjobViewState extends State<PostjobView> {
                       ],
                     ),
                   ),
+                
+                 
                 ],
               ),
-            )
+            ),
+
+
+             Padding(
+               padding: const EdgeInsets.all(15.0),
+               child: Stack(
+                      children:[ Material(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    color: yellow,
+                                    child: MaterialButton(
+                        minWidth: MediaQuery.of(context).size.width,
+                        onPressed: () {
+                          if (_curPage == 3){
+Get.to(PostJobProfile());
+                          }
+                          else{
+                             print(_curPage);
+                          controller.animateToPage(_curPage, curve:Curves.easeInOut, duration: Duration(milliseconds: 500),);
+                          setState(() {
+                            
+                          });
+                          }
+                         
+                        },
+                        
+                        child: Center(
+                          child:
+                          
+                           Text(
+                            _curPage == 3 ?  'Done' :
+                            'Next',
+                            style: TextStyle(
+                                color: black,
+                                fontSize: 18,
+                                fontFamily: 'Kadwa',
+                                fontWeight: FontWeight.w700),
+                          ),
+                          
+                        ))),
+                  ]),
+             ),
           ],
         ));
   }

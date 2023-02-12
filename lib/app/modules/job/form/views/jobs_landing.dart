@@ -24,6 +24,7 @@ class JobLanding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const SettingsView(),
+      bottomNavigationBar: MyNavigator(),
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
@@ -59,7 +60,7 @@ class JobLanding extends StatelessWidget {
         width: Get.width,
         height: Get.height,
         color: Colors.white,
-        padding: const EdgeInsets.symmetric(vertical: 50.0),
+        padding: const EdgeInsets.symmetric(vertical: 30.0),
         child: Column(
           children: [
             Image.asset("assets/images/ek_inch_logo.png"),
@@ -95,7 +96,7 @@ class JobLanding extends StatelessWidget {
                 Get.to(DetailsForm());
               }),
             ),
-            BlackButton("Hire Mechanic", true, () {Get.to(JobInterestedView());})
+            BlackButton("Hire Mechanic", true, () {Get.to(JobInterestedView());}),
           ],
         ),
       )),
