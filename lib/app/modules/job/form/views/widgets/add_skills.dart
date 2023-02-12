@@ -5,6 +5,7 @@ import 'package:flutter_application_00/app/modules/job/form/views/widgets/skills
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../custom_widget/color.dart';
 import '../../../../../generated/assets.dart';
@@ -31,9 +32,9 @@ class AddSkillView extends StatelessWidget {
             icon: SvgPicture.asset(Assets.notification),
           ),
         ],
-        title: const Text(
+        title: Text(
           "Add Your Skills",
-          style: TextStyle(
+          style: GoogleFonts.kadwa(
               color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.black,
@@ -128,7 +129,7 @@ class AddSkillView extends StatelessWidget {
                 SkillOptions.textField("  Light Fitting"),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 11.0),
-                  child: SkillOptions.textField("  Light Fitting"),
+                  child: SkillOptions.textField("  Wire Fitting"),
                 ),
                 SkillOptions.textField("  Light Fitting"),
                 Padding(

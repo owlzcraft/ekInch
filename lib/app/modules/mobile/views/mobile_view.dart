@@ -9,6 +9,7 @@ import 'package:flutter_application_00/widgets/snack_bar.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '../../../custom_widget/color.dart';
@@ -163,31 +164,31 @@ class _MobileViewState extends State<MobileView> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                   Text(
                     "Welcome to EkInch",
-                    style: TextStyle(
+                    style: GoogleFonts.kadwa(
                         fontWeight: FontWeight.w700,
                         fontSize: 30,
                         color: Color(0xFF525252)),
                   ),
                   
                   Padding(
-                    padding:  EdgeInsets.only(top:16.0,bottom: 8.0),
+                    padding:  EdgeInsets.only(top:10.0),
                     child:  Text(
                       "Enter your mobile number, We will ",
-                      style: TextStyle(
+                      style: GoogleFonts.kadwa(
                           fontWeight: FontWeight.normal,
-                          fontSize: 20,
+                          fontSize: 18,
                           color: Color(0xFF525252)),
                     ),
                   ),
                   Padding(
-                    padding:  EdgeInsets.only(bottom:16.0),
+                    padding:  EdgeInsets.only(bottom:20.0),
                     child: Text(
                         "send you confirmation code",
-                        style: TextStyle(
+                        style: GoogleFonts.kadwa(
                             fontWeight: FontWeight.normal,
-                            fontSize: 20,
+                            fontSize: 18,
                             color: Color(0xFF525252)),
                       ),
                   ),
@@ -271,7 +272,7 @@ class _MobileViewState extends State<MobileView> {
                           padding: const EdgeInsets.all(4.0),
                           child: Text(
                             ' I agree to the Terms & Conditions',
-                            style: TextStyle(
+                            style: GoogleFonts.kadwa(
                                 fontSize: 18,
                                 color: Color(0xFF787878),
                                 fontWeight: FontWeight.w400),
@@ -281,25 +282,28 @@ class _MobileViewState extends State<MobileView> {
                     ),
                   ),
                   
-                  GFButton(
-                    onPressed: () {
-                      (!checked)
-                          ? errorSnackbar(
-                              "Please check the aggrement checkbox")
-                              : Get.to(OtpView(
-                                  mobile_number: numberController.text,
-                                ));
-                    },
-                    color: KColors.orange,
-                    fullWidthButton: true,
-                    size: 50.2,
-                    text: "Continue",
-                    textStyle: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 24.0,
-                        fontFamily: 'Kadwa'),
-                    // shape: GFButtonShape.standard,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: GFButton(
+                      onPressed: () {
+                        (!checked)
+                            ? errorSnackbar(
+                                "Please check the aggrement checkbox")
+                                : Get.to(OtpView(
+                                    mobile_number: numberController.text,
+                                  ));
+                      },
+                      color: KColors.orange,
+                      fullWidthButton: true,
+                      size: 50.2,
+                      text: "Continue",
+                      textStyle: GoogleFonts.kadwa(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 24.0,
+                          ),
+                      // shape: GFButtonShape.standard,
+                    ),
                   ),
                 ],
               ),

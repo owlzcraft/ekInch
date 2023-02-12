@@ -6,6 +6,7 @@ import 'package:flutter_application_00/widgets/shape.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../dashboard/views/dashboard_view.dart';
 import '../controllers/language_controller.dart';
 import '../widgets/language.dart';
@@ -61,10 +62,10 @@ class _LanguageViewState extends State<LanguageView> {
               height: getVerticalSize(40),
             ),
             Text(
-              'भाषा चुने / Select Language ',
-              style: TextStyle(
+              'भाषा चुने / Select Language ',textAlign: TextAlign.start,
+              style: GoogleFonts.kadwa(
                   color: Colors.black,
-                  fontSize: 28,
+                  fontSize: 27,
                   fontWeight: FontWeight.w800),
             ),
             SizedBox(

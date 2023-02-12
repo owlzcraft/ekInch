@@ -25,6 +25,7 @@ class DetailsForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
         drawer: const SettingsView(),
         appBar: DynamicAppBar("Sanjay Singh", "Hello,", false,scaffoldKey),
         body: SingleChildScrollView(

@@ -6,6 +6,7 @@ import 'package:flutter_application_00/app/utils/math_utils.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../widgets/snack_bar.dart';
 import '../../../custom_widget/color.dart';
 import '../../mobile/widget/yellow_button.dart';
@@ -45,7 +46,7 @@ class OtpView extends GetView<OtpController> {
                 }),
                 child: Text(
                   'Change Number',
-                  style: TextStyle(color: Color(0xFFE55425), fontSize: 18),
+                  style: GoogleFonts.poppins(color: Color(0xFFE55425), fontSize: 18),
                 ),
               ),
             ),
@@ -61,7 +62,7 @@ class OtpView extends GetView<OtpController> {
                 children: [
                   Text(
                     "Verify Mobile Number",
-                    style: TextStyle(
+                    style: GoogleFonts.kadwa(
                         fontWeight: FontWeight.w700,
                         fontSize: 30,
                         color: Color(0xFF525252)),
@@ -70,42 +71,44 @@ class OtpView extends GetView<OtpController> {
                     height: 15,
                   ),
                   Text(
-                    "Enter OTP sent to your mobile number\n$mobile_number",
-                    style: const TextStyle(
-                        fontSize: 20, color: Color(0xFF767676), height: 1.4),
+                    "Enter OTP sent to your mobile number \n 86453656272",
+                    style: GoogleFonts.kadwa(
+                        fontSize: 18, color: Color(0xFF767676), height: 1.4),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Form(
-                     key: _globalKey,
-                    child: PinCodeTextField(
-                      keyboardType: TextInputType.number,
-                      textStyle: TextStyle(fontSize: 30),
-                      autoDisposeControllers: false,
-                      autovalidateMode: AutovalidateMode.always,
-                      autoFocus: true,
-                      validator: ((value) {
-                        if (value!.isEmpty) {
-                          return "Please Enter Valid Otp";
-                        } else {
-                          return null;
-                        }
-                      }),
-                      pinTheme: PinTheme.defaults(
-                          selectedColor: KColors.orange,
-                          inactiveFillColor: KColors.lightGrey,
-                          inactiveColor: KColors.lightGrey,
-                          shape: PinCodeFieldShape.box,
-                          borderRadius: BorderRadius.circular(5),
-                          fieldHeight: getVerticalSize(90),
-                          fieldWidth: Get.width / 5.5),
-                      // controller: verifyOtpController.otpCode,
-                      length: 4,
-                      onChanged: (value) {
-                        // controller.otpCode.value = value;
-                      },
-                      appContext: (context),
+                  
+                  
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    child: Form(
+                       key: _globalKey,
+                      child: PinCodeTextField(
+                        keyboardType: TextInputType.number,
+                        textStyle: TextStyle(fontSize: 30),
+                        autoDisposeControllers: false,
+                        autovalidateMode: AutovalidateMode.always,
+                        autoFocus: true,
+                        validator: ((value) {
+                          if (value!.isEmpty) {
+                            return "Please Enter Valid Otp";
+                          } else {
+                            return null;
+                          }
+                        }),
+                        pinTheme: PinTheme.defaults(
+                            selectedColor: KColors.orange,
+                            inactiveFillColor: KColors.lightGrey,
+                            inactiveColor: KColors.lightGrey,
+                            shape: PinCodeFieldShape.box,
+                            borderRadius: BorderRadius.circular(5),
+                            fieldHeight: getVerticalSize(90),
+                            fieldWidth: Get.width / 5.5),
+                        // controller: verifyOtpController.otpCode,
+                        length: 4,
+                        onChanged: (value) {
+                          // controller.otpCode.value = value;
+                        },
+                        appContext: (context),
+                      ),
                     ),
                   ),
                   // OtpTextField(
@@ -129,15 +132,15 @@ class OtpView extends GetView<OtpController> {
                   //     EnteredOTP = verificationCode;
                   //   }, // end onSubmit
                   // ),
-                  SizedBox(
-                    height: 15,
-                  ),
+                  // SizedBox(
+                  //   height: getVerticalSize(10),
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                     Text(
                         "Resend OTP in ? ",
-                        style: TextStyle(
+                        style: GoogleFonts.kadwa(
                             color: Color(0xFF898989),
                             fontWeight: FontWeight.w500,
                             fontSize: 20),
@@ -145,7 +148,7 @@ class OtpView extends GetView<OtpController> {
                       Obx((() => Center(
                             child: Text(
                               '${controller.time.value}',
-                              style: const TextStyle(
+                              style:  GoogleFonts.poppins(
                                   color: Color(0xFFFEBA0F),
                                   fontWeight: FontWeight.w600,
                                   fontSize: 20),
@@ -154,7 +157,7 @@ class OtpView extends GetView<OtpController> {
                     ],
                   ),
                   SizedBox(
-                    height: 35,
+                    height: getVerticalSize(40),
                   ),
                   GFButton(
               onPressed: () {
@@ -164,11 +167,10 @@ class OtpView extends GetView<OtpController> {
               fullWidthButton: true,
               size: 50.2,
               text: "Verify",
-              textStyle: const TextStyle(
+              textStyle: GoogleFonts.kadwa(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                  fontFamily: 'Kadwa'),
+                  fontSize: 18.0),
               // shape: GFButtonShape.standard,
             ),
                   // DynamicButton("Verify", true, () {

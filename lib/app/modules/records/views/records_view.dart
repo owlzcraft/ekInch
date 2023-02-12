@@ -10,6 +10,7 @@ import 'package:flutter_application_00/widgets/Upperbar.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mj_image_slider/mj_options.dart';
 import '../../../../widgets/math_utils.dart';
 import '../../../generated/assets.dart';
@@ -84,9 +85,9 @@ class _RecordsViewState extends State<RecordsView> {
       key: scaffoldKey,
       drawer: const SettingsView(),
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Records",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: GoogleFonts.kadwa(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -187,14 +188,14 @@ class _RecordsViewState extends State<RecordsView> {
                 decoration: BoxDecoration(
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      const Text(
+                      Text(
                         "Lights",
                         style: TextStyle(
                             color: Colors.black,
@@ -202,7 +203,7 @@ class _RecordsViewState extends State<RecordsView> {
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
-                      const Icon(Icons.arrow_drop_down_sharp, size: 30),
+                      Icon(Icons.arrow_drop_down_sharp, size: 30),
                     ],
                   ),
                 ),
@@ -382,14 +383,14 @@ class _RecordsViewState extends State<RecordsView> {
               decoration: BoxDecoration(
                   color: KColors.greybg,
                   borderRadius: BorderRadius.circular(6)),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 14.9, right: 14.9),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 14.9, right: 14.9),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    const Text(
+                    Text(
                       "Hospitals",
                       style: TextStyle(
                           color: Colors.black,
@@ -397,7 +398,7 @@ class _RecordsViewState extends State<RecordsView> {
                           fontWeight: FontWeight.bold,
                           fontSize: 18),
                     ),
-                    const Icon(Icons.arrow_drop_down_sharp, size: 30),
+                    Icon(Icons.arrow_drop_down_sharp, size: 30),
                   ],
                 ),
               ),
@@ -578,14 +579,14 @@ class _RecordsViewState extends State<RecordsView> {
                 decoration: BoxDecoration(
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      const Text(
+                      Text(
                         "Civil",
                         style: TextStyle(
                             color: Colors.black,
@@ -593,7 +594,7 @@ class _RecordsViewState extends State<RecordsView> {
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
-                      const Icon(Icons.arrow_drop_down_sharp, size: 30),
+                      Icon(Icons.arrow_drop_down_sharp, size: 30),
                     ],
                   ),
                 ),
@@ -770,14 +771,14 @@ class _RecordsViewState extends State<RecordsView> {
             height: getVerticalSize(50),
             decoration: BoxDecoration(
                 color: KColors.greybg, borderRadius: BorderRadius.circular(6)),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 14.9, right: 14.9),
+            child: const Padding(
+              padding: EdgeInsets.only(left: 14.9, right: 14.9),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
-                  const Text(
+                  Text(
                     "Plumber",
                     style: TextStyle(
                         color: Colors.black,
@@ -785,7 +786,7 @@ class _RecordsViewState extends State<RecordsView> {
                         fontWeight: FontWeight.bold,
                         fontSize: 18),
                   ),
-                  const Icon(Icons.arrow_drop_down_sharp, size: 30)
+                  Icon(Icons.arrow_drop_down_sharp, size: 30)
                 ],
               ),
             ),
@@ -800,14 +801,14 @@ class _RecordsViewState extends State<RecordsView> {
                 decoration: BoxDecoration(
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      const Text(
+                      Text(
                         "Painting",
                         style: TextStyle(
                             color: Colors.black,
@@ -815,7 +816,7 @@ class _RecordsViewState extends State<RecordsView> {
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
                       ),
-                      const Icon(Icons.arrow_drop_down_sharp, size: 30)
+                      Icon(Icons.arrow_drop_down_sharp, size: 30)
                     ],
                   ),
                 ),

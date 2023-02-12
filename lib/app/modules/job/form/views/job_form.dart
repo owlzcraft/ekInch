@@ -279,11 +279,11 @@ class _formFillViewState extends State<formFillView> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                     Text(
                         "Sanjay Singh",
-                        style: TextStyle(
+                        style: GoogleFonts.kadwa(
                             color: Colors.white,
-                            fontSize: 27,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
                       Padding(
@@ -292,14 +292,14 @@ class _formFillViewState extends State<formFillView> {
                           "Please tell us about yourself",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                       ),
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 80),
+                    padding: const EdgeInsets.only(left: 90),
                     child: InkWell(
                       onTap: () => {Get.to(ProfileView())},
                       child: CircleAvatar(
@@ -318,7 +318,7 @@ class _formFillViewState extends State<formFillView> {
             ),
           ),
           leading: IconButton(
-            icon: SvgPicture.asset(Assets.drawerIcon_black),
+            icon: SvgPicture.asset(Assets.drawerIcon_white),
             onPressed: () {
               if (!notDrawerKey.currentState!.isDrawerOpen) {
                 //check if drawer is closed
@@ -361,9 +361,9 @@ class _formFillViewState extends State<formFillView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             "Job title of your proile",
-                            style: TextStyle(
+                            style: GoogleFonts.kadwa(
                                 color: Colors.black,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold),
@@ -423,9 +423,9 @@ class _formFillViewState extends State<formFillView> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                       Text(
                         "Job Categeory",
-                        style: TextStyle(
+                        style: GoogleFonts.kadwa(
                             color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
@@ -482,9 +482,9 @@ class _formFillViewState extends State<formFillView> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "Experience",
-                        style: TextStyle(
+                        style: GoogleFonts.kadwa(
                             color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
@@ -543,7 +543,7 @@ class _formFillViewState extends State<formFillView> {
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
-                                      fontWeight: FontWeight.w100),
+                                      fontWeight: FontWeight.w400),
                                 ),
                               ),
                             ),
@@ -568,9 +568,9 @@ class _formFillViewState extends State<formFillView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                       Text(
                         "Add Skills",
-                        style: TextStyle(
+                        style: GoogleFonts.kadwa(
                             color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
@@ -659,9 +659,9 @@ class _formFillViewState extends State<formFillView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                     Text(
                         "What is your qualification?",
-                        style: TextStyle(
+                        style:GoogleFonts.kadwa(
                             color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
