@@ -44,8 +44,8 @@ class _VideoAppState extends State<ReelsView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //  VideoWidget(
-              //     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4"),
+               VideoWidget(
+                  "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4"),
               Padding(
                 padding:  EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
