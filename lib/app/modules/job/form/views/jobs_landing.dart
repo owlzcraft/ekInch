@@ -15,6 +15,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../dashboard/widgets/navigation.dart';
 import '../../jobInterested/views/job_interested_view.dart';
 
 class JobLanding extends StatelessWidget {
@@ -25,7 +26,8 @@ class JobLanding extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       drawer: const SettingsView(),
-      bottomNavigationBar: MyNavigator(),
+        bottomNavigationBar: BottomTabView(2),
+      // bottomNavigationBar: MyNavigator(),
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,

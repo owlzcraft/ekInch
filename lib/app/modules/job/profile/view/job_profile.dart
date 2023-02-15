@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../widgets/math_utils.dart';
 import '../../../../custom_widget/color.dart';
+import '../../../dashboard/widgets/navigation.dart';
 import '../../../notication/view/notification_view.dart';
 import '../../../profile/widgets/profile_image.dart';
 import '../../../referNearn/views/refer_nearn_view.dart';
@@ -433,7 +434,9 @@ class JobProfileView extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: MyNavigator(),
+                    bottomNavigationBar: BottomTabView(2),
+
+      // bottomNavigationBar: MyNavigator(),
     );
   }
 }

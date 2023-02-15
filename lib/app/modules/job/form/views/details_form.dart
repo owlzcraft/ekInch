@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_00/app/custom_widget/dash_header.dart';
 import 'package:flutter_application_00/app/generated/assets.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
+import 'package:flutter_application_00/app/modules/dashboard/widgets/bottom_bar.dart';
 import 'package:flutter_application_00/app/modules/job/form/controllers/job.controller.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/job_form.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/widgets/profile_form.dart';
@@ -18,6 +19,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../dashboard/widgets/navigation.dart';
+
 class DetailsForm extends StatelessWidget {
   DetailsForm({super.key});
   JobController controller = Get.put(JobController());
@@ -27,6 +30,9 @@ class DetailsForm extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
         drawer: const SettingsView(),
+                      bottomNavigationBar: BottomTabView(2),
+
+        // bottomNavigationBar: BottomBar(),
         appBar: DynamicAppBar("Sanjay Singh", "Hello,", false,scaffoldKey),
         body: SingleChildScrollView(
           child: Container(

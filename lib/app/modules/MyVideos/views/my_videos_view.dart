@@ -6,6 +6,7 @@ import 'package:flutter_application_00/app/modules/dashboard/widgets/work.widget
 
 import 'package:get/get.dart';
 
+import '../../dashboard/widgets/navigation.dart';
 import '../controllers/my_videos_controller.dart';
 
 class MyVideosView extends GetView<MyVideosController> {
@@ -195,7 +196,9 @@ class MyVideosView extends GetView<MyVideosController> {
           ],
         ),
       ),
-      bottomNavigationBar: MyNavigator(),
+                    bottomNavigationBar: BottomTabView(1),
+
+      // bottomNavigationBar: MyNavigator(),
     );
   }
 }

@@ -14,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mj_image_slider/mj_options.dart';
 import '../../../../widgets/math_utils.dart';
 import '../../../generated/assets.dart';
+import '../../dashboard/widgets/navigation.dart';
 import '../../notication/view/notification_view.dart';
 import '../controllers/records_controller.dart';
 import 'package:mj_image_slider/mj_image_slider.dart';
@@ -894,7 +895,8 @@ class _RecordsViewState extends State<RecordsView> {
           //   ),
           // ]),
           ),
-      bottomNavigationBar: MyNavigator(),
+            bottomNavigationBar: BottomTabView(3),
+      // bottomNavigationBar: MyNavigator(),
     );
   }
 }

@@ -12,6 +12,7 @@ import 'package:circle_progress_bar/circle_progress_bar.dart';
 
 import '../../../../../widgets/math_utils.dart';
 import '../../../../custom_widget/color.dart';
+import '../../../dashboard/widgets/navigation.dart';
 import '../../../settings/views/settings_view.dart';
 import '../../profile/view/job_profile.dart';
 
@@ -39,7 +40,8 @@ class JobsListState extends State<JobsList>
       length: 2,
       child: Scaffold(
         
-  
+                bottomNavigationBar: BottomTabView(2),
+
        key: scaffoldKey,
        drawer: const SettingsView(),
         appBar: AppBar(

@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../generated/assets.dart';
 import '../../../dashboard/widgets/bottomNavigate.wodget.dart';
+import '../../../dashboard/widgets/navigation.dart';
 import '../../../notication/view/notification_view.dart';
 import '../../../settings/views/settings_view.dart';
 
@@ -19,6 +20,8 @@ class JobListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+                    bottomNavigationBar: BottomTabView(2),
+
       key: notDrawerKey, drawer: const SettingsView(),
       // appBar: UpperBar("Records", "Records", true, true),
       appBar: PreferredSize(
@@ -401,7 +404,9 @@ class JobListView extends StatelessWidget {
           ),
         )
       ])),
-      bottomNavigationBar: MyNavigator(),
+                    // bottomNavigationBar: BottomTabView(2),
+
+      // bottomNavigationBar: MyNavigator(),
     );
   }
 }
