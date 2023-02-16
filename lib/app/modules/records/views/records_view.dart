@@ -163,7 +163,7 @@ class _RecordsViewState extends State<RecordsView> {
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
+                  padding:  EdgeInsets.only(
                       left: 8.0, bottom: 32.0, top: 32.0),
                   child: Container(
                       // width: getHorizontalSize(377),
@@ -181,14 +181,14 @@ class _RecordsViewState extends State<RecordsView> {
           InkWell(
             onTap: showdrop1,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15.0),
+              padding:  EdgeInsets.symmetric(vertical: 15.0),
               child: Container(
                 width: getHorizontalSize(396),
                 height: getVerticalSize(50),
                 decoration: BoxDecoration(
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
-                child: const Padding(
+                child:  Padding(
                   padding: EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -383,7 +383,7 @@ class _RecordsViewState extends State<RecordsView> {
               decoration: BoxDecoration(
                   color: KColors.greybg,
                   borderRadius: BorderRadius.circular(6)),
-              child: const Padding(
+              child:  Padding(
                 padding: EdgeInsets.only(left: 14.9, right: 14.9),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -579,7 +579,7 @@ class _RecordsViewState extends State<RecordsView> {
                 decoration: BoxDecoration(
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
-                child: const Padding(
+                child:  Padding(
                   padding: EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -771,7 +771,7 @@ class _RecordsViewState extends State<RecordsView> {
             height: getVerticalSize(50),
             decoration: BoxDecoration(
                 color: KColors.greybg, borderRadius: BorderRadius.circular(6)),
-            child: const Padding(
+            child:  Padding(
               padding: EdgeInsets.only(left: 14.9, right: 14.9),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -801,7 +801,7 @@ class _RecordsViewState extends State<RecordsView> {
                 decoration: BoxDecoration(
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
-                child: const Padding(
+                child:  Padding(
                   padding: EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

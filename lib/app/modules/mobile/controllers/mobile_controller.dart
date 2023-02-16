@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_00/app/models/otp_model.dart';
 import 'package:get/get.dart';
 
 import '../../../../widgets/loader.dart';
@@ -12,6 +13,8 @@ import '../../../utils/localStorage.dart';
 class MobileController extends GetxController {
   late TextEditingController loginEmail;
   late TextEditingController loginPass;
+  late TextEditingController loginmobile;
+
 final APIRepository apiRepository = APIRepository(isTokenRequired: false);
   final count = 0.obs;
   @override
@@ -30,6 +33,37 @@ final APIRepository apiRepository = APIRepository(isTokenRequired: false);
   }
 
   void increment() => count.value++;
+
+    Future<void> loginWithmobile() async {
+    final fcmToken = LocalStorage.shared.getFCMToken();
+    Get.showOverlay(
+        asyncFunction: () async {
+          final Map<String, dynamic> data = <String, dynamic>{};
+          data["mobile"] = loginmobile.text.trim().toLowerCase();
+         // data["password"] = loginPass.text;
+         // data["FcmToken"] = fcmToken;
+          await apiRepository.otp(data).then((ApiResult<OTPModel> value) {
+            value.when(
+                success: (value) {
+                
+                  loginmobile.clear();
+                  //todo
+                  //debugPrint(value?.token);
+                  if (value!.status == 200) {
+                    LocalStorage.shared.savedata(value);
+                    
+                    Get.offAndToNamed(Routes.OTP); 
+                  } else if (value.status! == 400 &&
+                      value.errorMessage! == false) {
+                  } else {
+                    errorSnackbar("Error"!);
+                  }
+                },
+                failure: (networkExceptions) {});
+          });
+        },
+        loadingWidget: const LoadingIndicator());
+  }
 
     Future<void> loginWithEmail() async {
     final fcmToken = LocalStorage.shared.getFCMToken();

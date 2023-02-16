@@ -11,29 +11,23 @@ String otpModelToJson(OTPModel data) => json.encode(data.toJson());
 
 class OTPModel {
   OTPModel({
-    // required this.errorCode,
-    // required this.errorMessage,
-    // required this.userId,
-     this.errorCode,
-     this.errorMessage,
-     this.userId,
+    required this.status,
+    required this.errorMessage,
+    required this.userId,
   });
-  // late final String errorCode;
-  // late final String errorMessage;
-  // late final String userId;
-  String? errorCode;
-   String? errorMessage;
-  String? userId;
-
+  late final int status;
+  late final String errorMessage;
+  late final String userId;
+  
   OTPModel.fromJson(Map<String, dynamic> json){
-    errorCode = json['errorCode'];
+    status = json['status'];
     errorMessage = json['errorMessage'];
     userId = json['userId'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['errorCode'] = errorCode;
+    _data['status'] = status;
     _data['errorMessage'] = errorMessage;
     _data['userId'] = userId;
     return _data;

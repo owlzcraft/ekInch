@@ -26,6 +26,8 @@ class MobileView extends StatefulWidget {
 class _MobileViewState extends State<MobileView> {
   var checked = false;
   TextEditingController numberController = TextEditingController();
+  
+final _globalKey = GlobalKey<FormState>();
   checkButton() {
     if (checked) {
       checked = false;
@@ -35,9 +37,12 @@ class _MobileViewState extends State<MobileView> {
   }
 
   String initialCountry = 'IN';
+  MobileController loginController = Get.put(MobileController());
+  var isLogin = false.obs;
   PhoneNumber number = PhoneNumber(isoCode: 'IN');
   @override
   Widget build(BuildContext context) {
+    // Get.put(MobileController());
 //yamini
     // return Scaffold(
     //     appBar: AppBar(
@@ -160,7 +165,10 @@ class _MobileViewState extends State<MobileView> {
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Column(
+              child:
+              Obx(
+              () =>
+               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -196,16 +204,16 @@ class _MobileViewState extends State<MobileView> {
                   Container(
                     decoration: BoxDecoration(
                         border:
-                            Border.all(color: Color.fromARGB(255, 191, 189, 189)),
+             Border.all(color: Color.fromARGB(255, 191, 189, 189)),
                         shape: BoxShape.rectangle,
                         borderRadius: BorderRadius.all(Radius.circular(6))),
                     child: InternationalPhoneNumberInput(
+                    /// textFieldController: MobileController.numberController, 
                     keyboardAction: TextInputAction.go,
                       autoFocus: true,
                       spaceBetweenSelectorAndTextField: 0,
                       initialValue: number,
                       maxLength: 12,
-                      
                       hintText: "Enter your mobile",
                       onInputChanged: (PhoneNumber number) {
                         print(number.phoneNumber);
@@ -219,19 +227,22 @@ class _MobileViewState extends State<MobileView> {
                       ignoreBlank: false,
                       autoValidateMode: AutovalidateMode.disabled,
                       selectorTextStyle: TextStyle(color: Colors.black),
-        
                       // textFieldController: controller,
                       formatInput: true,
                       keyboardType: TextInputType.numberWithOptions(
                           signed: true, decimal: true),
-                      
                       inputBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(6),
                               bottomRight: Radius.circular(6))),
                       onSaved: (PhoneNumber number) {
-                        print('On Saved: $number');
+                        //print('On Saved: $number');
+                        
+
+
+                        
+
                       },
                     ),
                   ),
@@ -241,7 +252,6 @@ class _MobileViewState extends State<MobileView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: Row(
-                      
                       children: [
                         GestureDetector(
                           onTap: () {
@@ -291,7 +301,9 @@ class _MobileViewState extends State<MobileView> {
                                 "Please check the aggrement checkbox")
                                 : Get.to(OtpView(
                                     mobile_number: numberController.text,
+                                    
                                   ));
+                                  
                       },
                       color: KColors.orange,
                       fullWidthButton: true,
@@ -305,9 +317,10 @@ class _MobileViewState extends State<MobileView> {
                       // shape: GFButtonShape.standard,
                     ),
                   ),
+                
                 ],
               ),
-            ),
+             ) ),
           ),
         ));
 
@@ -397,5 +410,16 @@ class _MobileViewState extends State<MobileView> {
     //         ]),
     //   ),
     // );
+  
+  void check() {
+    final _isValid = _globalKey.currentState!.validate();
+    print(_isValid);
+    if (_isValid) {
+      //Get.to(RegisterView());
+    } else {
+      errorSnackbar("Please Enter OTP ");
+    }
   }
+  }
+  
 }

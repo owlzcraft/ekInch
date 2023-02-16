@@ -102,7 +102,7 @@ class OtpView extends GetView<OtpController> {
                             borderRadius: BorderRadius.circular(5),
                             fieldHeight: getVerticalSize(90),
                             fieldWidth: Get.width / 5.5),
-                        // controller: verifyOtpController.otpCode,
+                        //controller: verifyOtpController.otpCode,
                         length: 4,
                         onChanged: (value) {
                           // controller.otpCode.value = value;
@@ -145,15 +145,35 @@ class OtpView extends GetView<OtpController> {
                             fontWeight: FontWeight.w500,
                             fontSize: 20),
                       ),
-                      Obx((() => Center(
-                            child: Text(
+
+                      Obx((() => 
+                      
+                      Center( 
+                      
+                        child:  
+                    controller.time.value == '00:00'?
+                            InkWell
+                   (onTap: (){
+
+                   },
+                     child: Text(
+                          "Send",
+                          style: GoogleFonts.kadwa(
+                              color: Color(0xFFFEBA0F),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20),
+                        ),
+                   ):Text(
                               '${controller.time.value}',
                               style:  GoogleFonts.poppins(
                                   color: Color(0xFFFEBA0F),
                                   fontWeight: FontWeight.w600,
                                   fontSize: 20),
                             ),
-                          ))),
+                          )
+                          )),
+                   
+                   
                     ],
                   ),
                   SizedBox(

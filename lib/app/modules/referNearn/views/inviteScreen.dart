@@ -160,7 +160,7 @@ class InviteScreen extends StatelessWidget {
                             ),
                             Expanded(
                                 child: GridView.count(
-                                    scrollDirection: Axis.vertical,
+                                   physics:NeverScrollableScrollPhysics(), scrollDirection: Axis.vertical,
                                     // scrollDirection: Axis.,
                                     shrinkWrap: true,
                                     crossAxisCount: 3,
