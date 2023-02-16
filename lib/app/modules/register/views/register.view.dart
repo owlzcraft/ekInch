@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:flutter_application_00/app/modules/dashboard/widgets/bottom_bar.dart';
+import 'package:flutter_application_00/app/modules/dashboard/widgets/cupertino_bar.dart';
 import 'package:flutter_application_00/app/utils/localStorage.dart';
 import 'package:flutter_application_00/app/utils/math_utils.dart';
 import 'package:flutter_application_00/widgets/snack_bar.dart';

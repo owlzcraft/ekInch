@@ -131,7 +131,7 @@ class EarnPointsView extends GetView<EarnPointsController> {
           ],
         ),
       )),
-      bottomNavigationBar: MyNavigator(),
+      // bottomNavigationBar: MyNavigator(),
     );
   }
 }

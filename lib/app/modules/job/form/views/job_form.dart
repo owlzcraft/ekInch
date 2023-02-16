@@ -17,9 +17,11 @@ import '../../../../../widgets/math_utils.dart';
 import '../../../../../widgets/shape.dart';
 import '../../../../generated/assets.dart';
 import '../../../dashboard/widgets/bottomNavigate.wodget.dart';
+import '../../../dashboard/widgets/navigation.dart';
 import '../../../profile/views/profile_view.dart';
 import '../../../settings/views/settings_view.dart';
 import '../../job_list/view/job_list.dart';
+import '../../job_list/view/jobs_list.dart';
 
 class formFillView extends StatefulWidget {
   formFillView({super.key});
@@ -737,13 +739,15 @@ class _formFillViewState extends State<formFillView> {
             ),
             Center(
               child: DynamicButton("Submit", true, () {
-                Get.to(JobListView());
+                Get.to(JobsList());
               }),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: MyNavigator(),
+                    bottomNavigationBar: BottomTabView(2),
+
+      // bottomNavigationBar: MyNavigator(),
     );
     // return Scaffold(
     //   backgroundColor: Colors.lightBlueAccent,

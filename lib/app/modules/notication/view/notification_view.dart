@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../custom_widget/color.dart';
+import '../../dashboard/widgets/navigation.dart';
 import '../../referNearn/views/refer_nearn_view.dart';
 import '../../settings/views/settings_view.dart';
 
@@ -567,7 +568,8 @@ class NotificationView extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: MyNavigator(),
+              bottomNavigationBar: BottomTabView(9),
+      // bottomNavigationBar: MyNavigator(),
     );
   }
 }

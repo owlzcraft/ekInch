@@ -3,6 +3,7 @@ import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavig
 
 import 'package:get/get.dart';
 
+import '../../dashboard/widgets/navigation.dart';
 import '../controllers/status_controller.dart';
 
 class StatusView extends GetView<StatusController> {
@@ -169,8 +170,9 @@ class StatusView extends GetView<StatusController> {
             ),
       ),
           
-        
-       bottomNavigationBar: MyNavigator(),
+                      bottomNavigationBar: BottomTabView(9),
+
+      //  bottomNavigationBar: MyNavigator(),
     );
   }
 }

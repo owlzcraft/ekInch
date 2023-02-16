@@ -11,6 +11,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../dashboard/widgets/navigation.dart';
 import '../controllers/job_interested_controller.dart';
 
 class JobInterestedView extends GetView<JobInterestedController> {
@@ -92,7 +93,9 @@ class JobInterestedView extends GetView<JobInterestedController> {
           ],
         ),
       ),
-      bottomNavigationBar: MyNavigator(),
+                    bottomNavigationBar: BottomTabView(2),
+
+      // bottomNavigationBar: MyNavigator(),
     );
   }
 }

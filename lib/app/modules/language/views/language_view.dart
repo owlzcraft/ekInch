@@ -59,7 +59,7 @@ class _LanguageViewState extends State<LanguageView> {
               ],
             ),
             SizedBox(
-              height: getVerticalSize(30),
+              height: getVerticalSize(15),
             ),
             Text(
               'भाषा चुने / Select Language ',textAlign: TextAlign.start,
@@ -69,7 +69,7 @@ class _LanguageViewState extends State<LanguageView> {
                   fontWeight: FontWeight.w800),
             ),
             SizedBox(
-              height: getVerticalSize(180),
+              height: getVerticalSize(150),
             )
           ],
         ),

@@ -7,6 +7,9 @@ import 'package:flutter_application_00/app/modules/reels/views/video.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../dashboard/widgets/navigation.dart';
 
 class ReelsView extends StatefulWidget {
    ReelsView({Key? key}) : super(key: key);
@@ -140,7 +143,7 @@ class _VideoAppState extends State<ReelsView> {
                                 children: [
                                   Text(
                                     "Sanjay Singh",
-                                    style: TextStyle(fontSize: 20),
+                                    style: TextStyle(fontSize: 16,fontFamily: 'Kadwa'),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
@@ -149,7 +152,7 @@ class _VideoAppState extends State<ReelsView> {
                                     child: Text(
                                       "Electrician Mechanic",
                                       style:
-                                          TextStyle(color: Color(0xFF6A6A6A)),
+                                          TextStyle(fontSize:12,color: Color(0xFF6A6A6A)),
                                     ),
                                   )
                                 ],
@@ -165,20 +168,23 @@ class _VideoAppState extends State<ReelsView> {
                             ),
                             SvgPicture.asset(Assets.calender_icon),
                              Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 5.0),
+                              padding: EdgeInsets.symmetric(horizontal: 14.0,),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    "22-10-2022",
-                                    style: TextStyle(fontSize: 20),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top:14.0),
+                                    child: Text(
+                                      "22-10-2022",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(top: 5.0),
                                     child: Text(
                                       "Last Update",
                                       style:
-                                          TextStyle(color: Color(0xFF6A6A6A)),
+                                          TextStyle(fontSize:12,color: Color(0xFF6A6A6A)),
                                     ),
                                   )
                                 ],
@@ -330,7 +336,8 @@ class _VideoAppState extends State<ReelsView> {
           ),
         ),
       ),
-      bottomNavigationBar: MyNavigator(),
+        bottomNavigationBar: BottomTabView(1),
+      // bottomNavigationBar: MyNavigator(),
     );
   }
 }

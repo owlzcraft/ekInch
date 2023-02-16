@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../../custom_widget/color.dart';
 import '../../../../../generated/assets.dart';
 import '../../../../../utils/math_utils.dart';
+import '../../../../dashboard/widgets/navigation.dart';
 import '../../../../notication/view/notification_view.dart';
 import '../../../../settings/views/settings_view.dart';
 
@@ -168,7 +169,9 @@ class AddSkillView extends StatelessWidget {
           ),
         ],
       )),
-      bottomNavigationBar: MyNavigator(),
+                    bottomNavigationBar: BottomTabView(2),
+
+      // bottomNavigationBar: MyNavigator(),
     );
   }
 }

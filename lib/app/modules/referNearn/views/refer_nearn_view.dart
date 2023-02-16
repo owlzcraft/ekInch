@@ -11,6 +11,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../dashboard/widgets/navigation.dart';
 import '../controllers/refer_nearn_controller.dart';
 
 class ReferNearnView extends GetView<ReferNearnController> {
@@ -23,7 +24,8 @@ class ReferNearnView extends GetView<ReferNearnController> {
       length: 2,
       child: Scaffold(
         key: notDrawerKey,
-        bottomNavigationBar: MyNavigator(),
+        bottomNavigationBar: BottomTabView(9),
+        // bottomNavigationBar: MyNavigator(),
         drawer: const SettingsView(),
         appBar: AppBar(
           elevation: 0,

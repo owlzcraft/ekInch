@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_00/app/custom_widget/color.dart';
 import 'package:flutter_application_00/app/generated/assets.dart';
 import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/job_form.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class MyNavigator extends StatefulWidget {
+
   @override
   State<MyNavigator> createState() => _MyNavigatorState();
 }
@@ -28,6 +30,8 @@ class _MyNavigatorState extends State<MyNavigator> {
   bool onRecords = false;
 
   bool onProfile = false;
+  int _currentIndex=0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,7 @@ class _MyNavigatorState extends State<MyNavigator> {
         height: (MediaQuery.of(context).size.height / 10.1518987342).sp,
         padding: EdgeInsets.symmetric(vertical: 17.sp, horizontal: 25.sp),
         decoration: BoxDecoration(
-          color:  Color(0xffFFFFFF),
+          color: Color(0xffFFFFFF),
           boxShadow: [
             BoxShadow(
               color: Colors.grey,
@@ -56,17 +60,11 @@ class _MyNavigatorState extends State<MyNavigator> {
           GestureDetector(
               onTap: () {
                 setState(() {
-                  onHome = true;
-                  onLib = false;
-                  onJobs = false;
-                  onRecords = false;
-                  onProfile = false;
+                  _currentIndex = 0;
                 });
-
-                print(onRecords);
                 Get.to(DashboardView());
               },
-              child: onHome
+              child: _currentIndex == 0
                   ? Container(
                       decoration: const BoxDecoration(
                           border: Border(
@@ -100,7 +98,7 @@ class _MyNavigatorState extends State<MyNavigator> {
                         children: [
                           Image.asset(
                             "assets/images/home.png",
-                            color: Colors.grey,
+                            color: KColors.greyIcon,
                             width: (MediaQuery.of(context).size.width /
                                     19.8879551821)
                                 .sp,
@@ -120,27 +118,66 @@ class _MyNavigatorState extends State<MyNavigator> {
                       ),
                     )),
           GestureDetector(
-            onTap: () => Get.to(ReelsView()),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Image.asset(
-                  "assets/images/library.png",
-                  width: (MediaQuery.of(context).size.width / 14.1724137931).sp,
-                  height:
-                      (MediaQuery.of(context).size.height / 34.2857142857).sp,
-                ),
-                Text(
-                  "Library",
-                  style: TextStyle(
-                      fontSize: 10.sp,
-                      fontWeight: FontWeight.w400,
-                      color: const Color(0xffACACAC),
-                      fontFamily: "kadwa"),
-                )
-              ],
-            ),
-          ),
+              onTap: () {
+                setState(() {
+                  _currentIndex = 1;
+                });
+                Get.to(ReelsView());
+              },
+              child: _currentIndex == 1
+                  ? Container(
+                      decoration: const BoxDecoration(
+                          border: Border(
+                              bottom: BorderSide(color: Color(0xFFFEBA0F)))),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset(
+                            "assets/images/library.png",
+                            color: Colors.black,
+                            width: (MediaQuery.of(context).size.width /
+                                    19.8879551821)
+                                .sp,
+                            height: (MediaQuery.of(context).size.height /
+                                    42.1792618629)
+                                .sp,
+                          ),
+                          Text(
+                            "Library",
+                            style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                                fontFamily: "kadwa"),
+                          )
+                        ],
+                      ),
+                    )
+                  : Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset(
+                            "assets/images/library.png",
+                            color: KColors.greyIcon,
+                            width: (MediaQuery.of(context).size.width /
+                                    19.8879551821)
+                                .sp,
+                            height: (MediaQuery.of(context).size.height /
+                                    42.1792618629)
+                                .sp,
+                          ),
+                          Text(
+                            "Library",
+                            style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey,
+                                fontFamily: "kadwa"),
+                          )
+                        ],
+                      ),
+                    )),
           GestureDetector(
             onTap: () {
               Get.to(JobLanding());
