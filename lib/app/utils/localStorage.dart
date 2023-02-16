@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_application_00/app/models/otp_model.dart';
+import 'package:flutter_application_00/app/models/sign_in.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../models/login_model.dart';
@@ -32,29 +32,14 @@ class LocalStorage {
     localBox.erase();
   }
 
-void saveUserData(LoginModel userData) async {
-    localBox.write("USER_DATA", loginModelToJson(userData));
-    
+void saveUserData(SignInModel userData) async {
+    localBox.write("USER_DATA", signInModelToJson(userData));
   }
-  void savedata(OTPModel userData) async {
-    localBox.write("USER_DATA", otpModelToJson(userData));
-    
-  }
-  OTPModel? getlogindata() {
-    OTPModel? userData;
+  SignInModel? getUserData() {
+    SignInModel? userData;
     final String? user = localBox.read("USER_DATA");
     if (user != null) {
-      userData = OTPModel.fromJson(json.decode(user));
-      return userData;
-    }
-    return null;
-  }
-
-  LoginModel? getUserData() {
-    LoginModel? userData;
-    final String? user = localBox.read("USER_DATA");
-    if (user != null) {
-      userData = LoginModel.fromJson(json.decode(user));
+      userData = SignInModel.fromJson(json.decode(user));
       return userData;
     }
     return null;

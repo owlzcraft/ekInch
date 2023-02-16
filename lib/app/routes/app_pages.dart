@@ -12,7 +12,6 @@ import '../modules/mobile/views/mobile_view.dart';
 import '../modules/otp/bindings/otp_binding.dart';
 import '../modules/otp/views/otp_view.dart';
 import '../modules/postjob/bindings/postjob_binding.dart';
-import '../modules/postjob/views/postjob_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/records/bindings/records_binding.dart';
@@ -21,6 +20,8 @@ import '../modules/reels/bindings/reels_binding.dart';
 import '../modules/reels/views/reels_view.dart';
 import '../modules/referNearn/bindings/refer_nearn_binding.dart';
 import '../modules/referNearn/views/refer_nearn_view.dart';
+import '../modules/register/bindings/register.binding.dart';
+import '../modules/register/views/register.view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -36,7 +37,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () =>  DashboardView(),
+      page: () => DashboardView(),
       binding: DashboardBinding(),
       children: [
         GetPage(
@@ -50,14 +51,19 @@ class AppPages {
         name: _Paths.SPLASH,
         page: () => const SplashView(),
         binding: SplashBinding()),
+
     GetPage(
         name: _Paths.LANGUAGE,
         page: () => LanguageView(),
         binding: LanguageBinding()),
     GetPage(
         name: _Paths.MOBILE,
-        page: () => const MobileView(),
+        page: () =>  MobileView(),
         binding: MobileBinding()),
+        GetPage(
+        name: _Paths.REGISTER,
+        page: () =>  RegisterView(),
+        binding: RegisterBinding()),
     GetPage(
         name: _Paths.LANGUAGE,
         page: () => LanguageView(),
@@ -79,7 +85,7 @@ class AppPages {
         name: _Paths.SETTINGS,
         page: () => const SettingsView(),
         binding: SettingsBinding()),
-        GetPage(
+    GetPage(
         name: _Paths.SETTINGS,
         page: () => const SettingsView(),
         binding: SettingsBinding()),
@@ -89,7 +95,7 @@ class AppPages {
         binding: ProfileBinding()),
     GetPage(
       name: _Paths.JOB,
-      page: () =>  JobLanding(),
+      page: () => JobLanding(),
       // binding: PostjobBinding(),
     ),
   ];

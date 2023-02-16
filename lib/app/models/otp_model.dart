@@ -1,28 +1,26 @@
-
-
-
 import 'dart:convert';
 
-OTPModel otpModelFromJson(String str) =>
-    OTPModel.fromJson(json.decode(str));
+OtpModel otpModelFromJson(String str) =>
+    OtpModel.fromJson(json.decode(str));
 
-String otpModelToJson(OTPModel data) => json.encode(data.toJson());
-
-
-class OTPModel {
-  OTPModel({
-    required this.status,
-    required this.errorMessage,
-    required this.userId,
+String otpModelToJson(OtpModel data) => json.encode(data.toJson());
+class OtpModel {
+  OtpModel({
+this.status,
+this.errorMessage,
+this.userId,
+this.token,
   });
-  late final int status;
-  late final String errorMessage;
-  late final String userId;
+   int? status;
+   String? errorMessage;
+   String? userId;
+  String? token;
   
-  OTPModel.fromJson(Map<String, dynamic> json){
+  OtpModel.fromJson(Map<String, dynamic> json){
     status = json['status'];
     errorMessage = json['errorMessage'];
     userId = json['userId'];
+    token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
@@ -30,6 +28,7 @@ class OTPModel {
     _data['status'] = status;
     _data['errorMessage'] = errorMessage;
     _data['userId'] = userId;
+    _data['token'] = token;
     return _data;
   }
 }

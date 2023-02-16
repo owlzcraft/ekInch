@@ -135,7 +135,8 @@ class _DashboardStateView extends State<DashboardView>
                   padding:
                       EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
                   child: GridView.count(
-                    scrollDirection: Axis.vertical,
+                    physics:NeverScrollableScrollPhysics(),scrollDirection:Axis.vertical,
+                    
                     shrinkWrap: true,
                     crossAxisCount: 3,
                     childAspectRatio: 0.9,
