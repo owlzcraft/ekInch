@@ -9,6 +9,7 @@ class Assets {
   static const String birth = 'assets/icons/birth.svg';
   static const String regis = 'assets/icons/Group.svg';
   static const String call = 'assets/icons/call.svg';
+  static const String star = 'assets/icons/starrating.svg';
   static const String sort = 'assets/icons/sort.svg';
   static const String filter = 'assets/icons/filter.svg';
   static const String certified = 'assets/icons/certified.svg';

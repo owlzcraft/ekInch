@@ -6,6 +6,7 @@ import 'package:flutter_application_00/app/networking/service_routes.dart';
 import '../../widgets/snack_bar.dart';
 import '../models/login_model.dart';
 import '../models/otp_model.dart';
+import '../models/profile_model.dart';
 import '../utils/localStorage.dart';
 import 'api_result.dart';
 import 'dio_client.dart';
@@ -73,6 +74,24 @@ class APIRepository {
       final response =
           await dioClient!.post(ServiceConstants.OTP, data: data);
       final OtpModel model = OtpModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  //Register
+
+ Future<ApiResult<ProfileModel>> register(Map<String, dynamic> data) async {
+    try {
+      print("*********************************************");
+      final response =
+          await dioClient!.post(ServiceConstants.PROFILE, data: data);
+      final ProfileModel model = ProfileModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {

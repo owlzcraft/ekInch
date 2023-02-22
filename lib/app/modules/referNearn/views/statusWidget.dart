@@ -40,13 +40,7 @@ Widget StatusWidget(String image, String name, String sentOn, String code,
                           fontSize: 13,
                           fontWeight: FontWeight.w400),
                     ),
-                    Text(
-                      "Code : $code",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 13,
-                      ),
-                    )
+                    
                   ],
                 ),
               ),

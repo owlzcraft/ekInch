@@ -72,7 +72,7 @@ class OtpView extends GetView<OtpController> {
                 height: 15,
               ),
               Text(
-                "Enter OTP sent to your mobile number \n ${LocalStorage.shared.getUserData()?.userId}",
+                "Enter OTP sent to your mobile number \n ${otpController.signInController.mobileNumber.text}",
                 style: GoogleFonts.kadwa(
                     fontSize: 18, color: Color(0xFF767676), height: 1.4),
               ),
@@ -193,10 +193,11 @@ class OtpView extends GetView<OtpController> {
   }
 void check() {
     final _isValid = _globalKey.currentState!.validate();
-    print("***************************$_isValid");
     if (_isValid==true) {
-      print("00000000000000000000000000000000000*$_isValid");
-      otpController.verifyOtp();
+      if(Get.arguments== "Edit Phone"){
+
+      }
+     else {otpController.verifyOtp();}
     } else {
       errorSnackbar("Please Enter OTP ");
     }

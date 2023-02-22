@@ -63,345 +63,342 @@ class _DashboardStateView extends State<DashboardView>
       {"name": "Electrician", "active": false},
       {"name": "Plumber", "active": false},
     ];
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-// final isFirstRouteINCurrent= !await _navBarsItems.
-      },
-      child: Scaffold(
-        key: scaffoldKey,
-        bottomNavigationBar: BottomTabView(0),
-        // bottomNavigationBar: BottomBar(),
-        drawer: const SettingsView(),
-        appBar: DynamicAppBar("Sanjay Singh", "Welcome !", true, scaffoldKey),
-        body: Container(
-          color: Colors.white,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: 10.0.sp, left: 10.0.sp, right: 10.0.sp),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                          child: Text(
-                            'Short Videos',
-                            style: GoogleFonts.kadwa(
-                                fontWeight: FontWeight.w700, fontSize: 18.sp),
-                          )),
-                      const Text(
-                        'View all >',
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF767676),
-                            fontWeight: FontWeight.w400),
-                      )
-                    ],
-                  ),
-                ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  padding:
-                      EdgeInsets.only(bottom: 10.sp, left: 10.sp, right: 10.sp),
-                  child: Row(
-                    children: [
-                      Video(image: 'assets/images/sample_thumb.jpg'),
-                      Video(image: 'assets/images/sample_thumb.jpg'),
-                      Video(image: 'assets/images/sample_thumb.jpg'),
-                      Video(image: 'assets/images/sample_thumb.jpg'),
-                      Video(image: 'assets/images/sample_thumb.jpg'),
-                      Video(image: 'assets/images/sample_thumb.jpg'),
-                      Video(image: 'assets/images/sample_thumb.jpg')
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+    return Scaffold(
+      key: scaffoldKey,
+      bottomNavigationBar: BottomTabView(0),
+      // bottomNavigationBar: BottomBar(),
+      drawer: const SettingsView(),
+      appBar: DynamicAppBar("Sanjay Singh", "Welcome !", true, scaffoldKey),
+      body: Container(
+        color: Colors.white,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    top: 10.0.sp, left: 10.0.sp, right: 10.0.sp),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20.sp),
-                        margin: EdgeInsets.only(top: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 10.sp),
                         child: Text(
-                          'Learn from the Videos',
+                          'Short Videos',
                           style: GoogleFonts.kadwa(
                               fontWeight: FontWeight.w700, fontSize: 18.sp),
                         )),
+                    const Text(
+                      'View all >',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF767676),
+                          fontWeight: FontWeight.w400),
+                    )
                   ],
                 ),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
-                  child: GridView.count(
-                    physics:NeverScrollableScrollPhysics(),scrollDirection:Axis.vertical,
-                    
-                    shrinkWrap: true,
-                    crossAxisCount: 3,
-                    childAspectRatio: 0.9,
-                    crossAxisSpacing: 10.sp,
-                    mainAxisSpacing: 10.sp,
-                    children: videoCategoryData.map((e) {
-                      return VideoCategory(e['image'].toString(),
-                          e['title'].toString(), e['videos'].toString());
-                    }).toList(),
-                  ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding:
+                    EdgeInsets.only(bottom: 10.sp, left: 10.sp, right: 10.sp),
+                child: Row(
+                  children: [
+                    Video(image: 'assets/images/sample_thumb.jpg'),
+                    Video(image: 'assets/images/sample_thumb.jpg'),
+                    Video(image: 'assets/images/sample_thumb.jpg'),
+                    Video(image: 'assets/images/sample_thumb.jpg'),
+                    Video(image: 'assets/images/sample_thumb.jpg'),
+                    Video(image: 'assets/images/sample_thumb.jpg'),
+                    Video(image: 'assets/images/sample_thumb.jpg')
+                  ],
                 ),
-                TabBar(
-                    controller: _tabController,
-                    // indicatorColor: Color(0xFFFEBA0F),
-                    unselectedLabelColor: const Color(0xFF767676),
-                    labelColor: Colors.black,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicator: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide(
-                                width: 3, color: Color(0xFFFEBA0F)))),
-                    // ignore: prefer_const_literals_to_create_immutables
-                    tabs: [
-                      const Tab(
-                        child: Text(
-                          "Beginner",
-                          style: TextStyle(fontWeight: FontWeight.w700),
-                        ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20.sp),
+                      margin: EdgeInsets.only(top: 10),
+                      child: Text(
+                        'Learn from the Videos',
+                        style: GoogleFonts.kadwa(
+                            fontWeight: FontWeight.w700, fontSize: 18.sp),
+                      )),
+                ],
+              ),
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
+                child: GridView.count(
+                  physics: NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  crossAxisCount: 3,
+                  childAspectRatio: 0.9,
+                  crossAxisSpacing: 10.sp,
+                  mainAxisSpacing: 10.sp,
+                  children: videoCategoryData.map((e) {
+                    return VideoCategory(e['image'].toString(),
+                        e['title'].toString(), e['videos'].toString());
+                  }).toList(),
+                ),
+              ),
+              TabBar(
+                  controller: _tabController,
+                  // indicatorColor: Color(0xFFFEBA0F),
+                  unselectedLabelColor: const Color(0xFF767676),
+                  labelColor: Colors.black,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  indicator: BoxDecoration(
+                      border: Border(
+                          bottom:
+                              BorderSide(width: 3, color: Color(0xFFFEBA0F)))),
+                  // ignore: prefer_const_literals_to_create_immutables
+                  tabs: [
+                    const Tab(
+                      child: Text(
+                        "Beginner",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w700),
                       ),
-                      const Tab(
-                        child: Text("Professional",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                            )),
-                      ),
-                      const Tab(
-                        child: Text("Expert",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                            )),
-                      )
-                    ]),
-                SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Row(
-                        children: cat_pill_data
-                            .map((e) => GestureDetector(
-                                  onTap: () {
-                                    for (int i = 0;
-                                        i < cat_pill_data.length;
-                                        i++) {
-                                      print(i == cat_pill_data.indexOf(e));
-                                      if (i == cat_pill_data.indexOf(e)) {
-                                        print('in if $i');
-                                        setState(() {
-                                          cat_pill_data[i]['active'] = true;
-                                        });
-                                      } else {
-                                        setState(() {
-                                          cat_pill_data[i]['active'] = false;
-                                        });
-                                      }
+                    ),
+                    const Tab(
+                      child: Text("Professional",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                          )),
+                    ),
+                    const Tab(
+                      child: Text("Expert",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                          )),
+                    )
+                  ]),
+              SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Row(
+                      children: cat_pill_data
+                          .map((e) => GestureDetector(
+                                onTap: () {
+                                  for (int i = 0;
+                                      i < cat_pill_data.length;
+                                      i++) {
+                                    print(i == cat_pill_data.indexOf(e));
+                                    if (i == cat_pill_data.indexOf(e)) {
+                                      print('in if $i');
+                                      setState(() {
+                                        cat_pill_data[i]['active'] = true;
+                                      });
+                                    } else {
+                                      setState(() {
+                                        cat_pill_data[i]['active'] = false;
+                                      });
                                     }
-                                    print(cat_pill_data);
-                                  },
-                                  child: categoryPill(e['name'].toString(),
-                                      (e["active"] == true) ? true : false),
-                                ))
-                            .toList(),
-                      ),
-                    )),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                  child: Row(
-                    children: [
-                      work(image: 'assets/images/sample_thumb.jpg'),
-                      work(image: 'assets/images/sample_thumb.jpg'),
-                      work(image: 'assets/images/sample_thumb.jpg'),
-                      work(image: 'assets/images/sample_thumb.jpg'),
-                      work(image: 'assets/images/sample_thumb.jpg'),
-                      work(image: 'assets/images/sample_thumb.jpg'),
-                      work(image: 'assets/images/sample_thumb.jpg')
-                    ],
-                  ),
+                                  }
+                                  print(cat_pill_data);
+                                },
+                                child: categoryPill(e['name'].toString(),
+                                    (e["active"] == true) ? true : false),
+                              ))
+                          .toList(),
+                    ),
+                  )),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                child: Row(
+                  children: [
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg'),
+                    work(image: 'assets/images/sample_thumb.jpg')
+                  ],
                 ),
-                Container(
-                  padding: EdgeInsets.all(10.0.sp),
-                  margin: EdgeInsets.only(top: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                          child: Text(
-                            'Award and Certificate',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 18.sp),
-                          )),
-                      const Text(
-                        'View all >',
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF767676),
-                            fontWeight: FontWeight.w400),
-                      )
-                    ],
-                  ),
+              ),
+              Container(
+                padding: EdgeInsets.all(10.0.sp),
+                margin: EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                        child: Text(
+                          'Award and Certificate',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 18.sp),
+                        )),
+                    const Text(
+                      'View all >',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF767676),
+                          fontWeight: FontWeight.w400),
+                    )
+                  ],
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: 12.sp),
-                  child: Row(
-                    children: [
-                      Award_and_Certificate(
-                          image: 'assets/images/sample_thumb.jpg'),
-                      Award_and_Certificate(
-                          image: 'assets/images/sample_thumb.jpg'),
-                      Award_and_Certificate(
-                          image: 'assets/images/sample_thumb.jpg'),
-                      Award_and_Certificate(
-                          image: 'assets/images/sample_thumb.jpg'),
-                      Award_and_Certificate(
-                          image: 'assets/images/sample_thumb.jpg'),
-                      Award_and_Certificate(
-                          image: 'assets/images/sample_thumb.jpg'),
-                      Award_and_Certificate(
-                          image: 'assets/images/sample_thumb.jpg')
-                    ],
-                  ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 12.sp),
+                child: Row(
+                  children: [
+                    Award_and_Certificate(
+                        image: 'assets/images/sample_thumb.jpg'),
+                    Award_and_Certificate(
+                        image: 'assets/images/sample_thumb.jpg'),
+                    Award_and_Certificate(
+                        image: 'assets/images/sample_thumb.jpg'),
+                    Award_and_Certificate(
+                        image: 'assets/images/sample_thumb.jpg'),
+                    Award_and_Certificate(
+                        image: 'assets/images/sample_thumb.jpg'),
+                    Award_and_Certificate(
+                        image: 'assets/images/sample_thumb.jpg'),
+                    Award_and_Certificate(
+                        image: 'assets/images/sample_thumb.jpg')
+                  ],
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 10),
-                  padding: EdgeInsets.all(10.0.sp),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                          child: Text(
-                            'Services and News',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 18.sp),
-                          )),
-                      const Text(
-                        'View all >',
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF767676),
-                            fontWeight: FontWeight.w400),
-                      )
-                    ],
-                  ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                padding: EdgeInsets.all(10.0.sp),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                        child: Text(
+                          'Services and News',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 18.sp),
+                        )),
+                    const Text(
+                      'View all >',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF767676),
+                          fontWeight: FontWeight.w400),
+                    )
+                  ],
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                  child: Row(
-                    children: [
-                      servicesAndNews(
-                        "Cement Material\nLaunch Online",
-                        "",
-                        true,
-                        "assets/images/snnews1.png",
-                        "22 Oct, 2022",
-                        "12:00 PM",
-                      ),
-                      servicesAndNews(
-                        "Find the perfect\nJobs",
-                        "Easily make your profile\nand get jobs",
-                        false,
-                        "assets/images/snnews2.png",
-                        "",
-                        "",
-                      ),
-                      servicesAndNews(
-                        "Cement Material\n Launch Online",
-                        "",
-                        true,
-                        "assets/images/snnews1.png",
-                        "22 Oct, 2022",
-                        "12:00 PM",
-                      ),
-                      servicesAndNews(
-                        "Find the perfect\nJobs",
-                        "Easily make your profile\nand get jobs",
-                        false,
-                        "assets/images/snnews2.png",
-                        "",
-                        "",
-                      ),
-                      servicesAndNews(
-                        "Cement Material\n Launch Online",
-                        "",
-                        true,
-                        "assets/images/snnews1.png",
-                        "22 Oct, 2022",
-                        "12:00 PM",
-                      ),
-                      servicesAndNews(
-                        "Find the perfect\nJobs",
-                        "Easily make your profile\nand get jobs",
-                        false,
-                        "assets/images/snnews2.png",
-                        "",
-                        "",
-                      ),
-                    ],
-                  ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                child: Row(
+                  children: [
+                    servicesAndNews(
+                      "Cement Material\nLaunch Online",
+                      "",
+                      true,
+                      "assets/images/snnews1.png",
+                      "22 Oct, 2022",
+                      "12:00 PM",
+                    ),
+                    servicesAndNews(
+                      "Find the perfect\nJobs",
+                      "Easily make your profile\nand get jobs",
+                      false,
+                      "assets/images/snnews2.png",
+                      "",
+                      "",
+                    ),
+                    servicesAndNews(
+                      "Cement Material\n Launch Online",
+                      "",
+                      true,
+                      "assets/images/snnews1.png",
+                      "22 Oct, 2022",
+                      "12:00 PM",
+                    ),
+                    servicesAndNews(
+                      "Find the perfect\nJobs",
+                      "Easily make your profile\nand get jobs",
+                      false,
+                      "assets/images/snnews2.png",
+                      "",
+                      "",
+                    ),
+                    servicesAndNews(
+                      "Cement Material\n Launch Online",
+                      "",
+                      true,
+                      "assets/images/snnews1.png",
+                      "22 Oct, 2022",
+                      "12:00 PM",
+                    ),
+                    servicesAndNews(
+                      "Find the perfect\nJobs",
+                      "Easily make your profile\nand get jobs",
+                      false,
+                      "assets/images/snnews2.png",
+                      "",
+                      "",
+                    ),
+                  ],
                 ),
-                Container(
-                  padding: EdgeInsets.all(10.0.sp),
-                  margin: EdgeInsets.only(top: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                          child: Text(
-                            'Recently Added',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 18.sp),
-                          )),
-                      const Text(
-                        'View all >',
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFF767676),
-                            fontWeight: FontWeight.w400),
-                      )
-                    ],
-                  ),
+              ),
+              Container(
+                padding: EdgeInsets.all(10.0.sp),
+                margin: EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                        child: Text(
+                          'Recently Added',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 18.sp),
+                        )),
+                    const Text(
+                      'View all >',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Color(0xFF767676),
+                          fontWeight: FontWeight.w400),
+                    )
+                  ],
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: 12.sp),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      HeroProfile(
-                          "assets/images/profile.jpg",
-                          "Electrician",
-                          "Ashok Kumar",
-                          "Roorkee",
-                          "18 Oct, 2022",
-                          "12:10AM",
-                          "10min"),
-                      HeroProfile(
-                          "assets/images/profile.jpg",
-                          "Electrician",
-                          "Ashok Kumar",
-                          "Roorkee",
-                          "18 Oct, 2022",
-                          "12:10AM",
-                          "10min")
-                    ],
-                  ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 12.sp),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    HeroProfile(
+                        "assets/images/profile.jpg",
+                        "Electrician",
+                        "Ashok Kumar",
+                        "Roorkee",
+                        "18 Oct, 2022",
+                        "12:10AM",
+                        "10min"),
+                    HeroProfile(
+                        "assets/images/profile.jpg",
+                        "Electrician",
+                        "Ashok Kumar",
+                        "Roorkee",
+                        "18 Oct, 2022",
+                        "12:10AM",
+                        "10min")
+                  ],
                 ),
-                Container(
-                  height: 10,
-                )
-              ],
-            ),
+              ),
+              Container(
+                height: 10,
+              )
+            ],
           ),
         ),
       ),

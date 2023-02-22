@@ -232,6 +232,28 @@ class _MobileViewState extends State<MobileView> {
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Center(child: Text("OR",style: GoogleFonts.kadwa(fontSize: 14,fontWeight: FontWeight.w400,color: KColors.textGrey),)),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        color: const Color.fromARGB(255, 191, 189, 189)),
+                    shape: BoxShape.rectangle,
+                    borderRadius: const BorderRadius.all(Radius.circular(6))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/images/whatsapp.png",scale: 1.5,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical:8.0),
+                      child: Text("Signup with Whatsapp",style: GoogleFonts.kadwa(fontSize: 18,fontWeight: FontWeight.w400,color: KColors.textGrey),),
+                    )
+                  ],
+                )
+              ),
+              Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Row(
                   children: [

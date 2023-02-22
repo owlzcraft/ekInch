@@ -2,9 +2,12 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/modules/MyVideos/views/my_videos_view.dart';
+import 'package:flutter_application_00/app/modules/certificate/view/certificate.dart';
+import 'package:flutter_application_00/app/modules/feedback/view/feedback_view.dart';
 import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
 import 'package:flutter_application_00/app/modules/postjob/views/postjob_view.dart';
 import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
+import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
 import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_view.dart';
 import 'package:flutter_application_00/widgets/math_utils.dart';
 import 'package:get/get.dart';
@@ -18,10 +21,13 @@ Widget SettingListItem(String image, String title) {
           Get.to(ProfileView());
           break;
         case "Feedback":
-          Get.to(PostjobView());
+          Get.to(FeedbackView());
           break;
-        case "My Videos(Reels)":
-          Get.to(MyVideosView());
+          case "My Certificate":
+          Get.to(CertificateView());
+          break;
+        case "My Videos (Reels)":
+          Get.to(ReelsView());
           break;
         case "Notifications":
           Get.to(NotificationView());

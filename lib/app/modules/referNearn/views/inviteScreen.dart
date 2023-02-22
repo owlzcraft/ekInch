@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_application_00/app/custom_widget/color.dart';
 import 'package:flutter_application_00/app/generated/assets.dart';
 import 'package:flutter_application_00/app/modules/mobile/widget/yellow_button.dart';
 import 'package:flutter_application_00/app/modules/referNearn/controllers/refer_nearn_controller.dart';
@@ -17,6 +18,63 @@ class InviteScreen extends StatelessWidget {
   ReferNearnController controller = Get.put(ReferNearnController());
   @override
   Widget build(BuildContext context) {
+    showDataAlertWorking() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              insetPadding: EdgeInsets.all(10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    4.0,
+                  ),
+                ),
+              ),
+              title: Text(
+                "How it works",
+                style: GoogleFonts.kadwa(
+                    fontSize: 24.0, fontWeight: FontWeight.w400),
+              ),
+              content: Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text(
+                        "1. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                        style: GoogleFonts.kadwa(
+                            color: KColors.textGrey, fontSize: 14),
+                      ),
+                      Text(
+                        "2. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                        style: GoogleFonts.kadwa(
+                            color: KColors.textGrey, fontSize: 14),
+                      ),Text(
+                        "3. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                        style: GoogleFonts.kadwa(
+                            color: KColors.textGrey, fontSize: 14),
+                      ),
+                      Text(
+                        "4. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                        style: GoogleFonts.kadwa(
+                            color: KColors.textGrey, fontSize: 14),
+                      ),Text(
+                        "5. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                        style: GoogleFonts.kadwa(
+                            color: KColors.textGrey, fontSize: 14),
+                      )
+
+                    ],
+                  ),
+                ),
+              ),
+            );
+          });
+    }
+
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(color: Colors.white),
@@ -37,110 +95,26 @@ class InviteScreen extends StatelessWidget {
               "and get 250 point each",
               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
             ),
-            Text(
-              "Share the code below or ask them  to enter it",
-              style: TextStyle(
-                  fontWeight: FontWeight.w400, color: Color(0xFF4E4E4E)),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text(
+                "Share the code below or ask them  to enter it",
+                style: TextStyle(
+                    fontWeight: FontWeight.w400, color: Color(0xFF4E4E4E)),
+              ),
             ),
             Text(
               "during they signup. Earn wehn they",
               style: TextStyle(
                   fontWeight: FontWeight.w400, color: Color(0xFF4E4E4E)),
             ),
-            Text(
-              "signup groovey app",
-              style: TextStyle(
-                  fontWeight: FontWeight.w400, color: Color(0xFF4E4E4E)),
-            ),
             Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Text(
-                "Your Referal Code",
-                style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 15,
-                    color: Color(0xFF4E4E4E)),
+                "signup groovey app",
+                style: TextStyle(
+                    fontWeight: FontWeight.w400, color: Color(0xFF4E4E4E)),
               ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-              child: DottedBorder(
-                  borderType: BorderType.RRect,
-                  radius: Radius.circular(5),
-                  dashPattern: [5, 5],
-                  strokeWidth: 1.5,
-                  color: Color(0xFF048FF4),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Container(
-                    color: Color(0xFFFFFFFF),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(controller.referalCode,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 22,
-                                  color: Color(0xFFFEBA0F))),
-                          Obx(() => (!controller.copied.value)
-                              ? GestureDetector(
-                                  onTap: () {
-                                    controller.copied.value = true;
-                                    FlutterClipboard.copy(
-                                            controller.referalCode)
-                                        .then((value) => {});
-                                  },
-                                  child: RichText(
-                                    text: TextSpan(
-                                      style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
-                                        color: Color(0xFF000B48),
-                                      ),
-                                      children: [
-                                        WidgetSpan(
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 5.0),
-                                            child: Icon(
-                                              Icons.copy,
-                                              size: 16,
-                                              color: Color(0xFF000B48),
-                                            ),
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: "Copy Code",
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              : RichText(
-                                  text: TextSpan(
-                                    style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w500,
-                                      color: Color(0xFF000B48),
-                                    ),
-                                    children: [
-                                      TextSpan(
-                                        text: "Copied",
-                                      ),
-                                      WidgetSpan(
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 5.0),
-                                          child: Icon(
-                                            Icons.done,
-                                            size: 16,
-                                            color: Colors.green,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ))
-                        ]),
-                  )),
             ),
             Padding(
               padding: EdgeInsets.only(top: getVerticalSize(50), bottom: 20),
@@ -160,7 +134,8 @@ class InviteScreen extends StatelessWidget {
                             ),
                             Expanded(
                                 child: GridView.count(
-                                   physics:NeverScrollableScrollPhysics(), scrollDirection: Axis.vertical,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
                                     // scrollDirection: Axis.,
                                     shrinkWrap: true,
                                     crossAxisCount: 3,
@@ -184,11 +159,16 @@ class InviteScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: Text(
-                "How does it work?",
-                style: GoogleFonts.poppins(
-                    color: Color(0xFF4F4F4F),
-                    decoration: TextDecoration.underline),
+              child: InkWell(
+                onTap: () {
+                  showDataAlertWorking();
+                },
+                child: Text(
+                  "How does it work?",
+                  style: GoogleFonts.poppins(
+                      color: Color(0xFF4F4F4F),
+                      decoration: TextDecoration.underline),
+                ),
               ),
             )
           ],

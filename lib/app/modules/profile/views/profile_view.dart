@@ -91,7 +91,7 @@ class ProfileView extends GetView<ProfileController> {
                     style: GoogleFonts.kadwa(
                         fontSize: getFontSize(22), color: Color(0xFF636363)),
                   ),
-                  MobileTextField(controller.numberController),
+                  MobileTextFieldEdit(context,controller.numberController,"Edit"),
                   TextField(
                     decoration: InputDecoration(
                       hintText: 'J-124, Roorkee',

@@ -4,6 +4,7 @@ import 'package:flutter_application_00/app/models/sign_in.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../models/login_model.dart';
+import '../models/profile_model.dart';
 
 class LocalStorage {
   static final GetStorage localBox = GetStorage();
@@ -32,14 +33,14 @@ class LocalStorage {
     localBox.erase();
   }
 
-void saveUserData(SignInModel userData) async {
-    localBox.write("USER_DATA", signInModelToJson(userData));
+void saveUserData(ProfileModel userData) async {
+    localBox.write("USER_DATA", profileModelToJson(userData));
   }
-  SignInModel? getUserData() {
-    SignInModel? userData;
+  ProfileModel? getUserData() {
+    ProfileModel? userData;
     final String? user = localBox.read("USER_DATA");
     if (user != null) {
-      userData = SignInModel.fromJson(json.decode(user));
+      userData = ProfileModel.fromJson(json.decode(user));
       return userData;
     }
     return null;
@@ -49,7 +50,13 @@ void saveUserData(SignInModel userData) async {
     localBox.write("FCM_TOKEN", value);
   }
 
+ void saveNumber(String value) {
+    localBox.write("number", value);
+  }
   String getFCMToken() {
     return localBox.read("FCM_TOKEN");
+  }
+  String getnumber() {
+    return localBox.read("number");
   }
 }

@@ -37,19 +37,19 @@ class _LanguageViewState extends State<LanguageView> {
               children: [
                 InkWell(
                     onTap: () {
-                      if (LocalStorage.shared.isLoggedIn()) {
-                        print(LocalStorage.shared.isLoggedIn());
+                      // if (LocalStorage.shared.isLoggedIn()) {
+                      //   print(LocalStorage.shared.isLoggedIn());
 
-                        var lang = controller.lang_data
-                            .firstWhere((element) => element['isActive'] == 1);
-                        box.write("lang", lang['textT']);
-                        Get.to(DashboardView());
-                      } else {
-                        var lang = controller.lang_data
-                            .firstWhere((element) => element['isActive'] == 1);
-                        box.write("lang", lang['textT']);
+                      //   var lang = controller.lang_data
+                      //       .firstWhere((element) => element['isActive'] == 1);
+                      //   box.write("lang", lang['textT']);
+                      //   Get.to(DashboardView());
+                      // } else {
+                      //   var lang = controller.lang_data
+                      //       .firstWhere((element) => element['isActive'] == 1);
+                      //   box.write("lang", lang['textT']);
                         Get.to(OnboardingView());
-                      }
+                      // }
                     },
                     child: Icon(
                       Icons.arrow_forward,
