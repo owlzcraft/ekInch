@@ -4,6 +4,7 @@ import 'package:flutter_application_00/app/modules/Onboarding/controllers/onboar
 import 'package:flutter_application_00/app/modules/Onboarding/widgets/onboardingcontent.dart';
 import 'package:flutter_application_00/app/modules/mobile/views/mobile_view.dart';
 import 'package:flutter_application_00/app/modules/register/views/register.view.dart';
+import 'package:flutter_application_00/app/routes/app_pages.dart';
 import 'package:flutter_application_00/app/utils/localStorage.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +26,10 @@ class OnboardingView extends GetView<OnboardingController> {
               child: GestureDetector(
                 onTap: () {
                   LocalStorage.shared.saveWalkthrough();
-                  Get.to(MobileView());
+                  print(
+                      "*************************************yes***************");
+                  print(LocalStorage.shared.isWalkthroughComplete());
+                  Get.toNamed(Routes.MOBILE);
                 },
                 child: Text('Skip >>',
                     style: TextStyle(fontSize: 18, color: Color(0xFFE55425))),
@@ -91,8 +95,15 @@ class OnboardingView extends GetView<OnboardingController> {
             GestureDetector(
               onTap: () {
                 LocalStorage.shared.saveWalkthrough();
+                print(
+                    "*************************************yes***************");
+                print(LocalStorage.shared.isWalkthroughComplete());
+
                 (pageController.page == 2.0)
-                    ? Get.to(MobileView())
+                    ? Get.to(
+                        MobileView(),
+                        transition: Transition.leftToRight,
+                      )
                     : pageController.nextPage(
                         duration: const Duration(milliseconds: 500),
                         curve: Curves.easeInOut);

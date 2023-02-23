@@ -8,6 +8,7 @@ import 'package:flutter_application_00/app/modules/dashboard/widgets/services_ne
 import 'package:flutter_application_00/app/modules/language/views/language_view.dart';
 import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
 import 'package:flutter_application_00/app/modules/settings/views/settings_view.dart';
+import 'package:flutter_application_00/app/utils/localStorage.dart';
 import "package:flutter_screenutil/flutter_screenutil.dart";
 import 'package:flutter_application_00/app/modules/dashboard/widgets/awards.widgets.dart';
 import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
@@ -68,7 +69,7 @@ class _DashboardStateView extends State<DashboardView>
       bottomNavigationBar: BottomTabView(0),
       // bottomNavigationBar: BottomBar(),
       drawer: const SettingsView(),
-      appBar: DynamicAppBar("Sanjay Singh", "Welcome !", true, scaffoldKey),
+      appBar: DynamicAppBar("${LocalStorage.shared.getUserData()?.userData?.firstName}", "Welcome !", true, scaffoldKey),
       body: Container(
         color: Colors.white,
         child: SingleChildScrollView(
@@ -159,20 +160,20 @@ class _DashboardStateView extends State<DashboardView>
                       child: Text(
                         "Beginner",
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700),
+                            fontSize: 16, fontWeight: FontWeight.w700),
                       ),
                     ),
                     const Tab(
                       child: Text("Professional",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.w700,
                           )),
                     ),
                     const Tab(
                       child: Text("Expert",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.w700,
                           )),
                     )

@@ -14,11 +14,9 @@ import '../controllers/otp_controller.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpView extends GetView<OtpController> {
-  
-    OtpController otpController = Get.put(OtpController());
+  OtpController otpController = Get.put(OtpController());
   OtpView();
-  
-  
+
   final _globalKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -82,10 +80,12 @@ class OtpView extends GetView<OtpController> {
                 child: Form(
                   key: _globalKey,
                   child: PinCodeTextField(
+enablePinAutofill: true,
+                    autoDismissKeyboard: true,
                     keyboardType: TextInputType.number,
                     textStyle: TextStyle(fontSize: 30),
                     autoDisposeControllers: false,
-                    autovalidateMode: AutovalidateMode.always,
+                    // autovalidateMode: AutovalidateMode.always,
                     autoFocus: true,
                     validator: ((value) {
                       if (value!.isEmpty) {
@@ -111,30 +111,7 @@ class OtpView extends GetView<OtpController> {
                   ),
                 ),
               ),
-              // OtpTextField(
-              //   fieldWidth: Get.width / 5.5,
-              //   margin: const EdgeInsets.symmetric(horizontal: 7),
-              //   decoration: const InputDecoration(),
-              //   styles: [
-              //     const TextStyle(fontSize: 36),
-              //     const TextStyle(fontSize: 36),
-              //     const TextStyle(fontSize: 36),
-              //     const TextStyle(fontSize: 36)
-              //   ],
-              //   numberOfFields: 4,
-              //   borderColor: const Color(0xFFFEBA0F),
-              //   cursorColor: const Color(0xFFFEBA0F),
-              //   focusedBorderColor: const Color(0xFFFEBA0F),
-              //   enabledBorderColor: const Color(0xFFCDCDCD),
-              //   showFieldAsBox: true,
-              //   onCodeChanged: (String code) {},
-              //   onSubmit: (String verificationCode) {
-              //     EnteredOTP = verificationCode;
-              //   }, // end onSubmit
-              // ),
-              // SizedBox(
-              //   height: getVerticalSize(10),
-              // ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -148,7 +125,9 @@ class OtpView extends GetView<OtpController> {
                   Obx((() => Center(
                         child: controller.time.value == '00:01'
                             ? InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  otpController.resendOtp();
+                                },
                                 child: Text(
                                   "Send",
                                   style: GoogleFonts.kadwa(
@@ -191,16 +170,16 @@ class OtpView extends GetView<OtpController> {
       ),
     );
   }
-void check() {
-    final _isValid = _globalKey.currentState!.validate();
-    if (_isValid==true) {
-      if(Get.arguments== "Edit Phone"){
 
+  void check() {
+    final _isValid = _globalKey.currentState!.validate();
+    if (_isValid == true) {
+      if (Get.arguments == "Edit Phone") {
+      } else {
+        otpController.verifyOtp();
       }
-     else {otpController.verifyOtp();}
     } else {
       errorSnackbar("Please Enter OTP ");
     }
   }
-  
 }

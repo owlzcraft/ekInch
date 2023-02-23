@@ -63,6 +63,35 @@ class OtpController extends GetxController {
         loadingWidget: const LoadingIndicator());
   }
 
+  //Resend Otp
+
+  
+  Future<void> resendOtp() async {
+    // final fcmToken = LocalStorage.shared.getFCMToken();
+    Get.showOverlay(
+        asyncFunction: () async {
+          print(signInController.mobileNumber.text);
+          final Map<String, dynamic> data = <String, dynamic>{};
+          data["mobileNumber"] = signInController.mobileNumber.text;
+          await apiRepository.login(data).then((ApiResult<SignInModel> value) {
+            value.when(
+                success: (value) {
+                  if (value!.status == 200) {
+                    LocalStorage.shared.saveNumber(value.userId as String);
+                   
+                    Get.offAndToNamed(Routes.OTP);
+                  } else if (value.status == 400) {
+                    errorSnackbar("Phone Number Already Exist");
+                  } else {
+                    errorSnackbar("Invalid Phone Number");
+                  }
+                },
+                failure: (networkExceptions) {});
+          });
+        },
+        loadingWidget: const LoadingIndicator());
+  }
+
   @override
   void onClose() {
     if (_timer != null) {

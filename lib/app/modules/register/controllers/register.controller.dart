@@ -14,7 +14,7 @@ import '../../../routes/app_pages.dart';
 import '../../../utils/localStorage.dart';
 
 class RegisterController extends GetxController {
-  final APIRepository apiRepository = APIRepository(isTokenRequired: false);
+  final APIRepository apiRepository = APIRepository(isTokenRequired: true);
   TextEditingController name = TextEditingController();
   TextEditingController profession = TextEditingController();
   Future<void> register() async {

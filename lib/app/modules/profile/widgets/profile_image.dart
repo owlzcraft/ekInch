@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_00/widgets/math_utils.dart';
 
-Widget ProfileImage() {
+import '../../../utils/localStorage.dart';
+
+Widget ProfileImage(String path) {
   return SizedBox(
     height: getVerticalSize(115),
     width: getHorizontalSize(115),
@@ -12,9 +14,12 @@ Widget ProfileImage() {
         CircleAvatar(
           radius: 50,
           backgroundColor:  Color(0xFFE0E0E0),
-          child: const CircleAvatar(
+          child:  CircleAvatar(
             radius: 48,
-            backgroundImage: AssetImage("assets/images/profile.jpg"),
+            backgroundImage:  
+            // LocalStorage.shared.getUserData()?.userData?.photo == null?
+            AssetImage("assets/images/profile_icon.png")
+            // :AssetImage(path),
           ),
         ),
         Positioned(

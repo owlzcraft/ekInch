@@ -1,3 +1,5 @@
+import 'package:flutter_application_00/app/modules/Onboarding/bindings/onboarding_binding.dart';
+import 'package:flutter_application_00/app/modules/Onboarding/views/onboarding_view.dart';
 import 'package:flutter_application_00/app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:flutter_application_00/app/modules/job/form/views/jobs_landing.dart';
@@ -54,15 +56,19 @@ class AppPages {
 
     GetPage(
         name: _Paths.LANGUAGE,
+        transition: Transition.fadeIn,
+        transitionDuration: const Duration(milliseconds: 600),
         page: () => LanguageView(),
         binding: LanguageBinding()),
     GetPage(
         name: _Paths.MOBILE,
-        page: () =>  MobileView(),
+        transition: Transition.rightToLeft,
+        page: () => MobileView(),
         binding: MobileBinding()),
-        GetPage(
+    GetPage(
         name: _Paths.REGISTER,
-        page: () =>  RegisterView(),
+        transition: Transition.rightToLeft,
+        page: () => RegisterView(),
         binding: RegisterBinding()),
     GetPage(
         name: _Paths.LANGUAGE,
@@ -71,12 +77,17 @@ class AppPages {
     GetPage(name: _Paths.OTP, page: () => OtpView(), binding: OtpBinding()),
     GetPage(
         name: _Paths.RECORDS,
+        transition: Transition.fadeIn,
         page: () => RecordsView(),
         binding: RecordsBinding()),
     GetPage(
-        name: _Paths.RECORDS,
+        name: _Paths.REFERNEARN,
         page: () => ReferNearnView(),
         binding: ReferNearnBinding()),
+        GetPage(
+        name: _Paths.OTP,
+        page: () => OtpView(),
+        binding: OtpBinding()),
     // GetPage(
     //     name: _Paths.REELS,
     //     page: () => const ReelsView(),
@@ -86,11 +97,12 @@ class AppPages {
         page: () => const SettingsView(),
         binding: SettingsBinding()),
     GetPage(
-        name: _Paths.SETTINGS,
-        page: () => const SettingsView(),
-        binding: SettingsBinding()),
+        name: _Paths.ONBOARDING,
+        transition: Transition.leftToRight,
+        page: () => OnboardingView(),
+        binding: OnboardingBinding()),
     GetPage(
-        name: _Paths.SETTINGS,
+        name: _Paths.PROFILE,
         page: () => ProfileView(),
         binding: ProfileBinding()),
     GetPage(

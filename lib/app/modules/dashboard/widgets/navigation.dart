@@ -42,7 +42,10 @@ class BottomTabView extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           GestureDetector(
               onTap: () {
-                Get.to(DashboardView());
+                Get.to(
+                  DashboardView(),
+                  transition: Transition.fadeIn,
+                );
               },
               child: currentIndex == 0
                   ? Container(
@@ -99,7 +102,10 @@ class BottomTabView extends StatelessWidget {
                     )),
           GestureDetector(
               onTap: () {
-                Get.to(ReelsView());
+                Get.to(
+                  ReelsView(),
+                  transition: Transition.fadeIn,
+                );
               },
               child: currentIndex == 1
                   ? Container(
@@ -155,9 +161,12 @@ class BottomTabView extends StatelessWidget {
                         ],
                       ),
                     )),
-                    GestureDetector(
+          GestureDetector(
               onTap: () {
-                Get.to(JobLanding());
+                Get.to(
+                  JobLanding(),
+                  transition: Transition.fadeIn,
+                );
               },
               child: currentIndex == 2
                   ? Container(
@@ -215,7 +224,10 @@ class BottomTabView extends StatelessWidget {
                     )),
           GestureDetector(
               onTap: () {
-                Get.to(RecordsView());
+                Get.to(
+                  RecordsView(),
+                  transition: Transition.fadeIn,
+                );
               },
               child: currentIndex == 3
                   ? Container(
@@ -273,7 +285,10 @@ class BottomTabView extends StatelessWidget {
                     )),
           GestureDetector(
               onTap: () {
-                Get.to(ProfileView());
+                Get.to(
+                  ProfileView(),
+                  transition: Transition.fadeIn,
+                );
               },
               child: currentIndex == 4
                   ? Container(
@@ -329,9 +344,6 @@ class BottomTabView extends StatelessWidget {
                         ],
                       ),
                     )),
-                    
-         
         ]));
-        
   }
 }

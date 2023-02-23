@@ -34,14 +34,14 @@ class APIRepository {
   //   return dioOptions;
   // }
 
-  // Options multiPartOptions() {
-  //   final dioOptions = Options();
-  //   dioOptions.headers = {
-  //     "Authorization": "Bearer ${LocalStorage.shared.getUserData()?.token}",
-  //     'Content-Type': 'multipart/form-data'
-  //   };
-  //   return dioOptions;
-  // }
+  Options multiPartOptions() {
+    final dioOptions = Options();
+    dioOptions.headers = {
+      // "Authorization": "Bearer ${LocalStorage.shared.getUserData()?.token}",
+      'Content-Type': 'multipart/form-data'
+    };
+    return dioOptions;
+  }
 
   String getError(e) {
     return NetworkExceptions.getErrorMessage(
@@ -92,6 +92,24 @@ class APIRepository {
       final response =
           await dioClient!.post(ServiceConstants.PROFILE, data: data);
       final ProfileModel model = ProfileModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  
+  /// CHANGE PROFILE IMAGE
+  Future<ApiResult<ProfileModel>> changeProfileIMage(data) async {
+    try {
+      final response = await dioClient!.put(ServiceConstants.PROFILEPIC,
+          data:data , options: multiPartOptions());
+      final ProfileModel model =
+          ProfileModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {

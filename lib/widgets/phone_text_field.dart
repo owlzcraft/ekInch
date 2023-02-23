@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_00/app/custom_widget/color.dart';
 import 'package:flutter_application_00/app/modules/otp/views/otp_view.dart';
 import 'package:flutter_application_00/app/utils/hide_keyboard.dart';
+import 'package:flutter_application_00/app/utils/localStorage.dart';
 import 'package:flutter_application_00/widgets/math_utils.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-TextFormField MobileTextFieldEdit(BuildContext context,
-    TextEditingController numberController, String editText) {
+TextFormField MobileTextFieldEdit(BuildContext context, bool static,
+    TextEditingController numberController, String editText, String label) {
   showDataAlertEditPhoneNumber() {
     showDialog(
         context: context,
@@ -35,7 +36,8 @@ TextFormField MobileTextFieldEdit(BuildContext context,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    MobileTextFieldEdit(context, numberController, ""),
+                    MobileTextFieldEdit(context, false, numberController, "",
+                        "Enter Phone Number"),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 25.0),
                       child: GFButton(
@@ -63,12 +65,17 @@ TextFormField MobileTextFieldEdit(BuildContext context,
   }
 
   return TextFormField(
+    readOnly: static,
+    initialValue: "${LocalStorage.shared.getUserData()!.userId}",
     textInputAction: TextInputAction.done,
 // onTapOutside: hideKeyboard,
     style: TextStyle(fontSize: getFontSize(22), color: Color(0xFF999898)),
     scrollPadding: EdgeInsets.symmetric(horizontal: 10),
     keyboardType: TextInputType.number,
-    controller: numberController,
+    onChanged: (value) {
+      numberController.text = value as String;
+    },
+    // controller: numberController,
     maxLength: 10,
     decoration: InputDecoration(
         counterText: "",
@@ -76,7 +83,7 @@ TextFormField MobileTextFieldEdit(BuildContext context,
         contentPadding: EdgeInsets.symmetric(horizontal: 20),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFFEBA0F))),
-        hintText: "  Enter your mobile",
+        hintText: label,
         hintStyle: TextStyle(fontSize: 18, color: Color(0xFF999898)),
         suffix: InkWell(
             onTap: () {
@@ -89,22 +96,25 @@ TextFormField MobileTextFieldEdit(BuildContext context,
                   fontSize: 18,
                   fontWeight: FontWeight.w400),
             )),
-        prefixIcon: Container(
-          decoration: const BoxDecoration(
-              border: Border(
-                  right: BorderSide(width: 1, color: Color(0xFFCDCDCD)))),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CountryCodePicker(
-                onChanged: print,
-                initialSelection: 'IN',
-                favorite: ['+39', 'FR'],
-                showCountryOnly: false,
-                showOnlyCountryWhenClosed: false,
-                alignLeft: false,
-              ),
-            ],
+        prefixIcon: Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: Container(
+            decoration: const BoxDecoration(
+                border: Border(
+                    right: BorderSide(width: 1, color: Color(0xFFCDCDCD)))),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CountryCodePicker(
+                  onChanged: print,
+                  initialSelection: 'IN',
+                  favorite: ['+39', 'FR'],
+                  showCountryOnly: false,
+                  showOnlyCountryWhenClosed: false,
+                  alignLeft: false,
+                ),
+              ],
+            ),
           ),
         ),
         border: const OutlineInputBorder(

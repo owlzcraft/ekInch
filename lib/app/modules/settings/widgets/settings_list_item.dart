@@ -10,8 +10,11 @@ import 'package:flutter_application_00/app/modules/profile/views/profile_view.da
 import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
 import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_view.dart';
 import 'package:flutter_application_00/widgets/math_utils.dart';
+import 'package:flutter_application_00/widgets/snack_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../mobile/views/mobile_view.dart';
 
 Widget SettingListItem(String image, String title) {
   return GestureDetector(
@@ -23,7 +26,7 @@ Widget SettingListItem(String image, String title) {
         case "Feedback":
           Get.to(FeedbackView());
           break;
-          case "My Certificate":
+        case "My Certificate":
           Get.to(CertificateView());
           break;
         case "My Videos (Reels)":
@@ -35,8 +38,13 @@ Widget SettingListItem(String image, String title) {
         case "Share and Earn":
           Get.to(ReferNearnView());
           break;
+        case "Log Out":
+          Get.to(MobileView());
+
+          break;
 
         default:
+        
       }
     },
     child: Padding(

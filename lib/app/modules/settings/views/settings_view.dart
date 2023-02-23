@@ -8,11 +8,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../utils/localStorage.dart';
 import '../controllers/settings_controller.dart';
 import '../widgets/settings_list_item.dart';
 
-class SettingsView extends GetView<SettingsController> {
+class SettingsView extends StatefulWidget {
   const SettingsView({Key? key}) : super(key: key);
+
+  @override
+  State<SettingsView> createState() => _SettingsViewState();
+}
+
+class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
     var data_arr = [
@@ -94,14 +101,14 @@ class SettingsView extends GetView<SettingsController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Sanjay Singh",
+                          "${LocalStorage.shared.getUserData()!.userData!.firstName}",
                           style: GoogleFonts.kadwa(
                               fontSize: 23,
                               fontWeight: FontWeight.w400,
                               color: Color.fromARGB(255, 63, 61, 61)),
                         ),
                         Text(
-                          "Electrician Mechanic",
+                          "${LocalStorage.shared.getUserData()!.userData!.profession}",
                           style: GoogleFonts.kadwa(
                               fontWeight: FontWeight.w400,
                               color: Color(0xFF6A6A6A)),

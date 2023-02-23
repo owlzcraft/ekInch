@@ -37,19 +37,23 @@ class _LanguageViewState extends State<LanguageView> {
               children: [
                 InkWell(
                     onTap: () {
-                      // if (LocalStorage.shared.isLoggedIn()) {
-                      //   print(LocalStorage.shared.isLoggedIn());
+                      if (LocalStorage.shared.isLoggedIn() == true) {
+                        print(LocalStorage.shared.isLoggedIn());
 
-                      //   var lang = controller.lang_data
-                      //       .firstWhere((element) => element['isActive'] == 1);
-                      //   box.write("lang", lang['textT']);
-                      //   Get.to(DashboardView());
-                      // } else {
-                      //   var lang = controller.lang_data
-                      //       .firstWhere((element) => element['isActive'] == 1);
-                      //   box.write("lang", lang['textT']);
-                        Get.to(OnboardingView());
-                      // }
+                        var lang = controller.lang_data
+                            .firstWhere((element) => element['isActive'] == 1);
+                        box.write("lang", lang['textT']);
+                        Get.to(DashboardView());
+                      } else {
+                        if (LocalStorage.shared.isLoggedIn() == false) {
+                          var lang = controller.lang_data.firstWhere(
+                              (element) => element['isActive'] == 1);
+                          box.write("lang", lang['textT']);
+                          print(LocalStorage.shared.isLoggedIn());
+
+                          Get.to(OnboardingView());
+                        }
+                      }
                     },
                     child: Icon(
                       Icons.arrow_forward,
@@ -62,7 +66,8 @@ class _LanguageViewState extends State<LanguageView> {
               height: getVerticalSize(15),
             ),
             Text(
-              'भाषा चुने / Select Language ',textAlign: TextAlign.start,
+              'भाषा चुने / Select Language ',
+              textAlign: TextAlign.start,
               style: GoogleFonts.kadwa(
                   color: Colors.black,
                   fontSize: 27,
