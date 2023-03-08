@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_00/app/modules/Onboarding/controllers/onboarding_controller.dart';
-import 'package:flutter_application_00/app/modules/Onboarding/widgets/onboardingcontent.dart';
-import 'package:flutter_application_00/app/modules/mobile/views/mobile_view.dart';
-import 'package:flutter_application_00/app/modules/register/views/register.view.dart';
-import 'package:flutter_application_00/app/routes/app_pages.dart';
-import 'package:flutter_application_00/app/utils/localStorage.dart';
+import 'package:ekinch/app/modules/Onboarding/controllers/onboarding_controller.dart';
+import 'package:ekinch/app/modules/Onboarding/widgets/onboardingcontent.dart';
+import 'package:ekinch/app/modules/mobile/views/mobile_view.dart';
+import 'package:ekinch/app/modules/register/views/register.view.dart';
+import 'package:ekinch/app/routes/app_pages.dart';
+import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -25,10 +25,7 @@ class OnboardingView extends GetView<OnboardingController> {
               padding: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 10.sp),
               child: GestureDetector(
                 onTap: () {
-                  LocalStorage.shared.saveWalkthrough();
-                  print(
-                      "*************************************yes***************");
-                  print(LocalStorage.shared.isWalkthroughComplete());
+                  controller.saveWalkthrough();
                   Get.toNamed(Routes.MOBILE);
                 },
                 child: Text('Skip >>',
@@ -94,7 +91,6 @@ class OnboardingView extends GetView<OnboardingController> {
             ),
             GestureDetector(
               onTap: () {
-                LocalStorage.shared.saveWalkthrough();
                 print(
                     "*************************************yes***************");
                 print(LocalStorage.shared.isWalkthroughComplete());

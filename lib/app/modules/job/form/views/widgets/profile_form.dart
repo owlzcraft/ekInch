@@ -1,6 +1,6 @@
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
-// import 'package:flutter_application_00/app/modules/settings/views/settings_view.dart';
+// import 'package:ekinch/app/modules/settings/views/settings_view.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_svg/svg.dart';
 // import 'package:get/get.dart';

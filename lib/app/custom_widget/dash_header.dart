@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/generated/assets.dart';
-import 'package:flutter_application_00/app/modules/language/views/language_view.dart';
-import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
-import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
+import 'package:ekinch/app/generated/assets.dart';
+import 'package:ekinch/app/modules/language/views/language_view.dart';
+import 'package:ekinch/app/modules/notication/view/notification_view.dart';
+import 'package:ekinch/app/modules/profile/views/profile_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

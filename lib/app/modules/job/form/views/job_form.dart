@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/custom_widget/color.dart';
-import 'package:flutter_application_00/app/modules/job/form/views/widgets/add_skills.dart';
-import 'package:flutter_application_00/app/modules/job/form/views/widgets/profile_form.dart';
-import 'package:flutter_application_00/app/modules/job/profile/view/job_profile.dart';
-import 'package:flutter_application_00/app/modules/mobile/widget/yellow_button.dart';
-import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
+import 'package:ekinch/app/custom_widget/color.dart';
+import 'package:ekinch/app/modules/job/form/views/widgets/add_skills.dart';
+import 'package:ekinch/app/modules/job/form/views/widgets/profile_form.dart';
+import 'package:ekinch/app/modules/job/profile/view/job_profile.dart';
+import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
+import 'package:ekinch/app/modules/notication/view/notification_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -40,14 +40,14 @@ class _formFillViewState extends State<formFillView> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(
                     4.0,
                   ),
                 ),
               ),
-              title: Column(
+              title: const Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -57,7 +57,7 @@ class _formFillViewState extends State<formFillView> {
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    padding: EdgeInsets.symmetric(vertical: 8.0),
                     child: Text(
                       "Add your experience",
                       style: TextStyle(fontSize: 14.0, color: KColors.textGrey),

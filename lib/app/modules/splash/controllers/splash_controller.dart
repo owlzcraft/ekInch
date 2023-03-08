@@ -1,7 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter_application_00/app/modules/language/bindings/language_binding.dart';
-import 'package:flutter_application_00/app/modules/language/views/language_view.dart';
+import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:ekinch/app/modules/language/bindings/language_binding.dart';
+import 'package:ekinch/app/modules/language/views/language_view.dart';
+import 'package:ekinch/app/modules/mobile/views/mobile_view.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
@@ -14,27 +16,28 @@ class SplashController extends GetxController {
   @override
   void onInit() {
     print('get');
-    Future.delayed(const Duration(seconds: 3), () {
-      if (LocalStorage.shared.isLoggedIn()) 
-      {
+
+    super.onInit();
+
+     Future.delayed(const Duration(seconds: 3), () {
+    if (LocalStorage.shared.isLoggedIn()) {
         Get.offAllNamed(Routes.HOME);
       } else {
-        if (LocalStorage.shared.isWalkthroughComplete()) 
-        {
+        if (LocalStorage.shared.isWalkthroughComplete()) {
           Get.offAllNamed(Routes.MOBILE);
         } else {
-       
-            Get.offAllNamed(Routes.LANGUAGE);
-          
+          print(
+              LocalStorage.shared.isWalkthroughComplete());
+          Get.offAllNamed(Routes.LANGUAGE);
         }
       }
     });
-    super.onInit();
   }
 
   @override
   void onReady() {
     super.onReady();
+   
   }
 
   @override

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/custom_widget/color.dart';
-import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
-import 'package:flutter_application_00/app/modules/home/views/home_view.dart';
-import 'package:flutter_application_00/app/modules/job/form/views/jobs_landing.dart';
-import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
-import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
-import 'package:flutter_application_00/app/modules/reels/views/video_viewer.dart';
-import 'package:flutter_application_00/widgets/math_utils.dart';
+import 'package:ekinch/app/custom_widget/color.dart';
+import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:ekinch/app/modules/home/views/home_view.dart';
+import 'package:ekinch/app/modules/job/form/views/jobs_landing.dart';
+import 'package:ekinch/app/modules/profile/views/profile_view.dart';
+import 'package:ekinch/app/modules/reels/views/reels_view.dart';
+import 'package:ekinch/app/modules/reels/views/video_viewer.dart';
+import 'package:ekinch/widgets/math_utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 

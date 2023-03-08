@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/generated/assets.dart';
-import 'package:flutter_application_00/app/modules/postjob/widgets/shortDropDown.dart';
-import 'package:flutter_application_00/app/modules/referNearn/controllers/refer_nearn_controller.dart';
-import 'package:flutter_application_00/app/modules/referNearn/views/statusWidget.dart';
-import 'package:flutter_application_00/app/utils/math_utils.dart';
+import 'package:ekinch/app/generated/assets.dart';
+import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
+import 'package:ekinch/app/modules/referNearn/controllers/refer_nearn_controller.dart';
+import 'package:ekinch/app/modules/referNearn/views/statusWidget.dart';
+import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

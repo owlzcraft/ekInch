@@ -1,8 +1,8 @@
-import 'package:flutter_application_00/app/modules/Onboarding/bindings/onboarding_binding.dart';
-import 'package:flutter_application_00/app/modules/Onboarding/views/onboarding_view.dart';
-import 'package:flutter_application_00/app/modules/dashboard/bindings/dashboard_binding.dart';
-import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
-import 'package:flutter_application_00/app/modules/job/form/views/jobs_landing.dart';
+import 'package:ekinch/app/modules/Onboarding/bindings/onboarding_binding.dart';
+import 'package:ekinch/app/modules/Onboarding/views/onboarding_view.dart';
+import 'package:ekinch/app/modules/dashboard/bindings/dashboard_binding.dart';
+import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:ekinch/app/modules/job/form/views/jobs_landing.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/bindings/home_binding.dart';

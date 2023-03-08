@@ -1,15 +1,14 @@
+import 'package:circle_progress_bar/circle_progress_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/generated/assets.dart';
-import 'package:flutter_application_00/app/modules/job/job_list/widget/recentJob.dart';
-import 'package:flutter_application_00/app/modules/listpostjob/views/review.dart';
-import 'package:flutter_application_00/app/modules/postjob/Style.dart';
-import 'package:flutter_application_00/app/modules/postjob/widgets/shortDropDown.dart';
+import 'package:ekinch/app/generated/assets.dart';
+import 'package:ekinch/app/modules/job/job_list/widget/recentJob.dart';
+import 'package:ekinch/app/modules/listpostjob/views/review.dart';
+import 'package:ekinch/app/modules/postjob/Style.dart';
+import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
-import 'package:circle_progress_bar/circle_progress_bar.dart';
-
 import '../../../../../widgets/math_utils.dart';
 import '../../../../custom_widget/color.dart';
 import '../../../dashboard/widgets/navigation.dart';

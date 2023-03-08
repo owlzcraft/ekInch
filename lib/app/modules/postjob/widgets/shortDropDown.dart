@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_00/app/modules/postjob/Style.dart';
+import 'package:ekinch/app/modules/postjob/Style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DropdownFieldFull extends StatelessWidget {

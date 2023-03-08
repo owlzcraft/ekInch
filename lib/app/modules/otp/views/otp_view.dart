@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/modules/mobile/views/mobile_view.dart';
-import 'package:flutter_application_00/app/modules/register/views/register.view.dart';
-import 'package:flutter_application_00/app/utils/math_utils.dart';
+
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -9,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../widgets/snack_bar.dart';
 import '../../../custom_widget/color.dart';
 import '../../../utils/localStorage.dart';
+import '../../../utils/math_utils.dart';
+import '../../mobile/views/mobile_view.dart';
 import '../../mobile/widget/yellow_button.dart';
 import '../controllers/otp_controller.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';

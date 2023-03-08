@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/generated/assets.dart';
-import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
-import 'package:flutter_application_00/app/modules/postjob/Style.dart';
-import 'package:flutter_application_00/app/modules/referNearn/views/inviteScreen.dart';
-import 'package:flutter_application_00/app/modules/referNearn/views/statusScreen.dart';
-import 'package:flutter_application_00/app/modules/settings/views/settings_view.dart';
-import 'package:flutter_application_00/widgets/Upperbar.dart';
+import 'package:ekinch/app/generated/assets.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
+import 'package:ekinch/app/modules/postjob/Style.dart';
+import 'package:ekinch/app/modules/referNearn/views/inviteScreen.dart';
+import 'package:ekinch/app/modules/referNearn/views/statusScreen.dart';
+import 'package:ekinch/app/modules/settings/views/settings_view.dart';
+import 'package:ekinch/widgets/Upperbar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';

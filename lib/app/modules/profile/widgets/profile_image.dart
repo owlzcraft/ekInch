@@ -1,6 +1,7 @@
+import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/widgets/math_utils.dart';
 
+import '../../../../widgets/math_utils.dart';
 import '../../../utils/localStorage.dart';
 
 Widget ProfileImage(String path) {
@@ -13,14 +14,30 @@ Widget ProfileImage(String path) {
       children: [
         CircleAvatar(
           radius: 50,
-          backgroundColor:  Color(0xFFE0E0E0),
-          child:  CircleAvatar(
-            radius: 48,
-            backgroundImage:  
-            // LocalStorage.shared.getUserData()?.userData?.photo == null?
-            AssetImage("assets/images/profile_icon.png")
-            // :AssetImage(path),
+          backgroundColor: Color(0xFFE0E0E0),
+          child: Container(
+            height: 120,
+            width: 120,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: LocalStorage.shared.getProfile() ==
+                          "https://d3nypwrzdy6f4k.cloudfront.net/"
+                      ? AssetImage('assets/images/profile_icon.png')
+                      : NetworkImage(path) as ImageProvider),
+              border: Border.all(color: KColors.greyLine, width: 2.0),
+            ),
           ),
+
+          //  CircleAvatar(
+          //   radius: 48,
+          //   backgroundImage:
+          //   LocalStorage.shared.getUserData()?.userData?.photo == null?
+          //   AssetImage("assets/images/profile_icon.png")
+          //   :Image.network(path) as ImageProvider,
+          // ),
         ),
         Positioned(
             bottom: 0,

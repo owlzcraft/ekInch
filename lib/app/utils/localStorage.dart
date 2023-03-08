@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_application_00/app/models/sign_in.dart';
+import 'package:ekinch/app/models/sign_in.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../models/login_model.dart';
@@ -28,14 +28,16 @@ class LocalStorage {
   bool isLoggedIn() {
     return localBox.read("IS_LOGGED_IN") ?? false;
   }
+ 
 
   Future<void> reset() async {
     localBox.erase();
   }
 
-void saveUserData(ProfileModel userData) async {
+  void saveUserData(ProfileModel userData) async {
     localBox.write("USER_DATA", profileModelToJson(userData));
   }
+
   ProfileModel? getUserData() {
     ProfileModel? userData;
     final String? user = localBox.read("USER_DATA");
@@ -50,12 +52,22 @@ void saveUserData(ProfileModel userData) async {
     localBox.write("FCM_TOKEN", value);
   }
 
- void saveNumber(String value) {
+  void savephoto(String value) {
+    localBox.write("Profile", value);
+  }
+
+  void saveNumber(String value) {
     localBox.write("number", value);
   }
+
   String getFCMToken() {
     return localBox.read("FCM_TOKEN");
   }
+
+  String getProfile() {
+    return localBox.read("Profile");
+  }
+
   String getnumber() {
     return localBox.read("number");
   }

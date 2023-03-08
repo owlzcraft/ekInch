@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';

@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
-import 'package:flutter_application_00/app/modules/dashboard/widgets/work.widget.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/work.widget.dart';
 
 import 'package:get/get.dart';
 

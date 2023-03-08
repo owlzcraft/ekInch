@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/modules/postjob/Style.dart';
+import 'package:ekinch/app/modules/postjob/Style.dart';
 
 import 'Confirmationjob.dart';
 

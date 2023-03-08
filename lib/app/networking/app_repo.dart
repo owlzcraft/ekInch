@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_application_00/app/models/sign_in.dart';
-import 'package:flutter_application_00/app/networking/service_routes.dart';
+import 'package:ekinch/app/models/sign_in.dart';
+import 'package:ekinch/app/networking/service_routes.dart';
 
 import '../../widgets/snack_bar.dart';
 import '../models/login_model.dart';
 import '../models/otp_model.dart';
 import '../models/profile_model.dart';
+import '../models/profile_pic.dart';
 import '../utils/localStorage.dart';
 import 'api_result.dart';
 import 'dio_client.dart';
@@ -104,12 +105,12 @@ class APIRepository {
 
   
   /// CHANGE PROFILE IMAGE
-  Future<ApiResult<ProfileModel>> changeProfileIMage(data) async {
+  Future<ApiResult<ProfilePic>> changeProfileIMage(data) async {
     try {
-      final response = await dioClient!.put(ServiceConstants.PROFILEPIC,
+      final response = await dioClient!.post(ServiceConstants.PROFILEPIC,
           data:data , options: multiPartOptions());
-      final ProfileModel model =
-          ProfileModel.fromJson(response.data);
+      final ProfilePic model =
+          ProfilePic.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {

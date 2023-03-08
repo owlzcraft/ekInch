@@ -1,19 +1,22 @@
+import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:ekinch/app/modules/mobile/views/mobile_view.dart';
+import 'package:ekinch/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/modules/mobile/widget/yellow_button.dart';
-import 'package:flutter_application_00/app/modules/profile/widgets/image_source_sheet.dart';
-import 'package:flutter_application_00/app/modules/profile/widgets/profile_image.dart';
-import 'package:flutter_application_00/app/utils/localStorage.dart';
-import 'package:flutter_application_00/widgets/math_utils.dart';
-import 'package:flutter_application_00/widgets/phone_text_field.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../widgets/math_utils.dart';
+import '../../../../widgets/phone_text_field.dart';
 import '../../../generated/assets.dart';
+import '../../../utils/localStorage.dart';
 import '../../dashboard/widgets/navigation.dart';
+import '../../mobile/widget/yellow_button.dart';
 import '../controllers/profile_controller.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+
+import '../widgets/profile_image.dart';
 
 class ProfileView extends StatefulWidget {
   ProfileView({Key? key}) : super(key: key);
@@ -34,11 +37,12 @@ class _ProfileViewState extends State<ProfileView> {
     "Mechanic"
   ];
 
-  final List<String> experienceList = [
-    "0-6 Months",
-    "1 Year",
-    "2 Year",
-    "3 Year"
+  final List experienceList = [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
   ];
 
   @override
@@ -95,8 +99,8 @@ class _ProfileViewState extends State<ProfileView> {
                             Icon(Icons.filter, size: 50),
                             Text(
                               "Gallery",
-                              style:
-                                  GoogleFonts.kadwa(fontWeight: FontWeight.w400),
+                              style: GoogleFonts.kadwa(
+                                  fontWeight: FontWeight.w400),
                             )
                           ],
                         ),
@@ -116,7 +120,7 @@ class _ProfileViewState extends State<ProfileView> {
           elevation: 0,
           leading: InkWell(
             onTap: () {
-              Get.back();
+              Get.to(DashboardView());
             },
             child: const Icon(
               Icons.arrow_back,
@@ -139,17 +143,15 @@ class _ProfileViewState extends State<ProfileView> {
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: ProfileImage(
-                        "${LocalStorage.shared.getUserData()?.userData?.photo}"),
+                    child: ProfileImage("${LocalStorage.shared.getProfile()}"),
                   ),
                 ),
                 Text(
-                    "${LocalStorage.shared.getUserData()?.userData?.firstName}",
-                    style: TextStyle(
-                        color: const Color(0xFF1A1D1E),
-                        fontSize: getFontSize(28),
-                        fontWeight: FontWeight.w400),
-                  
+                  "${LocalStorage.shared.getUserData()?.userData?.firstName}",
+                  style: TextStyle(
+                      color: const Color(0xFF1A1D1E),
+                      fontSize: getFontSize(28),
+                      fontWeight: FontWeight.w400),
                 ),
                 Text(
                   "${LocalStorage.shared.getUserData()?.userData?.profession}",
@@ -287,6 +289,15 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                   DropdownButtonFormField2(
                     decoration: InputDecoration(
+                      suffix: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                        child: Text(
+                          "Years",
+                          style: GoogleFonts.kadwa(
+                              fontSize: getFontSize(22),
+                              color: const Color(0xFF636363)),
+                        ),
+                      ),
                       prefixIcon: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Image.asset(
@@ -345,19 +356,25 @@ class _ProfileViewState extends State<ProfileView> {
                   }),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/images/logout_icon_profile.png',
-                            width: 30, height: 50),
-                        const Text(
-                          'Log Out',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                    child: InkWell(
+                      onTap: () {
+                        Get.until((route) => route.isFirst);
+                        Get.off(MobileView());
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/images/logout_icon_profile.png',
+                              width: 30, height: 50),
+                          const Text(
+                            'Log Out',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   )
                 ],

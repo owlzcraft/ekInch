@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_application_00">
+    package="com.example.ekinch">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="एक इंच"

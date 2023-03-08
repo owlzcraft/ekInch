@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_00/app/modules/mobile/controllers/mobile_controller.dart';
+import 'package:ekinch/app/modules/mobile/controllers/mobile_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../../widgets/loader.dart';
@@ -37,6 +37,8 @@ class RegisterController extends GetxController {
                 success: (value) {
                   if (value!.status == 200) {
                     LocalStorage.shared.saveUserData(value);
+                    LocalStorage.shared
+                        .savephoto(value.userData!.photo as String);
                     Get.offAndToNamed(Routes.HOME);
                   } else if (value.status == 400) {
                     errorSnackbar("Something Went Wrong");

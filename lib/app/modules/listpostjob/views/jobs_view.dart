@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_application_00/app/modules/postjob/Style.dart';
-import 'package:flutter_application_00/app/modules/listpostjob/views/jobDescription.dart';
-import 'package:flutter_application_00/app/modules/postjob/widgets/shortDropDown.dart';
+import 'package:ekinch/app/modules/postjob/Style.dart';
+import 'package:ekinch/app/modules/listpostjob/views/jobDescription.dart';
+import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';

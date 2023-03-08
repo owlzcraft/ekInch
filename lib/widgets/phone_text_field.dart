@@ -1,10 +1,10 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/custom_widget/color.dart';
-import 'package:flutter_application_00/app/modules/otp/views/otp_view.dart';
-import 'package:flutter_application_00/app/utils/hide_keyboard.dart';
-import 'package:flutter_application_00/app/utils/localStorage.dart';
-import 'package:flutter_application_00/widgets/math_utils.dart';
+import 'package:ekinch/app/custom_widget/color.dart';
+import 'package:ekinch/app/modules/otp/views/otp_view.dart';
+import 'package:ekinch/app/utils/hide_keyboard.dart';
+import 'package:ekinch/app/utils/localStorage.dart';
+import 'package:ekinch/widgets/math_utils.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';

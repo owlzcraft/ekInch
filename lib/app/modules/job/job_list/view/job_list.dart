@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/custom_widget/color.dart';
-import 'package:flutter_application_00/app/modules/job/form/views/widgets/profile_form.dart';
-import 'package:flutter_application_00/app/modules/job/profile/view/job_profile.dart';
-import 'package:flutter_application_00/app/utils/math_utils.dart';
+import 'package:ekinch/app/custom_widget/color.dart';
+import 'package:ekinch/app/modules/job/form/views/widgets/profile_form.dart';
+import 'package:ekinch/app/modules/job/profile/view/job_profile.dart';
+import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/generated/assets.dart';
-import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
-import 'package:flutter_application_00/app/modules/job/jobInterested/widget/card.dart';
-import 'package:flutter_application_00/app/modules/mobile/widget/yellow_button.dart';
-import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
-import 'package:flutter_application_00/app/modules/postjob/views/postjob_view.dart';
-import 'package:flutter_application_00/app/modules/settings/views/settings_view.dart';
+import 'package:ekinch/app/generated/assets.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
+import 'package:ekinch/app/modules/job/jobInterested/widget/card.dart';
+import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
+import 'package:ekinch/app/modules/notication/view/notification_view.dart';
+import 'package:ekinch/app/modules/postjob/views/postjob_view.dart';
+import 'package:ekinch/app/modules/settings/views/settings_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
@@ -61,9 +61,8 @@ class JobInterestedView extends GetView<JobInterestedController> {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 25),
               color: Colors.white,
               child: GridView.count(
-                 physics:NeverScrollableScrollPhysics(),scrollDirection:Axis.vertical,
-                
-                // scrollDirection: Axis.,
+                physics: NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 crossAxisCount: 3,
                 childAspectRatio: 0.9,
@@ -93,7 +92,7 @@ class JobInterestedView extends GetView<JobInterestedController> {
           ],
         ),
       ),
-                    bottomNavigationBar: BottomTabView(2),
+      bottomNavigationBar: BottomTabView(2),
 
       // bottomNavigationBar: MyNavigator(),
     );

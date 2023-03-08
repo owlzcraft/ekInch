@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/modules/postjob/Style.dart';
-import 'package:flutter_application_00/app/modules/postjob/views/CompanyDetails.dart';
-import 'package:flutter_application_00/app/modules/postjob/widgets/shortDropDown.dart';
+import 'package:ekinch/app/modules/postjob/Style.dart';
+import 'package:ekinch/app/modules/postjob/views/CompanyDetails.dart';
+import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:get/get.dart';
 
 class JobDescriptions extends StatefulWidget {

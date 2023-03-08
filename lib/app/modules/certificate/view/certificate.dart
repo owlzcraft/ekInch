@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_00/app/modules/dashboard/widgets/bottom_bar.dart';
-import 'package:flutter_application_00/app/modules/dashboard/widgets/navigation.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/bottom_bar.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';

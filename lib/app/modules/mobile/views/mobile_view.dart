@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:flutter_application_00/app/modules/mobile/widget/yellow_button.dart';
-import 'package:flutter_application_00/app/modules/otp/views/otp_view.dart';
-import 'package:flutter_application_00/app/utils/math_utils.dart';
-import 'package:flutter_application_00/widgets/phone_text_field.dart';
-import 'package:flutter_application_00/widgets/snack_bar.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import '../../../../widgets/snack_bar.dart';
 import '../../../custom_widget/color.dart';
 import '../controllers/mobile_controller.dart';
 

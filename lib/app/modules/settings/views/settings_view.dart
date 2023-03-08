@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/custom_widget/color.dart';
-import 'package:flutter_application_00/app/generated/assets.dart';
-import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
-import 'package:flutter_application_00/widgets/math_utils.dart';
+import 'package:ekinch/app/custom_widget/color.dart';
+import 'package:ekinch/app/generated/assets.dart';
+import 'package:ekinch/app/modules/profile/views/profile_view.dart';
+import 'package:ekinch/widgets/math_utils.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/modules/postjob/Style.dart';
+import 'package:ekinch/app/modules/postjob/Style.dart';
 import 'package:get/get.dart';
 
 class PostjobController extends GetxController {

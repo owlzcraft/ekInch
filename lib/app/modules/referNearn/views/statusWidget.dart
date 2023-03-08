@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/generated/assets.dart';
-import 'package:flutter_application_00/app/utils/math_utils.dart';
+import 'package:ekinch/app/generated/assets.dart';
+import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Widget StatusWidget(String image, String name, String sentOn, String code,

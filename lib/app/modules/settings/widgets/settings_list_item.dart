@@ -1,16 +1,16 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/modules/MyVideos/views/my_videos_view.dart';
-import 'package:flutter_application_00/app/modules/certificate/view/certificate.dart';
-import 'package:flutter_application_00/app/modules/feedback/view/feedback_view.dart';
-import 'package:flutter_application_00/app/modules/notication/view/notification_view.dart';
-import 'package:flutter_application_00/app/modules/postjob/views/postjob_view.dart';
-import 'package:flutter_application_00/app/modules/profile/views/profile_view.dart';
-import 'package:flutter_application_00/app/modules/reels/views/reels_view.dart';
-import 'package:flutter_application_00/app/modules/referNearn/views/refer_nearn_view.dart';
-import 'package:flutter_application_00/widgets/math_utils.dart';
-import 'package:flutter_application_00/widgets/snack_bar.dart';
+import 'package:ekinch/app/modules/MyVideos/views/my_videos_view.dart';
+import 'package:ekinch/app/modules/certificate/view/certificate.dart';
+import 'package:ekinch/app/modules/feedback/view/feedback_view.dart';
+import 'package:ekinch/app/modules/notication/view/notification_view.dart';
+import 'package:ekinch/app/modules/postjob/views/postjob_view.dart';
+import 'package:ekinch/app/modules/profile/views/profile_view.dart';
+import 'package:ekinch/app/modules/reels/views/reels_view.dart';
+import 'package:ekinch/app/modules/referNearn/views/refer_nearn_view.dart';
+import 'package:ekinch/widgets/math_utils.dart';
+import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 

@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter_application_00/app/modules/mobile/controllers/mobile_controller.dart';
-import 'package:flutter_application_00/app/modules/register/views/register.view.dart';
 import 'package:get/get.dart';
 
 import '../../../../widgets/loader.dart';
@@ -12,6 +10,7 @@ import '../../../networking/api_result.dart';
 import '../../../networking/app_repo.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/localStorage.dart';
+import '../../mobile/controllers/mobile_controller.dart';
 
 class OtpController extends GetxController {
   MobileController signInController = Get.put(MobileController());
@@ -47,10 +46,9 @@ class OtpController extends GetxController {
                 success: (value) {
                   if (value!.status == 200) {
                     LocalStorage.shared.saveFCMTOKEN(value.token as String);
-                    
+
                     print(LocalStorage.shared.getFCMToken());
                     Get.offAndToNamed(Routes.REGISTER);
-                    
                   } else if (value.status == 400) {
                     errorSnackbar("InCorrent Otp");
                   } else {
@@ -65,7 +63,6 @@ class OtpController extends GetxController {
 
   //Resend Otp
 
-  
   Future<void> resendOtp() async {
     // final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
@@ -78,8 +75,9 @@ class OtpController extends GetxController {
                 success: (value) {
                   if (value!.status == 200) {
                     LocalStorage.shared.saveNumber(value.userId as String);
-                   
+
                     Get.offAndToNamed(Routes.OTP);
+                    successSnackBar("Otp Sent");
                   } else if (value.status == 400) {
                     errorSnackbar("Phone Number Already Exist");
                   } else {

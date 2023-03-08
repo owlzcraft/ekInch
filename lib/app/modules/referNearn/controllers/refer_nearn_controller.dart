@@ -1,4 +1,4 @@
-import 'package:flutter_application_00/app/generated/assets.dart';
+import 'package:ekinch/app/generated/assets.dart';
 import 'package:get/get.dart';
 
 class ReferNearnController extends GetxController {

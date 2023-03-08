@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/custom_widget/color.dart';
-import 'package:flutter_application_00/app/generated/assets.dart';
-import 'package:flutter_application_00/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
-import 'package:flutter_application_00/app/modules/dashboard/widgets/work.widget.dart';
-import 'package:flutter_application_00/app/modules/reels/views/video.dart';
+import 'package:ekinch/app/custom_widget/color.dart';
+import 'package:ekinch/app/generated/assets.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/work.widget.dart';
+import 'package:ekinch/app/modules/reels/views/video.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

@@ -1,4 +1,4 @@
-# flutter_application_00
+# ekinch
 
 A new Flutter project.
 

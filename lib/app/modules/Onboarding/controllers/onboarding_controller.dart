@@ -1,9 +1,14 @@
+import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class OnboardingController extends GetxController {
   //TODO: Implement OnboardingController
   var activeOB = 2.obs;
+  saveWalkthrough() {
+    LocalStorage.shared.saveWalkthrough();
+  }
+
   var onBoardingData = [
     {
       "i": 0,

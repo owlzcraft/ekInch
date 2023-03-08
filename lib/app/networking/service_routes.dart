@@ -6,5 +6,5 @@ class ServiceConstants {
   static const String LOGIN = 'otp_gen';
   static const String OTP ='otp_auth';
   static const String PROFILE ='update_profile';
-  static const String PROFILEPIC ='profile/update_profile_pic';
+  static const String PROFILEPIC ='profile/update_profile_pic/';
 }

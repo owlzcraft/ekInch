@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_00/app/modules/dashboard/views/dashboard_view.dart';
-import 'package:flutter_application_00/app/modules/dashboard/widgets/bottom_bar.dart';
-import 'package:flutter_application_00/app/modules/dashboard/widgets/cupertino_bar.dart';
-import 'package:flutter_application_00/app/utils/localStorage.dart';
-import 'package:flutter_application_00/app/utils/math_utils.dart';
-import 'package:flutter_application_00/widgets/snack_bar.dart';
+import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/bottom_bar.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/cupertino_bar.dart';
+import 'package:ekinch/app/utils/localStorage.dart';
+import 'package:ekinch/app/utils/math_utils.dart';
+import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -61,9 +61,8 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     Get.put(RegisterController());
-registerController.profession.text =
-                                  cat_list[0][0] as String;
-                              print(registerController.profession.text);
+    registerController.profession.text = cat_list[0][0] as String;
+    print(registerController.profession.text);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
