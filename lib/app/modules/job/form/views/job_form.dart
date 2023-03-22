@@ -135,239 +135,26 @@ class _formFillViewState extends State<formFillView> {
               showDataAlert(context, "How many years of experience in",
                   "Add your experience", experience, experience[0]);
             }),
+            ClickAdd(context, "Add Skills", "Do you have any skills ?", () {
+              Get.to(AddSkillView());
+            }),
+            ClickAdd(context, "What is your qualification?",
+                "Put your qualification here", () {
+              showDataAlert(context, "Add Your Degree or Qualification",
+                  "Add your degree", qualification, qualification[0]);
+            }),
             Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: Get.width,
-                decoration: BoxDecoration(
-                    border: Border.all(color: KColors.greyLine),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4)),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Add Skills",
-                        style: GoogleFonts.kadwa(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 2.9),
-                        child: Text(
-                          "Do you have any skills ?",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 132, 131, 131),
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: InkWell(
-                              onTap: () {
-                                Get.to(AddSkillView());
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 50),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black),
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(100)),
-                                child: const Center(
-                                  child: Text(
-                                    "Click to fill your Skills",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Get.to(AddSkillView());
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Container(
-                                height: getVerticalSize(46),
-                                width: getVerticalSize(99),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: KColors.orange),
-                                    color: KColors.orange,
-                                    borderRadius: BorderRadius.circular(100)),
-                                child: const Center(
-                                  child: Text(
-                                    "Add",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w100),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Center(
+                child: DynamicButton("Submit", true, () {
+                  Get.to(JobsList());
+                }),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                width: Get.width,
-                decoration: BoxDecoration(
-                    border: Border.all(color: KColors.greyLine),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4)),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "What is your qualification?",
-                        style: GoogleFonts.kadwa(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 2.9),
-                        child: Text(
-                          "Put your qualification here",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 132, 131, 131),
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              showDataAlert(
-                                  context,
-                                  "Add Your Degree or Qualification",
-                                  "Add your degree",
-                                  qualification,
-                                  qualification[0]);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 50),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black),
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(100)),
-                                child: const Center(
-                                  child: Text(
-                                    "Click to fill your Skills",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Container(
-                                height: getVerticalSize(46),
-                                width: getVerticalSize(99),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: KColors.orange),
-                                    color: KColors.orange,
-                                    borderRadius: BorderRadius.circular(100)),
-                                child: const Center(
-                                  child: Text(
-                                    "Add",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w100),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Center(
-              child: DynamicButton("Submit", true, () {
-                Get.to(JobsList());
-              }),
             ),
           ],
         ),
       ),
       bottomNavigationBar: BottomTabView(2),
-
-      // bottomNavigationBar: MyNavigator(),
     );
-    // return Scaffold(
-    //   backgroundColor: Colors.lightBlueAccent,
-    //   body: Column(
-    //     crossAxisAlignment: CrossAxisAlignment.start,
-    //     children: <Widget>[
-    //       Container(
-    //         padding: EdgeInsets.only(
-    //             top: 60.0, left: 30.0, right: 30.0, bottom: 30.0),
-    //         child: Column(
-    //           crossAxisAlignment: CrossAxisAlignment.start,
-    //           children: <Widget>[
-    //             Text(
-    //               'Hello',
-    //               style: TextStyle(
-    //                 color: Colors.white,
-    //                 fontSize: 50.0,
-    //                 fontWeight: FontWeight.w700,
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //       Expanded(
-    //         child: Container(
-    //           padding: EdgeInsets.symmetric(horizontal: 20.0),
-    //           decoration: BoxDecoration(
-    //             color: Colors.white,
-    //             borderRadius: BorderRadius.only(
-    //               topLeft: Radius.circular(20.0),
-    //               topRight: Radius.circular(20.0),
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }

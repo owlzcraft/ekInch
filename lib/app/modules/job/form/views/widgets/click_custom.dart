@@ -11,7 +11,7 @@ import '../../../../../custom_widget/color.dart';
 
   ClickAdd(BuildContext context,String title,String subTitle,Function()onTap) {
     return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.only(left: 10,right: 10,bottom: 10),
               child: Container(
                 width: Get.width,
                 decoration: BoxDecoration(
@@ -27,8 +27,9 @@ import '../../../../../custom_widget/color.dart';
                       Text(
                         title,
                         style: GoogleFonts.kadwa(
+                          height: 1.2,
                             color: Colors.black,
-                            fontSize: F18(),
+                            fontSize: F20(),
                             fontWeight: FontWeight.w700),
                       ),
                        Padding(
@@ -60,8 +61,9 @@ import '../../../../../custom_widget/color.dart';
                                   child: Text(
                                     "Click to fill your Skills",
                                     style: GoogleFonts.kadwa(
+                                      height: 1.2,
                                         color: Colors.black,
-                                        fontSize: F14(),
+                                        fontSize: F16(),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -82,7 +84,7 @@ import '../../../../../custom_widget/color.dart';
                                   "Add",
                                   style: GoogleFonts.kadwa(
                                       color: Colors.black,
-                                      fontSize: F16(),
+                                      fontSize: F18(),
                                       fontWeight: FontWeight.w400),
                                 ),
                               ),
