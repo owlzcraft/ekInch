@@ -1,8 +1,10 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/profile/views/profile_view.dart';
 import 'package:ekinch/widgets/math_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
@@ -84,56 +86,77 @@ class _SettingsViewState extends State<SettingsView> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 39,
-                    backgroundColor: Color(0xFFE0E0E0),
-                    child: CircleAvatar(
-                      radius: 35,
-                      backgroundImage: AssetImage("assets/images/profile.jpg"),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "${LocalStorage.shared.getUserData()!.userData!.firstName}",
-                          style: GoogleFonts.kadwa(
-                              fontSize: 23,
-                              fontWeight: FontWeight.w400,
-                              color: Color.fromARGB(255, 63, 61, 61)),
-                        ),
-                        Text(
-                          "${LocalStorage.shared.getUserData()!.userData!.profession}",
-                          style: GoogleFonts.kadwa(
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xFF6A6A6A)),
-                        ),
-                        Image.asset(
-                          Assets.verified,
-                          width: getHorizontalSize(114),
-                          height: getVerticalSize(28),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal:8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                     InkWell(
+                  onTap: () => {Get.to(ProfileView())},
+                  child: CircleAvatar(
+                        radius: 40.sp,
+                        backgroundColor: Color(0xFFE0E0E0),
+                        child: Container(
+                          height: 80.sp,
+                          width: 80.sp,
+                          decoration: BoxDecoration(
+                color: Colors.black,
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: LocalStorage.shared.getProfile() ==
+                            "https://d3nypwrzdy6f4k.cloudfront.net/"
+                        ? AssetImage('assets/images/profile_icon.png')
+                        : NetworkImage("${LocalStorage.shared.getProfile()}") as ImageProvider),
+                border: Border.all(color: KColors.greyLine, width: 2.0),
+                          ),
+                        ),)
+                ),
+                    Padding(
+                      padding:  EdgeInsets.symmetric(horizontal:12.sp),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${LocalStorage.shared.getUserData()!.userData!.firstName}",
+                            style: GoogleFonts.kadwa(
+                              
+                                fontSize: F24(),
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromARGB(255, 63, 61, 61)),
+                          ),
+                          Text(
+                            "${LocalStorage.shared.getUserData()!.userData!.profession}",
+                            style: GoogleFonts.kadwa(
+                              height: 1.2,
+                              fontSize: F18(),
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFF6A6A6A)),
+                          ),
+                          Image.asset(
+                            Assets.verified,scale: 3.5,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
-              Column(
-                children: data_arr
-                    .map((e) => SettingListItem(
-                        e['img'].toString(), e['title'].toString()))
-                    .toList(),
+              Padding(
+                padding:  EdgeInsets.symmetric(vertical:12.sp),
+                child: Column(
+                  children: data_arr
+                      .map((e) => SettingListItem(
+                          e['img'].toString(), e['title'].toString()))
+                      .toList(),
+                ),
               ),
               // Container(
               //   padding: EdgeInsets.symmetric(vertical: 40),
               //   child:
               SizedBox(
-                height: 30,
+                height: 30.sp,
               ),
               Center(
                 child: Text(

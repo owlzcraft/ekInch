@@ -1,11 +1,16 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/language/views/language_view.dart';
 import 'package:ekinch/app/modules/notication/view/notification_view.dart';
 import 'package:ekinch/app/modules/profile/views/profile_view.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../utils/localStorage.dart';
+import 'color.dart';
 
 AppBar DynamicAppBar(String name, String greetMsg, bool lang, GlobalKey<ScaffoldState> scaffoldKey) {
   return AppBar(
@@ -53,13 +58,15 @@ AppBar DynamicAppBar(String name, String greetMsg, bool lang, GlobalKey<Scaffold
                   children: [
                     Text(
                       greetMsg,
-                      style: TextStyle(
-                          fontSize: 16, color: const Color(0xffE0E0E0)),
+                      style: GoogleFonts.kadwa(
+                        height: 1.7,
+                          fontSize: F20(), color: const Color(0xffE0E0E0)),
                     ),
                     Text(name,
-                        style: TextStyle(
-                            fontSize: 24,
+                        style: GoogleFonts.kadwa(
+                            fontSize: F28(),
                             color: Colors.white,
+                            height: 1.2,
                             fontWeight: FontWeight.bold)),
                   ],
                 ),
@@ -67,14 +74,23 @@ AppBar DynamicAppBar(String name, String greetMsg, bool lang, GlobalKey<Scaffold
               InkWell(
                 onTap: () => {Get.to(ProfileView())},
                 child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor: const Color(0xFFBFBCBC),
-                  child: CircleAvatar(
-                    radius: 18,
-                    backgroundImage:
-                        const AssetImage("assets/images/profile.jpg"),
-                  ),
-                ),
+          radius: 30,
+          backgroundColor: Color(0xFFE0E0E0),
+          child: Container(
+            height: 70.sp,
+            width: 70.sp,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: LocalStorage.shared.getProfile() ==
+                          "https://d3nypwrzdy6f4k.cloudfront.net/"
+                      ? AssetImage('assets/images/profile_icon.png')
+                      : NetworkImage("${LocalStorage.shared.getProfile()}") as ImageProvider),
+              border: Border.all(color: KColors.greyLine, width: 2.0),
+            ),
+          ),)
               ),
             ],
           ),

@@ -28,7 +28,7 @@ class OtpController extends GetxController {
 
   @override
   void onReady() {
-    _startTimer(60);
+    startTimer(60);
     super.onReady();
   }
 
@@ -98,7 +98,7 @@ class OtpController extends GetxController {
     super.onClose();
   }
 
-  _startTimer(int seconds) {
+  startTimer(int seconds) {
     const duration = Duration(seconds: 1);
     remainingSeconds = seconds;
     _timer = Timer.periodic(duration, (Timer timer) {

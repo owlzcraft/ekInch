@@ -1,3 +1,9 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/dashboard_profile.dart';
+import 'package:ekinch/app/modules/job/form/views/widgets/click_custom.dart';
+import 'package:ekinch/app/modules/job/form/views/widgets/custom_job_form.dart';
+import 'package:ekinch/app/modules/job/form/views/widgets/pop_up_exp.dart';
+import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/custom_widget/color.dart';
@@ -12,9 +18,11 @@ import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../../widgets/math_utils.dart';
 import '../../../../../widgets/shape.dart';
+import '../../../../custom_widget/font_size.dart';
 import '../../../../generated/assets.dart';
 import '../../../dashboard/widgets/bottomNavigate.wodget.dart';
 import '../../../dashboard/widgets/navigation.dart';
@@ -32,233 +40,10 @@ class formFillView extends StatefulWidget {
 
 class _formFillViewState extends State<formFillView> {
   GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
-
+  List<String> experience = ["Fresher", "1-5 Years", "5-10 Years"];
+  List<String> qualification = ["10th Pass", "12th Pass", "Graduated"];
   @override
   Widget build(BuildContext context) {
-    showDataAlertExp() {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(
-                    4.0,
-                  ),
-                ),
-              ),
-              title: const Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "How many years of experience in",
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text(
-                      "Add your experience",
-                      style: TextStyle(fontSize: 14.0, color: KColors.textGrey),
-                    ),
-                  ),
-                ],
-              ),
-              content: Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Container(
-                        width: Get.width,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Color(0xFFCDCDCD))),
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            hint: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(
-                                "Fresher",
-                                style: GoogleFonts.kadwa(
-                                    fontSize: getFontSize(22),
-                                    color: Color(0xFF636363)),
-                              ),
-                            ),
-                            icon: Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Color(0xFF999999),
-                              ),
-                            ),
-                            isExpanded: true,
-                            focusColor: Color(0xFFFEBA0F),
-                            items: ["Fresher", "1-5 Years", "5-10 Years"]
-                                .map((String value) {
-                              return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10.0),
-                                      child: Text(
-                                        value,
-                                        style: GoogleFonts.kadwa(
-                                            fontSize: getFontSize(22),
-                                            color: Color(0xFF636363)),
-                                      ),
-                                    ),
-                                  ));
-                            }).toList(),
-                            onChanged: (_) {},
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 25.0),
-                        child: GFButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          color: KColors.orange,
-                          fullWidthButton: true,
-                          size: 50.2,
-                          text: "Submit",
-                          textStyle: GoogleFonts.kadwa(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 24.0,
-                          ),
-                          // shape: GFButtonShape.standard,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          });
-    }
-
-    showDataAlertqualification() {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(
-                    4.0,
-                  ),
-                ),
-              ),
-              title: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Add Your Degree or Qualification",
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text(
-                      "Add your degree",
-                      style: TextStyle(fontSize: 14.0, color: KColors.textGrey),
-                    ),
-                  ),
-                ],
-              ),
-              content: Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Container(
-                        width: Get.width,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Color(0xFFCDCDCD))),
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            hint: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(
-                                "10th Pass",
-                                style: GoogleFonts.kadwa(
-                                    fontSize: getFontSize(22),
-                                    color: Color(0xFF636363)),
-                              ),
-                            ),
-                            icon: Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Color(0xFF999999),
-                              ),
-                            ),
-                            isExpanded: true,
-                            focusColor: Color(0xFFFEBA0F),
-                            items: ["10th Pass", "12th Pass", "Graduated"]
-                                .map((String value) {
-                              return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10.0),
-                                      child: Text(
-                                        value,
-                                        style: GoogleFonts.kadwa(
-                                            fontSize: getFontSize(22),
-                                            color: Color(0xFF636363)),
-                                      ),
-                                    ),
-                                  ));
-                            }).toList(),
-                            onChanged: (_) {},
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 25.0),
-                        child: GFButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          color: KColors.orange,
-                          fullWidthButton: true,
-                          size: 50.2,
-                          text: "Submit",
-                          textStyle: GoogleFonts.kadwa(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 24.0,
-                          ),
-                          // shape: GFButtonShape.standard,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          });
-    }
-
     return Scaffold(
       backgroundColor: Colors.white,
       key: notDrawerKey, drawer: const SettingsView(),
@@ -270,19 +55,16 @@ class _formFillViewState extends State<formFillView> {
           bottom: PreferredSize(
             preferredSize: const Size(0.0, 4.0),
             child: Padding(
-              padding: EdgeInsets.only(
-                  left: getHorizontalSize(16.0),
-                  right: getHorizontalSize(16.0),
-                  top: getVerticalSize(16.0),
-                  bottom: getVerticalSize(30)),
+              padding: EdgeInsets.all(12.sp),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                     Text(
-                        "Sanjay Singh",
+                      Text(
+                        "${LocalStorage.shared.getUserData()?.userData?.firstName}",
                         style: GoogleFonts.kadwa(
                             color: Colors.white,
                             fontSize: 20,
@@ -300,21 +82,7 @@ class _formFillViewState extends State<formFillView> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 90),
-                    child: InkWell(
-                      onTap: () => {Get.to(ProfileView())},
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: const Color(0xFFBFBCBC),
-                        child: CircleAvatar(
-                          radius: 28,
-                          backgroundImage:
-                              const AssetImage("assets/images/profile.jpg"),
-                        ),
-                      ),
-                    ),
-                  ),
+                  DashboardProfile()
                 ],
               ),
             ),
@@ -351,212 +119,22 @@ class _formFillViewState extends State<formFillView> {
                   color: Colors.black,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: KColors.greyLine),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(4)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Job title of your proile",
-                            style: GoogleFonts.kadwa(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10.0),
-                            child: TextFormField(
-                                onTap: () {
-                                  // setState(() {
-                                  //   drop = false;
-                                  // });
-                                },
-                                // controller: nameController,
-                                validator: ((value) {
-                                  // print(value);
-                                  if (value!.isEmpty) {
-                                    return "This Field Can't be Empty.";
-                                  }
-                                  return null;
-                                }),
-                                // cursorColor: const Color(0xFFFEBA0F),
-                                style: const TextStyle(fontSize: 16),
-                                decoration: const InputDecoration(
-                                    prefixIcon: Icon(Icons.contacts_outlined,
-                                        color: Colors.black),
-                                    hintStyle: TextStyle(
-                                        fontSize: 18, color: Color(0xFF999898)),
-                                    hintText: "eg. electrician",
-                                    focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(4)),
-                                        borderSide: BorderSide(
-                                            color: KColors.greyLine)),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(4)),
-                                        borderSide: BorderSide(
-                                            color: KColors.greyLine)))),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: JobForm(
+                        "Job title of your proile",
+                        "eg. Electrician",
+                        'assets/images/profession_text_icon.png')),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(10),
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: KColors.greyLine),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4)),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                       Text(
-                        "Job Categeory",
-                        style: GoogleFonts.kadwa(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: TextFormField(
-                            onTap: () {
-                              // setState(() {
-                              //   drop = false;
-                              // });
-                            },
-                            validator: ((value) {
-                              if (value!.isEmpty) {
-                                return "This Field Can't be Empty.";
-                              }
-                              return null;
-                            }),
-                            // cursorColor: const Color(0xFFFEBA0F),
-                            style: const TextStyle(fontSize: 16),
-                            decoration: const InputDecoration(
-                                prefixIcon: Icon(Icons.person_outline,
-                                    color: Colors.black),
-                                hintStyle: TextStyle(
-                                    fontSize: 18, color: Color(0xFF999898)),
-                                hintText: "eg. electrician at Ek Inch",
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(4)),
-                                    borderSide:
-                                        BorderSide(color: KColors.greyLine)),
-                                border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(4)),
-                                    borderSide:
-                                        BorderSide(color: KColors.greyLine)))),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Container(
-                width: Get.width,
-                decoration: BoxDecoration(
-                    border: Border.all(color: KColors.greyLine),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4)),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Experience",
-                        style: GoogleFonts.kadwa(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 2.9),
-                        child: Text(
-                          "How many years of experience in ?",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 132, 131, 131),
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              showDataAlertExp();
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 50),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black),
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(100)),
-                                child: const Center(
-                                  child: Text(
-                                    "Click to fill your Skills",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Container(
-                              height: getVerticalSize(46),
-                              width: getVerticalSize(99),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: KColors.orange),
-                                  color: KColors.orange,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: const Center(
-                                child: Text(
-                                  "Add",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+                padding: const EdgeInsets.all(10),
+                child: JobForm("Job Categeory", "eg. electrician at Ek Inch",
+                    'assets/images/name_text_icon.png')),
+            ClickAdd(context, "Experience", "How many years of experience in ?",
+                () {
+              showDataAlert(context, "How many years of experience in",
+                  "Add your experience", experience, experience[0]);
+            }),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
@@ -570,7 +148,7 @@ class _formFillViewState extends State<formFillView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       Text(
+                      Text(
                         "Add Skills",
                         style: GoogleFonts.kadwa(
                             color: Colors.black,
@@ -661,9 +239,9 @@ class _formFillViewState extends State<formFillView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                     Text(
+                      Text(
                         "What is your qualification?",
-                        style:GoogleFonts.kadwa(
+                        style: GoogleFonts.kadwa(
                             color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
@@ -684,7 +262,12 @@ class _formFillViewState extends State<formFillView> {
                         children: [
                           InkWell(
                             onTap: () {
-                              showDataAlertqualification();
+                              showDataAlert(
+                                  context,
+                                  "Add Your Degree or Qualification",
+                                  "Add your degree",
+                                  qualification,
+                                  qualification[0]);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(top: 8.0),
@@ -745,7 +328,7 @@ class _formFillViewState extends State<formFillView> {
           ],
         ),
       ),
-                    bottomNavigationBar: BottomTabView(2),
+      bottomNavigationBar: BottomTabView(2),
 
       // bottomNavigationBar: MyNavigator(),
     );

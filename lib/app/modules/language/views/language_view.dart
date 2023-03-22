@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../widgets/math_utils.dart';
 import '../../../../widgets/shape.dart';
+import '../../../custom_widget/font_size.dart';
 import '../../../utils/localStorage.dart';
 import '../../Onboarding/views/onboarding_view.dart';
 import '../../dashboard/views/dashboard_view.dart';
@@ -68,8 +69,8 @@ class _LanguageViewState extends State<LanguageView> {
               'भाषा चुने / Select Language ',
               textAlign: TextAlign.start,
               style: GoogleFonts.kadwa(
-                  color: Colors.black,
-                  fontSize: 27,
+                  color: Color.fromRGBO(0, 0, 0, 1),
+                  fontSize: F30(),
                   fontWeight: FontWeight.w800),
             ),
             SizedBox(

@@ -1,87 +1,119 @@
+ import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../../custom_widget/color.dart';
+import '../../../../../custom_widget/font_size.dart';
+import '../../../../../utils/math_utils.dart';
 
-
-
-// showDataAlertExp() {
-//   showDialog(
-//       context: context,
-//       builder: (context) {
-//         return AlertDialog(
-//           shape: RoundedRectangleBorder(
-//             borderRadius: BorderRadius.all(
-//               Radius.circular(
-//                 20.0,
-//               ),
-//             ),
-//           ),
-//           contentPadding: EdgeInsets.only(
-//             top: 10.0,
-//           ),
-//           title: Text(
-//             "Create ID",
-//             style: TextStyle(fontSize: 24.0),
-//           ),
-//           content: Container(
-//             height: 400,
-//             child: SingleChildScrollView(
-//               padding: const EdgeInsets.all(8.0),
-//               child: Column(
-//                 mainAxisAlignment: MainAxisAlignment.start,
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 mainAxisSize: MainAxisSize.min,
-//                 children: <Widget>[
-//                   Padding(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: Text(
-//                       "Mension Your ID ",
-//                     ),
-//                   ),
-//                   Container(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: TextField(
-//                       decoration: InputDecoration(
-//                           border: OutlineInputBorder(),
-//                           hintText: 'Enter Id here',
-//                           labelText: 'ID'),
-//                     ),
-//                   ),
-//                   Container(
-//                     width: double.infinity,
-//                     height: 60,
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: ElevatedButton(
-//                       onPressed: () {
-//                         Navigator.of(context).pop();
-//                       },
-//                       style: ElevatedButton.styleFrom(
-//                         primary: Colors.black,
-//                         // fixedSize: Size(250, 50),
-//                       ),
-//                       child: Text(
-//                         "Submit",
-//                       ),
-//                     ),
-//                   ),
-//                   Container(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: Text('Note'),
-//                   ),
-//                   Padding(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: Text(
-//                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
-//                       ' ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud'
-//                       ' exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-//                       ' Duis aute irure dolor in reprehenderit in voluptate velit esse cillum '
-//                       'dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,'
-//                       ' sunt in culpa qui officia deserunt mollit anim id est laborum.',
-//                       style: TextStyle(fontSize: 12),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         );
-//       });
-// }
+showDataAlert(context,String title,String subTitle,List<String>list,String hint) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    4.0,
+                  ),
+                ),
+              ),
+              title: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                   title,
+                    style:
+                        GoogleFonts.kadwa(fontSize: F18(), fontWeight: FontWeight.w700),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8.0),
+                    child: Text(
+                      subTitle,
+                      style: GoogleFonts.kadwa(fontSize: F16(),height: 1.2, color: KColors.textGrey),
+                    ),
+                  ),
+                ],
+              ),
+              content: Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: Color(0xFFCDCDCD))),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            hint: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                hint,
+                                style: GoogleFonts.kadwa(
+                                    fontSize: F22(),
+                                    color: Color(0xFF636363)),
+                              ),
+                            ),
+                            icon: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Icon(
+                                Icons.keyboard_arrow_down,
+                                color: Color(0xFF999999),
+                              ),
+                            ),
+                            isExpanded: true,
+                            focusColor: Color(0xFFFEBA0F),
+                            items: list
+                                .map((String value) {
+                              return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10.0),
+                                      child: Text(
+                                        value,
+                                        style: GoogleFonts.kadwa(
+                                            fontSize: getFontSize(22),
+                                            color: Color(0xFF636363)),
+                                      ),
+                                    ),
+                                  ));
+                            }).toList(),
+                            onChanged: (_) {},
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 25.0),
+                        child: GFButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          color: KColors.orange,
+                          fullWidthButton: true,
+                          size: 50.2,
+                          text: "Submit",
+                          textStyle: GoogleFonts.kadwa(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: F24(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          });
+    }

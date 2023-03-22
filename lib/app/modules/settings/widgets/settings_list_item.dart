@@ -39,7 +39,8 @@ Widget SettingListItem(String image, String title) {
           Get.to(ReferNearnView());
           break;
         case "Log Out":
-          Get.to(MobileView());
+          Get.until((route) => route.isFirst);
+                        Get.off(MobileView());
 
           break;
 

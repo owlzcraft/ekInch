@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/bottom_bar.dart';
@@ -8,6 +9,7 @@ import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
@@ -93,19 +95,19 @@ class _RegisterViewState extends State<RegisterView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                          padding: EdgeInsets.symmetric(vertical: 7),
+                          padding: const EdgeInsets.symmetric(vertical: 7),
                           child: Text(
                             "Registration",
                             style: GoogleFonts.kadwa(
                                 fontWeight: FontWeight.w700,
-                                fontSize: 30,
-                                color: Color(0xFF525252)),
+                                fontSize: F32(),
+                                color: const Color(0xFF525252)),
                           )),
                       Text(
                         "Select Your Job",
                         style: GoogleFonts.kadwa(
-                            fontSize: 20,
-                            color: Color(0xFF767676),
+                            fontSize: F22(),
+                            color: const Color(0xFF767676),
                             height: 1.4),
                       ),
                     ],
@@ -136,16 +138,16 @@ class _RegisterViewState extends State<RegisterView> {
                     });
                   },
                   controller: registerController.name,
-                  cursorColor: Color(0xFFFEBA0F),
-                  style: const TextStyle(fontSize: 20),
-                  decoration: const InputDecoration(
+                  cursorColor: const Color(0xFFFEBA0F),
+                  style:  TextStyle(fontSize: F20()),
+                  decoration: InputDecoration(
                       hintStyle:
-                          TextStyle(fontSize: 18, color: Color(0xFF999898)),
+                          TextStyle(fontSize: F20(), color: const Color(0xFF999898)),
                       hintText: "Enter Full Name",
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Color(0xFFFEBA0F))),
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                           borderSide: BorderSide(color: Color(0xFFCDCDCD))))),
             ),
@@ -154,13 +156,12 @@ class _RegisterViewState extends State<RegisterView> {
               ? GestureDetector(
                   onTap: () {
                     FocusManager.instance.primaryFocus?.unfocus();
-                    Timer(Duration(milliseconds: 500), openCategories);
+                    Timer(const Duration(milliseconds: 500), openCategories);
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),
-                    height: 60,
                     width: Get.width,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
@@ -172,19 +173,19 @@ class _RegisterViewState extends State<RegisterView> {
                         Text(
                           cat_list[selected[0]][selected[1]],
                           style:
-                              TextStyle(color: Color(0xFF999898), fontSize: 20),
+                              GoogleFonts.kadwa(color: const Color(0xFF999898), fontSize: F20()),
                         ),
-                        Icon(
+                         Icon(
                           Icons.keyboard_arrow_down,
                           color: Color(0xFF999999),
-                          size: 30,
+                          size: 30.sp,
                         )
                       ],
                     ),
                   ),
                 )
               : Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                       children: cat_list.map((e) {
                     return Row(
@@ -197,33 +198,29 @@ class _RegisterViewState extends State<RegisterView> {
 
                               drop = false;
                               selected = [cat_list.indexOf(e), 0];
-                              print(
-                                  '*************************************************checked1 $selected');
-                              print(
-                                  "hskdhfsgfjgadjfgsjgj            ${cat_list[cat_list.indexOf(e)][0]}");
+                             
                               registerController.profession.text =
                                   cat_list[cat_list.indexOf(e)][0] as String;
-                              print(registerController.profession.text);
                             });
                           },
                           child: Container(
-                            margin: EdgeInsets.only(top: 10),
+                            margin: const EdgeInsets.only(top: 10),
                             child: Text(
                               e[0],
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: F20(),
                                   color: (cat_list[selected[0]][selected[1]] ==
                                           e[0])
                                       ? Colors.white
                                       : Colors.black),
                             ),
-                            padding: EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(15),
                             decoration: BoxDecoration(
                                 color:
                                     (cat_list[selected[0]][selected[1]] == e[0])
                                         ? Colors.black
-                                        : Color(0xFFF8F8F8),
-                                border: Border.all(color: Color(0xFFCDCDCD)),
+                                        : const Color(0xFFF8F8F8),
+                                border: Border.all(color: const Color(0xFFCDCDCD)),
                                 borderRadius: BorderRadius.circular(6)),
                           ),
                         ),
@@ -231,36 +228,34 @@ class _RegisterViewState extends State<RegisterView> {
                           onTap: () {
                             setState(() {
                               FocusManager.instance.primaryFocus?.unfocus();
-                              print(
-                                  '*************************************************checked2 $selected');
+                              
                               drop = false;
                               selected = [cat_list.indexOf(e), 1];
-                              print(
-                                  "hskdhfsgfjgadjfgsjgj            ${cat_list[cat_list.indexOf(e)][1]}");
+                            
                               registerController.profession.text =
                                   cat_list[cat_list.indexOf(e)][1] as String;
                               print(registerController.profession.text);
                             });
                           },
                           child: Container(
-                            margin: EdgeInsets.only(top: 10),
+                            margin: const EdgeInsets.only(top: 10),
                             child: Text(
                               e[1],
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: F20(),
                                   color: (cat_list[selected[0]][selected[1]] ==
                                           e[1])
                                       ? Colors.white
                                       : Colors.black),
                             ),
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 25),
                             decoration: BoxDecoration(
                                 color:
                                     (cat_list[selected[0]][selected[1]] == e[1])
                                         ? Colors.black
-                                        : Color(0xFFF8F8F8),
-                                border: Border.all(color: Color(0xFFCDCDCD)),
+                                        : const Color(0xFFF8F8F8),
+                                border: Border.all(color: const Color(0xFFCDCDCD)),
                                 borderRadius: BorderRadius.circular(6)),
                           ),
                         ),
@@ -269,7 +264,7 @@ class _RegisterViewState extends State<RegisterView> {
                   }).toList()),
                 ),
           Container(
-            margin: EdgeInsets.only(top: 35),
+            margin: const EdgeInsets.only(top: 35),
             child: DynamicButton("Proceed", true, () {
               check();
             }),

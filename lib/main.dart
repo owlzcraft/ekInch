@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'app/routes/app_pages.dart';
+import 'app/utils/localStorage.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -12,6 +13,8 @@ void main() {
   const device_height = 802.9090909090909;
   const device_width = 392.72727272727275;
 //comment
+  var walkThrough = LocalStorage.shared.isWalkthroughComplete();
+
   runApp(ScreenUtilInit(builder: ((context, child) {
     return GetMaterialApp(
       title: "Application",
@@ -20,4 +23,5 @@ void main() {
       debugShowCheckedModeBanner: false,
     );
   })));
+  
 }

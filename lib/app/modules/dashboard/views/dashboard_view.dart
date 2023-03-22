@@ -1,3 +1,5 @@
+import 'package:dotted_border/dotted_border.dart';
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -18,6 +20,7 @@ import 'package:ekinch/app/modules/dashboard/widgets/video.widget.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/videoCategory.widget.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/work.widget.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
@@ -64,12 +67,115 @@ class _DashboardStateView extends State<DashboardView>
       {"name": "Electrician", "active": false},
       {"name": "Plumber", "active": false},
     ];
+    showDataAlertUploadVideo() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              insetPadding: EdgeInsets.all(24.sp),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    4.0,
+                  ),
+                ),
+              ),
+              title: Text(
+                "Update Reel",
+                style: GoogleFonts.kadwa(
+                    fontSize: F24(), fontWeight: FontWeight.w400),
+              ),
+              content: Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextFormField(
+                        autofocus: true,
+                        onChanged: (value) {},
+                        decoration: InputDecoration(
+                          hintText: "    Enter video title",
+                          hintStyle: GoogleFonts.kadwa(fontSize: F22(),fontWeight: FontWeight.w400),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 10.sp, horizontal: 10.sp),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide:
+                                  const BorderSide(color: Color(0xFFFEBA0F))),
+                          border: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: Color(0xFFCDCDCD)),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        style: GoogleFonts.kadwa(
+                            fontSize: F20(), color: const Color(0xFF636363)),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 12.sp),
+                        child: DottedBorder(
+                            dashPattern: [8, 4],
+
+                          color: Color(0xFFCDCDCD),
+                          strokeCap: StrokeCap.butt,
+                          strokeWidth: 1,
+                          borderType: BorderType.Rect,
+                          child: Padding(
+                            padding: EdgeInsets.all(40.sp),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Upload Video",
+                                  style: GoogleFonts.kadwa(
+                                      fontSize: F24(),
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                Padding(
+                                  padding:  EdgeInsets.symmetric(horizontal:8.sp),
+                                  child: Image.asset("assets/images/upload.png",scale: 3.0,),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20.sp),
+                        child: GFButton(
+                          onPressed: () {},
+                          color: KColors.orange,
+                          fullWidthButton: true,
+                          size: 50.2,
+                          text: "Upload",
+                          textStyle: GoogleFonts.kadwa(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: F24(),
+                          ),
+                          // shape: GFButtonShape.standard,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          });
+    }
+
     return Scaffold(
       key: scaffoldKey,
       bottomNavigationBar: BottomTabView(0),
       // bottomNavigationBar: BottomBar(),
       drawer: const SettingsView(),
-      appBar: DynamicAppBar("${LocalStorage.shared.getUserData()?.userData?.firstName}", "Welcome !", true, scaffoldKey),
+      appBar: DynamicAppBar(
+          "${LocalStorage.shared.getUserData()?.userData?.firstName}",
+          "Welcome !",
+          true,
+          scaffoldKey),
       body: Container(
         color: Colors.white,
         child: SingleChildScrollView(
@@ -86,12 +192,12 @@ class _DashboardStateView extends State<DashboardView>
                         child: Text(
                           'Short Videos',
                           style: GoogleFonts.kadwa(
-                              fontWeight: FontWeight.w700, fontSize: 18.sp),
+                              fontWeight: FontWeight.w700, fontSize: F20()),
                         )),
-                    const Text(
+                    Text(
                       'View all >',
-                      style: TextStyle(
-                          fontSize: 18,
+                      style: GoogleFonts.kadwa(
+                          fontSize: F20(),
                           color: Color(0xFF767676),
                           fontWeight: FontWeight.w400),
                     )
@@ -104,6 +210,44 @@ class _DashboardStateView extends State<DashboardView>
                     EdgeInsets.only(bottom: 10.sp, left: 10.sp, right: 10.sp),
                 child: Row(
                   children: [
+                    InkWell(
+                      onTap: () {
+                        showDataAlertUploadVideo();
+                      },
+                      child: Container(
+                        alignment: AlignmentDirectional.center,
+                        width: (MediaQuery.of(context).size.width / 3.8).sp,
+                        height:
+                            (MediaQuery.of(context).size.height / 4.04809009283)
+                                .sp,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 10.sp, vertical: 5.sp),
+                        decoration: BoxDecoration(
+                            color: KColors.orange,
+                            borderRadius: BorderRadius.circular(20.sp)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "assets/images/vcamera.png",
+                              scale: 3.0,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 10.0),
+                              child: Text(
+                                "Upload\nVideos",
+                                style: GoogleFonts.kadwa(
+                                    height: 1.2,
+                                    fontSize: F18(),
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                     Video(image: 'assets/images/sample_thumb.jpg'),
                     Video(image: 'assets/images/sample_thumb.jpg'),
                     Video(image: 'assets/images/sample_thumb.jpg'),
@@ -119,11 +263,10 @@ class _DashboardStateView extends State<DashboardView>
                 children: [
                   Container(
                       padding: EdgeInsets.symmetric(horizontal: 20.sp),
-                      margin: EdgeInsets.only(top: 10),
                       child: Text(
                         'Learn from the Videos',
                         style: GoogleFonts.kadwa(
-                            fontWeight: FontWeight.w700, fontSize: 18.sp),
+                            fontWeight: FontWeight.w700, fontSize: F20()),
                       )),
                 ],
               ),
@@ -156,24 +299,24 @@ class _DashboardStateView extends State<DashboardView>
                               BorderSide(width: 3, color: Color(0xFFFEBA0F)))),
                   // ignore: prefer_const_literals_to_create_immutables
                   tabs: [
-                    const Tab(
+                    Tab(
                       child: Text(
                         "Beginner",
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w700),
+                            fontSize: F18(), fontWeight: FontWeight.w700),
                       ),
                     ),
-                    const Tab(
+                    Tab(
                       child: Text("Professional",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: F18(),
                             fontWeight: FontWeight.w700,
                           )),
                     ),
-                    const Tab(
+                    Tab(
                       child: Text("Expert",
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: F18(),
                             fontWeight: FontWeight.w700,
                           )),
                     )
@@ -237,10 +380,10 @@ class _DashboardStateView extends State<DashboardView>
                           style: TextStyle(
                               fontWeight: FontWeight.w700, fontSize: 18.sp),
                         )),
-                    const Text(
+                    Text(
                       'View all >',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: F18(),
                           color: Color(0xFF767676),
                           fontWeight: FontWeight.w400),
                     )
@@ -280,12 +423,12 @@ class _DashboardStateView extends State<DashboardView>
                         child: Text(
                           'Services and News',
                           style: TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 18.sp),
+                              fontWeight: FontWeight.w700, fontSize: 12.sp),
                         )),
-                    const Text(
+                    Text(
                       'View all >',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: F18(),
                           color: Color(0xFF767676),
                           fontWeight: FontWeight.w400),
                     )

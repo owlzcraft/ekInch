@@ -1,3 +1,5 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:country_code_picker/country_code_picker.dart';
@@ -36,114 +38,6 @@ class _MobileViewState extends State<MobileView> {
   PhoneNumber number = PhoneNumber(isoCode: 'IN');
   @override
   Widget build(BuildContext context) {
-//yamini
-    // return Scaffold(
-    //     appBar: AppBar(
-    //       backgroundColor: Colors.white.withOpacity(0.0),
-    //       elevation: 0.0,
-    //       automaticallyImplyLeading: false,
-    //     ),
-    //     body: SingleChildScrollView(
-    //       child: Padding(
-    //         padding: const EdgeInsets.all(20.0),
-    //         child: Column(
-    //           mainAxisAlignment: MainAxisAlignment.start,
-    //           crossAxisAlignment: CrossAxisAlignment.start,
-    //           children: [
-    //             const Text(
-    //               "Welcome to EkInch",
-    //               style: TextStyle(
-    //                   fontWeight: FontWeight.w700,
-    //                   fontSize: 30,
-    //                   color: Color(0xFF525252)),
-    //             ),
-    //             const SizedBox(
-    //               height: 15,
-    //             ),
-    //             const Text(
-    //               "Enter your mobile number, We will \nsend you confirmation code",
-    //               style: TextStyle(
-    //                   fontWeight: FontWeight.normal,
-    //                   fontSize: 16,
-    //                   color: Color(0xFF525252)),
-    //             ),
-    //             const SizedBox(
-    //               height: 19,
-    //             ),
-    //             MobileTextField(numberController),
-    //             const SizedBox(
-    //               height: 15,
-    //             ),
-    //             Row(
-    //               children: [
-    //                 GestureDetector(
-    //                   onTap: () {
-    //                     setState(() {
-    //                       checkButton();
-    //                     });
-    //                   },
-    //                   child: Container(
-    //                       child: (checked)
-    //                           ? Icon(
-    //                               Icons.check_box,
-    //                               color: Color(0xFFFEBA0F),
-    //                               size: 16,
-    //                             )
-    //                           : Container(),
-    //                       width: 20,
-    //                       height: 20,
-    //                       decoration: BoxDecoration(
-    //                         border: Border.all(
-    //                             style: BorderStyle.solid,
-    //                             color:
-    //                                 (checked) ? Color(0xFF808080) : Colors.grey,
-    //                             width: 2),
-    //                       )),
-    //                 ),
-    //                 SizedBox(
-    //                   height: 10,
-    //                 ),
-    //                 Text(
-    //                   ' I agree to the Terms & Conditions',
-    //                   style: TextStyle(
-    //                       fontSize: 18,
-    //                       color: Color(0xFF787878),
-    //                       fontWeight: FontWeight.w400),
-    //                 )
-    //               ],
-    //             ),
-    //             SizedBox(
-    //               height: 35,
-    //             ),
-    //             GFButton(
-    //               onPressed: () {
-    //                 (!checked)
-    //                     ? createSnackBar(
-    //                         "Please check the aggrement checkbox", context)
-    //                     : (numberController.text.length != 10)
-    //                         ? createSnackBar(
-    //                             "Please enter a valid mobile number", context)
-    //                         : Get.to(OtpView(
-    //                             mobile_number: numberController.text,
-    //                           ));
-    //               },
-    //               color: KColors.orange,
-    //               fullWidthButton: true,
-    //               size: 50.2,
-    //               text: "Continue",
-    //               textStyle: const TextStyle(
-    //                   color: Colors.black,
-    //                   fontWeight: FontWeight.bold,
-    //                   fontSize: 18.0,
-    //                   fontFamily: 'Kadwa'),
-    //               // shape: GFButtonShape.standard,
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //     ));
-
-    //old
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white.withOpacity(0.0),
@@ -166,26 +60,17 @@ class _MobileViewState extends State<MobileView> {
                 "Welcome to EkInch",
                 style: GoogleFonts.kadwa(
                     fontWeight: FontWeight.w700,
-                    fontSize: 30,
+                    fontSize: F32(),
                     color: const Color(0xFF525252)),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 15.0),
                 child: Text(
-                  "Enter your mobile number, We will ",
+                  "Enter your mobile number, We will\nsend you confirmation code",
                   style: GoogleFonts.kadwa(
                       fontWeight: FontWeight.normal,
-                      fontSize: 18,
-                      color: const Color(0xFF525252)),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: Text(
-                  "send you confirmation code",
-                  style: GoogleFonts.kadwa(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 18,
+                      fontSize: F22(),
+                      height: 1.7,
                       color: const Color(0xFF525252)),
                 ),
               ),
@@ -197,14 +82,14 @@ class _MobileViewState extends State<MobileView> {
                     borderRadius: const BorderRadius.all(Radius.circular(6))),
                 child: InternationalPhoneNumberInput(
                   textFieldController: signInController.mobileNumber,
-                  // keyboardAction: TextInputAction.go,
                   autoFocus: true,
                   spaceBetweenSelectorAndTextField: 0,
                   initialValue: number,
                   maxLength: 10,
                   hintText: "Enter your mobile",
                   onInputChanged: (PhoneNumber number) {
-                    print("********************************************$number");
+                    print(
+                        "********************************************$number");
                     // signInController.mobileNumber.text = number ;
                   },
                   onInputValidated: (bool value) {
@@ -228,29 +113,46 @@ class _MobileViewState extends State<MobileView> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Center(child: Text("OR",style: GoogleFonts.kadwa(fontSize: 14,fontWeight: FontWeight.w400,color: KColors.textGrey),)),
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                    child: Text(
+                  "OR",
+                  style: GoogleFonts.kadwa(
+                      fontSize: F18(),
+                      fontWeight: FontWeight.w400,
+                      color: KColors.textGrey),
+                )),
               ),
               Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 191, 189, 189)),
-                    shape: BoxShape.rectangle,
-                    borderRadius: const BorderRadius.all(Radius.circular(6))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset("assets/images/whatsapp.png",scale: 1.5,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical:8.0),
-                      child: Text("Signup with Whatsapp",style: GoogleFonts.kadwa(fontSize: 18,fontWeight: FontWeight.w400,color: KColors.textGrey),),
-                    )
-                  ],
-                )
-              ),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: const Color.fromARGB(255, 191, 189, 189)),
+                      shape: BoxShape.rectangle,
+                      borderRadius: const BorderRadius.all(Radius.circular(6))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset(
+                          "assets/images/whatsapp.png",
+                          scale: 1.8,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(
+                            "Signup with Whatsapp",
+                            style: GoogleFonts.kadwa(
+                                fontSize: F20(),
+                                fontWeight: FontWeight.w400,
+                                color: KColors.textGrey),
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                padding: const EdgeInsets.symmetric(vertical: 15.0),
                 child: Row(
                   children: [
                     GestureDetector(
@@ -260,10 +162,11 @@ class _MobileViewState extends State<MobileView> {
                         });
                       },
                       child: Container(
+                          // ignore: sort_child_properties_last
                           child: (checked)
-                              ? const Icon(
+                              ? Icon(
                                   Icons.check_box,
-                                  color: Color(0xFFFEBA0F),
+                                  color: const Color(0xFFFEBA0F),
                                   size: 16,
                                 )
                               : Container(),
@@ -283,7 +186,7 @@ class _MobileViewState extends State<MobileView> {
                       child: Text(
                         ' I agree to the Terms & Conditions',
                         style: GoogleFonts.kadwa(
-                            fontSize: 18,
+                            fontSize: F20(),
                             color: const Color(0xFF787878),
                             fontWeight: FontWeight.w400),
                       ),
@@ -292,7 +195,7 @@ class _MobileViewState extends State<MobileView> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 15.0),
                 child: GFButton(
                   onPressed: () {
                     (!checked)
@@ -306,7 +209,7 @@ class _MobileViewState extends State<MobileView> {
                   textStyle: GoogleFonts.kadwa(
                     color: Colors.black,
                     fontWeight: FontWeight.w700,
-                    fontSize: 24.0,
+                    fontSize: F24(),
                   ),
                   // shape: GFButtonShape.standard,
                 ),

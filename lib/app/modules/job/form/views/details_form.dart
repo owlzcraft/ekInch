@@ -1,3 +1,6 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/job/form/views/widgets/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -15,30 +18,102 @@ import 'package:ekinch/app/modules/notication/view/notification_view.dart';
 import 'package:ekinch/app/modules/referNearn/views/refer_nearn_view.dart';
 import 'package:ekinch/app/modules/settings/views/settings_view.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../utils/localStorage.dart';
 import '../../../dashboard/widgets/navigation.dart';
 
 class DetailsForm extends StatelessWidget {
   DetailsForm({super.key});
   JobController controller = Get.put(JobController());
+  final List<String> Gender = [
+    "Male",
+    "Female",
+  ];
+  final List<String> month = [
+    'January',
+    'February,"March',
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  final List<String> days = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31"
+  ];
+  final List<String> monthNumber = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+  ];
+  List<String> years = List.generate(101, (index) => (2023 - index).toString());
+
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
+        key: scaffoldKey,
         drawer: const SettingsView(),
-                      bottomNavigationBar: BottomTabView(2),
+        bottomNavigationBar: BottomTabView(2),
 
         // bottomNavigationBar: BottomBar(),
-        appBar: DynamicAppBar("Sanjay Singh", "Hello,", false,scaffoldKey),
+        appBar: DynamicAppBar(
+            "${LocalStorage.shared.getUserData()?.userData?.firstName}",
+            "Hello,",
+            false,
+            scaffoldKey),
         body: SingleChildScrollView(
           child: Container(
             width: Get.width,
             color: Colors.white,
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: Column(
@@ -46,80 +121,71 @@ class DetailsForm extends StatelessWidget {
                   children: [
                     Text(
                       "Please fill all Details",
-                      style: GoogleFonts.kadwa(fontWeight: FontWeight.w700),
+                      style: GoogleFonts.kadwa(
+                          fontWeight: FontWeight.w700, fontSize: F18()),
                     ),
                     Text("Your profile help us to find best job for you",
                         style: GoogleFonts.kadwa(
                             fontWeight: FontWeight.w400,
-                            color: Color(0xFF767676),
-                            fontSize: 12)),
+                            color: const Color(0xFF767676),
+                            fontSize: F16())),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Container(
-                        width: Get.width,
-                        padding: EdgeInsets.symmetric(vertical: 5),
-                        decoration: BoxDecoration(
+                      child: DropdownButtonFormField2(
+                        decoration: InputDecoration(
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child:
+                                Image.asset('assets/images/name_text_icon.png'),
+                          ),
+                          isDense: true,
+                          contentPadding: EdgeInsets.zero,
+                          border: OutlineInputBorder(
+                            borderSide:
+                                const BorderSide(color: Color(0xFFCDCDCD)),
                             borderRadius: BorderRadius.circular(5),
-                            border: Border.all(color: Color(0xFFCDCDCD))),
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            hint: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/name_text_icon.png',
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Text(
-                                      "Select Gender",
-                                      style: GoogleFonts.kadwa(
-                                          fontSize: getFontSize(22),
-                                          color: Color(0xFF636363)),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            icon: Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Color(0xFF999999),
-                              ),
-                            ),
-                            isExpanded: true,
-                            focusColor: Color(0xFFFEBA0F),
-                            items: ["Male", "Female", "Others"]
-                                .map((String value) {
-                              return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10.0),
-                                      child: Text(
-                                        value,
-                                        style: GoogleFonts.kadwa(
-                                            fontSize: getFontSize(22),
-                                            color: Color(0xFF636363)),
-                                      ),
-                                    ),
-                                  ));
-                            }).toList(),
-                            onChanged: (_) {},
                           ),
                         ),
+                        isExpanded: false,
+                        hint: Text(
+                          "Select Gender",
+                          style: GoogleFonts.kadwa(
+                              fontSize: getFontSize(22),
+                              color: const Color(0xFF636363)),
+                        ),
+                        icon: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.keyboard_arrow_down,
+                            color: Colors.black45,
+                          ),
+                        ),
+                        iconSize: 30,
+                        buttonHeight: 60,
+                        dropdownDecoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        items: Gender.map((item) => DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: GoogleFonts.kadwa(
+                                    fontSize: getFontSize(22),
+                                    color: const Color(0xFF636363)),
+                              ),
+                            )).toList(),
+                        validator: (value) {
+                          if (value == null) {
+                            return 'Please Select Profession';
+                          }
+                        },
+                        onChanged: (value) {},
                       ),
                     ),
                     Text(
                       "Qualification ?*",
-                      style: GoogleFonts.kadwa(fontWeight: FontWeight.w700),
+                      style: GoogleFonts.kadwa(
+                          fontWeight: FontWeight.w700, fontSize: F18()),
                     ),
                     Obx(() {
                       return Row(children: [
@@ -136,16 +202,16 @@ class DetailsForm extends StatelessWidget {
                                     right: 10, bottom: 10),
                                 child: Container(
                                   width: double.infinity,
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 30),
                                   decoration: BoxDecoration(
                                       border:
-                                          Border.all(color: Color(0xFFCDCDCD)),
+                                          Border.all(color: const Color(0xFFCDCDCD)),
                                       color: (controller
                                                   .activeQualification.value ==
                                               0)
                                           ? Colors.black
-                                          : Color(0xFFF8F8F8),
+                                          : const Color(0xFFF8F8F8),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Column(
                                     children: [
@@ -158,7 +224,7 @@ class DetailsForm extends StatelessWidget {
                                                         .value ==
                                                     0)
                                                 ? Colors.white
-                                                : Color(0xFF767676),
+                                                : const Color(0xFF767676),
                                             fontWeight: FontWeight.w400),
                                       ),
                                       Text(
@@ -170,7 +236,7 @@ class DetailsForm extends StatelessWidget {
                                                         .value ==
                                                     0)
                                                 ? Colors.white
-                                                : Color(0xFF767676),
+                                                : const Color(0xFF767676),
                                             fontWeight: FontWeight.w400),
                                       ),
                                     ],
@@ -192,16 +258,16 @@ class DetailsForm extends StatelessWidget {
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Container(
                                   width: double.infinity,
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       vertical: 20, horizontal: 30),
                                   decoration: BoxDecoration(
                                       border:
-                                          Border.all(color: Color(0xFFCDCDCD)),
+                                          Border.all(color: const Color(0xFFCDCDCD)),
                                       color: (controller
                                                   .activeQualification.value ==
                                               1)
                                           ? Colors.black
-                                          : Color(0xFFF8F8F8),
+                                          : const Color(0xFFF8F8F8),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Center(
                                     child: Text(
@@ -212,7 +278,7 @@ class DetailsForm extends StatelessWidget {
                                                       .value ==
                                                   1)
                                               ? Colors.white
-                                              : Color(0xFF767676),
+                                              : const Color(0xFF767676),
                                           fontWeight: FontWeight.w400),
                                     ),
                                   ),
@@ -237,16 +303,16 @@ class DetailsForm extends StatelessWidget {
                                 padding: const EdgeInsets.only(right: 10.0),
                                 child: Container(
                                   width: double.infinity,
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 30),
                                   decoration: BoxDecoration(
                                       border:
-                                          Border.all(color: Color(0xFFCDCDCD)),
+                                          Border.all(color: const Color(0xFFCDCDCD)),
                                       color: (controller
                                                   .activeQualification.value ==
                                               2)
                                           ? Colors.black
-                                          : Color(0xFFF8F8F8),
+                                          : const Color(0xFFF8F8F8),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Column(
                                     children: [
@@ -259,7 +325,7 @@ class DetailsForm extends StatelessWidget {
                                                         .value ==
                                                     2)
                                                 ? Colors.white
-                                                : Color(0xFF767676),
+                                                : const Color(0xFF767676),
                                             fontWeight: FontWeight.w400),
                                       ),
                                       Text(
@@ -271,7 +337,7 @@ class DetailsForm extends StatelessWidget {
                                                         .value ==
                                                     2)
                                                 ? Colors.white
-                                                : Color(0xFF767676),
+                                                : const Color(0xFF767676),
                                             fontWeight: FontWeight.w400),
                                       ),
                                     ],
@@ -291,16 +357,16 @@ class DetailsForm extends StatelessWidget {
                               curve: Curves.bounceIn,
                               child: Container(
                                 width: double.infinity,
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 30),
                                 decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xFFCDCDCD)),
+                                        Border.all(color: const Color(0xFFCDCDCD)),
                                     color:
                                         (controller.activeQualification.value ==
                                                 3)
                                             ? Colors.black
-                                            : Color(0xFFF8F8F8),
+                                            : const Color(0xFFF8F8F8),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Column(
                                   children: [
@@ -312,7 +378,7 @@ class DetailsForm extends StatelessWidget {
                                                       .value ==
                                                   3)
                                               ? Colors.white
-                                              : Color(0xFF767676),
+                                              : const Color(0xFF767676),
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
@@ -323,7 +389,7 @@ class DetailsForm extends StatelessWidget {
                                                       .value ==
                                                   3)
                                               ? Colors.white
-                                              : Color(0xFF767676),
+                                              : const Color(0xFF767676),
                                           fontWeight: FontWeight.w400),
                                     ),
                                   ],
@@ -335,10 +401,11 @@ class DetailsForm extends StatelessWidget {
                       ]);
                     }),
                     Padding(
-                      padding: EdgeInsets.only(top: 15, bottom: 5),
+                      padding: const EdgeInsets.only(top: 15, bottom: 5),
                       child: Text(
-                        "My School Medium Was ?*",
-                        style: GoogleFonts.kadwa(fontWeight: FontWeight.w700),
+                        "My School Board Was ?*",
+                        style: GoogleFonts.kadwa(
+                            fontWeight: FontWeight.w700, fontSize: F18()),
                       ),
                     ),
                     Obx(() {
@@ -352,18 +419,18 @@ class DetailsForm extends StatelessWidget {
                             },
                             child: Padding(
                               padding: (index == 0 || index == 1)
-                                  ? EdgeInsets.only(right: 10)
-                                  : EdgeInsets.only(),
+                                  ? const EdgeInsets.only(right: 10)
+                                  : const EdgeInsets.only(),
                               child: Container(
                                 width: (Get.width / 3) - 20,
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     vertical: 20, horizontal: 10),
                                 decoration: BoxDecoration(
                                     border:
-                                        Border.all(color: Color(0xFFCDCDCD)),
+                                        Border.all(color: const Color(0xFFCDCDCD)),
                                     color: (controller.activeMedium == index)
                                         ? Colors.black
-                                        : Color(0xFFF8F8F8),
+                                        : const Color(0xFFF8F8F8),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Center(
                                     child: Text(
@@ -372,7 +439,7 @@ class DetailsForm extends StatelessWidget {
                                       fontSize: 16,
                                       color: (controller.activeMedium == index)
                                           ? Colors.white
-                                          : Color(0xFF767676),
+                                          : const Color(0xFF767676),
                                       fontWeight: FontWeight.w400),
                                 )),
                               ),
@@ -382,10 +449,11 @@ class DetailsForm extends StatelessWidget {
                       );
                     }),
                     Padding(
-                      padding: EdgeInsets.only(top: 15, bottom: 5),
+                      padding: const EdgeInsets.only(top: 15, bottom: 5),
                       child: Text(
                         "How i Speak English ?*",
-                        style: GoogleFonts.kadwa(fontWeight: FontWeight.w700),
+                        style: GoogleFonts.kadwa(
+                            fontWeight: FontWeight.w700, fontSize: F18()),
                       ),
                     ),
                     Obx(() {
@@ -400,17 +468,17 @@ class DetailsForm extends StatelessWidget {
                               },
                               child: Padding(
                                 padding: (index == 0 || index == 1)
-                                    ? EdgeInsets.only(right: 10)
-                                    : EdgeInsets.only(),
+                                    ? const EdgeInsets.only(right: 10)
+                                    : const EdgeInsets.only(),
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       vertical: 20, horizontal: 10),
                                   decoration: BoxDecoration(
                                       border:
-                                          Border.all(color: Color(0xFFCDCDCD)),
+                                          Border.all(color: const Color(0xFFCDCDCD)),
                                       color: (controller.activeFluency == index)
                                           ? Colors.black
-                                          : Color(0xFFF8F8F8),
+                                          : const Color(0xFFF8F8F8),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Column(children: [
                                     Text(
@@ -420,7 +488,7 @@ class DetailsForm extends StatelessWidget {
                                           color: (controller.activeFluency ==
                                                   index)
                                               ? Colors.white
-                                              : Color(0xFF767676),
+                                              : const Color(0xFF767676),
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
@@ -430,7 +498,7 @@ class DetailsForm extends StatelessWidget {
                                           color: (controller.activeFluency ==
                                                   index)
                                               ? Colors.white
-                                              : Color(0xFF767676),
+                                              : const Color(0xFF767676),
                                           fontWeight: FontWeight.w400),
                                     ),
                                   ]),
@@ -442,10 +510,11 @@ class DetailsForm extends StatelessWidget {
                       );
                     }),
                     Padding(
-                      padding: EdgeInsets.only(top: 15, bottom: 5),
+                      padding: const EdgeInsets.only(top: 15, bottom: 5),
                       child: Text(
                         "I’m Fresher/Experience*",
-                        style: GoogleFonts.kadwa(fontWeight: FontWeight.w700),
+                        style: GoogleFonts.kadwa(
+                            fontWeight: FontWeight.w700, fontSize: F18()),
                       ),
                     ),
                     Obx(() {
@@ -460,18 +529,18 @@ class DetailsForm extends StatelessWidget {
                               },
                               child: Padding(
                                 padding: (index == 0)
-                                    ? EdgeInsets.only(right: 10)
-                                    : EdgeInsets.only(),
+                                    ? const EdgeInsets.only(right: 10)
+                                    : const EdgeInsets.only(),
                                 child: Container(
                                   // width: (Get.width / 2) - 30,
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       vertical: 20, horizontal: 10),
                                   decoration: BoxDecoration(
                                       border:
-                                          Border.all(color: Color(0xFFCDCDCD)),
+                                          Border.all(color: const Color(0xFFCDCDCD)),
                                       color: (controller.activeExp == index)
                                           ? Colors.black
-                                          : Color(0xFFF8F8F8),
+                                          : const Color(0xFFF8F8F8),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Center(
                                     child: Text(
@@ -480,7 +549,7 @@ class DetailsForm extends StatelessWidget {
                                           fontSize: 14,
                                           color: (controller.activeExp == index)
                                               ? Colors.white
-                                              : Color(0xFF767676),
+                                              : const Color(0xFF767676),
                                           fontWeight: FontWeight.w400),
                                     ),
                                   ),
@@ -492,164 +561,23 @@ class DetailsForm extends StatelessWidget {
                       );
                     }),
                     Padding(
-                      padding: EdgeInsets.only(top: 15, bottom: 5),
+                      padding: const EdgeInsets.only(top: 15, bottom: 5),
                       child: Text(
-                        "My Age is*",
-                        style: GoogleFonts.kadwa(fontWeight: FontWeight.w700),
+                        "My Date Of Birth*",
+                        style: GoogleFonts.kadwa(
+                            fontWeight: FontWeight.w700, fontSize: F18()),
                       ),
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(color: Color(0xFFCDCDCD))),
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton<String>(
-                                  hint: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Text(
-                                      "Day",
-                                      style: GoogleFonts.kadwa(
-                                          fontSize: getFontSize(22),
-                                          color: Color(0xFF636363)),
-                                    ),
-                                  ),
-                                  icon: Padding(
-                                    padding: const EdgeInsets.only(right: 10),
-                                    child: Icon(
-                                      Icons.keyboard_arrow_down,
-                                      color: Color(0xFF999999),
-                                    ),
-                                  ),
-                                  isExpanded: true,
-                                  focusColor: Color(0xFFFEBA0F),
-                                  items: controller.days.map((String value) {
-                                    return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10.0),
-                                          child: Text(
-                                            value,
-                                            style: GoogleFonts.kadwa(
-                                                fontSize: getFontSize(22),
-                                                color: Color(0xFF636363)),
-                                          ),
-                                        ));
-                                  }).toList(),
-                                  onChanged: (_) {},
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 5,
-                            ),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(color: Color(0xFFCDCDCD))),
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                hint: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child: Text(
-                                    "Month",
-                                    style: GoogleFonts.kadwa(
-                                        fontSize: getFontSize(22),
-                                        color: Color(0xFF636363)),
-                                  ),
-                                ),
-                                icon: Padding(
-                                  padding: const EdgeInsets.only(right: 10),
-                                  child: Icon(
-                                    Icons.keyboard_arrow_down,
-                                    color: Color(0xFF999999),
-                                  ),
-                                ),
-                                isExpanded: true,
-                                focusColor: Color(0xFFFEBA0F),
-                                items: controller.month.map((String value) {
-                                  return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10.0),
-                                        child: Text(
-                                          value,
-                                          style: GoogleFonts.kadwa(
-                                              fontSize: getFontSize(22),
-                                              color: Color(0xFF636363)),
-                                        ),
-                                      ));
-                                }).toList(),
-                                onChanged: (_) {},
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(color: Color(0xFFCDCDCD))),
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton<String>(
-                                  hint: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Text(
-                                      "Year",
-                                      style: GoogleFonts.kadwa(
-                                          fontSize: getFontSize(22),
-                                          color: Color(0xFF636363)),
-                                    ),
-                                  ),
-                                  icon: Padding(
-                                    padding: const EdgeInsets.only(right: 10),
-                                    child: Icon(
-                                      Icons.keyboard_arrow_down,
-                                      color: Color(0xFF999999),
-                                    ),
-                                  ),
-                                  isExpanded: true,
-                                  focusColor: Color(0xFFFEBA0F),
-                                  items: controller.years.map((String value) {
-                                    return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10.0),
-                                          child: Text(
-                                            value,
-                                            style: GoogleFonts.kadwa(
-                                                fontSize: getFontSize(22),
-                                                color: Color(0xFF636363)),
-                                          ),
-                                        ));
-                                  }).toList(),
-                                  onChanged: (_) {},
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        CustomDropDown(days, "Day", "Day", 1, 4),
+                        CustomDropDown(monthNumber, "Month", "Month", 1, 4),
+                        CustomDropDown(years, "Years", "Year", 1, 4),
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      padding:  EdgeInsets.symmetric(vertical: 40.sp),
                       child: DynamicButton("Submit", true, () {
                         Get.to(formFillView());
                       }),

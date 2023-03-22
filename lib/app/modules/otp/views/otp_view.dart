@@ -1,3 +1,4 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -14,8 +15,8 @@ import '../controllers/otp_controller.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpView extends GetView<OtpController> {
-  OtpController otpController = Get.put(OtpController());
   OtpView();
+  OtpController otpController = Get.put(OtpController());
 
   final _globalKey = GlobalKey<FormState>();
   @override
@@ -45,8 +46,8 @@ class OtpView extends GetView<OtpController> {
               }),
               child: Text(
                 'Change Number',
-                style:
-                    GoogleFonts.poppins(color: Color(0xFFE55425), fontSize: 18),
+                style: GoogleFonts.poppins(
+                    color: Color(0xFFE55425), fontSize: F20()),
               ),
             ),
           ),
@@ -63,7 +64,7 @@ class OtpView extends GetView<OtpController> {
                 "Verify Mobile Number",
                 style: GoogleFonts.kadwa(
                     fontWeight: FontWeight.w700,
-                    fontSize: 30,
+                    fontSize: F32(),
                     color: Color(0xFF525252)),
               ),
               SizedBox(
@@ -72,7 +73,7 @@ class OtpView extends GetView<OtpController> {
               Text(
                 "Enter OTP sent to your mobile number \n ${otpController.signInController.mobileNumber.text}",
                 style: GoogleFonts.kadwa(
-                    fontSize: 18, color: Color(0xFF767676), height: 1.4),
+                    fontSize: F20(), color: Color(0xFF767676), height: 1.4),
               ),
 
               Padding(
@@ -80,7 +81,7 @@ class OtpView extends GetView<OtpController> {
                 child: Form(
                   key: _globalKey,
                   child: PinCodeTextField(
-enablePinAutofill: true,
+                    enablePinAutofill: true,
                     autoDismissKeyboard: true,
                     keyboardType: TextInputType.number,
                     textStyle: TextStyle(fontSize: 30),
@@ -120,20 +121,21 @@ enablePinAutofill: true,
                     style: GoogleFonts.kadwa(
                         color: Color(0xFF898989),
                         fontWeight: FontWeight.w500,
-                        fontSize: 20),
+                        fontSize: F22()),
                   ),
                   Obx((() => Center(
                         child: controller.time.value == '00:01'
                             ? InkWell(
                                 onTap: () {
                                   otpController.resendOtp();
+                                  controller.startTimer(60);
                                 },
                                 child: Text(
                                   "Send",
                                   style: GoogleFonts.kadwa(
                                       color: Color(0xFFFEBA0F),
                                       fontWeight: FontWeight.w500,
-                                      fontSize: 20),
+                                      fontSize: F22()),
                                 ),
                               )
                             : Text(
@@ -160,7 +162,7 @@ enablePinAutofill: true,
                 textStyle: GoogleFonts.kadwa(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: 18.0),
+                    fontSize: F20()),
                 // shape: GFButtonShape.standard,
               ),
               // DynamicButton("Verify", true, () {

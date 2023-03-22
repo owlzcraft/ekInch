@@ -82,9 +82,10 @@ class ProfileController extends GetxController {
                 success: (value) {
                   if (value!.status == 200) {
                     successSnackBar("Profile Pic Uploaded");
-                    Get.offAndToNamed(Routes.PROFILE);
+
                     LocalStorage.shared.savephoto(value.userPhoto as String);
                     print("${LocalStorage.shared.getProfile()}");
+                    Get.offAllNamed(Routes.PROFILE);
                   } else {
                     errorSnackbar("Image not Found");
                   }
@@ -132,8 +133,7 @@ class ProfileController extends GetxController {
         loadingWidget: const LoadingIndicator());
   }
 
-
- Future<void> updatePhoneNumber() async {
+  Future<void> updatePhoneNumber() async {
     print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(

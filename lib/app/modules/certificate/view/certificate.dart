@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../widgets/math_utils.dart';
 import '../../../custom_widget/color.dart';
+import '../../../custom_widget/font_size.dart';
 import '../../../generated/assets.dart';
 import '../../dashboard/widgets/work.widget.dart';
 import '../../notication/view/notification_view.dart';
@@ -103,7 +104,7 @@ class CertificateView extends StatelessWidget {
                 child: Text(
                   "Certificate Name",
                   style: GoogleFonts.poppins(
-                      fontSize: 30, fontWeight: FontWeight.w700),
+                      fontSize: F30(), fontWeight: FontWeight.w700),
                 ),
               ),
               SizedBox(height:getVerticalSize(15) ),
@@ -111,7 +112,7 @@ class CertificateView extends StatelessWidget {
                 child: Text(
                   "Lorem Ipsum is simply dummy text of the printing \nand type setting industry.",textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
-                      fontSize: 14, fontWeight: FontWeight.w400,color:KColors.textGrey),
+                      fontSize: F14(), fontWeight: FontWeight.w400,color:KColors.textGrey),
                 ),
               ),
               SizedBox(height:getVerticalSize(10) ),
@@ -129,7 +130,7 @@ class CertificateView extends StatelessWidget {
                   textStyle: GoogleFonts.kadwa(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 18.0),
+                      fontSize: F18()),
                   // shape: GFButtonShape.standard,
                              ),
                ),
@@ -150,7 +151,7 @@ class CertificateView extends StatelessWidget {
                      Text(
                       '12 videos',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: F18(),
                           color: Color(0xFF767676),
                           fontWeight: FontWeight.w400),
                     )

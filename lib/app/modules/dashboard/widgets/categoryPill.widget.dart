@@ -1,5 +1,7 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget categoryPill(String title, bool active) {
   return Container(
@@ -12,7 +14,7 @@ Widget categoryPill(String title, bool active) {
     child: Center(
       child: Text(
         title,
-        style: const TextStyle(fontWeight: FontWeight.w400),
+        style: GoogleFonts.kadwa(fontSize: F18(),fontWeight: FontWeight.w400),
       ),
     ),
   );

@@ -1,7 +1,9 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:ekinch/app/modules/mobile/views/mobile_view.dart';
 import 'package:ekinch/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -63,7 +65,7 @@ class _ProfileViewState extends State<ProfileView> {
               title: Text(
                 "Select Profile Pic",
                 style: GoogleFonts.kadwa(
-                    fontSize: 24.0, fontWeight: FontWeight.w700),
+                    fontSize: F24(), fontWeight: FontWeight.w700),
               ),
               content: Container(
                 child: SingleChildScrollView(
@@ -80,7 +82,7 @@ class _ProfileViewState extends State<ProfileView> {
                           children: [
                             Icon(
                               Icons.camera_alt_outlined,
-                              size: 50,
+                              size: 50.sp,
                             ),
                             Text(
                               "Camera",
@@ -96,7 +98,7 @@ class _ProfileViewState extends State<ProfileView> {
                         },
                         child: Column(
                           children: [
-                            Icon(Icons.filter, size: 50),
+                            Icon(Icons.filter, size: 50.sp),
                             Text(
                               "Gallery",
                               style: GoogleFonts.kadwa(
@@ -115,6 +117,7 @@ class _ProfileViewState extends State<ProfileView> {
 
     String? selectedValue;
     return Scaffold(
+      backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -122,23 +125,20 @@ class _ProfileViewState extends State<ProfileView> {
             onTap: () {
               Get.to(DashboardView());
             },
-            child: const Icon(
+            child:  Icon(
               Icons.arrow_back,
               color: Colors.black,
-              size: 30,
+              size: 30.sp,
             ),
           ),
         ),
         bottomNavigationBar: BottomTabView(4),
-        body: Container(
-          color: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(children: [
+        body: SingleChildScrollView(
+          child: 
             Column(
               children: [
                 InkWell(
                   onTap: () {
-                    // controller.pickProfile();
                     showDataAlertProfile();
                   },
                   child: Padding(
@@ -150,28 +150,23 @@ class _ProfileViewState extends State<ProfileView> {
                   "${LocalStorage.shared.getUserData()?.userData?.firstName}",
                   style: TextStyle(
                       color: const Color(0xFF1A1D1E),
-                      fontSize: getFontSize(28),
+                      fontSize: F28(),
                       fontWeight: FontWeight.w400),
                 ),
                 Text(
                   "${LocalStorage.shared.getUserData()?.userData?.profession}",
                   style: TextStyle(
-                      fontSize: getFontSize(20),
+                      fontSize: F18(),
                       color: const Color(0xFF6A6A6A)),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    Assets.verified,
-                    width: getHorizontalSize(114),
-                    height: getVerticalSize(28),
-                  ),
+                Image.asset(
+                  Assets.verified,
+                scale: 3.2,
                 ),
-              ],
-            ),
-            Expanded(
+            Padding(
+              padding: EdgeInsets.symmetric(vertical:8.sp,horizontal: 16.sp),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextFormField(
                     onChanged: (value) {
@@ -200,8 +195,11 @@ class _ProfileViewState extends State<ProfileView> {
                         fontSize: getFontSize(22),
                         color: const Color(0xFF636363)),
                   ),
-                  MobileTextFieldEdit(context, true, controller.mobileNumber,
-                      "Edit", "${LocalStorage.shared.getUserData()?.userId}"),
+                  Padding(
+                    padding:  EdgeInsets.symmetric(vertical:12.sp),
+                    child: MobileTextFieldEdit(context, true, controller.mobileNumber,
+                        "Edit", "${LocalStorage.shared.getUserData()?.userId}"),
+                  ),
                   TextField(
                     onChanged: (value) {
                       controller.address.text = value as String;
@@ -214,7 +212,7 @@ class _ProfileViewState extends State<ProfileView> {
                               null
                           ? "Enter Your Address"
                           : "${LocalStorage.shared.getUserData()?.userData?.address}",
-                      contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                      contentPadding: EdgeInsets.symmetric(vertical: 8.sp),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
                           borderSide:
@@ -234,58 +232,61 @@ class _ProfileViewState extends State<ProfileView> {
                         fontSize: getFontSize(22),
                         color: const Color(0xFF636363)),
                   ),
-                  DropdownButtonFormField2(
-                    decoration: InputDecoration(
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Image.asset(
-                            'assets/images/profession_text_icon.png'),
+                  Padding(
+                    padding:  EdgeInsets.symmetric(vertical:12.sp),
+                    child: DropdownButtonFormField2(
+                      decoration: InputDecoration(
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Image.asset(
+                              'assets/images/profession_text_icon.png'),
+                        ),
+                        isDense: true,
+                        contentPadding: EdgeInsets.zero,
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Color(0xFFCDCDCD)),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                       ),
-                      isDense: true,
-                      contentPadding: EdgeInsets.zero,
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Color(0xFFCDCDCD)),
+                      isExpanded: false,
+                      hint: Text(
+                        "${LocalStorage.shared.getUserData()!.userData!.profession}",
+                        style: GoogleFonts.kadwa(
+                            fontSize: getFontSize(22),
+                            color: const Color(0xFF636363)),
+                      ),
+                      icon: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.black45,
+                        ),
+                      ),
+                      iconSize: 30,
+                      buttonHeight: 60,
+                      dropdownDecoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                       ),
+                      items: professionList
+                          .map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: GoogleFonts.kadwa(
+                                      fontSize: getFontSize(22),
+                                      color: const Color(0xFF636363)),
+                                ),
+                              ))
+                          .toList(),
+                      validator: (value) {
+                        if (value == null) {
+                          return 'Please Select Profession';
+                        }
+                      },
+                      onChanged: (value) {
+                        controller.profession.text = value as String;
+                      },
                     ),
-                    isExpanded: false,
-                    hint: Text(
-                      "${LocalStorage.shared.getUserData()!.userData!.profession}",
-                      style: GoogleFonts.kadwa(
-                          fontSize: getFontSize(22),
-                          color: const Color(0xFF636363)),
-                    ),
-                    icon: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.keyboard_arrow_down,
-                        color: Colors.black45,
-                      ),
-                    ),
-                    iconSize: 30,
-                    buttonHeight: 60,
-                    dropdownDecoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    items: professionList
-                        .map((item) => DropdownMenuItem<String>(
-                              value: item,
-                              child: Text(
-                                item,
-                                style: GoogleFonts.kadwa(
-                                    fontSize: getFontSize(22),
-                                    color: const Color(0xFF636363)),
-                              ),
-                            ))
-                        .toList(),
-                    validator: (value) {
-                      if (value == null) {
-                        return 'Please Select Profession';
-                      }
-                    },
-                    onChanged: (value) {
-                      controller.profession.text = value as String;
-                    },
                   ),
                   DropdownButtonFormField2(
                     decoration: InputDecoration(
@@ -351,9 +352,12 @@ class _ProfileViewState extends State<ProfileView> {
                       controller.experience.text = value as String;
                     },
                   ),
-                  DynamicButton("Update", true, () {
-                    controller.updateProfile();
-                  }),
+                  Padding(
+                    padding:  EdgeInsets.symmetric(vertical:12.sp),
+                    child: DynamicButton("Update", true, () {
+                      controller.updateProfile();
+                    }),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: InkWell(
@@ -380,7 +384,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ],
               ),
             )
-          ]),
-        ));
+          
+        ])));
   }
 }

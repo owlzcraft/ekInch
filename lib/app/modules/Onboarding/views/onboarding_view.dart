@@ -8,11 +8,14 @@ import 'package:ekinch/app/routes/app_pages.dart';
 import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
   OnboardingController controller = Get.put(OnboardingController());
   final pageController = PageController();
+
+  OnboardingView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +32,7 @@ class OnboardingView extends GetView<OnboardingController> {
                   Get.toNamed(Routes.MOBILE);
                 },
                 child: Text('Skip >>',
-                    style: TextStyle(fontSize: 18, color: Color(0xFFE55425))),
+                    style: GoogleFonts.kadwa(fontSize: 18, color: Color(0xFFE55425))),
               )),
         ],
         backgroundColor: Colors.white,

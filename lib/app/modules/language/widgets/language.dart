@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../custom_widget/font_size.dart';
 
 class LangCom extends StatelessWidget {
   final String active_img;
@@ -35,11 +39,11 @@ class LangCom extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                padding: EdgeInsets.symmetric(vertical: 10.sp, horizontal: 5.sp),
                 child: Text(textT,
-                    style: TextStyle(
-                        fontSize: 12,
-                         fontFamily: "Kadwa",
+                    style: GoogleFonts.kadwa(
+                        fontSize: F12(),
+                       
                         color: (active == 1) ? Colors.white : Color(0xFF525252))),
               )
             ],
@@ -56,8 +60,8 @@ class LangCom extends StatelessWidget {
                 ),
                 Center(
                   child: Text(textB,
-                      style: TextStyle(
-                          fontSize: 22, fontFamily: "Kadwa",
+                      style: GoogleFonts.kadwa(
+                          fontSize: F22(), 
                           color: (active == 1)
                               ? Colors.white
                               : Color.fromARGB(255, 116, 115, 115))),

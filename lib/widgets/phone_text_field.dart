@@ -5,9 +5,12 @@ import 'package:ekinch/app/modules/otp/views/otp_view.dart';
 import 'package:ekinch/app/utils/hide_keyboard.dart';
 import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:ekinch/widgets/math_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../app/custom_widget/font_size.dart';
 
 TextFormField MobileTextFieldEdit(BuildContext context, bool static,
     TextEditingController numberController, String editText, String label) {
@@ -16,7 +19,7 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
         context: context,
         builder: (context) {
           return AlertDialog(
-            insetPadding: EdgeInsets.all(10),
+            insetPadding: EdgeInsets.all(8.sp),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(
@@ -27,7 +30,7 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
             title: Text(
               "Update Mobile  No.",
               style: GoogleFonts.kadwa(
-                  fontSize: 24.0, fontWeight: FontWeight.w400),
+                  fontSize: F24(), fontWeight: FontWeight.w400),
             ),
             content: Container(
               child: SingleChildScrollView(
@@ -39,7 +42,7 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
                     MobileTextFieldEdit(context, false, numberController, "",
                         "Enter Phone Number"),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 25.0),
+                      padding: EdgeInsets.symmetric(vertical: 20.sp),
                       child: GFButton(
                         onPressed: () {
                           Get.to(OtpView(), arguments: "Edit Phone");
@@ -51,7 +54,7 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
                         textStyle: GoogleFonts.kadwa(
                           color: Colors.black,
                           fontWeight: FontWeight.w700,
-                          fontSize: 24.0,
+                          fontSize: F24(),
                         ),
                         // shape: GFButtonShape.standard,
                       ),
@@ -69,8 +72,8 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
     initialValue: "${LocalStorage.shared.getUserData()!.userId}",
     textInputAction: TextInputAction.done,
 // onTapOutside: hideKeyboard,
-    style: TextStyle(fontSize: getFontSize(22), color: Color(0xFF999898)),
-    scrollPadding: EdgeInsets.symmetric(horizontal: 10),
+    style: GoogleFonts.kadwa(fontSize: F22(), color: Color(0xFF636363)),
+    scrollPadding: EdgeInsets.symmetric(horizontal: 10.sp),
     keyboardType: TextInputType.number,
     onChanged: (value) {
       numberController.text = value as String;
@@ -80,11 +83,11 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
     decoration: InputDecoration(
         counterText: "",
         isDense: false,
-        contentPadding: EdgeInsets.symmetric(horizontal: 20),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20.sp,vertical: 10.sp),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFFEBA0F))),
         hintText: label,
-        hintStyle: TextStyle(fontSize: 18, color: Color(0xFF999898)),
+        hintStyle: GoogleFonts.kadwa(fontSize: F18(), color: Colors.black),
         suffix: InkWell(
             onTap: () {
               showDataAlertEditPhoneNumber();
@@ -93,11 +96,11 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
               editText,
               style: GoogleFonts.kadwa(
                   color: KColors.textGrey,
-                  fontSize: 18,
+                  fontSize: F18(),
                   fontWeight: FontWeight.w400),
             )),
         prefixIcon: Padding(
-          padding: const EdgeInsets.only(right: 8.0),
+          padding:  EdgeInsets.only(right: 8.sp),
           child: Container(
             decoration: const BoxDecoration(
                 border: Border(
