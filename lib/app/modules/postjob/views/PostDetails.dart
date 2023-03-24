@@ -38,12 +38,24 @@ class _PostDetailsState extends State<PostDetails> {
               SizedBox(
                 height: 5,
               ),
-              DropdownFieldFull(
-                dropdownvalue: 'Electrician',
+              Row(
+                children: [
+                  DropdownFieldFull(
+                    dropdownvalue: 'Electrician',
+                    items: [
+                      'Electrician',
+                      'Engineer',
+                      'Builder',
+                    ],
+                  ),
+                  DropdownFieldFull(
+                dropdownvalue: '1',
                 items: [
-                  'Electrician',
-                  'Engineer',
-                  'Builder',
+                  '1',
+                  '2',
+                  '3',
+                ],
+              ),
                 ],
               ),
               SizedBox(

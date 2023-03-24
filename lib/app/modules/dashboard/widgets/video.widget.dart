@@ -14,7 +14,7 @@ class Video extends StatelessWidget {
   Widget build(BuildContext context) {
     print(MediaQuery.of(context).size.height);
     return Container(
-      width: (MediaQuery.of(context).size.width / 3.8).sp,
+      width: (MediaQuery.of(context).size.width / 3.5).sp,
       height: (MediaQuery.of(context).size.height / 4.04809009283).sp,
       margin: EdgeInsets.symmetric(horizontal: 10.sp, vertical: 5.sp),
       decoration: BoxDecoration(

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:ekinch/app/modules/job/jobInterested/widget/card.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
-import 'package:ekinch/app/modules/notication/view/notification_view.dart';
 import 'package:ekinch/app/modules/postjob/views/postjob_view.dart';
 import 'package:ekinch/app/modules/settings/views/settings_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';

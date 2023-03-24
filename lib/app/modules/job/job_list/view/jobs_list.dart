@@ -1,4 +1,6 @@
 import 'package:circle_progress_bar/circle_progress_bar.dart';
+import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/job/job_list/widget/job_card.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/job/job_list/widget/recentJob.dart';
@@ -15,7 +17,6 @@ import '../../../dashboard/widgets/navigation.dart';
 import '../../../settings/views/settings_view.dart';
 import '../../profile/view/job_profile.dart';
 
-
 class JobsList extends StatefulWidget {
   const JobsList({Key? key}) : super(key: key);
 
@@ -23,8 +24,7 @@ class JobsList extends StatefulWidget {
   JobsListState createState() => JobsListState();
 }
 
-class JobsListState extends State<JobsList>
-    with TickerProviderStateMixin {
+class JobsListState extends State<JobsList> with TickerProviderStateMixin {
   TabController? _tabController;
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -38,33 +38,26 @@ class JobsListState extends State<JobsList>
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        
-                bottomNavigationBar: BottomTabView(2),
-
-       key: scaffoldKey,
-       drawer: const SettingsView(),
+        bottomNavigationBar: BottomTabView(2),
+        key: scaffoldKey,
+        drawer: const SettingsView(),
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
-          leading:  IconButton(
-      icon: SvgPicture.asset(Assets.drawerIcon_white),
-      onPressed: () {
-        if (!scaffoldKey.currentState!.isDrawerOpen) {
-          //check if drawer is closed
-          scaffoldKey.currentState!.openDrawer(); //open drawer
-        }
-      },
-    ),
-          // InkWell(
-          //     onTap: () {
-          //       Navigator.pop(context);
-          //     },
-          //     child: Icon(Icons.arrow_back)),
+          leading: IconButton(
+            icon: SvgPicture.asset(Assets.drawerIcon_white),
+            onPressed: () {
+              if (!scaffoldKey.currentState!.isDrawerOpen) {
+                //check if drawer is closed
+                scaffoldKey.currentState!.openDrawer(); //open drawer
+              }
+            },
+          ),
           backgroundColor: Colors.black,
           title: Text(
             'Job List',
-            style: GoogleFonts.kadwa(
-                fontSize: 20,  fontWeight: FontWeight.w700),
+            style:
+                GoogleFonts.kadwa(fontSize: F20(), fontWeight: FontWeight.w700),
           ),
           actions: [
             Icon(
@@ -79,8 +72,8 @@ class JobsListState extends State<JobsList>
             controller: _tabController,
             indicatorColor: yellow,
             indicatorWeight: 3,
-            unselectedLabelStyle:TextStyle(fontSize: 16) ,
-            labelStyle: TextStyle(fontSize: 16),
+            unselectedLabelStyle: GoogleFonts.kadwa(fontSize: F18()),
+            labelStyle: GoogleFonts.kadwa(fontSize: F18()),
             tabs: [Tab(text: "New Jobs (120)"), Tab(text: "Recent (12)")],
           ),
         ),
@@ -89,349 +82,84 @@ class JobsListState extends State<JobsList>
           controller: _tabController,
           children: [
             SingleChildScrollView(
-          child: Column(children: [
-        Container(
-          height: getVerticalSize(74),
-          width: getHorizontalSize(432),
-          color: KColors.greybg,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+                child: Column(children: [
               Container(
-                height: getVerticalSize(40),
-                width: getVerticalSize(100),
-                decoration: BoxDecoration(
-                    border: Border.all(color: KColors.lightGrey),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(100)),
+                height: getVerticalSize(74),
+                width: getHorizontalSize(432),
+                color: KColors.greybg,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SvgPicture.asset(Assets.filter),
-                    const Text(
-                      "Sort",
-                      style: TextStyle(
-                          color: KColors.textGrey,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold),
+                    Container(
+                      height: getVerticalSize(40),
+                      width: getVerticalSize(100),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: KColors.lightGrey),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(100)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(Assets.filter),
+                          Text(
+                            "Sort",
+                            style: GoogleFonts.kadwa(
+                                color: KColors.textGrey,
+                                fontSize: F16(),
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Container(
+                        height: getVerticalSize(40),
+                        width: getHorizontalSize(100),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: KColors.lightGrey),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(100)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(Assets.filter),
+                            Text(
+                              "Filter",
+                              style: GoogleFonts.kadwa(
+                                  color: KColors.textGrey,
+                                  fontSize: F16(),
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Container(
-                  height: getVerticalSize(40),
-                  width: getHorizontalSize(100),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: KColors.lightGrey),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(100)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(Assets.filter),
-                      const Text(
-                        "Filter",
-                        style: TextStyle(
-                            color: KColors.textGrey,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: InkWell(
-            onTap: () {
-              Get.to(JobProfileView());
-            },
-            child: Container(
-                width: Get.width,
-                decoration: BoxDecoration(
-                    border: Border.all(color: KColors.greyLine),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4)),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8.0, right: 8.0, left: 16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Sanjay Singh",
-                                      style: GoogleFonts.kadwa(
-                                          color: const Color(0xFF1A1D1E),
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Text(
-                                      'Carpenter (Certified)',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: const Color(0xFF6A6A6A)),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top:4.0),
-                                      child: Text(
-                                        '1 hours ago',
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            color: const Color(0xFF6A6A6A)),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, left: 10.0),
-                                  child: Container(
-                                    // height: getVerticalSize(21),
-                                    width: getHorizontalSize(61),
-                                    decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: KColors.green),
-                                        color: KColors.green,
-                                        borderRadius:
-                                            BorderRadius.circular(100)),
-                                    child:  Text(
-                                      "New",textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w100),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 60.0,),
-                              child: Stack(
-                               alignment: AlignmentDirectional.center,
-                                children: [
-                                  SizedBox(
-                                    width: 70,
-                                    child: CircleProgressBar(
-                                      foregroundColor: KColors.green,
-                                      backgroundColor: Colors.black12,
-                                      value: 0.8,
-                                      // child: Text("80")
-                                    ),),
-                                    Text("80%\nMatch",textAlign: TextAlign.center,)
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Divider(
-                          color: KColors.greyLine,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 40.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(Assets.location),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left:8.0),
-                                        child: Text(
-                                          "Rorkee",
-                                          style: GoogleFonts.kadwa(
-                                              color: KColors.textGrey,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(Assets.edu),
-                                      Padding(
-                                         padding: const EdgeInsets.only(left:8.0),
-                                        child: Text(
-                                          "Intermediate",
-                                          style: GoogleFonts.kadwa(
-                                              color: KColors.textGrey,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(Assets.speak),
-                                      Padding(
-                                         padding: const EdgeInsets.only(left:8.0),
-                                        child: Text(
-                                          "Good Hindi",
-                                          style: GoogleFonts.kadwa(
-                                              color: KColors.textGrey,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(Assets.money),
-                                    Padding(
-                                     padding: const EdgeInsets.only(left:8.0),
-                                      child: Text(
-                                        "1800-2500/month",
-                                        style: GoogleFonts.kadwa(
-                                            color: KColors.textGrey,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(Assets.exp),
-                                    Padding(
-                                     padding: const EdgeInsets.only(left:8.0),
-                                      child: Text(
-                                        "3 Years Experience",
-                                        style: GoogleFonts.kadwa(
-                                            color: KColors.textGrey,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(Assets.mobile),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left:8.0),
-                                      child: Text(
-                                        "+917878787891",
-                                        style: GoogleFonts.kadwa(
-                                            color: KColors.textGrey,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top:8.0),
-                        child: Container(
-                            width: Get.width,
-                            // height: getVerticalSize(80),
-                            decoration: const BoxDecoration(
-                                color: KColors.greybg,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(4),
-                                    bottomRight: Radius.circular(4))),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 3.0),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 3),
-                                          child: SvgPicture.asset(
-                                            Assets.call,
-                                          ),
-                                        ),
-                                        Text(
-                                          "Call",
-                                          style: GoogleFonts.kadwa(
-                                              color: KColors.textGrey,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 3.0),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        SvgPicture.asset(Assets.msg),
-                                        Text(
-                                          "SMS",
-                                          style: GoogleFonts.kadwa(
-                                              color: KColors.textGrey,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                      )
-                    ])),
-          ),
-        )
-      ])),
+              JobCardWidget(
+                  "Arun Singh",
+                  "Electrician, 1 hrs ago ",
+                  "Roorkee",
+                  "Intermediate",
+                  "Good Hindi",
+                  "18000-25000/month",
+                  "3 Years Experience",
+                  "+91 7878787891"),
+              JobCardWidget(
+                  "Sanjay Singh",
+                  "Carpenter, 1 hrs ago ",
+                  "Roorkee",
+                  "Intermediate",
+                  "Good Hindi",
+                  "18000-25000/month",
+                  "3 Years Experience",
+                  "+91 7878787891")
+            ])),
 
             RecentJob()
 
@@ -445,7 +173,7 @@ class JobsListState extends State<JobsList>
 //                     decoration: BoxDecoration(
 //                       borderRadius: BorderRadius.circular(10),
 //                       color: black,
-                
+
 //                     ),
 //                     child: Center(
 //                       child: Row(mainAxisAlignment: MainAxisAlignment.center,
@@ -453,7 +181,7 @@ class JobsListState extends State<JobsList>
 //                         children: [
 //                          Padding(
 //                                     padding: EdgeInsets.only(bottom: 17),child:SvgPicture.asset("assets/images/star.svg",height: 12,)),
-                       
+
 //                         Padding(
 //                           padding: const EdgeInsets.only(left:5.0),
 //                           child: Text('4.8/',style: TextStyle(color: whitedark,fontSize: 28,fontWeight: FontWeight.w700),),
@@ -462,8 +190,7 @@ class JobsListState extends State<JobsList>
 //                                     padding: EdgeInsets.only(bottom: 2),child: Text('5.0',style: TextStyle(color: whitedark,fontSize: 14,fontWeight: FontWeight.w700),),
 //                                       )],),
 //                     ),
-                
-                
+
 //                   ),
 //                 ),
 
@@ -499,7 +226,7 @@ class JobsListState extends State<JobsList>
 //                Padding(
 //                  padding: const EdgeInsets.all(15.0),
 //                  child: DescriptionLong(
-                
+
 //                   hintText:"Type your message here",
 //                  ),
 //                ),
@@ -530,10 +257,8 @@ class JobsListState extends State<JobsList>
 //                     )
 
 // ],),
- 
-                
-//               ],)
 
+//               ],)
           ],
         ),
       ),

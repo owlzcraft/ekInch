@@ -1,3 +1,4 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
 import 'package:ekinch/app/modules/postjob/views/CompanyDetails.dart';
@@ -7,6 +8,7 @@ import 'package:ekinch/app/modules/postjob/views/stepProgressView.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../generated/assets.dart';
 import '../../settings/views/settings_view.dart';
@@ -29,18 +31,18 @@ class _PostjobViewState extends State<PostjobView> {
 
   final _stepProgressViewHeight = 110.0;
 
-  Color _activeColor = yellow;
+  final Color _activeColor = yellow;
 
-  Color _inactiveColor = whitedark;
+  final Color _inactiveColor = whitedark;
 
-  TextStyle _headerStyle =
-      TextStyle(fontSize: 10.0, fontWeight: FontWeight.bold, color: whitedark);
+  final TextStyle _headerStyle =
+      GoogleFonts.kadwa(fontSize: F12(), fontWeight: FontWeight.bold, color: whitedark);
 
-  TextStyle _stepStyle = TextStyle(
-      fontSize: 12.0,
+  final TextStyle _stepStyle = GoogleFonts.kadwa(
+      fontSize: F14(),
       fontWeight: FontWeight.w500,
       color: Colors.white,
-      fontFamily: 'Kadwa');
+      );
 
   late Size _safeAreaSize;
 
@@ -70,30 +72,26 @@ class _PostjobViewState extends State<PostjobView> {
     var mediaQD = MediaQuery.of(context);
     _safeAreaSize = mediaQD.size;
     return Scaffold(
-       key: scaffoldKey,
-       drawer: const SettingsView(),
+        key: scaffoldKey,
+        drawer: const SettingsView(),
         appBar: AppBar(
           backgroundColor: Colors.black,
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-      icon: SvgPicture.asset(Assets.drawerIcon_white),
-      onPressed: () {
-        if (!scaffoldKey.currentState!.isDrawerOpen) {
-          //check if drawer is closed
-          scaffoldKey.currentState!.openDrawer(); //open drawer
-        }
-      },
-    ),
-          //  Image.asset(
-          //   'assets/images/menu.png',
-          //   cacheHeight: 18,
-          // ),
-          //Icon(Icons.menu),
+            icon: SvgPicture.asset(Assets.drawerIcon_white),
+            onPressed: () {
+              if (!scaffoldKey.currentState!.isDrawerOpen) {
+                //check if drawer is closed
+                scaffoldKey.currentState!.openDrawer(); //open drawer
+              }
+            },
+          ),
+         
           title: Text(
             'Post Job',
-            style: TextStyle(
-                fontSize: 20, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),
+            style: GoogleFonts.kadwa(
+                fontSize: F20(), fontWeight: FontWeight.w700),
           ),
         ),
         body: Column(
@@ -103,11 +101,7 @@ class _PostjobViewState extends State<PostjobView> {
             Expanded(
               child: PageView(
                 controller: controller,
-
-                 
                 onPageChanged: (i) {
-
-
                   setState(() {
                     _curPage = i + 1;
                   });
@@ -123,16 +117,14 @@ class _PostjobViewState extends State<PostjobView> {
                           padding: EdgeInsets.all(15.0),
                           child: Text(
                             'Company Only',
-                            style: TextStyle(
-                                fontSize: 16,
+                            style: GoogleFonts.kadwa(
+                                fontSize: F16(),
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'Kadwa'),
+                                ),
                           ),
                         ),
-                        Expanded(child: PostDetails(
-
-                        )),
+                        Expanded(child: PostDetails()),
                       ],
                     ),
                   ),
@@ -146,18 +138,15 @@ class _PostjobViewState extends State<PostjobView> {
                           padding: EdgeInsets.all(15.0),
                           child: Text(
                             'Company Only',
-                            style: TextStyle(
-                                fontSize: 16,
+                            style: GoogleFonts.kadwa(
+                                fontSize: F16(),
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'Kadwa'),
+                                ),
                           ),
                         ),
-                        // Container(
-                        //     // height: MediaQuery.of(context).size.height*0.6,
-                        //     child:
+                        
                         Expanded(child: JobDescriptions())
-                        // ),
                       ],
                     ),
                   ),
@@ -171,62 +160,52 @@ class _PostjobViewState extends State<PostjobView> {
                           padding: EdgeInsets.all(15.0),
                           child: Text(
                             'Company Only',
-                            style: TextStyle(
-                                fontSize: 16,
+                            style: GoogleFonts.kadwa(
+                                fontSize: F16(),
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'Kadwa'),
+                               ),
                           ),
                         ),
                         Expanded(child: CompanyDetails()),
                       ],
                     ),
                   ),
-                
-                 
                 ],
               ),
             ),
-
-
-             Padding(
-               padding: const EdgeInsets.all(15.0),
-               child: Stack(
-                      children:[ Material(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    color: yellow,
-                                    child: MaterialButton(
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Stack(children: [
+                Material(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: yellow,
+                    child: MaterialButton(
                         minWidth: MediaQuery.of(context).size.width,
                         onPressed: () {
-                          if (_curPage == 3){
-Get.to(PostJobProfile());
+                          if (_curPage == 3) {
+                            Get.to(PostJobProfile());
+                          } else {
+                            print(_curPage);
+                            controller.animateToPage(
+                              _curPage,
+                              curve: Curves.easeInOut,
+                              duration: Duration(milliseconds: 500),
+                            );
+                            setState(() {});
                           }
-                          else{
-                             print(_curPage);
-                          controller.animateToPage(_curPage, curve:Curves.easeInOut, duration: Duration(milliseconds: 500),);
-                          setState(() {
-                            
-                          });
-                          }
-                         
                         },
-                        
                         child: Center(
-                          child:
-                          
-                           Text(
-                            _curPage == 3 ?  'Done' :
-                            'Next',
-                            style: TextStyle(
+                          child: Text(
+                            _curPage == 3 ? 'Done' : 'Next',
+                            style: GoogleFonts.kadwa(
                                 color: black,
-                                fontSize: 18,
-                                fontFamily: 'Kadwa',
+                                fontSize: F18(),
                                 fontWeight: FontWeight.w700),
                           ),
-                          
                         ))),
-                  ]),
-             ),
+              ]),
+            ),
           ],
         ));
   }

@@ -1,11 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottom_bar.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,12 +10,11 @@ import '../../../custom_widget/color.dart';
 import '../../../custom_widget/font_size.dart';
 import '../../../generated/assets.dart';
 import '../../dashboard/widgets/work.widget.dart';
-import '../../notication/view/notification_view.dart';
 import '../../settings/views/settings_view.dart';
 
 class CertificateView extends StatelessWidget {
   CertificateView({super.key});
-  GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> notDrawerKey =  GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +79,7 @@ class CertificateView extends StatelessWidget {
                         width: getHorizontalSize(460),
                         height: getVerticalSize(300),
                         decoration: BoxDecoration(
-                            boxShadow: <BoxShadow>[
+                            boxShadow: const <BoxShadow>[
                               BoxShadow(
                                   color: Colors.black54,
                                   blurRadius: 5.0,
@@ -137,7 +132,7 @@ class CertificateView extends StatelessWidget {
 
                Container(
                 padding: EdgeInsets.all(10.0.sp),
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -152,7 +147,7 @@ class CertificateView extends StatelessWidget {
                       '12 videos',
                       style: TextStyle(
                           fontSize: F18(),
-                          color: Color(0xFF767676),
+                          color: const Color(0xFF767676),
                           fontWeight: FontWeight.w400),
                     )
                   ],

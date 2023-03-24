@@ -10,7 +10,7 @@ CustomDropDown(List<String> list, String title, String select,int flex,double h)
   return Expanded(
    flex: flex,
     child: Container(
-      padding: EdgeInsets.symmetric(horizontal:h),
+      padding: EdgeInsets.symmetric(horizontal:h.sp),
       child: DropdownButtonFormField2(
         alignment: Alignment.centerLeft,
         decoration: InputDecoration(
@@ -33,7 +33,7 @@ CustomDropDown(List<String> list, String title, String select,int flex,double h)
           color: Colors.black45,
         ),
         iconSize: 25.sp,
-        buttonHeight: 60.sp,
+        buttonHeight: 50.sp,
         dropdownDecoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
         ),

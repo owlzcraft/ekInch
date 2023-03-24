@@ -1,7 +1,9 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
@@ -17,15 +19,39 @@ import '../../../referNearn/views/refer_nearn_view.dart';
 import '../../../settings/views/settings_view.dart';
 
 class JobProfileView extends StatelessWidget {
-  JobProfileView({super.key});
+  final String title;
+  final String subTitle;
+  final String location;
+  final String salary;
+  final String qualification;
+  final String experience;
+  final String language;
+  final String contactNumber;
+  final String dob;
+  final String gender;
+  final String skill;
+  JobProfileView(
+      {super.key,
+      required this.title,
+      required this.subTitle,
+      required this.location,
+      required this.salary,
+      required this.qualification,
+      required this.experience,
+      required this.language,
+      required this.contactNumber,
+      required this.dob,
+      required this.gender,
+      required this.skill});
   GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Scaffold(
       backgroundColor: Colors.white,
       key: notDrawerKey, drawer: const SettingsView(),
-      // appBar: UpperBar("Records", "Records", true, true),
       appBar: AppBar(
         leading: InkWell(
             onTap: () {
@@ -38,8 +64,7 @@ class JobProfileView extends StatelessWidget {
             )),
         actions: [
           IconButton(
-              onPressed: (() => (Get.to(JobProfileView()))),
-              icon: SvgPicture.asset(Assets.share_white)),
+              onPressed: () => {}, icon: SvgPicture.asset(Assets.share_white)),
           IconButton(
             padding: const EdgeInsetsDirectional.only(end: 9.11),
             onPressed: (() => {Get.to(() => NotificationView())}),
@@ -84,10 +109,10 @@ class JobProfileView extends StatelessWidget {
                           fit: StackFit.expand,
                           children: [
                             CircleAvatar(
-                              radius: 50,
+                              radius: 50.sp,
                               backgroundColor: Color(0xFFE0E0E0),
-                              child: const CircleAvatar(
-                                radius: 48,
+                              child: CircleAvatar(
+                                radius: 42.sp,
                                 backgroundImage:
                                     AssetImage("assets/images/profile.jpg"),
                               ),
@@ -95,36 +120,26 @@ class JobProfileView extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 50, right: 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Sanjay Singh",
-                                  style: GoogleFonts.kadwa(
-                                      color: const Color(0xFF1A1D1E),
-                                      fontSize: 27,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Text(
-                                  'Electrician Mechanic',
-                                  style: GoogleFonts.kadwa(
-                                      fontSize: 16,
-                                      color: const Color(0xFF6A6A6A)),
-                                ),
-                                Image.asset(
-                                  Assets.verified,
-                                  width: getHorizontalSize(120),
-                                  height: getVerticalSize(30),
-                                ),
-                              ],
-                            ),
+                          Text(
+                            title,
+                            style: GoogleFonts.kadwa(
+                                color: const Color(0xFF1A1D1E),
+                                fontSize: F28(),
+                                fontWeight: FontWeight.w400),
+                          ),
+                          Text(
+                            subTitle,
+                            style: GoogleFonts.kadwa(
+                                height: 0.8,
+                                fontSize: F18(),
+                                color: const Color(0xFF6A6A6A)),
+                          ),
+                          Image.asset(
+                            Assets.verified,
+                            scale: 2.8,
                           ),
                         ],
                       ),
@@ -134,8 +149,8 @@ class JobProfileView extends StatelessWidget {
               ),
             ]),
             Padding(
-              padding: const EdgeInsets.only(
-                  left: 25.0, right: 25.0, top: 16.0, bottom: 12.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 16.0),
               child: Column(
                 children: [
                   Container(
@@ -144,214 +159,212 @@ class JobProfileView extends StatelessWidget {
                         border: Border.all(color: KColors.greyLine),
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(4)),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 16.0, right: 8.0, left: 16.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Self Employee",
-                                style: GoogleFonts.kadwa(
-                                    color: const Color(0xFF1A1D1E),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: SvgPicture.asset(Assets.certified),
-                              ),
-                              Text(
-                                "View Certificate",
-                                style: GoogleFonts.kadwa(
-                                    color: KColors.textGrey,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ],
-                          ),
+                    child: Column(children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 16.0, right: 8.0, left: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Self Employee",
+                              style: GoogleFonts.kadwa(
+                                  color: const Color(0xFF1A1D1E),
+                                  fontSize: F20(),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SvgPicture.asset(Assets.certified),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 6.0),
+                                  child: Text(
+                                    "View Certificate",
+                                    style: GoogleFonts.kadwa(
+                                        color: KColors.textGrey,
+                                        fontSize: F18(),
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.0,vertical: 8.0),
-                          child: Divider(
-                            color: KColors.greyLine,
-                          ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 4.0),
+                        child: Divider(
+                          color: KColors.greyLine,
                         ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.only(left: 16.0, right: 16.0),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 30),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
                                   children: [
-                                    Row(
-                                      children: [
-                                        SvgPicture.asset(Assets.location),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left:2.0),
-                                          child: Text(
-                                            "Rorkee",
-                                            style: GoogleFonts.kadwa(
-                                                color: KColors.textGrey,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        SvgPicture.asset(Assets.edu),
-                                        Padding(
-                                           padding: const EdgeInsets.only(left:2.0),
-                                          child: Text(
-                                            "Intermediate",
-                                            style: GoogleFonts.kadwa(
-                                                color: KColors.textGrey,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        SvgPicture.asset(Assets.speak),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left:2.0),
-                                          child: Text(
-                                            "Good Hindi",
-                                            style: GoogleFonts.kadwa(
-                                                color: KColors.textGrey,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        SvgPicture.asset(Assets.birth),
-                                        Padding(
-                                        padding: const EdgeInsets.only(left:2.0),
-                                          child: Text(
-                                            "20 April, 1991",
-                                            style: GoogleFonts.kadwa(
-                                                color: KColors.textGrey,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ),
-                                      ],
+                                    SvgPicture.asset(Assets.location),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        location,
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: F16(),
+                                            fontWeight: FontWeight.w400),
+                                      ),
                                     ),
                                   ],
                                 ),
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(Assets.money),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left:2.0),
-                                        child: Text(
-                                          "1800-2500/month",
-                                          style: GoogleFonts.kadwa(
-                                              color: KColors.textGrey,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(Assets.edu),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        qualification,
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: F16(),
+                                            fontWeight: FontWeight.w400),
                                       ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(Assets.exp),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left:2.0),
-                                        child: Text(
-                                          "3 Years Experience",
-                                          style: GoogleFonts.kadwa(
-                                              color: KColors.textGrey,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(Assets.mobile),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left:2.0),
-                                        child: Text(
-                                          "+91 7878787891",
-                                          style: GoogleFonts.kadwa(
-                                              color: KColors.textGrey,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.male_outlined,
-                                        color: KColors.textGrey,
-                                      ),
-                                      // SvgPicture.asset(Assets.birth),
-
-                                      Padding(
-                                       padding: const EdgeInsets.only(left:2.0),
-                                        child: Text(
-                                          "Male",
-                                          style: GoogleFonts.kadwa(
-                                              color: KColors.textGrey,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 18.0, top: 2.0, bottom: 10),
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(Assets.suitcase),
-                              Padding(
-                                padding: const EdgeInsets.only(left:2.0),
-                                child: Text(
-                                  "Light Fitting, Invertor, Motor and Electric",
-                                  style: GoogleFonts.kadwa(
-                                      color: KColors.textGrey,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(Assets.speak),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        language,
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: F16(),
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(Assets.birth),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 2.0),
+                                      child: Text(
+                                        dob,
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: F16(),
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(Assets.money),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        salary,
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: F16(),
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(Assets.exp),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        experience,
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: F16(),
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(Assets.mobile),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        contactNumber,
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: F16(),
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.male_outlined,
+                                      color: KColors.textGrey,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Text(
+                                        gender,
+                                        style: GoogleFonts.kadwa(
+                                            color: KColors.textGrey,
+                                            fontSize: F16(),
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                        Container(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(Assets.suitcase),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5.0),
+                              child: Text(
+                                skill,
+                                style: GoogleFonts.kadwa(
+                                    color: KColors.textGrey,
+                                    fontSize: F16(),
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Container(
                           width: Get.width,
-                          // height: getVerticalSize(80),
                           decoration: const BoxDecoration(
                               color: KColors.greybg,
                               borderRadius: BorderRadius.only(
@@ -395,7 +408,7 @@ class JobProfileView extends StatelessWidget {
                                     children: [
                                       SvgPicture.asset(Assets.msg),
                                       Text(
-                                        "SMS",
+                                        "Chat",
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             fontSize: 14,
@@ -407,34 +420,36 @@ class JobProfileView extends StatelessWidget {
                               ],
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30.0),
-                    child: GFButton(
-                      onPressed: () {
-                        // check();
-                      },
-                      color: KColors.orange,
-                      fullWidthButton: true,
-                      size: 50.2,
-                      text: "Hire Me",
-                      textStyle: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w900,
-                          fontSize: 24.0,
-                          fontFamily: 'Kadwa'),
-                    ),
+                        ),
+                      )
+                    ]),
                   ),
                 ],
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
+              child: GFButton(
+                onPressed: () {
+                  // check();
+                },
+                color: KColors.orange,
+                fullWidthButton: true,
+                size: 50.2,
+                text: "Hire Me",
+                textStyle: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 24.0,
+                    fontFamily: 'Kadwa'),
               ),
             ),
           ],
         ),
       ),
-                    bottomNavigationBar: BottomTabView(2),
+
+      bottomNavigationBar: BottomTabView(2),
 
       // bottomNavigationBar: MyNavigator(),
     );

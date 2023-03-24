@@ -1,9 +1,9 @@
+// ignore_for_file: unused_import, unrelated_type_equality_checks
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/job/form/views/widgets/dropdown.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:ekinch/app/custom_widget/dash_header.dart';
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
@@ -176,10 +176,12 @@ class DetailsForm extends StatelessWidget {
                             )).toList(),
                         validator: (value) {
                           if (value == null) {
-                            return 'Please Select Profession';
+                            return 'Please Select Gender';
                           }
                         },
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          controller.gender = value as String;
+                        },
                       ),
                     ),
                     Text(
@@ -205,8 +207,8 @@ class DetailsForm extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 30),
                                   decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: const Color(0xFFCDCDCD)),
+                                      border: Border.all(
+                                          color: const Color(0xFFCDCDCD)),
                                       color: (controller
                                                   .activeQualification.value ==
                                               0)
@@ -218,7 +220,7 @@ class DetailsForm extends StatelessWidget {
                                       Text(
                                         controller.qualificationData[0]['text1']
                                             .toString(),
-                                        style: TextStyle(
+                                        style: GoogleFonts.kadwa(
                                             color: (controller
                                                         .activeQualification
                                                         .value ==
@@ -230,7 +232,7 @@ class DetailsForm extends StatelessWidget {
                                       Text(
                                         controller.qualificationData[0]['text2']
                                             .toString(),
-                                        style: TextStyle(
+                                        style: GoogleFonts.kadwa(
                                             color: (controller
                                                         .activeQualification
                                                         .value ==
@@ -261,8 +263,8 @@ class DetailsForm extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 20, horizontal: 30),
                                   decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: const Color(0xFFCDCDCD)),
+                                      border: Border.all(
+                                          color: const Color(0xFFCDCDCD)),
                                       color: (controller
                                                   .activeQualification.value ==
                                               1)
@@ -273,7 +275,7 @@ class DetailsForm extends StatelessWidget {
                                     child: Text(
                                       controller.qualificationData[1]['text1']
                                           .toString(),
-                                      style: TextStyle(
+                                      style: GoogleFonts.kadwa(
                                           color: (controller.activeQualification
                                                       .value ==
                                                   1)
@@ -306,8 +308,8 @@ class DetailsForm extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 30),
                                   decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: const Color(0xFFCDCDCD)),
+                                      border: Border.all(
+                                          color: const Color(0xFFCDCDCD)),
                                       color: (controller
                                                   .activeQualification.value ==
                                               2)
@@ -319,7 +321,8 @@ class DetailsForm extends StatelessWidget {
                                       Text(
                                         controller.qualificationData[2]['text1']
                                             .toString(),
-                                        style: TextStyle(
+                                        style: GoogleFonts.kadwa(
+                                            height: 1.6,
                                             color: (controller
                                                         .activeQualification
                                                         .value ==
@@ -331,7 +334,8 @@ class DetailsForm extends StatelessWidget {
                                       Text(
                                         controller.qualificationData[2]['text2']
                                             .toString(),
-                                        style: TextStyle(
+                                        style: GoogleFonts.kadwa(
+                                            height: 1.6,
                                             color: (controller
                                                         .activeQualification
                                                         .value ==
@@ -360,8 +364,8 @@ class DetailsForm extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 30),
                                 decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xFFCDCDCD)),
+                                    border: Border.all(
+                                        color: const Color(0xFFCDCDCD)),
                                     color:
                                         (controller.activeQualification.value ==
                                                 3)
@@ -373,7 +377,8 @@ class DetailsForm extends StatelessWidget {
                                     Text(
                                       controller.qualificationData[3]['text1']
                                           .toString(),
-                                      style: TextStyle(
+                                      style: GoogleFonts.kadwa(
+                                          height: 1.6,
                                           color: (controller.activeQualification
                                                       .value ==
                                                   3)
@@ -384,7 +389,8 @@ class DetailsForm extends StatelessWidget {
                                     Text(
                                       controller.qualificationData[3]['text2']
                                           .toString(),
-                                      style: TextStyle(
+                                      style: GoogleFonts.kadwa(
+                                          height: 1.6,
                                           color: (controller.activeQualification
                                                       .value ==
                                                   3)
@@ -426,8 +432,9 @@ class DetailsForm extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 20, horizontal: 10),
                                 decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: const Color(0xFFCDCDCD)),
+                                    border: Border.all(
+                                        color: const Color(0xFFCDCDCD)),
+                                    // ignore: unrelated_type_equality_checks
                                     color: (controller.activeMedium == index)
                                         ? Colors.black
                                         : const Color(0xFFF8F8F8),
@@ -435,8 +442,9 @@ class DetailsForm extends StatelessWidget {
                                 child: Center(
                                     child: Text(
                                   m.toString(),
-                                  style: TextStyle(
-                                      fontSize: 16,
+                                  style: GoogleFonts.kadwa(
+                                      fontSize: F14(),
+                                      height: 1.6,
                                       color: (controller.activeMedium == index)
                                           ? Colors.white
                                           : const Color(0xFF767676),
@@ -474,8 +482,8 @@ class DetailsForm extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 20, horizontal: 10),
                                   decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: const Color(0xFFCDCDCD)),
+                                      border: Border.all(
+                                          color: const Color(0xFFCDCDCD)),
                                       color: (controller.activeFluency == index)
                                           ? Colors.black
                                           : const Color(0xFFF8F8F8),
@@ -483,8 +491,8 @@ class DetailsForm extends StatelessWidget {
                                   child: Column(children: [
                                     Text(
                                       m.toString(),
-                                      style: TextStyle(
-                                          fontSize: 14,
+                                      style: GoogleFonts.kadwa(
+                                          fontSize: F14(),
                                           color: (controller.activeFluency ==
                                                   index)
                                               ? Colors.white
@@ -493,8 +501,8 @@ class DetailsForm extends StatelessWidget {
                                     ),
                                     Text(
                                       "English",
-                                      style: TextStyle(
-                                          fontSize: 14,
+                                      style: GoogleFonts.kadwa(
+                                          fontSize: F14(),
                                           color: (controller.activeFluency ==
                                                   index)
                                               ? Colors.white
@@ -536,8 +544,8 @@ class DetailsForm extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 20, horizontal: 10),
                                   decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: const Color(0xFFCDCDCD)),
+                                      border: Border.all(
+                                          color: const Color(0xFFCDCDCD)),
                                       color: (controller.activeExp == index)
                                           ? Colors.black
                                           : const Color(0xFFF8F8F8),
@@ -545,8 +553,8 @@ class DetailsForm extends StatelessWidget {
                                   child: Center(
                                     child: Text(
                                       m.toString(),
-                                      style: TextStyle(
-                                          fontSize: 14,
+                                      style: GoogleFonts.kadwa(
+                                          fontSize: F14(),
                                           color: (controller.activeExp == index)
                                               ? Colors.white
                                               : const Color(0xFF767676),
@@ -577,7 +585,7 @@ class DetailsForm extends StatelessWidget {
                       ],
                     ),
                     Padding(
-                      padding:  EdgeInsets.symmetric(vertical: 40.sp),
+                      padding: EdgeInsets.symmetric(vertical: 40.sp),
                       child: DynamicButton("Submit", true, () {
                         Get.to(formFillView());
                       }),

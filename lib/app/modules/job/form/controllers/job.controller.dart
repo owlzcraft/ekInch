@@ -1,9 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class JobController extends GetxController {
   var activeQualification = 0.obs;
-    var Gender = ["Male", "Female"];
-
   var qualificationData = [
     {"text1": "Below 10th", "text2": "Pass"},
     {"text1": "10th Pass", "text2": ""},
@@ -16,8 +15,6 @@ class JobController extends GetxController {
   var schoolMediums = ["Hindi", "English", "Others"].obs;
   var englishFluency = ["No", "Good", "Fluent"].obs;
   var expData = ["Fresher", "Experience"].obs;
-  
-  
   var years = ["0"];
   Filyears() {
     for (var i = 1968; i <= DateTime.now().year; i++) {
@@ -25,6 +22,21 @@ class JobController extends GetxController {
       years.add(i.toString());
     }
   }
+
+  String gender = "";
+  TextEditingController qualificationTap = TextEditingController();
+  TextEditingController board = TextEditingController();
+  TextEditingController englishLevel = TextEditingController();
+  TextEditingController experienceTap = TextEditingController();
+  TextEditingController date = TextEditingController();
+  TextEditingController month = TextEditingController();
+  TextEditingController year = TextEditingController();
+  TextEditingController schoolBoard = TextEditingController();
+  TextEditingController jobTitle = TextEditingController();
+  TextEditingController jobCategory = TextEditingController();
+  TextEditingController experience = TextEditingController();
+  TextEditingController skills = TextEditingController();
+  TextEditingController qualification = TextEditingController();
 
   void onInit() {
     Filyears();

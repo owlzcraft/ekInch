@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:ekinch/app/generated/assets.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:ekinch/app/modules/job/form/views/details_form.dart';
-import 'package:ekinch/app/modules/job/form/views/job_form.dart';
 import 'package:ekinch/app/modules/job/jobInterested/views/job_interested_view.dart';
 import 'package:ekinch/app/modules/mobile/widget/black_button.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
@@ -16,7 +12,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../dashboard/widgets/navigation.dart';
-import '../../jobInterested/views/job_interested_view.dart';
 
 class JobLanding extends StatelessWidget {
   JobLanding({super.key});

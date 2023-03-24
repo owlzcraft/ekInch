@@ -1,35 +1,23 @@
-import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/dashboard_profile.dart';
 import 'package:ekinch/app/modules/job/form/views/widgets/click_custom.dart';
 import 'package:ekinch/app/modules/job/form/views/widgets/custom_job_form.dart';
 import 'package:ekinch/app/modules/job/form/views/widgets/pop_up_exp.dart';
+import 'package:ekinch/app/modules/listpostjob/views/jobs_view.dart';
 import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:ekinch/app/modules/job/form/views/widgets/add_skills.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/profile_form.dart';
-import 'package:ekinch/app/modules/job/profile/view/job_profile.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
 import 'package:ekinch/app/modules/notication/view/notification_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/components/button/gf_button.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../../widgets/math_utils.dart';
-import '../../../../../widgets/shape.dart';
-import '../../../../custom_widget/font_size.dart';
 import '../../../../generated/assets.dart';
-import '../../../dashboard/widgets/bottomNavigate.wodget.dart';
 import '../../../dashboard/widgets/navigation.dart';
-import '../../../profile/views/profile_view.dart';
 import '../../../settings/views/settings_view.dart';
-import '../../job_list/view/job_list.dart';
-import '../../job_list/view/jobs_list.dart';
 
 class formFillView extends StatefulWidget {
   formFillView({super.key});
@@ -39,7 +27,7 @@ class formFillView extends StatefulWidget {
 }
 
 class _formFillViewState extends State<formFillView> {
-  GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> notDrawerKey = GlobalKey<ScaffoldState>();
   List<String> experience = ["Fresher", "1-5 Years", "5-10 Years"];
   List<String> qualification = ["10th Pass", "12th Pass", "Graduated"];
   @override
@@ -70,9 +58,9 @@ class _formFillViewState extends State<formFillView> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 1.9),
-                        child: const Text(
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 1.9),
+                        child: Text(
                           "Please tell us about yourself",
                           style: TextStyle(
                             color: Colors.white,
@@ -147,7 +135,7 @@ class _formFillViewState extends State<formFillView> {
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Center(
                 child: DynamicButton("Submit", true, () {
-                  Get.to(JobsList());
+                  Get.to(const JobView());
                 }),
               ),
             ),

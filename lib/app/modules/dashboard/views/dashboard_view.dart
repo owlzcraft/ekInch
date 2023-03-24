@@ -216,7 +216,7 @@ class _DashboardStateView extends State<DashboardView>
                       },
                       child: Container(
                         alignment: AlignmentDirectional.center,
-                        width: (MediaQuery.of(context).size.width / 3.8).sp,
+                        width: (MediaQuery.of(context).size.width / 3.5).sp,
                         height:
                             (MediaQuery.of(context).size.height / 4.04809009283)
                                 .sp,
