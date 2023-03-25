@@ -7,11 +7,15 @@ import '../../../../../custom_widget/color.dart';
 import '../../../../../custom_widget/font_size.dart';
 import '../../../../../utils/math_utils.dart';
 
+
+
+
 showDataAlert(context,String title,String subTitle,List<String>list,String hint) {
       showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
+              insetPadding: EdgeInsets.all(16),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(
@@ -20,8 +24,8 @@ showDataAlert(context,String title,String subTitle,List<String>list,String hint)
                 ),
               ),
               title: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
+                
                 children: [
                   Text(
                    title,
@@ -71,21 +75,17 @@ showDataAlert(context,String title,String subTitle,List<String>list,String hint)
                             isExpanded: true,
                             focusColor: Color(0xFFFEBA0F),
                             items: list
-                                .map((String value) {
+                                .map((value) {
                               return DropdownMenuItem<String>(
                                   value: value,
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10.0),
-                                      child: Text(
-                                        value,
-                                        style: GoogleFonts.kadwa(
-                                            fontSize: getFontSize(22),
-                                            color: Color(0xFF636363)),
-                                      ),
+                                    child: Text(
+                                      value,
+                                      style: GoogleFonts.kadwa(
+                                          fontSize: getFontSize(22),
+                                          color: Color(0xFF636363)),
                                     ),
                                   ));
                             }).toList(),

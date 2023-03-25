@@ -118,16 +118,16 @@ class _formFillViewState extends State<formFillView> {
                 padding: const EdgeInsets.all(10),
                 child: JobForm("Job Categeory", "eg. electrician at Ek Inch",
                     'assets/images/name_text_icon.png')),
-            ClickAdd(context, "Experience", "How many years of experience in ?",
+            ClickAdd(context, "Experience", "How many years of experience in ?","Click to fill your experience",
                 () {
               showDataAlert(context, "How many years of experience in",
                   "Add your experience", experience, experience[0]);
             }),
-            ClickAdd(context, "Add Skills", "Do you have any skills ?", () {
+            ClickAdd(context, "Add Skills", "Do you have any skills ?","Click to fill your Skills", () {
               Get.to(AddSkillView());
             }),
             ClickAdd(context, "What is your qualification?",
-                "Put your qualification here", () {
+                "Put your qualification here","Click to add your qualification", () {
               showDataAlert(context, "Add Your Degree or Qualification",
                   "Add your degree", qualification, qualification[0]);
             }),

@@ -161,7 +161,7 @@ class DetailsForm extends StatelessWidget {
                           ),
                         ),
                         iconSize: 30,
-                        buttonHeight: 60,
+                        buttonHeight: 50,
                         dropdownDecoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                         ),
@@ -170,7 +170,7 @@ class DetailsForm extends StatelessWidget {
                               child: Text(
                                 item,
                                 style: GoogleFonts.kadwa(
-                                    fontSize: getFontSize(22),
+                                    fontSize: getFontSize(20),
                                     color: const Color(0xFF636363)),
                               ),
                             )).toList(),
@@ -221,6 +221,8 @@ class DetailsForm extends StatelessWidget {
                                         controller.qualificationData[0]['text1']
                                             .toString(),
                                         style: GoogleFonts.kadwa(
+                                            height: 1.2,
+                                            fontSize: F16(),
                                             color: (controller
                                                         .activeQualification
                                                         .value ==
@@ -233,6 +235,8 @@ class DetailsForm extends StatelessWidget {
                                         controller.qualificationData[0]['text2']
                                             .toString(),
                                         style: GoogleFonts.kadwa(
+                                            height: 1.2,
+                                            fontSize: F16(),
                                             color: (controller
                                                         .activeQualification
                                                         .value ==
@@ -276,6 +280,8 @@ class DetailsForm extends StatelessWidget {
                                       controller.qualificationData[1]['text1']
                                           .toString(),
                                       style: GoogleFonts.kadwa(
+                                          height: 1.2,
+                                          fontSize: F16(),
                                           color: (controller.activeQualification
                                                       .value ==
                                                   1)
@@ -322,7 +328,8 @@ class DetailsForm extends StatelessWidget {
                                         controller.qualificationData[2]['text1']
                                             .toString(),
                                         style: GoogleFonts.kadwa(
-                                            height: 1.6,
+                                            height: 1.2,
+                                            fontSize: F16(),
                                             color: (controller
                                                         .activeQualification
                                                         .value ==
@@ -335,7 +342,8 @@ class DetailsForm extends StatelessWidget {
                                         controller.qualificationData[2]['text2']
                                             .toString(),
                                         style: GoogleFonts.kadwa(
-                                            height: 1.6,
+                                            height: 1.2,
+                                            fontSize: F16(),
                                             color: (controller
                                                         .activeQualification
                                                         .value ==
@@ -378,7 +386,8 @@ class DetailsForm extends StatelessWidget {
                                       controller.qualificationData[3]['text1']
                                           .toString(),
                                       style: GoogleFonts.kadwa(
-                                          height: 1.6,
+                                          height: 1.2,
+                                          fontSize: F16(),
                                           color: (controller.activeQualification
                                                       .value ==
                                                   3)
@@ -390,7 +399,8 @@ class DetailsForm extends StatelessWidget {
                                       controller.qualificationData[3]['text2']
                                           .toString(),
                                       style: GoogleFonts.kadwa(
-                                          height: 1.6,
+                                          height: 1.2,
+                                          fontSize: F16(),
                                           color: (controller.activeQualification
                                                       .value ==
                                                   3)
@@ -430,7 +440,7 @@ class DetailsForm extends StatelessWidget {
                               child: Container(
                                 width: (Get.width / 3) - 20,
                                 padding: const EdgeInsets.symmetric(
-                                    vertical: 20, horizontal: 10),
+                                    vertical: 15, horizontal: 10),
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color: const Color(0xFFCDCDCD)),
@@ -443,8 +453,8 @@ class DetailsForm extends StatelessWidget {
                                     child: Text(
                                   m.toString(),
                                   style: GoogleFonts.kadwa(
-                                      fontSize: F14(),
-                                      height: 1.6,
+                                      height: 1.2,
+                                      fontSize: F16(),
                                       color: (controller.activeMedium == index)
                                           ? Colors.white
                                           : const Color(0xFF767676),
@@ -480,7 +490,7 @@ class DetailsForm extends StatelessWidget {
                                     : const EdgeInsets.only(),
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 10),
+                                      vertical: 10, horizontal: 10),
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                           color: const Color(0xFFCDCDCD)),
@@ -492,7 +502,8 @@ class DetailsForm extends StatelessWidget {
                                     Text(
                                       m.toString(),
                                       style: GoogleFonts.kadwa(
-                                          fontSize: F14(),
+                                          height: 1.2,
+                                          fontSize: F16(),
                                           color: (controller.activeFluency ==
                                                   index)
                                               ? Colors.white
@@ -502,7 +513,8 @@ class DetailsForm extends StatelessWidget {
                                     Text(
                                       "English",
                                       style: GoogleFonts.kadwa(
-                                          fontSize: F14(),
+                                          height: 1.2,
+                                          fontSize: F16(),
                                           color: (controller.activeFluency ==
                                                   index)
                                               ? Colors.white
@@ -542,7 +554,7 @@ class DetailsForm extends StatelessWidget {
                                 child: Container(
                                   // width: (Get.width / 2) - 30,
                                   padding: const EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 10),
+                                      vertical: 15, horizontal: 10),
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                           color: const Color(0xFFCDCDCD)),
@@ -554,8 +566,7 @@ class DetailsForm extends StatelessWidget {
                                     child: Text(
                                       m.toString(),
                                       style: GoogleFonts.kadwa(
-                                          fontSize: F14(),
-                                          color: (controller.activeExp == index)
+                                          fontSize: F16(),                                          color: (controller.activeExp == index)
                                               ? Colors.white
                                               : const Color(0xFF767676),
                                           fontWeight: FontWeight.w400),
@@ -579,9 +590,9 @@ class DetailsForm extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        CustomDropDown(days, "Day", "Day", 1, 4),
+                        CustomDropDown(days, "Day", "Day", 1, 0),
                         CustomDropDown(monthNumber, "Month", "Month", 1, 4),
-                        CustomDropDown(years, "Years", "Year", 1, 4),
+                        CustomDropDown(years, "Years", "Year", 1, 0),
                       ],
                     ),
                     Padding(
