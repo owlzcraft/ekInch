@@ -45,11 +45,11 @@ class _DashboardStateView extends State<DashboardView>
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
     super.initState();
-    // var videocontroller = VideoPlayerController.network(
-    //   'https://www.youtube.com/watch?v=p260etQQbJE&list=RDbiFowhF1Tt8&index=27',
-    // )..initialize().then((_) {
-    //     setState(() {});
-    //   });
+    var videocontroller = VideoPlayerController.network(
+      'https://www.youtube.com/watch?v=p260etQQbJE&list=RDbiFowhF1Tt8&index=27',
+    )..initialize().then((_) {
+        setState(() {});
+      });
   }
 
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -268,11 +268,11 @@ class _DashboardStateView extends State<DashboardView>
                           horizontal: 10.sp, vertical: 5.sp),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.sp)),
-                      // child: 
-                      // controller.videocontroller.value.isInitialized
-                      //     ? 
-                      //     VideoPlayer(controller.videocontroller)
-                      //     : CircularProgressIndicator(),
+                      child: 
+                      controller.videocontroller.value.isInitialized
+                          ? 
+                          VideoPlayer(controller.videocontroller)
+                          : CircularProgressIndicator(),
                     ),
                     Video(image: 'assets/images/sample_thumb.jpg'),
                     Video(image: 'assets/images/sample_thumb.jpg'),
