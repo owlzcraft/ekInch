@@ -41,7 +41,14 @@ JobCardWidget(
       child: Container(
           width: Get.width,
           decoration: BoxDecoration(
-              border: Border.all(color: KColors.greyLine),
+             border: Border.all(color: KColors.borderGrey),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 1,
+                    blurRadius: 2,
+                    offset: Offset(2, 4),
+                  ),],
               color: Colors.white,
               borderRadius: BorderRadius.circular(4)),
           child: Column(

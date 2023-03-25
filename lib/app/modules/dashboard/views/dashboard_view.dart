@@ -22,6 +22,7 @@ import 'package:ekinch/app/modules/dashboard/widgets/work.widget.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+// import 'package:video_player/video_player.dart';
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
 import '../controllers/dashboard_controller.dart';
@@ -44,6 +45,11 @@ class _DashboardStateView extends State<DashboardView>
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
     super.initState();
+    // var videocontroller = VideoPlayerController.network(
+    //   'https://www.youtube.com/watch?v=p260etQQbJE&list=RDbiFowhF1Tt8&index=27',
+    // )..initialize().then((_) {
+    //     setState(() {});
+    //   });
   }
 
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -97,7 +103,8 @@ class _DashboardStateView extends State<DashboardView>
                         onChanged: (value) {},
                         decoration: InputDecoration(
                           hintText: "    Enter video title",
-                          hintStyle: GoogleFonts.kadwa(fontSize: F22(),fontWeight: FontWeight.w400),
+                          hintStyle: GoogleFonts.kadwa(
+                              fontSize: F22(), fontWeight: FontWeight.w400),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 10.sp, horizontal: 10.sp),
                           focusedBorder: OutlineInputBorder(
@@ -116,8 +123,7 @@ class _DashboardStateView extends State<DashboardView>
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 12.sp),
                         child: DottedBorder(
-                            dashPattern: [8, 4],
-
+                          dashPattern: [8, 4],
                           color: Color(0xFFCDCDCD),
                           strokeCap: StrokeCap.butt,
                           strokeWidth: 1,
@@ -134,8 +140,12 @@ class _DashboardStateView extends State<DashboardView>
                                       fontWeight: FontWeight.w700),
                                 ),
                                 Padding(
-                                  padding:  EdgeInsets.symmetric(horizontal:8.sp),
-                                  child: Image.asset("assets/images/upload.png",scale: 3.0,),
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 8.sp),
+                                  child: Image.asset(
+                                    "assets/images/upload.png",
+                                    scale: 3.0,
+                                  ),
                                 )
                               ],
                             ),
@@ -247,6 +257,22 @@ class _DashboardStateView extends State<DashboardView>
                           ],
                         ),
                       ),
+                    ),
+                    Container(
+                      alignment: AlignmentDirectional.center,
+                      width: (MediaQuery.of(context).size.width / 3.5).sp,
+                      height:
+                          (MediaQuery.of(context).size.height / 4.04809009283)
+                              .sp,
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 10.sp, vertical: 5.sp),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.sp)),
+                      // child: 
+                      // controller.videocontroller.value.isInitialized
+                      //     ? 
+                      //     VideoPlayer(controller.videocontroller)
+                      //     : CircularProgressIndicator(),
                     ),
                     Video(image: 'assets/images/sample_thumb.jpg'),
                     Video(image: 'assets/images/sample_thumb.jpg'),

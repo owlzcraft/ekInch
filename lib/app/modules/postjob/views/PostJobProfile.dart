@@ -1,23 +1,46 @@
+import 'package:ekinch/app/generated/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import '../../../custom_widget/font_size.dart';
+import '../../listpostjob/views/widget/key_value.dart';
+import '../../mobile/widget/yellow_button.dart';
 import 'Confirmationjob.dart';
 
 class PostJobProfile extends StatefulWidget {
+  final String company;
+  final String jobTitle;
+  final String subtitle;
+  final String location;
+  final String salary;
+  final String qualification;
+  final String language;
+  final String require;
+  final String jobInfo;
+  final String experience;
+  final String jobTime;
+  final String interviewTime;
+  final String address;
   PostJobProfile(
-      {Key? key,
-      this.companyname,
-      this.name,
-      this.address,
-      this.email,
-      this.number})
-      : super(key: key);
-  String? companyname;
-  String? name;
-  String? email;
-  String? number;
-  String? address;
+      {super.key,
+      required this.company,
+      required this.jobTitle,
+      required this.subtitle,
+      required this.location,
+      required this.salary,
+      required this.qualification,
+      required this.language,
+      required this.require,
+      required this.jobInfo,
+      required this.experience,
+      required this.jobTime,
+      required this.interviewTime,
+      required this.address});
 
   @override
   _PostJobProfileState createState() => _PostJobProfileState();
@@ -28,36 +51,33 @@ class _PostJobProfileState extends State<PostJobProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(60),
         child: AppBar(
-          backgroundColor: Colors.black,
           elevation: 0,
           centerTitle: true,
-          leading: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Icon(Icons.arrow_back)),
-          //Icon(Icons.menu),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          backgroundColor: Colors.black,
           title: Text(
-            'Post Job',
-            style: TextStyle(
-                fontSize: 20, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),
+            widget.company,
+            style:
+                GoogleFonts.kadwa(fontSize: F24(), fontWeight: FontWeight.w700),
           ),
           actions: [
-            Icon(
-              Icons.share_outlined,
-              size: 20,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.05,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: SvgPicture.asset(Assets.share_white),
             )
           ],
         ),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -69,15 +89,14 @@ class _PostJobProfileState extends State<PostJobProfile> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Electrician Engineer',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Kadwa',
+                      Text(widget.jobTitle,
+                          style: GoogleFonts.kadwa(
+                              height: 1.2,
+                              fontSize: F20(),
                               fontWeight: FontWeight.w400)),
-                      Text('UltraTech Cement, India',
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: 'Kadwa',
+                      Text(widget.subtitle,
+                          style: GoogleFonts.kadwa(
+                              fontSize: F16(),
                               fontWeight: FontWeight.w400,
                               color: greylight))
                     ],
@@ -85,14 +104,10 @@ class _PostJobProfileState extends State<PostJobProfile> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.location_on_outlined,
-                        color: grey,
-                      ),
-                      Text('Rorkee, India',
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: 'Kadwa',
+                      SvgPicture.asset(Assets.location),
+                      Text(widget.location,
+                          style: GoogleFonts.kadwa(
+                              fontSize: F16(),
                               fontWeight: FontWeight.w400,
                               color: greylight))
                     ],
@@ -105,217 +120,17 @@ class _PostJobProfileState extends State<PostJobProfile> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                   child: Padding(
-                    padding: EdgeInsets.only(
-                        left: 15.0, right: 15, top: 15, bottom: 15),
+                    padding: EdgeInsets.all(16),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  'Job Title',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Kadwa',
-                                      fontWeight: FontWeight.w400),
-                                )),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.03,
-                              child: Text(
-                                ":",
-                                style: TextStyle(color: greylight),
-                              ),
-                            ),
-                            Text(
-                              'Plumber Engineer',
-                              style: TextStyle(
-                                  color: greylight,
-                                  fontSize: 12,
-                                  fontFamily: 'Kadwa',
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  'In Hand Salary',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Kadwa',
-                                      fontWeight: FontWeight.w400),
-                                )),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.03,
-                              child: Text(
-                                ":",
-                                style: TextStyle(color: greylight),
-                              ),
-                            ),
-                            Text(
-                              '15000-20000',
-                              style: TextStyle(
-                                  color: greylight,
-                                  fontSize: 12,
-                                  fontFamily: 'Kadwa',
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  'Qualification',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Kadwa',
-                                      fontWeight: FontWeight.w400),
-                                )),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.03,
-                              child: Text(
-                                ":",
-                                style: TextStyle(color: greylight),
-                              ),
-                            ),
-                            Text(
-                              '10th Pass',
-                              style: TextStyle(
-                                  color: greylight,
-                                  fontSize: 12,
-                                  fontFamily: 'Kadwa',
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  'Language',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Kadwa',
-                                      fontWeight: FontWeight.w400),
-                                )),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.03,
-                              child: Text(
-                                ":",
-                                style: TextStyle(color: greylight),
-                              ),
-                            ),
-                            Text(
-                              'Hindi',
-                              style: TextStyle(
-                                  color: greylight,
-                                  fontSize: 12,
-                                  fontFamily: 'Kadwa',
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  'Required',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Kadwa',
-                                      fontWeight: FontWeight.w400),
-                                )),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.03,
-                              child: Text(
-                                ":",
-                                style: TextStyle(color: greylight),
-                              ),
-                            ),
-                            Text(
-                              'Plumbing and Pump Fitting',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: greylight,
-                                  fontSize: 12,
-                                  fontFamily: 'Kadwa',
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  'Job Info',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Kadwa',
-                                      fontWeight: FontWeight.w400),
-                                )),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.03,
-                              child: Text(
-                                ":",
-                                style: TextStyle(color: greylight),
-                              ),
-                            ),
-                            Text(
-                              'Good in Plumbing and home \n basic work of plumbing',
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  color: greylight,
-                                  fontSize: 12,
-                                  fontFamily: 'Kadwa',
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  'Experience',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Kadwa',
-                                      fontWeight: FontWeight.w400),
-                                )),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.03,
-                              child: Text(
-                                ":",
-                                style: TextStyle(color: greylight),
-                              ),
-                            ),
-                            Text(
-                              '1-2 Years',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: greylight,
-                                  fontSize: 12,
-                                  fontFamily: 'Kadwa',
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
+                        CustomRow(context, "Job Title", widget.jobTitle),
+                        CustomRow(context, "In Hand Salary", widget.salary),
+                        CustomRow(
+                            context, "Qualification", widget.qualification),
+                        CustomRow(context, "Language", widget.language),
+                        CustomRow(context, "Required", widget.require),
+                        CustomRow(context, "Job Info", widget.jobInfo),
+                        CustomRow(context, "Experience", widget.experience),
                       ],
                     ),
                   ),
@@ -326,8 +141,8 @@ class _PostJobProfileState extends State<PostJobProfile> {
               ),
               Text(
                 'Other Details',
-                style: TextStyle(
-                    fontWeight: FontWeight.w700, color: black, fontSize: 14),
+                style: GoogleFonts.kadwa(
+                    fontWeight: FontWeight.w700, color: black, fontSize: F18()),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
@@ -342,64 +157,9 @@ class _PostJobProfileState extends State<PostJobProfile> {
                         left: 15.0, right: 15, top: 15, bottom: 15),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  'Job Timing',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Kadwa',
-                                      fontWeight: FontWeight.w400),
-                                )),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.03,
-                              child: Text(
-                                ":",
-                                style: TextStyle(color: greylight),
-                              ),
-                            ),
-                            Text(
-                              '10am to 6pm | Mon to Sat',
-                              style: TextStyle(
-                                  color: greylight,
-                                  fontSize: 12,
-                                  fontFamily: 'Kadwa',
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  'Interview Timing ',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Kadwa',
-                                      fontWeight: FontWeight.w400),
-                                )),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.03,
-                              child: Text(
-                                ":",
-                                style: TextStyle(color: greylight),
-                              ),
-                            ),
-                            Text(
-                              '10am to 6pm | Friday',
-                              style: TextStyle(
-                                  color: greylight,
-                                  fontSize: 12,
-                                  fontFamily: 'Kadwa',
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
+                        CustomRow(context, "Job Timing", widget.jobTime),
+                        CustomRow(
+                            context, "Interview Timing", widget.interviewTime),
                       ],
                     ),
                   ),
@@ -410,80 +170,31 @@ class _PostJobProfileState extends State<PostJobProfile> {
               ),
               Text(
                 'Company Address',
-                style: TextStyle(
-                    fontWeight: FontWeight.w700, color: black, fontSize: 14),
+                style: GoogleFonts.kadwa(
+                    fontWeight: FontWeight.w700, color: black, fontSize: F18()),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
               Container(
-                child: Card(
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: 15.0, right: 15, top: 15, bottom: 15),
-                    child: Column(
-                      children: [
-                        Row(
+                  child: Card(
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Padding(
+                        padding: EdgeInsets.all(12.sp),
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  'Address',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontFamily: 'Kadwa',
-                                      fontWeight: FontWeight.w400),
-                                )),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.03,
-                              child: Text(
-                                ":",
-                                style: TextStyle(color: greylight),
-                              ),
-                            ),
-                            Text(
-                             "Rorkee, Uttrakhand",
-                              style: TextStyle(
-                                  color: greylight,
-                                  fontSize: 12,
-                                  fontFamily: 'Kadwa',
-                                  fontWeight: FontWeight.w400),
-                            )
+                            CustomRow(context, "Address", widget.location)
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
-              Material(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: yellow,
-                  child: MaterialButton(
-                      minWidth: MediaQuery.of(context).size.width,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Confirmationjob()));
-                      },
-                      child: Center(
-                        child: Text(
-                          'Post Job',
-                          style: TextStyle(
-                              color: black,
-                              fontSize: 18,
-                              fontFamily: 'Kadwa',
-                              fontWeight: FontWeight.w700),
-                        ),
                       ))),
+              Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                  child: DynamicButton("Post Job", true, () {
+                    Get.to(Confirmationjob(title:"Title of Job"));
+                  })),
             ],
           ),
         ),

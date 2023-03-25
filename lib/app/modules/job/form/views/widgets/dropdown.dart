@@ -6,11 +6,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../../widgets/math_utils.dart';
 
-CustomDropDown(List<String> list, String title, String select,int flex,double h) {
+CustomDropDown(
+    List<String> list, String title, String select, int flex, double h) {
   return Expanded(
-   flex: flex,
+    flex: flex,
     child: Container(
-      padding: EdgeInsets.symmetric(horizontal:h.sp),
+      padding: EdgeInsets.symmetric(horizontal: h.sp),
       child: DropdownButtonFormField2(
         alignment: Alignment.centerLeft,
         decoration: InputDecoration(

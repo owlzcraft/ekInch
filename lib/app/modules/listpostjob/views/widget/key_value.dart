@@ -15,7 +15,7 @@ import '../../../../custom_widget/color.dart';
                                       child: Text(
                                         key,
                                         style: GoogleFonts.kadwa(
-                                            fontSize: F14(),
+                                            fontSize: F16(),
                                             fontWeight: FontWeight.w400),
                                       )),
                                   SizedBox(
@@ -30,7 +30,7 @@ import '../../../../custom_widget/color.dart';
                                     value,
                                     style: GoogleFonts.kadwa(
                                         color:  KColors.textGrey,
-                                        fontSize: F14(),
+                                        fontSize: F16(),
                                         fontWeight: FontWeight.w400),
                                   )
                                 ],

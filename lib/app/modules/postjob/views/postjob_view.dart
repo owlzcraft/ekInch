@@ -1,9 +1,9 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/postjob/views/post_job_view/PostDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
-import 'package:ekinch/app/modules/postjob/views/CompanyDetails.dart';
-import 'package:ekinch/app/modules/postjob/views/JobDescriptions.dart';
-import 'package:ekinch/app/modules/postjob/views/PostDetails.dart';
+import 'package:ekinch/app/modules/postjob/views/post_job_view/CompanyDetails.dart';
+import 'package:ekinch/app/modules/postjob/views/post_job_view/JobDescriptions.dart';
 import 'package:ekinch/app/modules/postjob/views/stepProgressView.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -58,8 +58,8 @@ class _PostjobViewState extends State<PostjobView> {
       _inactiveColor,
       _headerStyle,
       _stepStyle,
-      decoration: BoxDecoration(color: Colors.black),
-      padding: EdgeInsets.only(
+      decoration: const BoxDecoration(color: Colors.black),
+      padding: const EdgeInsets.only(
         top: 20.0,
         left: 15.0,
         right: 15.0,
@@ -114,11 +114,11 @@ class _PostjobViewState extends State<PostjobView> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.symmetric(horizontal:16.0,vertical: 8.0),
                           child: Text(
                             'Company Only',
                             style: GoogleFonts.kadwa(
-                                fontSize: F16(),
+                                fontSize: F24(),
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 ),
@@ -135,18 +135,18 @@ class _PostjobViewState extends State<PostjobView> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(15.0),
                           child: Text(
                             'Company Only',
                             style: GoogleFonts.kadwa(
-                                fontSize: F16(),
+                                fontSize: F20(),
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 ),
                           ),
                         ),
                         
-                        Expanded(child: JobDescriptions())
+                        const Expanded(child: JobDescriptions())
                       ],
                     ),
                   ),
@@ -157,17 +157,17 @@ class _PostjobViewState extends State<PostjobView> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.all(15.0),
                           child: Text(
                             'Company Only',
                             style: GoogleFonts.kadwa(
-                                fontSize: F16(),
+                                fontSize: F20(),
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                ),
                           ),
                         ),
-                        Expanded(child: CompanyDetails()),
+                        const Expanded(child: CompanyDetails()),
                       ],
                     ),
                   ),
@@ -184,13 +184,13 @@ class _PostjobViewState extends State<PostjobView> {
                         minWidth: MediaQuery.of(context).size.width,
                         onPressed: () {
                           if (_curPage == 3) {
-                            Get.to(PostJobProfile());
+                            Get.to(PostJobProfile(company: "Post Job", jobTitle: "abc", subtitle: "subtitle", location: "location", salary: "salary", qualification: "qualification", language: "language", require: "require", jobInfo: "jobInfo", experience: "experience", jobTime: "jobTime", interviewTime: "interviewTime", address: "address"));
                           } else {
                             print(_curPage);
                             controller.animateToPage(
                               _curPage,
                               curve: Curves.easeInOut,
-                              duration: Duration(milliseconds: 500),
+                              duration: const Duration(milliseconds: 500),
                             );
                             setState(() {});
                           }

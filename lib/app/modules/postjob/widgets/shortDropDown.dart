@@ -1,12 +1,14 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DropdownFieldFull extends StatelessWidget {
   final String? hintText;
-
+  late TextEditingController controller;
   final String? initialValue;
   late final String? dropdownvalue;
   final List<String>? items;
@@ -14,6 +16,7 @@ class DropdownFieldFull extends StatelessWidget {
   DropdownFieldFull(
       {Key? key,
       this.hintText,
+      required TextEditingController controller,
       this.margin,
       this.initialValue,
       this.items,
@@ -30,16 +33,17 @@ class DropdownFieldFull extends StatelessWidget {
       //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
       decoration: BoxDecoration(
           // color: theme.backgroundColor,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(6),
           border: Border.all(color: Boxborder, width: 1)),
       child: DropdownButtonFormField<String>(
+        autovalidateMode: AutovalidateMode.always,
+        hint: Text(
+          hintText as String,
+          style: GoogleFonts.kadwa(fontSize: F16()),
+        ),
         value: dropdownvalue,
-        //iconSize: 0.0,
         icon: const Icon(Icons.keyboard_arrow_down, color: Colors.grey),
-
-        style: new TextStyle(
-            //fontWeight: FontWeight.w500,
-            fontSize: 14),
+        style: GoogleFonts.kadwa(fontSize: F16()),
         decoration: const InputDecoration(
           contentPadding: EdgeInsets.all(5),
           border: UnderlineInputBorder(borderSide: BorderSide.none),
@@ -52,13 +56,13 @@ class DropdownFieldFull extends StatelessWidget {
             // alignment: Alignment.centerRight,
             child: Text(
               value,
-              style: TextStyle(color: grey, fontFamily: 'Kadwa'),
+              style: GoogleFonts.kadwa(color: grey, fontSize: F16()),
             ),
           );
         }).toList(),
         onChanged: (String? value) {
           dropdownvalue = value!;
-
+          controller.text = value;
           for (int i = 0; i < items!.length; i++) {
             if (value == items![i]) {
               index = indexvalue[i];
@@ -75,12 +79,14 @@ class Dropdownprefix extends StatelessWidget {
   final String? initialValue;
   final String? dropdownvalue;
   final List<String>? items;
+  late TextEditingController controller;
   // final Decoration? prefix;
   final EdgeInsetsGeometry? margin;
   Dropdownprefix(
       {Key? key,
       this.hintText,
       this.margin,
+      controller,
       this.initialValue,
       this.items,
       this.dropdownvalue})
@@ -94,16 +100,14 @@ class Dropdownprefix extends StatelessWidget {
       //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
       decoration: BoxDecoration(
           // color: theme.backgroundColor,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(6),
           border: Border.all(color: Boxborder, width: 1)),
       child: DropdownButtonFormField<String>(
         value: dropdownvalue,
         //iconSize: 0.0,
         icon: const Icon(Icons.keyboard_arrow_down, color: Colors.grey),
-
-        style: new TextStyle(
-            //fontWeight: FontWeight.w500,
-            fontSize: 14),
+hint: Text(hintText as String,style: GoogleFonts.kadwa(color: grey,fontSize: F16()),),
+        style: GoogleFonts.kadwa(color: black, fontSize: F16()),
         decoration: const InputDecoration(
             contentPadding: EdgeInsets.all(10),
             border: UnderlineInputBorder(borderSide: BorderSide.none),
@@ -118,15 +122,18 @@ class Dropdownprefix extends StatelessWidget {
             // alignment: Alignment.centerRight,
             child: new Text(
               value,
-              style: TextStyle(color: grey, fontFamily: 'Kadwa'),
+              style: GoogleFonts.kadwa(color: grey, fontSize: F16()),
             ),
           );
         }).toList(),
-        onChanged: (String? value) {},
+        onChanged: ( value) {
+          controller.text = value as String;
+        },
       ),
     );
   }
 }
+
 class DescriptionLong extends StatelessWidget {
   final String? hintText;
   final String? initialValue;
@@ -143,12 +150,12 @@ class DescriptionLong extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Container(
-      height: MediaQuery.of(context).size.height*0.2,
+        height: MediaQuery.of(context).size.height * 0.2,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
         decoration: BoxDecoration(
             // color: theme.backgroundColor,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(6),
             border: Border.all(color: Boxborder, width: 1)),
         child: TextFormField(
           controller: controller,
@@ -159,8 +166,7 @@ class DescriptionLong extends StatelessWidget {
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.all(5),
               hintText: hintText,
-              hintStyle:
-                  TextStyle(color: grey, fontFamily: 'Kadwa', fontSize: 14),
+              hintStyle: GoogleFonts.kadwa(color: grey, fontSize: F16()),
               border: const UnderlineInputBorder(borderSide: BorderSide.none),
               focusedBorder:
                   const UnderlineInputBorder(borderSide: BorderSide.none),
@@ -186,12 +192,11 @@ class Description extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Container(
-      
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
         decoration: BoxDecoration(
             // color: theme.backgroundColor,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(6),
             border: Border.all(color: Boxborder, width: 1)),
         child: TextFormField(
           controller: controller,
@@ -202,8 +207,7 @@ class Description extends StatelessWidget {
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.all(5),
               hintText: hintText,
-              hintStyle:
-                  TextStyle(color: grey, fontFamily: 'Kadwa', fontSize: 14),
+              hintStyle: GoogleFonts.kadwa(color: grey, fontSize: F16()),
               border: const UnderlineInputBorder(borderSide: BorderSide.none),
               focusedBorder:
                   const UnderlineInputBorder(borderSide: BorderSide.none),
@@ -237,7 +241,7 @@ class TextFeild extends StatelessWidget {
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
         decoration: BoxDecoration(
             // color: theme.backgroundColor,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(6),
             border: Border.all(color: Boxborder, width: 1)),
         child: TextField(
           controller: controller,
@@ -245,8 +249,7 @@ class TextFeild extends StatelessWidget {
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.all(5),
               hintText: hintText,
-              hintStyle:
-                  TextStyle(color: grey, fontFamily: 'Kadwa', fontSize: 14),
+              hintStyle: GoogleFonts.kadwa(color: grey, fontSize: F16()),
               border: const UnderlineInputBorder(borderSide: BorderSide.none),
               focusedBorder:
                   const UnderlineInputBorder(borderSide: BorderSide.none),
@@ -255,6 +258,7 @@ class TextFeild extends StatelessWidget {
         ));
   }
 }
+
 class TextFeildWhiteBorder extends StatelessWidget {
   final String? hintText;
   final TextInputType? keyboardtype;
@@ -278,10 +282,9 @@ class TextFeildWhiteBorder extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
         decoration: BoxDecoration(
-          color: whitedark,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Boxborder,width: 0.5)
-        ),
+            color: whitedark,
+            borderRadius: BorderRadius.circular(6),
+            border: Border.all(color: Boxborder, width: 0.5)),
         child: TextField(
           controller: controller,
 //autofocus: true,
@@ -289,8 +292,7 @@ class TextFeildWhiteBorder extends StatelessWidget {
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.all(10),
               hintText: hintText,
-              hintStyle:
-                  TextStyle(color: greybox, fontFamily: 'Kadwa', fontSize: 14),
+              hintStyle: GoogleFonts.kadwa(color: greybox, fontSize: F16()),
               border: const UnderlineInputBorder(borderSide: BorderSide.none),
               focusedBorder:
                   const UnderlineInputBorder(borderSide: BorderSide.none),
@@ -303,7 +305,6 @@ class TextFeildWhiteBorder extends StatelessWidget {
         ));
   }
 }
-
 
 class TextFeildWhite extends StatelessWidget {
   final String? hintText;
@@ -329,7 +330,7 @@ class TextFeildWhite extends StatelessWidget {
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
         decoration: BoxDecoration(
           color: whitedark,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(6),
           //border: Border.all(color: Boxborder,width: 1)
         ),
         child: TextField(
@@ -339,8 +340,7 @@ class TextFeildWhite extends StatelessWidget {
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.all(10),
               hintText: hintText,
-              hintStyle:
-                  TextStyle(color: greybox, fontFamily: 'Kadwa', fontSize: 14),
+              hintStyle: GoogleFonts.kadwa(color: greybox, fontSize: F16()),
               border: const UnderlineInputBorder(borderSide: BorderSide.none),
               focusedBorder:
                   const UnderlineInputBorder(borderSide: BorderSide.none),
@@ -378,7 +378,7 @@ class TextFeildNumber extends StatelessWidget {
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
         decoration: BoxDecoration(
             // color: theme.backgroundColor,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(6),
             border: Border.all(color: Boxborder, width: 1)),
         child: IntrinsicHeight(
           child: Row(
@@ -400,9 +400,8 @@ class TextFeildNumber extends StatelessWidget {
                             icon: const Icon(Icons.keyboard_arrow_down,
                                 color: Colors.grey),
 
-                            style: new TextStyle(
-                                //fontWeight: FontWeight.w500,
-                                fontSize: 14),
+                            style:
+                                GoogleFonts.kadwa(color: grey, fontSize: F16()),
                             decoration: const InputDecoration(
                               contentPadding:
                                   EdgeInsets.only(top: 5, bottom: 5, right: 2),
@@ -448,8 +447,8 @@ class TextFeildNumber extends StatelessWidget {
                       counterText: '',
                       contentPadding: const EdgeInsets.all(5),
                       hintText: hintText,
-                      hintStyle: TextStyle(
-                          color: grey, fontFamily: 'Kadwa', fontSize: 14),
+                      hintStyle:
+                          GoogleFonts.kadwa(color: grey, fontSize: F16()),
                       border: const UnderlineInputBorder(
                           borderSide: BorderSide.none),
                       focusedBorder: const UnderlineInputBorder(
@@ -485,11 +484,11 @@ class DropdownTime extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Container(
-        padding:  EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
         decoration: BoxDecoration(
             // color: theme.backgroundColor,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(6),
             border: Border.all(color: Boxborder, width: 1)),
         child: Container(
           child: IntrinsicHeight(
@@ -500,39 +499,35 @@ class DropdownTime extends StatelessWidget {
                 child: TextFormField(
                   decoration: InputDecoration(
                     hintText: hintText,
-                    contentPadding:  EdgeInsets.all(5),
-                    border:
-                         UnderlineInputBorder(borderSide: BorderSide.none),
+                    contentPadding: EdgeInsets.all(5),
+                    border: UnderlineInputBorder(borderSide: BorderSide.none),
                     focusedBorder:
-                         UnderlineInputBorder(borderSide: BorderSide.none),
+                        UnderlineInputBorder(borderSide: BorderSide.none),
                     enabledBorder:
-                         UnderlineInputBorder(borderSide: BorderSide.none),
+                        UnderlineInputBorder(borderSide: BorderSide.none),
                   ),
                 ),
               ),
-               SizedBox(
+              SizedBox(
                 width: 3,
               ),
-
               VerticalDivider(
                 color: Boxborder,
                 thickness: 1,
                 endIndent: 8,
                 indent: 8,
               ),
-               SizedBox(
+              SizedBox(
                 width: 3,
               ),
               Expanded(
                 child: DropdownButtonFormField<String>(
                   value: dropdownvalue,
                   //iconSize: 0.0,
-                  icon:  Icon(Icons.keyboard_arrow_down, color: Colors.grey),
-        
-                  style: new TextStyle(
-                      //fontWeight: FontWeight.w500,
-                      fontSize: 14),
-                  decoration:  InputDecoration(
+                  icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+
+                  style: GoogleFonts.kadwa(color: grey, fontSize: F16()),
+                  decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(5),
                     border: UnderlineInputBorder(borderSide: BorderSide.none),
                     focusedBorder:
@@ -546,7 +541,7 @@ class DropdownTime extends StatelessWidget {
                       // alignment: Alignment.centerRight,
                       child: new Text(
                         value,
-                        style: TextStyle(color: grey, fontFamily: 'Kadwa'),
+                        style: GoogleFonts.kadwa(color: grey, fontSize: F16()),
                       ),
                     );
                   }).toList(),
@@ -589,13 +584,11 @@ class Dropdownshort extends StatelessWidget {
           ),
       child: DropdownButtonFormField<String>(
         value: dropdownvalue,
-        
+
         //iconSize: 0.0,
         icon: Icon(Icons.keyboard_arrow_down_outlined, color: textcolor),
 
-        style: new TextStyle(
-            //fontWeight: FontWeight.w500,
-            fontSize: 14),
+        style: GoogleFonts.kadwa(fontSize: F16()),
         decoration: const InputDecoration(
           contentPadding: EdgeInsets.all(5),
           border: UnderlineInputBorder(borderSide: BorderSide.none),
@@ -608,7 +601,7 @@ class Dropdownshort extends StatelessWidget {
             // alignment: Alignment.centerRight,
             child: new Text(
               value,
-              style: TextStyle(color: black, fontFamily: 'Kadwa'),
+              style: GoogleFonts.kadwa(color: black, fontSize: F16()),
             ),
           );
         }).toList(),

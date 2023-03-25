@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
 import 'package:ekinch/app/modules/postjob/views/PostJobProfile.dart';
 import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../custom_widget/font_size.dart';
 
 class CompanyDetails extends StatefulWidget {
   const CompanyDetails({Key? key}) : super(key: key);
@@ -31,14 +34,13 @@ class _CompanyDetailsState extends State<CompanyDetails> {
             children: [
               Text(
                 'Name of Company',
-                style: TextStyle(
-                    fontSize: 14,
+                style:  GoogleFonts.kadwa(
+                    fontSize: F18(),
                     fontWeight: FontWeight.w700,
-                    color: black,
-                    fontFamily: 'Kadwa'),
+                    color: black, ),
               ),
-              SizedBox(
-                height: 5,
+               SizedBox(
+                height: MediaQuery.of(context).size.height * 0.002,
               ),
               TextFeild(
                 controller: _companynamecontroller,
@@ -50,14 +52,13 @@ class _CompanyDetailsState extends State<CompanyDetails> {
               ),
               Text(
                 'Contact Person/Recruiter Name',
-                style: TextStyle(
-                    fontSize: 14,
+                style:  GoogleFonts.kadwa(
+                    fontSize: F18(),
                     fontWeight: FontWeight.w700,
-                    color: black,
-                    fontFamily: 'Kadwa'),
+                    color: black, ),
               ),
               SizedBox(
-                height: 5,
+                height: MediaQuery.of(context).size.height * 0.002,
               ),
               TextFeild(
                   controller: _namecontroller,
@@ -70,14 +71,13 @@ class _CompanyDetailsState extends State<CompanyDetails> {
               ),
               Text(
                 'Email Id',
-                style: TextStyle(
-                    fontSize: 14,
+                style:  GoogleFonts.kadwa(
+                    fontSize: F18(),
                     fontWeight: FontWeight.w700,
-                    color: black,
-                    fontFamily: 'Kadwa'),
+                    color: black, ),
               ),
-              SizedBox(
-                height: 5,
+             SizedBox(
+                height: MediaQuery.of(context).size.height * 0.002,
               ),
               TextFeild(
                 controller: _emailcontroller,
@@ -89,14 +89,13 @@ class _CompanyDetailsState extends State<CompanyDetails> {
               ),
               Text(
                 'Phone Number',
-                style: TextStyle(
-                    fontSize: 14,
+                style:  GoogleFonts.kadwa(
+                    fontSize: F18(),
                     fontWeight: FontWeight.w700,
-                    color: black,
-                    fontFamily: 'Kadwa'),
+                    color: black, ),
               ),
               SizedBox(
-                height: 5,
+                height: MediaQuery.of(context).size.height * 0.002,
               ),
               TextFeildNumber(
                 controller: _numbercontroller,
@@ -109,14 +108,13 @@ class _CompanyDetailsState extends State<CompanyDetails> {
               ),
               Text(
                 'Company Address',
-                style: TextStyle(
-                    fontSize: 14,
+                style:  GoogleFonts.kadwa(
+                    fontSize: F18(),
                     fontWeight: FontWeight.w700,
-                    color: black,
-                    fontFamily: 'Kadwa'),
+                    color: black, ),
               ),
               SizedBox(
-                height: 5,
+                height: MediaQuery.of(context).size.height * 0.002,
               ),
               TextFeild(
                 controller: _addresscontroller,
@@ -124,35 +122,9 @@ class _CompanyDetailsState extends State<CompanyDetails> {
                 keyboardtype: TextInputType.streetAddress,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
-              // Material(
-              //     borderRadius: BorderRadius.circular(10.0),
-              //     color: yellow,
-              //     child: MaterialButton(
-              //         minWidth: MediaQuery.of(context).size.width,
-              //         onPressed: () {
-              //           Navigator.push(
-              //               context,
-              //               MaterialPageRoute(
-              //                   builder: (context) => PostJobProfile(
-              //                         companyname: _companynamecontroller.text,
-              //                         name: _namecontroller.text,
-              //                         email: _emailcontroller.text,
-              //                         number: _numbercontroller.text,
-              //                         address: _addresscontroller.text,
-              //                       )));
-              //         },
-              //         child: Center(
-              //           child: Text(
-              //             'Done',
-              //             style: TextStyle(
-              //                 color: black,
-              //                 fontSize: 18,
-              //                 fontFamily: 'Kadwa',
-              //                 fontWeight: FontWeight.w700),
-              //           ),
-              //         ))),
+             
             ],
           ),
         ),

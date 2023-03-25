@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../custom_widget/color.dart';
 
-JobForm(String title, String hint,String image) {
+JobForm(String title, String hint,String image,TextEditingController controller) {
   return Container(
     decoration: BoxDecoration(
         border: Border.all(color: KColors.greyLine),
@@ -25,10 +25,10 @@ JobForm(String title, String hint,String image) {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 8.sp),
             child: TextFormField(
-                // controller: nameController,
+                controller: controller,
                 validator: ((value) {
                   if (value!.isEmpty) {
-                    return "This Field Can't be Empty.";
+                    return "Please enter details";
                   }
                   return null;
                 }),
