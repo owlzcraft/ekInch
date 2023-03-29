@@ -27,35 +27,40 @@ class _SettingsViewState extends State<SettingsView> {
     var data_arr = [
       {
         "title": "My Profile",
-        "img": "assets/images/profile_icon.png",
+        "img": "assets/images/person.png",
       },
       {
         "title": "My Videos (Reels)",
-        "img": "assets/images/reels_icon.png",
+        "img": "assets/images/video.png",
+      },
+       {
+        "title": "My Company",
+        "img": "assets/images/bell.png",
+      },
+       {
+        "title": "Jobs",
+        "img": "assets/images/bell.png",
       },
       {
         "title": "Notifications",
-        "img": "assets/images/certificate_icon.png",
+        "img": "assets/images/bell.png",
       },
-      {
-        "title": "My Certificate",
-        "img": "assets/images/notification_icon.png",
-      },
+     
       {
         "title": "Share and Earn",
-        "img": "assets/images/share_icon.png",
+        "img": "assets/images/Share.png",
       },
       {
         "title": "Feedback",
-        "img": "assets/images/feedback_icon.png",
+        "img": "assets/images/message.png",
       },
       {
         "title": "Settings",
-        "img": "assets/images/settings_icon.png",
+        "img": "assets/images/settings.png",
       },
       {
         "title": "Log Out",
-        "img": "assets/images/logout_icon.png",
+        "img": "assets/images/logout.png",
       },
     ];
     return Scaffold(

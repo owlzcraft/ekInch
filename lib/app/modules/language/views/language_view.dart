@@ -1,3 +1,4 @@
+import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -90,47 +91,65 @@ class _LanguageViewState extends State<LanguageView> {
         ),
       ),
       backgroundColor: Colors.black,
-      body: Container(
-        alignment: AlignmentDirectional.topCenter,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: GridView.count(
-          childAspectRatio: 1.5.sp,
-          crossAxisSpacing: 0.sp,
-          mainAxisSpacing: 20.sp,
-          crossAxisCount: 2,
-          children: controller.lang_data.map((l) {
-            return GestureDetector(
-              onTap: () {
-                for (var i = 0; i < controller.lang_data.length; i++) {
-                  if (controller.lang_data[i]['isActive'] == 0) {
-                    setState(() {
-                      controller.lang_data[i]['isActive'] = 1;
-                    });
+      body: Column(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: controller.lang_data.map((l) {
+              return GestureDetector(
+                onTap: () {
+                  for (var i = 0; i < controller.lang_data.length; i++) {
+                    if (controller.lang_data[i]['isActive'] == 0) {
+                      setState(() {
+                        controller.lang_data[i]['isActive'] = 1;
+                      });
+                    }
+                    if (i != l['index']) {
+                      setState(() {
+                        controller.lang_data[i]['isActive'] = 0;
+                      });
+                    }
                   }
-                  if (i != l['index']) {
-                    setState(() {
-                      controller.lang_data[i]['isActive'] = 0;
-                    });
-                  }
-                }
-              },
-              child: Center(
-                child: AnimatedContainer(
-                  duration: const Duration(microseconds: 800),
-                  curve: Curves.bounceIn,
-                  child: LangCom(
-                    textT: l['textT'].toString(),
-                    active_img: l['active_image'].toString(),
-                    inactive_img: l['inactive_image'].toString(),
-                    textB: l['textB'].toString(),
-                    active: int.parse(l['isActive'].toString()),
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 8.0),
+                  child: Center(
+                    child: AnimatedContainer(
+                      duration: const Duration(microseconds: 800),
+                      curve: Curves.bounceIn,
+                      child: LangCom(
+                        textT: l['textT'].toString(),
+                        active_img: l['active_image'].toString(),
+                        inactive_img: l['inactive_image'].toString(),
+                        textB: l['textB'].toString(),
+                        active: int.parse(l['isActive'].toString()),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            );
-          }).toList(),
-        ),
+              );
+            }).toList(),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical:12.0),
+            child: DynamicButton("Continue", true, () { if (LocalStorage.shared.isLoggedIn()) {
+                        print(LocalStorage.shared.isLoggedIn());
+
+                        var lang = controller.lang_data
+                            .firstWhere((element) => element['isActive'] == 1);
+                        box.write("lang", lang['textT']);
+                        Get.to(DashboardView());
+                      } else {
+                        var lang = controller.lang_data
+                            .firstWhere((element) => element['isActive'] == 1);
+                        box.write("lang", lang['textT']);
+                        print(LocalStorage.shared.isLoggedIn());
+
+                        Get.to(OnboardingView());
+                      }}),
+          ),
+        ],
       ),
     );
 

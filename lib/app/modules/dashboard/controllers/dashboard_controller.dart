@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
+// import 'package:video_player/video_player.dart';
 
 import '../../../routes/app_pages.dart';
 
 class DashboardController extends GetxController {
   //TODO: Implement DashboardController
-late VideoPlayerController videocontroller;
+// late VideoPlayerController videocontroller;
 
   final count = 0.obs;
   late ScrollController scrollController;

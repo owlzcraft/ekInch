@@ -139,7 +139,6 @@ class DetailsForm extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: DropdownButtonFormField2(
-                          autovalidateMode: AutovalidateMode.always,
                           decoration: InputDecoration(
                             prefixIcon: Padding(
                               padding: const EdgeInsets.only(left: 8.0),

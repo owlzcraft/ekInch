@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:ekinch/app/modules/company/view/company_view.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/MyVideos/views/my_videos_view.dart';
 import 'package:ekinch/app/modules/certificate/view/certificate.dart';
@@ -26,8 +27,8 @@ Widget SettingListItem(String image, String title) {
         case "Feedback":
           Get.to(FeedbackView());
           break;
-        case "My Certificate":
-          Get.to(CertificateView());
+        case "My Company":
+          Get.to(CompanyView());
           break;
         case "My Videos (Reels)":
           Get.to(ReelsView());
@@ -53,7 +54,7 @@ Widget SettingListItem(String image, String title) {
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Row(
           children: [
-            Image.asset(image),
+            Image.asset(image,scale: 2.0,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Text(

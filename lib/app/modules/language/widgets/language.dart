@@ -23,53 +23,41 @@ class LangCom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Get.height / 5.8,
-      width: Get.width / 2.4,
       decoration: BoxDecoration(
         border: Border.all(
           width: 1,
         ),
         color: (active == 1) ? Color(0xFFFEBA0F) : Colors.white,
-        borderRadius: const BorderRadius.all(Radius.circular(7.5)),
+        borderRadius: const BorderRadius.all(Radius.circular(6)),
       ),
-      child: Stack(
-        children: [
-          Positioned(
-              child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10.sp, horizontal: 5.sp),
-                child: Text(textT,
-                    style: GoogleFonts.kadwa(
-                        fontSize: F12(),
-                       
-                        color: (active == 1) ? Colors.white : Color(0xFF525252))),
-              )
-            ],
-          )),
-          Positioned(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children:[ 
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(
-                  child: Image.asset(
-                    (active == 1) ? active_img : inactive_img,
-                    scale: 1.7,
-                  ),
-                ),
-                Center(
-                  child: Text(textB,
-                      style: GoogleFonts.kadwa(
-                          fontSize: F22(), 
-                          color: (active == 1)
-                              ? Colors.white
-                              : Color.fromARGB(255, 116, 115, 115))),
-                ),
+                Text(textT,
+                    style: GoogleFonts.kadwa(
+                        fontSize: F28(),
+                        color: (active == 1)
+                            ? Colors.white
+                            : Colors.black)),
+                Text(textB,
+                    style: GoogleFonts.kadwa(
+                        fontSize: F28(),
+                        color: (active == 1)
+                            ? Colors.white
+                            : Colors.black)),
               ],
             ),
-          )
-        ],
+            Image.asset(
+              (active == 1) ? active_img : inactive_img,
+              scale: 1.7,
+            ),
+          ],
+        ),
       ),
     );
   }

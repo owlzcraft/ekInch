@@ -14,164 +14,114 @@ import '../../../../dashboard/widgets/navigation.dart';
 import '../../../../notication/view/notification_view.dart';
 import '../../../../settings/views/settings_view.dart';
 
-class AddSkillView extends StatelessWidget {
+class AddSkillView extends StatefulWidget {
   AddSkillView({super.key});
-  GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
 
   @override
+  State<AddSkillView> createState() => _AddSkillViewState();
+}
+
+class _AddSkillViewState extends State<AddSkillView> {
+  GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
+  final List<Map<String, dynamic>> _allUsers = [
+    {"id": 1, "name": "Andy", "age": 29},
+    {"id": 2, "name": "Aragon", "age": 40},
+    {"id": 3, "name": "Bob", "age": 5},
+    {"id": 4, "name": "Barbara", "age": 35},
+    {"id": 5, "name": "Candy", "age": 21},
+    {"id": 6, "name": "Colin", "age": 55},
+    {"id": 7, "name": "Audra", "age": 30},
+    {"id": 8, "name": "Banana", "age": 14},
+    {"id": 9, "name": "Caversky", "age": 100},
+    {"id": 10, "name": "Becky", "age": 32},
+  ];
+
+  // This list holds the data for the list view
+  List<Map<String, dynamic>> _foundUsers = [];
+  @override
+  initState() {
+    // at the beginning, all users are shown
+    _foundUsers = _allUsers;
+    super.initState();
+  }
+
+  // This function is called whenever the text field changes
+  void _runFilter(String enteredKeyword) {
+    List<Map<String, dynamic>> results = [];
+    if (enteredKeyword.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all users
+      results = _allUsers;
+    } else {
+      results = _allUsers
+          .where((user) =>
+              user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+      // we use the toLowerCase() method to make it case-insensitive
+    }
+
+    // Refresh the UI
+    setState(() {
+      _foundUsers = results;
+    });
+  }
+ List<String> _items = List.generate(20, (index) => 'Item ${index + 1}');
+  List<String> _selectedItems = [];
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: notDrawerKey,
-      drawer: const SettingsView(),
-      backgroundColor: Colors.white,
+    return  Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        actions: [
-          IconButton(
-            padding: const EdgeInsetsDirectional.only(end: 9.11),
-            onPressed: (() => {Get.to(() => NotificationView())}),
-            icon: SvgPicture.asset(Assets.notification),
+        title: const Text('Multi-Selection ListView Example'),
+      ),
+      body: ListView.builder(
+        itemCount: _items.length,
+        itemBuilder: (context, index) {
+          final item = _items[index];
+
+          return CheckboxListTile(
+            value: _selectedItems.contains(item),
+            title: Text(item),
+            controlAffinity: ListTileControlAffinity.leading,
+            onChanged: (value) {
+              setState(() {
+                if (value!) {
+                  _selectedItems.add(item);
+                } else {
+                  _selectedItems.remove(item);
+                }
+              });
+            },
+          );
+        },
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: ElevatedButton(
+            onPressed: _selectedItems.isEmpty
+                ? null
+                : () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Selected Items'),
+                          content: Text(_selectedItems.join(', ')),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('Close'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+            child: const Text('Show Selected Items'),
           ),
-        ],
-        title: Text(
-          "Add Your Skills",
-          style: GoogleFonts.kadwa(
-              color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.black,
-        elevation: 0.0,
-        leading: IconButton(
-          icon: SvgPicture.asset(Assets.drawerIcon_white),
-          onPressed: () {
-            if (!notDrawerKey.currentState!.isDrawerOpen) {
-              //check if drawer is closed
-              notDrawerKey.currentState!.openDrawer(); //open drawer
-            }
-          },
         ),
       ),
-      body: SingleChildScrollView(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 30,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              border: Border.all(color: Colors.black),
-            ),
-          ),
-          Stack(
-            children: [
-              Container(
-                height: 30,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  border: Border.all(color: Colors.black),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 0.0),
-                child: Container(
-                  width: getHorizontalSize(460),
-                  height: getVerticalSize(95),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6)),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextFormField(
-                        onTap: () {
-                          // setState(() {
-                          //   drop = false;
-                          // });
-                        },
-                        // controller: nameController,
-                        validator: ((value) {
-                          // print(value);
-                          if (value!.isEmpty) {
-                            return "This Field Can't be Empty.";
-                          }
-                          return null;
-                        }),
-                        // cursorColor: const Color(0xFFFEBA0F),
-                        style: const TextStyle(fontSize: 18),
-                        decoration: const InputDecoration(
-                            prefixIcon:
-                                Icon(Icons.search, color: KColors.borderGrey),
-                            hintStyle: TextStyle(
-                                fontSize: 18, color: Color(0xFF999898)),
-                            hintText: "Start type your skills",
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(4)),
-                                borderSide:
-                                    BorderSide(color: KColors.greyLine)),
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(4)),
-                                borderSide:
-                                    BorderSide(color: KColors.greyLine))),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                SkillOptions.textField("  Light Fitting"),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 11.0),
-                  child: SkillOptions.textField("  Wire Fitting"),
-                ),
-                SkillOptions.textField("  Light Fitting"),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 11.0),
-                  child: SkillOptions.textField("  Light Fitting"),
-                ),
-                SkillOptions.textField("  Light Fitting"),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 11.0),
-                  child: SkillOptions.textField("  Light Fitting"),
-                ),
-                SkillOptions.textField("  Light Fitting"),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 11.0),
-                  child: SkillOptions.textField("  Light Fitting"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: GFButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    color: KColors.orange,
-                    fullWidthButton: true,
-                    size: 50.2,
-                    text: "Save & Next",
-                    textStyle: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 24.0,
-                        fontFamily: 'Kadwa'),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      )),
-                    bottomNavigationBar: BottomTabView(2),
-
-      // bottomNavigationBar: MyNavigator(),
     );
   }
 }

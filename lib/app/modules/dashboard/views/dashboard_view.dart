@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/awards_certificate.dart/view/award_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -45,11 +46,11 @@ class _DashboardStateView extends State<DashboardView>
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
     super.initState();
-    var videocontroller = VideoPlayerController.network(
-      'https://www.youtube.com/watch?v=p260etQQbJE&list=RDbiFowhF1Tt8&index=27',
-    )..initialize().then((_) {
-        setState(() {});
-      });
+    // var videocontroller = VideoPlayerController.network(
+    //   'https://www.youtube.com/watch?v=p260etQQbJE&list=RDbiFowhF1Tt8&index=27',
+    // )..initialize().then((_) {
+    //     setState(() {});
+    //   });
   }
 
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -186,79 +187,43 @@ class _DashboardStateView extends State<DashboardView>
           "Welcome !",
           true,
           scaffoldKey),
-      body: Container(
-        color: Colors.white,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    top: 10.0.sp, left: 10.0.sp, right: 10.0.sp),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                        child: Text(
-                          'Short Videos',
-                          style: GoogleFonts.kadwa(
-                              fontWeight: FontWeight.w700, fontSize: F20()),
-                        )),
-                    Text(
-                      'View all >',
-                      style: GoogleFonts.kadwa(
-                          fontSize: F20(),
-                          color: Color(0xFF767676),
-                          fontWeight: FontWeight.w400),
-                    )
-                  ],
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                  top: 10.0.sp, left: 10.0.sp, right: 10.0.sp),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                      child: Text(
+                        'Short Videos',
+                        style: GoogleFonts.kadwa(
+                            fontWeight: FontWeight.w700, fontSize: F20()),
+                      )),
+                  Text(
+                    'View all >',
+                    style: GoogleFonts.kadwa(
+                        fontSize: F20(),
+                        color: Color(0xFF767676),
+                        fontWeight: FontWeight.w400),
+                  )
+                ],
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding:
-                    EdgeInsets.only(bottom: 10.sp, left: 10.sp, right: 10.sp),
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        showDataAlertUploadVideo();
-                      },
-                      child: Container(
-                        alignment: AlignmentDirectional.center,
-                        width: (MediaQuery.of(context).size.width / 3.5).sp,
-                        height:
-                            (MediaQuery.of(context).size.height / 4.04809009283)
-                                .sp,
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 10.sp, vertical: 5.sp),
-                        decoration: BoxDecoration(
-                            color: KColors.orange,
-                            borderRadius: BorderRadius.circular(20.sp)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              "assets/images/vcamera.png",
-                              scale: 3.0,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 10.0),
-                              child: Text(
-                                "Upload\nVideos",
-                                style: GoogleFonts.kadwa(
-                                    height: 1.2,
-                                    fontSize: F18(),
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding:
+                  EdgeInsets.only(bottom: 10.sp, left: 10.sp, right: 10.sp),
+              child: Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      showDataAlertUploadVideo();
+                    },
+                    child: Container(
                       alignment: AlignmentDirectional.center,
                       width: (MediaQuery.of(context).size.width / 3.5).sp,
                       height:
@@ -267,309 +232,344 @@ class _DashboardStateView extends State<DashboardView>
                       margin: EdgeInsets.symmetric(
                           horizontal: 10.sp, vertical: 5.sp),
                       decoration: BoxDecoration(
+                          color: KColors.orange,
                           borderRadius: BorderRadius.circular(20.sp)),
-                      child: 
-                      controller.videocontroller.value.isInitialized
-                          ? 
-                          VideoPlayer(controller.videocontroller)
-                          : CircularProgressIndicator(),
-                    ),
-                    Video(image: 'assets/images/sample_thumb.jpg'),
-                    Video(image: 'assets/images/sample_thumb.jpg'),
-                    Video(image: 'assets/images/sample_thumb.jpg'),
-                    Video(image: 'assets/images/sample_thumb.jpg'),
-                    Video(image: 'assets/images/sample_thumb.jpg'),
-                    Video(image: 'assets/images/sample_thumb.jpg'),
-                    Video(image: 'assets/images/sample_thumb.jpg')
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20.sp),
-                      child: Text(
-                        'Learn from the Videos',
-                        style: GoogleFonts.kadwa(
-                            fontWeight: FontWeight.w700, fontSize: F20()),
-                      )),
-                ],
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
-                child: GridView.count(
-                  physics: NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  crossAxisCount: 3,
-                  childAspectRatio: 0.9,
-                  crossAxisSpacing: 10.sp,
-                  mainAxisSpacing: 10.sp,
-                  children: videoCategoryData.map((e) {
-                    return VideoCategory(e['image'].toString(),
-                        e['title'].toString(), e['videos'].toString());
-                  }).toList(),
-                ),
-              ),
-              TabBar(
-                  controller: _tabController,
-                  // indicatorColor: Color(0xFFFEBA0F),
-                  unselectedLabelColor: const Color(0xFF767676),
-                  labelColor: Colors.black,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  indicator: BoxDecoration(
-                      border: Border(
-                          bottom:
-                              BorderSide(width: 3, color: Color(0xFFFEBA0F)))),
-                  // ignore: prefer_const_literals_to_create_immutables
-                  tabs: [
-                    Tab(
-                      child: Text(
-                        "Beginner",
-                        style: TextStyle(
-                            fontSize: F18(), fontWeight: FontWeight.w700),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/images/vcamera.png",
+                            scale: 3.0,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(vertical: 10.0),
+                            child: Text(
+                              "Upload\nVideos",
+                              style: GoogleFonts.kadwa(
+                                  height: 1.2,
+                                  fontSize: F18(),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                    Tab(
-                      child: Text("Professional",
-                          style: TextStyle(
-                            fontSize: F18(),
-                            fontWeight: FontWeight.w700,
-                          )),
+                  ),
+                  Container(
+                    alignment: AlignmentDirectional.center,
+                    width: (MediaQuery.of(context).size.width / 3.5).sp,
+                    height:
+                        (MediaQuery.of(context).size.height / 4.04809009283)
+                            .sp,
+                    margin: EdgeInsets.symmetric(
+                        horizontal: 10.sp, vertical: 5.sp),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.sp)),
+                    // child:
+                    // controller.videocontroller.value.isInitialized
+                    //     ?
+                    //     VideoPlayer(controller.videocontroller)
+                    //     : CircularProgressIndicator(),
+                  ),
+                  Video(image: 'assets/images/sample_thumb.jpg'),
+                  Video(image: 'assets/images/sample_thumb.jpg'),
+                  Video(image: 'assets/images/sample_thumb.jpg'),
+                  Video(image: 'assets/images/sample_thumb.jpg'),
+                  Video(image: 'assets/images/sample_thumb.jpg'),
+                  Video(image: 'assets/images/sample_thumb.jpg'),
+                  Video(image: 'assets/images/sample_thumb.jpg')
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20.sp),
+                    child: Text(
+                      'Learn from the Videos',
+                      style: GoogleFonts.kadwa(
+                          fontWeight: FontWeight.w700, fontSize: F20()),
+                    )),
+              ],
+            ),
+            Padding(
+              padding:
+                  EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
+              child: GridView.count(
+                physics: NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                crossAxisCount: 3,
+                childAspectRatio: 0.9,
+                crossAxisSpacing: 10.sp,
+                mainAxisSpacing: 10.sp,
+                children: videoCategoryData.map((e) {
+                  return VideoCategory(e['image'].toString(),
+                      e['title'].toString(), e['videos'].toString());
+                }).toList(),
+              ),
+            ),
+            TabBar(
+                controller: _tabController,
+                // indicatorColor: Color(0xFFFEBA0F),
+                unselectedLabelColor: const Color(0xFF767676),
+                labelColor: Colors.black,
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicator: BoxDecoration(
+                    border: Border(
+                        bottom:
+                            BorderSide(width: 3, color: Color(0xFFFEBA0F)))),
+                // ignore: prefer_const_literals_to_create_immutables
+                tabs: [
+                  Tab(
+                    child: Text(
+                      "Beginner",
+                      style: TextStyle(
+                          fontSize: F18(), fontWeight: FontWeight.w700),
                     ),
-                    Tab(
-                      child: Text("Expert",
-                          style: TextStyle(
-                            fontSize: F18(),
-                            fontWeight: FontWeight.w700,
-                          )),
-                    )
-                  ]),
-              SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Row(
-                      children: cat_pill_data
-                          .map((e) => GestureDetector(
-                                onTap: () {
-                                  for (int i = 0;
-                                      i < cat_pill_data.length;
-                                      i++) {
-                                    print(i == cat_pill_data.indexOf(e));
-                                    if (i == cat_pill_data.indexOf(e)) {
-                                      print('in if $i');
-                                      setState(() {
-                                        cat_pill_data[i]['active'] = true;
-                                      });
-                                    } else {
-                                      setState(() {
-                                        cat_pill_data[i]['active'] = false;
-                                      });
-                                    }
+                  ),
+                  Tab(
+                    child: Text("Professional",
+                        style: TextStyle(
+                          fontSize: F18(),
+                          fontWeight: FontWeight.w700,
+                        )),
+                  ),
+                  Tab(
+                    child: Text("Expert",
+                        style: TextStyle(
+                          fontSize: F18(),
+                          fontWeight: FontWeight.w700,
+                        )),
+                  )
+                ]),
+            SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Row(
+                    children: cat_pill_data
+                        .map((e) => GestureDetector(
+                              onTap: () {
+                                for (int i = 0;
+                                    i < cat_pill_data.length;
+                                    i++) {
+                                  print(i == cat_pill_data.indexOf(e));
+                                  if (i == cat_pill_data.indexOf(e)) {
+                                    print('in if $i');
+                                    setState(() {
+                                      cat_pill_data[i]['active'] = true;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      cat_pill_data[i]['active'] = false;
+                                    });
                                   }
-                                  print(cat_pill_data);
-                                },
-                                child: categoryPill(e['name'].toString(),
-                                    (e["active"] == true) ? true : false),
-                              ))
-                          .toList(),
-                    ),
-                  )),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                child: Row(
-                  children: [
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg')
-                  ],
-                ),
+                                }
+                                print(cat_pill_data);
+                              },
+                              child: categoryPill(e['name'].toString(),
+                                  (e["active"] == true) ? true : false),
+                            ))
+                        .toList(),
+                  ),
+                )),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: 10.sp),
+              child: Row(
+                children: [
+                  work(image: 'assets/images/sample_thumb.jpg'),
+                  work(image: 'assets/images/sample_thumb.jpg'),
+                  work(image: 'assets/images/sample_thumb.jpg'),
+                  work(image: 'assets/images/sample_thumb.jpg'),
+                  work(image: 'assets/images/sample_thumb.jpg'),
+                  work(image: 'assets/images/sample_thumb.jpg'),
+                  work(image: 'assets/images/sample_thumb.jpg')
+                ],
               ),
-              Container(
-                padding: EdgeInsets.all(10.0.sp),
-                margin: EdgeInsets.only(top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                        child: Text(
-                          'Award and Certificate',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 18.sp),
-                        )),
-                    Text(
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Award and Certificate',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700, fontSize: F18()),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Get.to(AwardAndCertificate());
+                    },
+                    child: Text(
                       'View all >',
                       style: TextStyle(
                           fontSize: F18(),
                           color: Color(0xFF767676),
                           fontWeight: FontWeight.w400),
-                    )
-                  ],
-                ),
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 12.sp),
-                child: Row(
-                  children: [
-                    Award_and_Certificate(
-                        image: 'assets/images/sample_thumb.jpg'),
-                    Award_and_Certificate(
-                        image: 'assets/images/sample_thumb.jpg'),
-                    Award_and_Certificate(
-                        image: 'assets/images/sample_thumb.jpg'),
-                    Award_and_Certificate(
-                        image: 'assets/images/sample_thumb.jpg'),
-                    Award_and_Certificate(
-                        image: 'assets/images/sample_thumb.jpg'),
-                    Award_and_Certificate(
-                        image: 'assets/images/sample_thumb.jpg'),
-                    Award_and_Certificate(
-                        image: 'assets/images/sample_thumb.jpg')
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                padding: EdgeInsets.all(10.0.sp),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                        child: Text(
-                          'Services and News',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 12.sp),
-                        )),
-                    Text(
-                      'View all >',
-                      style: TextStyle(
-                          fontSize: F18(),
-                          color: Color(0xFF767676),
-                          fontWeight: FontWeight.w400),
-                    )
-                  ],
-                ),
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                child: Row(
-                  children: [
-                    servicesAndNews(
-                      "Cement Material\nLaunch Online",
-                      "",
-                      true,
-                      "assets/images/snnews1.png",
-                      "22 Oct, 2022",
-                      "12:00 PM",
                     ),
-                    servicesAndNews(
-                      "Find the perfect\nJobs",
-                      "Easily make your profile\nand get jobs",
-                      false,
-                      "assets/images/snnews2.png",
-                      "",
-                      "",
-                    ),
-                    servicesAndNews(
-                      "Cement Material\n Launch Online",
-                      "",
-                      true,
-                      "assets/images/snnews1.png",
-                      "22 Oct, 2022",
-                      "12:00 PM",
-                    ),
-                    servicesAndNews(
-                      "Find the perfect\nJobs",
-                      "Easily make your profile\nand get jobs",
-                      false,
-                      "assets/images/snnews2.png",
-                      "",
-                      "",
-                    ),
-                    servicesAndNews(
-                      "Cement Material\n Launch Online",
-                      "",
-                      true,
-                      "assets/images/snnews1.png",
-                      "22 Oct, 2022",
-                      "12:00 PM",
-                    ),
-                    servicesAndNews(
-                      "Find the perfect\nJobs",
-                      "Easily make your profile\nand get jobs",
-                      false,
-                      "assets/images/snnews2.png",
-                      "",
-                      "",
-                    ),
-                  ],
-                ),
+                  )
+                ],
               ),
-              Container(
-                padding: EdgeInsets.all(10.0.sp),
-                margin: EdgeInsets.only(top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                        child: Text(
-                          'Recently Added',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 18.sp),
-                        )),
-                    const Text(
-                      'View all >',
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: Color(0xFF767676),
-                          fontWeight: FontWeight.w400),
-                    )
-                  ],
-                ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: 12.sp),
+              child: Row(
+                children: [
+                  Award_and_Certificate(
+                      image: 'assets/images/sample_thumb.jpg'),
+                  Award_and_Certificate(
+                      image: 'assets/images/sample_thumb.jpg'),
+                  Award_and_Certificate(
+                      image: 'assets/images/sample_thumb.jpg'),
+                  Award_and_Certificate(
+                      image: 'assets/images/sample_thumb.jpg'),
+                  Award_and_Certificate(
+                      image: 'assets/images/sample_thumb.jpg'),
+                  Award_and_Certificate(
+                      image: 'assets/images/sample_thumb.jpg'),
+                  Award_and_Certificate(
+                      image: 'assets/images/sample_thumb.jpg')
+                ],
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 12.sp),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    HeroProfile(
-                        "assets/images/profile.jpg",
-                        "Electrician",
-                        "Ashok Kumar",
-                        "Roorkee",
-                        "18 Oct, 2022",
-                        "12:10AM",
-                        "10min"),
-                    HeroProfile(
-                        "assets/images/profile.jpg",
-                        "Electrician",
-                        "Ashok Kumar",
-                        "Roorkee",
-                        "18 Oct, 2022",
-                        "12:10AM",
-                        "10min")
-                  ],
-                ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.all(10.0.sp),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                      child: Text(
+                        'Services and News',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 12.sp),
+                      )),
+                  Text(
+                    'View all >',
+                    style: TextStyle(
+                        fontSize: F18(),
+                        color: Color(0xFF767676),
+                        fontWeight: FontWeight.w400),
+                  )
+                ],
               ),
-              Container(
-                height: 10,
-              )
-            ],
-          ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: 10.sp),
+              child: Row(
+                children: [
+                  servicesAndNews(
+                    "Cement Material\nLaunch Online",
+                    "",
+                    true,
+                    "assets/images/snnews1.png",
+                    "22 Oct, 2022",
+                    "12:00 PM",
+                  ),
+                  servicesAndNews(
+                    "Find the perfect\nJobs",
+                    "Easily make your profile\nand get jobs",
+                    false,
+                    "assets/images/snnews2.png",
+                    "",
+                    "",
+                  ),
+                  servicesAndNews(
+                    "Cement Material\n Launch Online",
+                    "",
+                    true,
+                    "assets/images/snnews1.png",
+                    "22 Oct, 2022",
+                    "12:00 PM",
+                  ),
+                  servicesAndNews(
+                    "Find the perfect\nJobs",
+                    "Easily make your profile\nand get jobs",
+                    false,
+                    "assets/images/snnews2.png",
+                    "",
+                    "",
+                  ),
+                  servicesAndNews(
+                    "Cement Material\n Launch Online",
+                    "",
+                    true,
+                    "assets/images/snnews1.png",
+                    "22 Oct, 2022",
+                    "12:00 PM",
+                  ),
+                  servicesAndNews(
+                    "Find the perfect\nJobs",
+                    "Easily make your profile\nand get jobs",
+                    false,
+                    "assets/images/snnews2.png",
+                    "",
+                    "",
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(10.0.sp),
+              margin: EdgeInsets.only(top: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                      child: Text(
+                        'Recently Added',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, fontSize: 18.sp),
+                      )),
+                  const Text(
+                    'View all >',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Color(0xFF767676),
+                        fontWeight: FontWeight.w400),
+                  )
+                ],
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.symmetric(horizontal: 12.sp),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  HeroProfile(
+                      "assets/images/profile.jpg",
+                      "Electrician",
+                      "Ashok Kumar",
+                      "Roorkee",
+                      "18 Oct, 2022",
+                      "12:10AM",
+                      "10min"),
+                  HeroProfile(
+                      "assets/images/profile.jpg",
+                      "Electrician",
+                      "Ashok Kumar",
+                      "Roorkee",
+                      "18 Oct, 2022",
+                      "12:10AM",
+                      "10min")
+                ],
+              ),
+            ),
+            Container(
+              height: 10,
+            )
+          ],
         ),
       ),
     );
