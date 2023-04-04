@@ -1,50 +1,54 @@
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/awards_certificate.dart/view/award_view.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/TabButton.dart';
+import 'package:ekinch/app/modules/recently_added/view/recently_added.dart';
+import 'package:ekinch/app/modules/reels/bindings/reels_binding.dart';
+import 'package:ekinch/app/modules/service/view/service_news.dart';
+import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:ekinch/app/custom_widget/dash_header.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottom_bar.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/services_news.widget.dart';
-import 'package:ekinch/app/modules/language/views/language_view.dart';
-import 'package:ekinch/app/modules/notication/view/notification_view.dart';
 import 'package:ekinch/app/modules/settings/views/settings_view.dart';
 import 'package:ekinch/app/utils/localStorage.dart';
 import "package:flutter_screenutil/flutter_screenutil.dart";
 import 'package:ekinch/app/modules/dashboard/widgets/awards.widgets.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/categoryPill.widget.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/recentlyAdded.widget.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/video.widget.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/videoCategory.widget.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/work.widget.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:video_player/video_player.dart';
 import '../../../custom_widget/color.dart';
-import '../../../generated/assets.dart';
+import '../../../models/reel_model.dart';
 import '../controllers/dashboard_controller.dart';
 import 'package:get/get.dart';
 
 class DashboardView extends StatefulWidget {
-  const DashboardView({
-    super.key,
-  });
+  List<Data> ReelsList;
+  List<Data> RecentlyAddedList;
+
+  DashboardView({super.key, required this.ReelsList,required this.RecentlyAddedList});
 
   @override
   State<DashboardView> createState() => _DashboardStateView();
 }
 
 class _DashboardStateView extends State<DashboardView>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   DashboardController controller = Get.put(DashboardController());
   late TabController _tabController;
+  late TabController _tabButtonController;
+
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
+    _tabButtonController = TabController(length: 9, vsync: this);
+
     super.initState();
     // var videocontroller = VideoPlayerController.network(
     //   'https://www.youtube.com/watch?v=p260etQQbJE&list=RDbiFowhF1Tt8&index=27',
@@ -53,7 +57,7 @@ class _DashboardStateView extends State<DashboardView>
     //   });
   }
 
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     var videoCategoryData = [
@@ -74,6 +78,64 @@ class _DashboardStateView extends State<DashboardView>
       {"name": "Electrician", "active": false},
       {"name": "Plumber", "active": false},
     ];
+    showDataAlertSubscribe(String title, String subtitle) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              insetPadding: EdgeInsets.all(8.sp),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    4.0,
+                  ),
+                ),
+              ),
+              title: Center(
+                child: Text(
+                  title,
+                  style: GoogleFonts.kadwa(
+                      color: Colors.black,
+                      fontSize: F28(),
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
+              content: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(
+                      subtitle,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.kadwa(
+                          height: 1.2,
+                          fontSize: F20(),
+                          fontWeight: FontWeight.w400),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.sp),
+                      child: GFButton(
+                        onPressed: () {},
+                        color: KColors.orange,
+                        fullWidthButton: true,
+                        size: 50.2,
+                        text: "Subscribe Now",
+                        textStyle: GoogleFonts.kadwa(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: F24(),
+                        ),
+                        // shape: GFButtonShape.standard,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          });
+    }
+
     showDataAlertUploadVideo() {
       showDialog(
           context: context,
@@ -178,7 +240,7 @@ class _DashboardStateView extends State<DashboardView>
     }
 
     return Scaffold(
-      key: scaffoldKey,
+      key: _scaffoldKey,
       bottomNavigationBar: BottomTabView(0),
       // bottomNavigationBar: BottomBar(),
       drawer: const SettingsView(),
@@ -186,391 +248,514 @@ class _DashboardStateView extends State<DashboardView>
           "${LocalStorage.shared.getUserData()?.userData?.firstName}",
           "Welcome !",
           true,
-          scaffoldKey),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  top: 10.0.sp, left: 10.0.sp, right: 10.0.sp),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                      child: Text(
-                        'Short Videos',
+          _scaffoldKey),
+      body: CustomScrollView(
+        slivers: [
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: 10.0.sp, left: 10.0.sp, right: 10.0.sp),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                          child: Text(
+                            'Short Videos',
+                            style: GoogleFonts.kadwa(
+                                fontWeight: FontWeight.w700, fontSize: F20()),
+                          )),
+                      Text(
+                        'View all >',
                         style: GoogleFonts.kadwa(
-                            fontWeight: FontWeight.w700, fontSize: F20()),
-                      )),
-                  Text(
-                    'View all >',
-                    style: GoogleFonts.kadwa(
-                        fontSize: F20(),
-                        color: Color(0xFF767676),
-                        fontWeight: FontWeight.w400),
-                  )
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding:
-                  EdgeInsets.only(bottom: 10.sp, left: 10.sp, right: 10.sp),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      showDataAlertUploadVideo();
-                    },
-                    child: Container(
-                      alignment: AlignmentDirectional.center,
-                      width: (MediaQuery.of(context).size.width / 3.5).sp,
-                      height:
-                          (MediaQuery.of(context).size.height / 4.04809009283)
-                              .sp,
-                      margin: EdgeInsets.symmetric(
-                          horizontal: 10.sp, vertical: 5.sp),
-                      decoration: BoxDecoration(
-                          color: KColors.orange,
-                          borderRadius: BorderRadius.circular(20.sp)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/images/vcamera.png",
-                            scale: 3.0,
-                          ),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(vertical: 10.0),
-                            child: Text(
-                              "Upload\nVideos",
-                              style: GoogleFonts.kadwa(
-                                  height: 1.2,
-                                  fontSize: F18(),
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                            fontSize: F18(),
+                            color: Color(0xFF767676),
+                            fontWeight: FontWeight.w400),
+                      )
+                    ],
                   ),
-                  Container(
-                    alignment: AlignmentDirectional.center,
-                    width: (MediaQuery.of(context).size.width / 3.5).sp,
-                    height:
-                        (MediaQuery.of(context).size.height / 4.04809009283)
-                            .sp,
-                    margin: EdgeInsets.symmetric(
-                        horizontal: 10.sp, vertical: 5.sp),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.sp)),
-                    // child:
-                    // controller.videocontroller.value.isInitialized
-                    //     ?
-                    //     VideoPlayer(controller.videocontroller)
-                    //     : CircularProgressIndicator(),
-                  ),
-                  Video(image: 'assets/images/sample_thumb.jpg'),
-                  Video(image: 'assets/images/sample_thumb.jpg'),
-                  Video(image: 'assets/images/sample_thumb.jpg'),
-                  Video(image: 'assets/images/sample_thumb.jpg'),
-                  Video(image: 'assets/images/sample_thumb.jpg'),
-                  Video(image: 'assets/images/sample_thumb.jpg'),
-                  Video(image: 'assets/images/sample_thumb.jpg')
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20.sp),
-                    child: Text(
-                      'Learn from the Videos',
-                      style: GoogleFonts.kadwa(
-                          fontWeight: FontWeight.w700, fontSize: F20()),
-                    )),
+                ),
               ],
             ),
-            Padding(
-              padding:
-                  EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
-              child: GridView.count(
-                physics: NeverScrollableScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                crossAxisCount: 3,
-                childAspectRatio: 0.9,
-                crossAxisSpacing: 10.sp,
-                mainAxisSpacing: 10.sp,
-                children: videoCategoryData.map((e) {
-                  return VideoCategory(e['image'].toString(),
-                      e['title'].toString(), e['videos'].toString());
-                }).toList(),
-              ),
-            ),
-            TabBar(
-                controller: _tabController,
-                // indicatorColor: Color(0xFFFEBA0F),
-                unselectedLabelColor: const Color(0xFF767676),
-                labelColor: Colors.black,
-                indicatorSize: TabBarIndicatorSize.tab,
-                indicator: BoxDecoration(
-                    border: Border(
-                        bottom:
-                            BorderSide(width: 3, color: Color(0xFFFEBA0F)))),
-                // ignore: prefer_const_literals_to_create_immutables
-                tabs: [
-                  Tab(
-                    child: Text(
-                      "Beginner",
-                      style: TextStyle(
-                          fontSize: F18(), fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                  Tab(
-                    child: Text("Professional",
-                        style: TextStyle(
-                          fontSize: F18(),
-                          fontWeight: FontWeight.w700,
-                        )),
-                  ),
-                  Tab(
-                    child: Text("Expert",
-                        style: TextStyle(
-                          fontSize: F18(),
-                          fontWeight: FontWeight.w700,
-                        )),
-                  )
-                ]),
-            SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding:
+                      EdgeInsets.only(bottom: 10.sp, left: 10.sp, right: 10.sp),
                   child: Row(
-                    children: cat_pill_data
-                        .map((e) => GestureDetector(
-                              onTap: () {
-                                for (int i = 0;
-                                    i < cat_pill_data.length;
-                                    i++) {
-                                  print(i == cat_pill_data.indexOf(e));
-                                  if (i == cat_pill_data.indexOf(e)) {
-                                    print('in if $i');
-                                    setState(() {
-                                      cat_pill_data[i]['active'] = true;
-                                    });
-                                  } else {
-                                    setState(() {
-                                      cat_pill_data[i]['active'] = false;
-                                    });
-                                  }
-                                }
-                                print(cat_pill_data);
-                              },
-                              child: categoryPill(e['name'].toString(),
-                                  (e["active"] == true) ? true : false),
-                            ))
-                        .toList(),
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          showDataAlertUploadVideo();
+                        },
+                        child: Container(
+                          alignment: AlignmentDirectional.center,
+                          width: (MediaQuery.of(context).size.width / 3.5).sp,
+                          height: (MediaQuery.of(context).size.height /
+                                  4.04809009283)
+                              .sp,
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 10.sp, vertical: 5.sp),
+                          decoration: BoxDecoration(
+                              color: KColors.orange,
+                              borderRadius: BorderRadius.circular(20.sp)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                "assets/images/vcamera.png",
+                                scale: 3.0,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10.0),
+                                child: Text(
+                                  "Upload\nVideos",
+                                  style: GoogleFonts.kadwa(
+                                      height: 1.2,
+                                      fontSize: F18(),
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Row(
+                        children: (widget.ReelsList)
+                            .map((e) => Video(
+                                  image: e.thumbnail,
+                                  view: e.view,
+                                  text: e.title,
+                                  onTap: () {},
+                                ))
+                            .toList(),
+                      ),
+                    ],
                   ),
-                )),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 10.sp),
-              child: Row(
-                children: [
-                  work(image: 'assets/images/sample_thumb.jpg'),
-                  work(image: 'assets/images/sample_thumb.jpg'),
-                  work(image: 'assets/images/sample_thumb.jpg'),
-                  work(image: 'assets/images/sample_thumb.jpg'),
-                  work(image: 'assets/images/sample_thumb.jpg'),
-                  work(image: 'assets/images/sample_thumb.jpg'),
-                  work(image: 'assets/images/sample_thumb.jpg')
-                ],
-              ),
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Award and Certificate',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700, fontSize: F18()),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20.sp),
+                        child: Text(
+                          'Learn from the Videos',
+                          style: GoogleFonts.kadwa(
+                              fontWeight: FontWeight.w700, fontSize: F20()),
+                        )),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
+                  child: GridView.count(
+                    physics: NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    crossAxisCount: 3,
+                    childAspectRatio: 0.9,
+                    crossAxisSpacing: 10.sp,
+                    mainAxisSpacing: 10.sp,
+                    children: videoCategoryData.map((e) {
+                      return VideoCategory(e['image'].toString(),
+                          e['title'].toString(), e['videos'].toString());
+                    }).toList(),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Get.to(AwardAndCertificate());
-                    },
-                    child: Text(
-                      'View all >',
-                      style: TextStyle(
-                          fontSize: F18(),
-                          color: Color(0xFF767676),
-                          fontWeight: FontWeight.w400),
-                    ),
-                  )
-                ],
-              ),
+                ),
+              ],
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 12.sp),
-              child: Row(
-                children: [
-                  Award_and_Certificate(
-                      image: 'assets/images/sample_thumb.jpg'),
-                  Award_and_Certificate(
-                      image: 'assets/images/sample_thumb.jpg'),
-                  Award_and_Certificate(
-                      image: 'assets/images/sample_thumb.jpg'),
-                  Award_and_Certificate(
-                      image: 'assets/images/sample_thumb.jpg'),
-                  Award_and_Certificate(
-                      image: 'assets/images/sample_thumb.jpg'),
-                  Award_and_Certificate(
-                      image: 'assets/images/sample_thumb.jpg'),
-                  Award_and_Certificate(
-                      image: 'assets/images/sample_thumb.jpg')
-                ],
-              ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                TabBar(
+                    controller: _tabController,
+                    // indicatorColor: Color(0xFFFEBA0F),
+                    unselectedLabelColor: const Color(0xFF767676),
+                    labelColor: Colors.black,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    indicator: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                width: 3, color: Color(0xFFFEBA0F)))),
+                    // ignore: prefer_const_literals_to_create_immutables
+                    tabs: [
+                      Tab(
+                        child: Text(
+                          "Beginner",
+                          style: GoogleFonts.kadwa(
+                              fontSize: F18(), fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                      Tab(
+                        child: InkWell(
+                          onTap: () {
+                            showDataAlertSubscribe("Professionl Videos",
+                                "Do you want to continue with Professionals, Please do Subscribe");
+                          },
+                          child: Text("Professional",
+                              style: GoogleFonts.kadwa(
+                                fontSize: F18(),
+                                fontWeight: FontWeight.w700,
+                              )),
+                        ),
+                      ),
+                      Tab(
+                        child: InkWell(
+                          onTap: () {
+                            showDataAlertSubscribe("Expert Videos",
+                                "Do you want to continue with Experts, Please do Subscribe");
+                          },
+                          child: Text("Expert",
+                              style: GoogleFonts.kadwa(
+                                fontSize: F18(),
+                                fontWeight: FontWeight.w700,
+                              )),
+                        ),
+                      )
+                    ]),
+              ],
             ),
-            Container(
-              margin: EdgeInsets.only(top: 10),
-              padding: EdgeInsets.all(10.0.sp),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                      child: Text(
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ButtonsTabBar(
+                    controller: _tabButtonController,
+                    backgroundColor: KColors.orange,
+                    unselectedBackgroundColor:
+                        Color.fromARGB(255, 227, 224, 224),
+                    labelStyle: GoogleFonts.kadwa(
+                        color: KColors.orange, fontSize: F18()),
+                    unselectedLabelStyle: GoogleFonts.kadwa(
+                        color: KColors.lightGrey, fontSize: F18()),
+                    unselectedBorderColor: KColors.greybg,
+                    radius: 100,
+                    tabs: [
+                      Tab(
+                        iconMargin: EdgeInsets.zero,
+                        // height: getVerticalSize(32),
+                        child: TabButton("Civil"),
+                      ),
+                      Tab(
+                        child: TabButton("Plumber"),
+                      ),
+                      Tab(
+                        child: TabButton("Electrician"),
+                      ),
+                      Tab(
+                        child: TabButton("Painter"),
+                      ),
+                      Tab(
+                        child: TabButton("Mechanic"),
+                      ),
+                      Tab(
+                        iconMargin: EdgeInsets.zero,
+                        // height: getVerticalSize(32),
+                        child: TabButton("Civil"),
+                      ),
+                      Tab(
+                        child: TabButton("Plumber"),
+                      ),
+                      Tab(
+                        child: TabButton("Electrician"),
+                      ),
+                      Tab(
+                        child: TabButton("Painter"),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // SliverList(
+          //   delegate: SliverChildListDelegate.fixed(
+          //     [
+          //       SingleChildScrollView(
+          //           scrollDirection: Axis.horizontal,
+          //           child: Padding(
+          //             padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          //             child: Row(
+          //               children: cat_pill_data
+          //                   .map((e) => GestureDetector(
+          //                         onTap: () {
+          //                           for (int i = 0;
+          //                               i < cat_pill_data.length;
+          //                               i++) {
+          //                             print(i == cat_pill_data.indexOf(e));
+          //                             if (i == cat_pill_data.indexOf(e)) {
+          //                               print('in if $i');
+          //                               setState(() {
+          //                                 cat_pill_data[i]['active'] = true;
+          //                               });
+          //                             } else {
+          //                               setState(() {
+          //                                 cat_pill_data[i]['active'] = false;
+          //                               });
+          //                             }
+          //                           }
+          //                           print(cat_pill_data);
+          //                         },
+          //                         child: categoryPill(e['name'].toString(),
+          //                             (e["active"] == true) ? true : false),
+          //                       ))
+          //                   .toList(),
+          //             ),
+          //           )),
+          //     ],
+          //   ),
+          // ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                  child: Row(
+                    children: [
+                      work(image: 'assets/images/sample_thumb.jpg'),
+                      work(image: 'assets/images/sample_thumb.jpg'),
+                      work(image: 'assets/images/sample_thumb.jpg'),
+                      work(image: 'assets/images/sample_thumb.jpg'),
+                      work(image: 'assets/images/sample_thumb.jpg'),
+                      work(image: 'assets/images/sample_thumb.jpg'),
+                      work(image: 'assets/images/sample_thumb.jpg')
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Award and Certificate',
+                        style: GoogleFonts.kadwa(
+                            fontWeight: FontWeight.w700, fontSize: F20()),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(AwardAndCertificate());
+                        },
+                        child: Text(
+                          'View all >',
+                          style: GoogleFonts.kadwa(
+                              fontSize: F18(),
+                              color: Color(0xFF767676),
+                              fontWeight: FontWeight.w400),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.symmetric(horizontal: 12.sp),
+                  child: Row(
+                    children: [
+                      Award_and_Certificate(image: 'assets/images/award.png'),
+                      Award_and_Certificate(image: 'assets/images/award.png'),
+                      Award_and_Certificate(image: 'assets/images/award.png'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
                         'Services and News',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 12.sp),
-                      )),
-                  Text(
-                    'View all >',
-                    style: TextStyle(
-                        fontSize: F18(),
-                        color: Color(0xFF767676),
-                        fontWeight: FontWeight.w400),
-                  )
-                ],
-              ),
+                        style: GoogleFonts.kadwa(
+                            fontWeight: FontWeight.w700, fontSize: F20()),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(ServiceAndNews());
+                        },
+                        child: Text(
+                          'View all >',
+                          style: GoogleFonts.kadwa(
+                              fontSize: F18(),
+                              color: Color(0xFF767676),
+                              fontWeight: FontWeight.w400),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 10.sp),
-              child: Row(
-                children: [
-                  servicesAndNews(
-                    "Cement Material\nLaunch Online",
-                    "",
-                    true,
-                    "assets/images/snnews1.png",
-                    "22 Oct, 2022",
-                    "12:00 PM",
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                  child: Row(
+                    children: [
+                      servicesAndNews(
+                        "Cement Material\nLaunch Online",
+                        "",
+                        true,
+                        "assets/images/snnews1.png",
+                        "22 Oct, 2022",
+                        "12:00 PM",
+                      ),
+                      servicesAndNews(
+                        "Find the perfect\nJobs",
+                        "Easily make your profile\nand get jobs",
+                        false,
+                        "assets/images/snnews2.png",
+                        "",
+                        "",
+                      ),
+                      servicesAndNews(
+                        "Cement Material\n Launch Online",
+                        "",
+                        true,
+                        "assets/images/snnews1.png",
+                        "22 Oct, 2022",
+                        "12:00 PM",
+                      ),
+                      servicesAndNews(
+                        "Find the perfect\nJobs",
+                        "Easily make your profile\nand get jobs",
+                        false,
+                        "assets/images/snnews2.png",
+                        "",
+                        "",
+                      ),
+                    ],
                   ),
-                  servicesAndNews(
-                    "Find the perfect\nJobs",
-                    "Easily make your profile\nand get jobs",
-                    false,
-                    "assets/images/snnews2.png",
-                    "",
-                    "",
-                  ),
-                  servicesAndNews(
-                    "Cement Material\n Launch Online",
-                    "",
-                    true,
-                    "assets/images/snnews1.png",
-                    "22 Oct, 2022",
-                    "12:00 PM",
-                  ),
-                  servicesAndNews(
-                    "Find the perfect\nJobs",
-                    "Easily make your profile\nand get jobs",
-                    false,
-                    "assets/images/snnews2.png",
-                    "",
-                    "",
-                  ),
-                  servicesAndNews(
-                    "Cement Material\n Launch Online",
-                    "",
-                    true,
-                    "assets/images/snnews1.png",
-                    "22 Oct, 2022",
-                    "12:00 PM",
-                  ),
-                  servicesAndNews(
-                    "Find the perfect\nJobs",
-                    "Easily make your profile\nand get jobs",
-                    false,
-                    "assets/images/snnews2.png",
-                    "",
-                    "",
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-            Container(
-              padding: EdgeInsets.all(10.0.sp),
-              margin: EdgeInsets.only(top: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                      child: Text(
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
                         'Recently Added',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 18.sp),
-                      )),
-                  const Text(
-                    'View all >',
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF767676),
-                        fontWeight: FontWeight.w400),
-                  )
-                ],
-              ),
+                        style: GoogleFonts.kadwa(
+                            fontWeight: FontWeight.w700, fontSize: F20()),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(RecentlyAddedView());
+                        },
+                        child: Text(
+                          'View all >',
+                          style: GoogleFonts.kadwa(
+                              fontSize: F18(),
+                              color: Color(0xFF767676),
+                              fontWeight: FontWeight.w400),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 12.sp),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  HeroProfile(
-                      "assets/images/profile.jpg",
-                      "Electrician",
-                      "Ashok Kumar",
-                      "Roorkee",
-                      "18 Oct, 2022",
-                      "12:10AM",
-                      "10min"),
-                  HeroProfile(
-                      "assets/images/profile.jpg",
-                      "Electrician",
-                      "Ashok Kumar",
-                      "Roorkee",
-                      "18 Oct, 2022",
-                      "12:10AM",
-                      "10min")
-                ],
-              ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.symmetric(horizontal: 12.sp),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      HeroProfile(
+                          "assets/images/profile.jpg",
+                          "Electrician",
+                          "Ashok Kumar",
+                          "Roorkee",
+                          "18 Oct, 2022",
+                          "12:10AM",
+                          "10min"),
+                      HeroProfile(
+                          "assets/images/profile.jpg",
+                          "Electrician",
+                          "Ashok Kumar",
+                          "Roorkee",
+                          "18 Oct, 2022",
+                          "12:10AM",
+                          "10min"),
+                      HeroProfile(
+                          "assets/images/profile.jpg",
+                          "Electrician",
+                          "Ashok Kumar",
+                          "Roorkee",
+                          "18 Oct, 2022",
+                          "12:10AM",
+                          "10min")
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Container(
-              height: 10,
-            )
-          ],
-        ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                SizedBox(
+                  height: getVerticalSize(30),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

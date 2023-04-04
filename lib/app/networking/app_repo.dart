@@ -4,10 +4,12 @@ import 'package:ekinch/app/models/sign_in.dart';
 import 'package:ekinch/app/networking/service_routes.dart';
 
 import '../../widgets/snack_bar.dart';
+import '../models/company_profile.dart';
 import '../models/login_model.dart';
 import '../models/otp_model.dart';
 import '../models/profile_model.dart';
 import '../models/profile_pic.dart';
+import '../models/reel_model.dart';
 import '../utils/localStorage.dart';
 import 'api_result.dart';
 import 'dio_client.dart';
@@ -69,11 +71,10 @@ class APIRepository {
 
 //Verify Otp
 
- Future<ApiResult<OtpModel>> verifyOtp(Map<String, dynamic> data) async {
+  Future<ApiResult<OtpModel>> verifyOtp(Map<String, dynamic> data) async {
     try {
       print("*********************************************");
-      final response =
-          await dioClient!.post(ServiceConstants.OTP, data: data);
+      final response = await dioClient!.post(ServiceConstants.OTP, data: data);
       final OtpModel model = OtpModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
@@ -87,7 +88,7 @@ class APIRepository {
 
   //Register
 
- Future<ApiResult<ProfileModel>> register(Map<String, dynamic> data) async {
+  Future<ApiResult<ProfileModel>> register(Map<String, dynamic> data) async {
     try {
       print("*********************************************");
       final response =
@@ -102,15 +103,14 @@ class APIRepository {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
+    //Company Profile
 
-  
-  /// CHANGE PROFILE IMAGE
-  Future<ApiResult<ProfilePic>> changeProfileIMage(data) async {
+  Future<ApiResult<CompanyProfileModel>> updateCompanyProfile(Map<String, dynamic> data) async {
     try {
-      final response = await dioClient!.post(ServiceConstants.PROFILEPIC,
-          data:data , options: multiPartOptions());
-      final ProfilePic model =
-          ProfilePic.fromJson(response.data);
+      print("*********************************************");
+      final response =
+          await dioClient!.put(ServiceConstants.COMPANYPROFILE, data: data);
+      final CompanyProfileModel model = CompanyProfileModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -121,8 +121,90 @@ class APIRepository {
     }
   }
 
+  //Send Otp - new phone number
 
+  Future<ApiResult<OtpModel>> sendOtp(Map<String, dynamic> data) async {
+    try {
+      print("*********************************************");
+      final response =
+          await dioClient!.post(ServiceConstants.SENDOTP, data: data);
+      final OtpModel model = OtpModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
 
+  //VerifyNewNumber
+
+  Future<ApiResult<ProfileModel>> UpdateNumber(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.UPDATEPHONE, data: data);
+      final ProfileModel model = ProfileModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  /// CHANGE PROFILE IMAGE
+  Future<ApiResult<ProfilePic>> changeProfileIMage(data) async {
+    try {
+      final response = await dioClient!.post(ServiceConstants.PROFILEPIC,
+          data: data, options: multiPartOptions());
+      final ProfilePic model = ProfilePic.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+    /// CHANGE COMPANY IMAGE
+  Future<ApiResult<ProfilePic>> changeComapnyImage(data) async {
+    try {
+      final response = await dioClient!.post(ServiceConstants.COMPANYLOGO,
+          data: data, options: multiPartOptions());
+      final ProfilePic model = ProfilePic.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  //Get Reels
+
+  Future<ApiResult<ReelModel>> getReels(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.GETREELS, data: data);
+      final ReelModel model = ReelModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
   // Future<ApiResult<OTPModel>> otp(Map<String, dynamic> data) async {
   //   try {
   //     final response =

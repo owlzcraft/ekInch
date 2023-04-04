@@ -1,4 +1,5 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/message/view/message_chat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
@@ -401,20 +402,26 @@ class JobProfileView extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 3.0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(Assets.msg),
-                                      Text(
-                                        "Chat",
-                                        style: GoogleFonts.kadwa(
-                                            color: KColors.textGrey,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    ],
+                                  child: InkWell(
+                                    onTap: () {
+                                      Get.to(MessageView());
+                                    },
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SvgPicture.asset(Assets.msg),
+                                        Text(
+                                          "Chat",
+                                          style: GoogleFonts.kadwa(
+                                              color: KColors.textGrey,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 )
                               ],

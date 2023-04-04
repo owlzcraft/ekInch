@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:ekinch/app/modules/company/view/company_view.dart';
+import 'package:ekinch/app/modules/myJobs/view/job_applied.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/MyVideos/views/my_videos_view.dart';
 import 'package:ekinch/app/modules/certificate/view/certificate.dart';
@@ -29,6 +30,9 @@ Widget SettingListItem(String image, String title) {
           break;
         case "My Company":
           Get.to(CompanyView());
+          break;
+           case "Jobs":
+          Get.to(MyJobsView());
           break;
         case "My Videos (Reels)":
           Get.to(ReelsView());

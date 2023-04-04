@@ -1,4 +1,5 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/Job_Application_List/view/job_application_view.dart';
 import 'package:ekinch/app/modules/job/job_list/view/jobs_list.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';

@@ -1,4 +1,5 @@
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:ekinch/app/modules/profile/controllers/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:ekinch/app/modules/otp/views/otp_view.dart';
@@ -13,7 +14,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../app/custom_widget/font_size.dart';
 
 TextFormField MobileTextFieldEdit(BuildContext context, bool static,
-    TextEditingController numberController, String editText, String label) {
+    TextEditingController mobile, String editText, String label) {
+  var profileController = Get.put(ProfileController());
   showDataAlertEditPhoneNumber() {
     showDialog(
         context: context,
@@ -39,13 +41,13 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    MobileTextFieldEdit(context, false, numberController, "",
+                    MobileTextFieldEdit(context, false, mobile, "",
                         "Enter Phone Number"),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 20.sp),
                       child: GFButton(
                         onPressed: () {
-                          Get.to(OtpView(), arguments: "Edit Phone");
+                          profileController.SendOtpNewPhoneNumber();
                         },
                         color: KColors.orange,
                         fullWidthButton: true,
@@ -69,21 +71,22 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
 
   return TextFormField(
     readOnly: static,
-    initialValue: "${LocalStorage.shared.getUserData()!.userId}",
+    initialValue: "${LocalStorage.shared.getnumber()}",
     textInputAction: TextInputAction.done,
 // onTapOutside: hideKeyboard,
     style: GoogleFonts.kadwa(fontSize: F22(), color: Color(0xFF636363)),
     scrollPadding: EdgeInsets.symmetric(horizontal: 10.sp),
     keyboardType: TextInputType.number,
     onChanged: (value) {
-      numberController.text = value as String;
+      mobile.text = value as String;
     },
     // controller: numberController,
     maxLength: 10,
     decoration: InputDecoration(
         counterText: "",
         isDense: false,
-        contentPadding: EdgeInsets.symmetric(horizontal: 20.sp,vertical: 10.sp),
+        contentPadding:
+            EdgeInsets.symmetric(horizontal: 20.sp, vertical: 10.sp),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFFEBA0F))),
         hintText: label,
@@ -100,7 +103,7 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
                   fontWeight: FontWeight.w400),
             )),
         prefixIcon: Padding(
-          padding:  EdgeInsets.only(right: 8.sp),
+          padding: EdgeInsets.only(right: 8.sp),
           child: Container(
             decoration: const BoxDecoration(
                 border: Border(

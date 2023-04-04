@@ -1,23 +1,19 @@
-import 'package:flutter/gestures.dart';
+import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/records/views/widget/tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ekinch/app/custom_widget/color.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottom_bar.dart';
 import 'package:ekinch/app/modules/referNearn/views/refer_nearn_view.dart';
 import 'package:ekinch/app/modules/settings/views/settings_view.dart';
-import 'package:ekinch/widgets/Upperbar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mj_image_slider/mj_options.dart';
 import '../../../../widgets/math_utils.dart';
 import '../../../generated/assets.dart';
 import '../../dashboard/widgets/navigation.dart';
 import '../../notication/view/notification_view.dart';
-import '../controllers/records_controller.dart';
-import 'package:mj_image_slider/mj_image_slider.dart';
 
 class RecordsView extends StatefulWidget {
   @override
@@ -26,17 +22,11 @@ class RecordsView extends StatefulWidget {
 
 class _RecordsViewState extends State<RecordsView> {
   bool visibilitylights = true;
-
   bool visibilityhospitals = false;
-
   bool visibilitycivil = false;
-
   bool visibilityplumber = false;
-
   bool visibilitypainiting = false;
-
   bool isDrawerOpen = false;
-
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
   void showdrop1() {
@@ -88,7 +78,8 @@ class _RecordsViewState extends State<RecordsView> {
       appBar: AppBar(
         title: Text(
           "Records",
-          style: GoogleFonts.kadwa(color: Colors.white, fontWeight: FontWeight.bold),
+          style: GoogleFonts.kadwa(
+              color: Colors.white, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -116,80 +107,79 @@ class _RecordsViewState extends State<RecordsView> {
           child: Column(children: [
         Container(
           color: Colors.black,
-        //   child: SingleChildScrollView(
-        //     child: Wrap(
-        //       crossAxisAlignment: WrapCrossAlignment.center,
-        //       children: [
-        //         Container(
-        //           child: MJImageSlider(
-        //             options: MjOptions(
-        //               aspectRatio: 16/9,
-        //                 enableInfiniteScroll: false,
-        //                 onPageChanged: (i) {},
-        //                 scrollDirection: Axis.horizontal,
-        //                 viewportFraction: 2.0),
-        //             widgets: [
-        //               ...images
-        //                   .map((e) => Image(image: AssetImage(e),))
-        //                   .toList()
-        //             ],
-        //           ),
-        //         ),
-        //       ],
-        //     ),
-        //   ), //
-        // ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child:
-          Container(
-            child: ImageSlideshow(
-              initialPage: 0,
-              autoPlayInterval: 10000,
-              indicatorColor: KColors.orange,
-              onPageChanged: (value) {
-                // debugPrint('Page changed: $value');
-              },
-              isLoop: true,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: 8.0, bottom: 32.0, top: 32.0),
-                  child: Container(
-                      // width: getHorizontalSize(377),
-                      // height: getVerticalSize(80),
-                      child: Image.asset(Assets.Recordimg1),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                      )),
-                ),
-                Padding(
-                  padding:  EdgeInsets.only(
-                      left: 8.0, bottom: 32.0, top: 32.0),
-                  child: Container(
-                      // width: getHorizontalSize(377),
-                      // height: getVerticalSize(80),
-                      child: Image.asset(Assets.Recordimg1),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15))),
-                ),
-              ],
+          //   child: SingleChildScrollView(
+          //     child: Wrap(
+          //       crossAxisAlignment: WrapCrossAlignment.center,
+          //       children: [
+          //         Container(
+          //           child: MJImageSlider(
+          //             options: MjOptions(
+          //               aspectRatio: 16/9,
+          //                 enableInfiniteScroll: false,
+          //                 onPageChanged: (i) {},
+          //                 scrollDirection: Axis.horizontal,
+          //                 viewportFraction: 2.0),
+          //             widgets: [
+          //               ...images
+          //                   .map((e) => Image(image: AssetImage(e),))
+          //                   .toList()
+          //             ],
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ), //
+          // ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              child: ImageSlideshow(
+                initialPage: 0,
+                autoPlayInterval: 10000,
+                indicatorColor: KColors.orange,
+                onPageChanged: (value) {
+                  // debugPrint('Page changed: $value');
+                },
+                isLoop: true,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 8.0, bottom: 32.0, top: 32.0),
+                    child: Container(
+                        // width: getHorizontalSize(377),
+                        // height: getVerticalSize(80),
+                        child: Image.asset(Assets.Recordimg1),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        )),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: 8.0, bottom: 32.0, top: 32.0),
+                    child: Container(
+                        // width: getHorizontalSize(377),
+                        // height: getVerticalSize(80),
+                        child: Image.asset(Assets.Recordimg1),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15))),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
         ),
         Column(children: [
           InkWell(
             onTap: showdrop1,
             child: Padding(
-              padding:  EdgeInsets.symmetric(vertical: 15.0),
+              padding: EdgeInsets.symmetric(vertical: 15.0),
               child: Container(
                 width: getHorizontalSize(396),
                 height: getVerticalSize(50),
                 decoration: BoxDecoration(
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
-                child:  Padding(
+                child: Padding(
                   padding: EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -198,13 +188,12 @@ class _RecordsViewState extends State<RecordsView> {
                     children: [
                       Text(
                         "Lights",
-                        style: TextStyle(
+                        style: GoogleFonts.kadwa(
                             color: Colors.black,
-                            fontFamily: "Kadwa",
                             fontWeight: FontWeight.bold,
-                            fontSize: 18),
+                            fontSize: F18()),
                       ),
-                      Icon(Icons.arrow_drop_down_sharp, size: 30),
+                      Icon(Icons.arrow_drop_down_sharp, size: 30.sp),
                     ],
                   ),
                 ),
@@ -212,170 +201,20 @@ class _RecordsViewState extends State<RecordsView> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Visibility(
-              visible: visibilitylights,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: getHorizontalSize(420),
-                      height: getVerticalSize(100),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: getHorizontalSize(74),
-                            height: getVerticalSize(74),
-                            decoration: const BoxDecoration(
-                                color: KColors.greybg,
-                                shape: BoxShape.rectangle),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Light work part 1",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                const Text(
-                                  "Electrician ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.remove_red_eye_outlined,
-                                      size: 18,
-                                      color: Colors.grey,
-                                    ),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "429",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                    SvgPicture.asset(Assets.watch,
-                                        color: Colors.grey),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "00 Min 20 Sec",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 45.0),
-                            child: Icon(Icons.check_circle_outline),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: getHorizontalSize(420),
-                      height: getVerticalSize(100),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: getHorizontalSize(74),
-                            height: getVerticalSize(74),
-                            decoration: const BoxDecoration(
-                                color: KColors.greybg,
-                                shape: BoxShape.rectangle),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Light work part 1",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                const Text(
-                                  "Electrician ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.remove_red_eye_outlined,
-                                      size: 18,
-                                      color: Colors.grey,
-                                    ),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "429",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                    SvgPicture.asset(Assets.watch,
-                                        color: Colors.grey),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "00 Min 20 Sec",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 45.0),
-                            child: Icon(Icons.check_circle_outline),
-                          )
-                        ],
-                      ),
-                    ),
-                  ]),
-            ),
-          ),
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Visibility(
+                visible: visibilitylights,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SectionCard(
+                          "Lights Part 1", "Electrician", "122", "1:80"),
+                      SectionCard(
+                          "Lights Part 1", "Electrician", "122", "1:80"),
+                      SectionCard(
+                          "Lights Part 1", "Electrician", "122", "1:80"),
+                    ]),
+              )),
           InkWell(
             onTap: showdrop2,
             child: Container(
@@ -384,7 +223,7 @@ class _RecordsViewState extends State<RecordsView> {
               decoration: BoxDecoration(
                   color: KColors.greybg,
                   borderRadius: BorderRadius.circular(6)),
-              child:  Padding(
+              child: Padding(
                 padding: EdgeInsets.only(left: 14.9, right: 14.9),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -393,11 +232,10 @@ class _RecordsViewState extends State<RecordsView> {
                   children: [
                     Text(
                       "Hospitals",
-                      style: TextStyle(
+                      style: GoogleFonts.kadwa(
                           color: Colors.black,
-                          fontFamily: "Kadwa",
                           fontWeight: FontWeight.bold,
-                          fontSize: 18),
+                          fontSize: F18()),
                     ),
                     Icon(Icons.arrow_drop_down_sharp, size: 30),
                   ],
@@ -409,165 +247,12 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilityhospitals,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: getHorizontalSize(420),
-                      height: getVerticalSize(100),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: getHorizontalSize(74),
-                            height: getVerticalSize(74),
-                            decoration: const BoxDecoration(
-                                color: KColors.greybg,
-                                shape: BoxShape.rectangle),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Light work part 1",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                const Text(
-                                  "Electrician ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.remove_red_eye_outlined,
-                                      size: 18,
-                                      color: Colors.grey,
-                                    ),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "429",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                    SvgPicture.asset(Assets.watch,
-                                        color: Colors.grey),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "00 Min 20 Sec",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 45.0),
-                            child: Icon(Icons.check_circle_outline),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: getHorizontalSize(420),
-                      height: getVerticalSize(100),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: getHorizontalSize(74),
-                            height: getVerticalSize(74),
-                            decoration: const BoxDecoration(
-                                color: KColors.greybg,
-                                shape: BoxShape.rectangle),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Light work part 1",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                const Text(
-                                  "Electrician ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.remove_red_eye_outlined,
-                                      size: 18,
-                                      color: Colors.grey,
-                                    ),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "429",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                    SvgPicture.asset(Assets.watch,
-                                        color: Colors.grey),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "00 Min 20 Sec",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 45.0),
-                            child: Icon(Icons.check_circle_outline),
-                          )
-                        ],
-                      ),
-                    ),
-                  ]),
+              child:
+                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+              ]),
             ),
           ),
           InkWell(
@@ -580,7 +265,7 @@ class _RecordsViewState extends State<RecordsView> {
                 decoration: BoxDecoration(
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
-                child:  Padding(
+                child: Padding(
                   padding: EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -589,11 +274,10 @@ class _RecordsViewState extends State<RecordsView> {
                     children: [
                       Text(
                         "Civil",
-                        style: TextStyle(
+                        style: GoogleFonts.kadwa(
                             color: Colors.black,
-                            fontFamily: "Kadwa",
                             fontWeight: FontWeight.bold,
-                            fontSize: 18),
+                            fontSize: F18()),
                       ),
                       Icon(Icons.arrow_drop_down_sharp, size: 30),
                     ],
@@ -606,165 +290,12 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilitycivil,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: getHorizontalSize(420),
-                      height: getVerticalSize(100),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: getHorizontalSize(74),
-                            height: getVerticalSize(74),
-                            decoration: const BoxDecoration(
-                                color: KColors.greybg,
-                                shape: BoxShape.rectangle),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Light work part 1",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                const Text(
-                                  "Electrician ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.remove_red_eye_outlined,
-                                      size: 18,
-                                      color: Colors.grey,
-                                    ),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "429",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                    SvgPicture.asset(Assets.watch,
-                                        color: Colors.grey),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "00 Min 20 Sec",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 45.0),
-                            child: Icon(Icons.check_circle_outline),
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: getHorizontalSize(420),
-                      height: getVerticalSize(100),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: getHorizontalSize(74),
-                            height: getVerticalSize(74),
-                            decoration: const BoxDecoration(
-                                color: KColors.greybg,
-                                shape: BoxShape.rectangle),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Light work part 1",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                const Text(
-                                  "Electrician ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.black,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.remove_red_eye_outlined,
-                                      size: 18,
-                                      color: Colors.grey,
-                                    ),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "429",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                    SvgPicture.asset(Assets.watch,
-                                        color: Colors.grey),
-                                    const Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 2.9, right: 13),
-                                      child: Text(
-                                        "00 Min 20 Sec",
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.grey),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 45.0),
-                            child: Icon(Icons.check_circle_outline),
-                          )
-                        ],
-                      ),
-                    ),
-                  ]),
+              child:
+                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+              ]),
             ),
           ),
           Container(
@@ -772,7 +303,7 @@ class _RecordsViewState extends State<RecordsView> {
             height: getVerticalSize(50),
             decoration: BoxDecoration(
                 color: KColors.greybg, borderRadius: BorderRadius.circular(6)),
-            child:  Padding(
+            child: Padding(
               padding: EdgeInsets.only(left: 14.9, right: 14.9),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -781,11 +312,10 @@ class _RecordsViewState extends State<RecordsView> {
                 children: [
                   Text(
                     "Plumber",
-                    style: TextStyle(
+                    style: GoogleFonts.kadwa(
                         color: Colors.black,
-                        fontFamily: "Kadwa",
                         fontWeight: FontWeight.bold,
-                        fontSize: 18),
+                        fontSize: F18()),
                   ),
                   Icon(Icons.arrow_drop_down_sharp, size: 30)
                 ],
@@ -802,7 +332,7 @@ class _RecordsViewState extends State<RecordsView> {
                 decoration: BoxDecoration(
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
-                child:  Padding(
+                child: Padding(
                   padding: EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -811,11 +341,10 @@ class _RecordsViewState extends State<RecordsView> {
                     children: [
                       Text(
                         "Painting",
-                        style: TextStyle(
+                        style: GoogleFonts.kadwa(
                             color: Colors.black,
-                            fontFamily: "Kadwa",
                             fontWeight: FontWeight.bold,
-                            fontSize: 18),
+                            fontSize: F18()),
                       ),
                       Icon(Icons.arrow_drop_down_sharp, size: 30)
                     ],
@@ -823,9 +352,7 @@ class _RecordsViewState extends State<RecordsView> {
                 ),
               ),
             ),
-          ),
-        ]),
-      ])
+          )
           // bottomSheet: Column(children: [
           //   Stack(
           //     children: [
@@ -894,8 +421,9 @@ class _RecordsViewState extends State<RecordsView> {
           //     ],
           //   ),
           // ]),
-          ),
-            bottomNavigationBar: BottomTabView(3),
+        ])
+      ])),
+      bottomNavigationBar: BottomTabView(3),
       // bottomNavigationBar: MyNavigator(),
     );
   }

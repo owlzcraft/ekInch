@@ -49,19 +49,15 @@ class JobDescription extends StatefulWidget {
 
 class JobDescriptionState extends State<JobDescription>
     with TickerProviderStateMixin {
-  TabController? _tabController;
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
   void initState() {
-    _tabController = new TabController(length: 2, vsync: this);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
+    return  Scaffold(
         key: scaffoldKey,
         drawer: const SettingsView(),
         appBar: AppBar(
@@ -85,19 +81,10 @@ class JobDescriptionState extends State<JobDescription>
             padding: const EdgeInsets.symmetric(horizontal:16.0),
             child: SvgPicture.asset(Assets.share_white),
           )],
-          bottom: TabBar(
-            controller: _tabController,
-            indicatorColor: yellow,
-            indicatorWeight: 3,
-            unselectedLabelStyle: GoogleFonts.kadwa(fontSize: F16()),
-            labelStyle: GoogleFonts.kadwa(fontSize: F16()),
-            tabs: [Tab(text: "Details"), Tab(text: "Reviews")],
-          ),
+          
         ),
         backgroundColor: Colors.white,
-        body: TabBarView(
-          controller: _tabController,
-          children: [
+        body: 
             SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.all(15.0),
@@ -226,10 +213,8 @@ class JobDescriptionState extends State<JobDescription>
                 ),
               ),
             ),
-            Review()
-          ],
-        ),
-      ),
+           
+      
     );
   }
 }

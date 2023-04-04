@@ -53,13 +53,7 @@ class _JobViewState extends State<JobView> {
                 fontWeight: FontWeight.w700),
           ),
           actions: [
-            SvgPicture.asset(
-              "assets/images/heart.svg",
-              height: 20,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.03,
-            ),
+           
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: IconButton(

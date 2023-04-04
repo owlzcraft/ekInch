@@ -1,4 +1,6 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/awards_certificate.dart/view/widget/grid_view.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:ekinch/app/modules/listpostjob/views/widget/key_value.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +66,7 @@ class AwardAndCertificateState extends State<AwardAndCertificate>
             ),
           ],
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(100),
+            preferredSize: const Size.fromHeight(100),
             child: Column(
               children: [
                 Padding(
@@ -82,13 +84,13 @@ class AwardAndCertificateState extends State<AwardAndCertificate>
                               style: GoogleFonts.kadwa(
                                   fontSize: F28(),
                                   color: Colors.white,
-                                  height: 1.2,
+                                  height: 1.3,
                                   fontWeight: FontWeight.bold)),
                           Text(
                             "${LocalStorage.shared.getUserData()?.userData?.profession}",
                             style: GoogleFonts.kadwa(
-                                height: 1.7,
-                                fontSize: F20(),
+                                height: 1.2,
+                                fontSize: F18(),
                                 color: const Color(0xffE0E0E0)),
                           ),
                         ],
@@ -97,7 +99,7 @@ class AwardAndCertificateState extends State<AwardAndCertificate>
                           onTap: () => {Get.to(ProfileView())},
                           child: CircleAvatar(
                             radius: 25,
-                            backgroundColor: Color(0xFFE0E0E0),
+                            backgroundColor: const Color(0xFFE0E0E0),
                             child: Container(
                               height: 60.sp,
                               width: 60.sp,
@@ -108,7 +110,7 @@ class AwardAndCertificateState extends State<AwardAndCertificate>
                                     fit: BoxFit.cover,
                                     image: LocalStorage.shared.getProfile() ==
                                             "https://d3nypwrzdy6f4k.cloudfront.net/"
-                                        ? AssetImage(
+                                        ? const AssetImage(
                                             'assets/images/profile_icon.png')
                                         : NetworkImage(
                                                 "${LocalStorage.shared.getProfile()}")
@@ -127,26 +129,51 @@ class AwardAndCertificateState extends State<AwardAndCertificate>
                   indicatorWeight: 3,
                   unselectedLabelStyle: GoogleFonts.kadwa(fontSize: F18()),
                   labelStyle: GoogleFonts.kadwa(fontSize: F18()),
-                  tabs: [Tab(text: "Awards"), Tab(text: "Certificate")],
+                  tabs: [
+                    const Tab(text: "Awards"),
+                    const Tab(text: "Certificate")
+                  ],
                 ),
               ],
             ),
           ),
         ),
+        bottomNavigationBar: BottomTabView(8),
         backgroundColor: Colors.white,
         body: TabBarView(
           controller: _tabController,
           children: [
-            SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.all(15.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [],
-                ),
-              ),
+            GridView.count(
+              padding: EdgeInsets.all(12.0),
+              crossAxisSpacing: 2.0,
+              crossAxisCount: 2,
+              children: <Widget>[
+                
+                AwardCertificateGrid(" ", "Award", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Award", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Award", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Award", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Award", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Award", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Award", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Award", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Award", "Best Electrician Work")
+              ],
             ),
-            Review()
+            GridView.count(
+              crossAxisCount: 2,
+              children: <Widget>[
+                AwardCertificateGrid(" ", "Certicate", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Certicate", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Certicate", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Certicate", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Certicate", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Certicate", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Certicate", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Certicate", "Best Electrician Work"),
+                AwardCertificateGrid(" ", "Certicate", "Best Electrician Work")
+              ],
+            ),
           ],
         ),
       ),

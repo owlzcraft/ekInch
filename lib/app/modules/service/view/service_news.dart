@@ -1,6 +1,7 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/listpostjob/views/widget/key_value.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
+import 'package:ekinch/app/modules/service/view/widget/service_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/listpostjob/views/review.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
@@ -13,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
 import '../../../utils/localStorage.dart';
+import '../../dashboard/widgets/services_news.widget.dart';
 import '../../notication/view/notification_view.dart';
 import '../../profile/views/profile_view.dart';
 import '../../settings/views/settings_view.dart';
@@ -137,17 +139,75 @@ class ServiceAndNewsState extends State<ServiceAndNews>
         body: TabBarView(
           controller: _tabController,
           children: [
-            SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.all(15.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [],
+           ServicePage(),
+ GridView.count(
+              padding: EdgeInsets.all(12.0),
+              crossAxisSpacing: 2.0,
+              crossAxisCount: 2,
+              children: <Widget>[
+                servicesAndNews(
+                  "Cement Material\nLaunch Online",
+                  "",
+                  true,
+                  "assets/images/snnews1.png",
+                  "22 Oct, 2022",
+                  "12:00 PM",
                 ),
-              ),
-            ),
-            Review()
-          ],
+                  servicesAndNews(
+                  "Cement Material\nLaunch Online",
+                  "",
+                  true,
+                  "assets/images/snnews1.png",
+                  "22 Oct, 2022",
+                  "12:00 PM",
+                ),
+                  servicesAndNews(
+                  "Cement Material\nLaunch Online",
+                  "",
+                  true,
+                  "assets/images/snnews1.png",
+                  "22 Oct, 2022",
+                  "12:00 PM",
+                ),
+                  servicesAndNews(
+                  "Cement Material\nLaunch Online",
+                  "",
+                  true,
+                  "assets/images/snnews1.png",
+                  "22 Oct, 2022",
+                  "12:00 PM",
+                ),
+                  servicesAndNews(
+                  "Cement Material\nLaunch Online",
+                  "",
+                  true,
+                  "assets/images/snnews1.png",
+                  "22 Oct, 2022",
+                  "12:00 PM",
+                ),  servicesAndNews(
+                  "Cement Material\nLaunch Online",
+                  "",
+                  true,
+                  "assets/images/snnews1.png",
+                  "22 Oct, 2022",
+                  "12:00 PM",
+                ),  servicesAndNews(
+                  "Cement Material\nLaunch Online",
+                  "",
+                  true,
+                  "assets/images/snnews1.png",
+                  "22 Oct, 2022",
+                  "12:00 PM",
+                ),  servicesAndNews(
+                  "Cement Material\nLaunch Online",
+                  "",
+                  true,
+                  "assets/images/snnews1.png",
+                  "22 Oct, 2022",
+                  "12:00 PM",
+                ),
+              ],
+            ),          ],
         ),
       ),
     );

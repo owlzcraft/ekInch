@@ -168,42 +168,44 @@ JobApplicationCard(
                     ],
                   ),
                   Divider(
-                    color: KColors.borderGrey,
+                    color: KColors.greyIcon,
                     thickness: 0.5,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Image.asset("assets/images/group.png"),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 12.0),
-                            child: Text(
-                              views,
-                              style: GoogleFonts.kadwa(
-                                fontSize: F16(),
-                                color: KColors.textGrey,
-                                fontWeight: FontWeight.w400,
-                              ),
+                      Expanded(child: Image.asset("assets/images/group.png")),
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 4.0),
+                          child: Text(
+                            views,
+                            style: GoogleFonts.kadwa(
+                              fontSize: F16(),
+                              color: KColors.textGrey,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
-                        ],
-                      ),
-                      OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: Colors.black, width: 1),
-                          fixedSize: Size(130, 0),
-                          shape: StadiumBorder(),
                         ),
-                        onPressed: () {},
-                        child: Text(
-                          'Apply Now',
-                          style: GoogleFonts.kadwa(
-                              color: Colors.black,
-                              fontSize: F16(),
-                              fontWeight: FontWeight.w400),
+                      ),
+                      Expanded(
+                        flex:2,
+                        child: OutlinedButton(
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(color: Colors.black, width: 1),
+                            fixedSize: Size(130, 0),
+                            shape: StadiumBorder(),
+                          ),
+                          onPressed: () {},
+                          child: Text(
+                            'Apply Now',
+                            style: GoogleFonts.kadwa(
+                                color: Colors.black,
+                                fontSize: F16(),
+                                fontWeight: FontWeight.w400),
+                          ),
                         ),
                       ),
                     ],

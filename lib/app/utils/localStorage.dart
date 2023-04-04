@@ -55,15 +55,26 @@ class LocalStorage {
   void savephoto(String value) {
     localBox.write("Profile", value);
   }
+   void saveCompanyLogo(String value) {
+    localBox.write("Company", value);
+  }
 
   void saveNumber(String value) {
     localBox.write("number", value);
   }
+void saveUID(String value) {
+    localBox.write("uid", value);
+  }
 
+  String getUID() {
+    return localBox.read("uid");
+  }
   String getFCMToken() {
     return localBox.read("FCM_TOKEN");
   }
-
+String getComapanyLogo() {
+    return localBox.read("Company");
+  }
   String getProfile() {
     return localBox.read("Profile");
   }

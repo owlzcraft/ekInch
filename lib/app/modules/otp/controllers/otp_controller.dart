@@ -63,20 +63,18 @@ class OtpController extends GetxController {
 
   //Resend Otp
 
-  Future<void> resendOtp() async {
+  Future<void> resendOtp(number,String path) async {
     // final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
           print(signInController.mobileNumber.text);
           final Map<String, dynamic> data = <String, dynamic>{};
-          data["mobileNumber"] = signInController.mobileNumber.text;
+          data["mobileNumber"] = number;
           await apiRepository.login(data).then((ApiResult<SignInModel> value) {
             value.when(
                 success: (value) {
                   if (value!.status == 200) {
-                    LocalStorage.shared.saveNumber(value.userId as String);
-
-                    Get.offAndToNamed(Routes.OTP);
+                    Get.offAndToNamed(Routes.OTP,arguments: [number,path]);
                     successSnackBar("Otp Sent");
                   } else if (value.status == 400) {
                     errorSnackbar("Phone Number Already Exist");

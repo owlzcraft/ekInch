@@ -1,52 +1,52 @@
+import 'package:ekinch/app/custom_widget/color.dart';
+import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget servicesAndNews(String heading, String sub_heading, bool isLive,
     String bottom_image, String date, String time) {
   return Container(
-    padding: EdgeInsets.all(10),
-    width: (Get.width / 2.1).sp,
-    margin: EdgeInsets.symmetric(horizontal: 10),
-    height: (Get.height / 4.04809009283).sp,
+    padding: const EdgeInsets.all(12),
+    width: getHorizontalSize(170),
+    margin: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+    height: getVerticalSize(250),
     decoration: BoxDecoration(
-        color: Color(0xFFFEBA0F), borderRadius: BorderRadius.circular(20)),
+        color:KColors.orange,
+        borderRadius: BorderRadius.circular(20)),
     child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(heading, style: TextStyle(fontWeight: FontWeight.w400),),
-          ],
+        Text(
+          heading,
+          style: GoogleFonts.kadwa(height: 1.4,fontSize: F14(), fontWeight: FontWeight.w400),
         ),
         isLive
-            ? Container(
-                child: Row(
-                  children: [
-                    Image.asset('assets/images/services_calender.png'),
-                    Text(' $time',style: TextStyle(fontSize: 12, color: Color(0xFF484747)),),
-                    Text(" | ",style: TextStyle(fontSize: 12, color: Color(0xFF484747)),),
-                    Text(date,style: TextStyle(fontSize: 12, color: Color(0xFF484747)),)
-                  ],
-                ),
-              )
-            : Row(
+            ? Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(sub_heading, style: TextStyle(fontSize: 12, color: Color(0xFF484747)),),
-              ],
+                children: [
+                  Image.asset('assets/images/services_calender.png'),
+                  Text(
+                    ' $time | ${date}',
+                    style: GoogleFonts.kadwa(
+                    fontSize: F12(), color: const Color(0xFF484747)),
+                  ),
+                ],
+              )
+            : Text(
+              sub_heading,
+              style: GoogleFonts.kadwa(
+                height: 1.2,
+                  fontSize: F12(), color: const Color(0xFF484747)),
             ),
-        (isLive) ? Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image.asset("assets/images/live_img.png"),
-          ],
-        ) : Container(),
+        (isLive) ? Image.asset("assets/images/live_img.png") : Container(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.arrow_circle_right_outlined),
+            const Icon(Icons.arrow_circle_right_outlined),
             Image.asset(bottom_image)
           ],
         )

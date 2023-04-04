@@ -14,6 +14,7 @@ import '../../../../widgets/math_utils.dart';
 import '../../../../widgets/phone_text_field.dart';
 import '../../../generated/assets.dart';
 import '../../../utils/localStorage.dart';
+import '../../dashboard/controllers/dashboard_controller.dart';
 import '../../dashboard/widgets/navigation.dart';
 import '../../mobile/widget/yellow_button.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -32,6 +33,7 @@ class CompanyView extends StatefulWidget {
 class _CompanyViewState extends State<CompanyView> {
   @override
   CompanyController controller = Get.put(CompanyController());
+  DashboardController dashboardController = Get.put(DashboardController());
 
   // List of items in our dropdown menu
   final List<String> companyList = [
@@ -72,7 +74,7 @@ class _CompanyViewState extends State<CompanyView> {
                     children: <Widget>[
                       InkWell(
                         onTap: () {
-                          // controller.pickProfileCamera();
+                          controller.pickProfileCamera();
                         },
                         child: Column(
                           children: [
@@ -90,7 +92,7 @@ class _CompanyViewState extends State<CompanyView> {
                       ),
                       InkWell(
                         onTap: () {
-                          // controller.pickProfileGallery();
+                          controller.pickProfileGallery();
                         },
                         child: Column(
                           children: [
@@ -119,7 +121,7 @@ class _CompanyViewState extends State<CompanyView> {
           elevation: 0,
           leading: InkWell(
             onTap: () {
-              Get.to(DashboardView());
+              dashboardController.GetDashboard();
             },
             child: Icon(
               Icons.arrow_back,
@@ -137,19 +139,23 @@ class _CompanyViewState extends State<CompanyView> {
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ProfileImage("${LocalStorage.shared.getProfile()}"),
+              child: LocalStorage.shared.getComapanyLogo() == " "
+                  ? ProfileImage("assets/images/profile_icon.png")
+                  : ProfileImage("${LocalStorage.shared.getComapanyLogo()}"),
             ),
           ),
           Text(
             "Company Name",
-            style: TextStyle(
+            style: GoogleFonts.kadwa(
                 color: const Color(0xFF1A1D1E),
+                height: 1.2,
                 fontSize: F28(),
                 fontWeight: FontWeight.w400),
           ),
           Text(
             "Company Type",
-            style: TextStyle(fontSize: F18(), color: const Color(0xFF6A6A6A)),
+            style: GoogleFonts.kadwa(
+                height: 1.2, fontSize: F18(), color: const Color(0xFF6A6A6A)),
           ),
           Padding(
             padding: const EdgeInsets.all(4.0),
@@ -168,25 +174,26 @@ class _CompanyViewState extends State<CompanyView> {
                   child: TextFieldWithIcon(
                       "Company Name",
                       'assets/images/name_text_icon.png',
-                      controller.mobileNumber),
+                      controller.companyName),
                 ),
                 TextFieldWithIcon(
-                    "Cement Company",
+                    "Cement Email",
                     'assets/images/name_text_icon.png',
-                    controller.mobileNumber),
+                    controller.companyEmail),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: MobileTextFieldEdit(
-                      context,
-                      true,
-                      controller.mobileNumber,
-                      "",
-                      "${LocalStorage.shared.getUserData()?.userId}"),
+                    context,
+                    true,
+                    controller.mobileNumber,
+                    "",
+                    "${LocalStorage.shared.getUserData()?.userId}",
+                  ),
                 ),
                 TextFieldWithIcon(
                     "Company Address",
                     'assets/images/location_text_icon.png',
-                    controller.mobileNumber),
+                    controller.companyAddress),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: DropdownButtonFormField2(
@@ -239,17 +246,17 @@ class _CompanyViewState extends State<CompanyView> {
                       }
                     },
                     onChanged: (value) {
-                      // controller.profession.text = value as String;
+                      controller.companyType.text = value as String;
+                      // controller.companytype.text = value as String;
                     },
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: DynamicButton("Update", true, () {
-                    // controller.updateProfile();
+                    controller.updateCompanyProfile();
                   }),
                 ),
-               
               ],
             ),
           )

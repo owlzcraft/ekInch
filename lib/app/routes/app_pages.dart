@@ -37,18 +37,18 @@ class AppPages {
   static const INITIAL = Routes.SPLASH;
 
   static final routes = [
-    GetPage(
-      name: _Paths.HOME,
-      page: () => DashboardView(),
-      binding: DashboardBinding(),
-      children: [
-        GetPage(
-          name: _Paths.SPLASH,
-          page: () => const SplashView(),
-          binding: SplashBinding(),
-        ),
-      ],
-    ),
+    // GetPage(
+    //   name: _Paths.HOME,
+    //   page: () => DashboardView(),
+    //   binding: DashboardBinding(),
+    //   children: [
+    //     GetPage(
+    //       name: _Paths.SPLASH,
+    //       page: () => const SplashView(),
+    //       binding: SplashBinding(),
+    //     ),
+    //   ],
+    // ),
     GetPage(
         name: _Paths.SPLASH,
         page: () => const SplashView(),

@@ -9,6 +9,7 @@ import '../../job/form/views/jobs_landing.dart';
 import '../../profile/views/profile_view.dart';
 import '../../records/views/records_view.dart';
 import '../../reels/views/reels_view.dart';
+import '../controllers/dashboard_controller.dart';
 import '../views/dashboard_view.dart';
 
 class BottomTabView extends StatelessWidget {
@@ -18,11 +19,13 @@ class BottomTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DashboardController dashboardController = Get.put(DashboardController());
+
     // int currentIndex = index;
     return Container(
         width: (MediaQuery.of(context).size.width).sp,
-        height: (MediaQuery.of(context).size.height / 10.1518987342).sp,
-        padding: EdgeInsets.symmetric(vertical: 17.sp, horizontal: 25.sp),
+        height: (MediaQuery.of(context).size.height / 11.1518987342).sp,
+        padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 25.sp),
         decoration: BoxDecoration(
           color: Color(0xffFFFFFF),
           boxShadow: [
@@ -42,10 +45,7 @@ class BottomTabView extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           GestureDetector(
               onTap: () {
-                Get.to(
-                  DashboardView(),
-                  transition: Transition.fadeIn,
-                );
+                dashboardController.GetDashboard();
               },
               child: currentIndex == 0
                   ? Container(

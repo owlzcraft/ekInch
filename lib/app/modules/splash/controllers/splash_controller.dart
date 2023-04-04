@@ -8,9 +8,11 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../utils/localStorage.dart';
+import '../../dashboard/controllers/dashboard_controller.dart';
 
 class SplashController extends GetxController {
   //TODO: Implement SplashController
+  DashboardController dashboardController = Get.put(DashboardController());
 
   final count = 0.obs;
   @override
@@ -19,15 +21,19 @@ class SplashController extends GetxController {
 
     super.onInit();
 
-     Future.delayed(const Duration(seconds: 3), () {
-    if (LocalStorage.shared.isLoggedIn()) {
-        Get.offAllNamed(Routes.HOME);
+    Future.delayed(const Duration(seconds: 3), () {
+      if (LocalStorage.shared.isLoggedIn()) {
+        // Get.to(DashboardView(
+        //   ReelsList: [],
+        // ));
+
+        dashboardController.GetDashboard();
+        // Get.offAllNamed(Routes.HOME);
       } else {
         if (LocalStorage.shared.isWalkthroughComplete()) {
           Get.offAllNamed(Routes.MOBILE);
         } else {
-          print(
-              LocalStorage.shared.isWalkthroughComplete());
+          print(LocalStorage.shared.isWalkthroughComplete());
           Get.offAllNamed(Routes.LANGUAGE);
         }
       }
@@ -37,7 +43,6 @@ class SplashController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-   
   }
 
   @override

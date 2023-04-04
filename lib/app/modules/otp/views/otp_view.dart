@@ -11,14 +11,37 @@ import '../../../utils/localStorage.dart';
 import '../../../utils/math_utils.dart';
 import '../../mobile/views/mobile_view.dart';
 import '../../mobile/widget/yellow_button.dart';
+import '../../profile/controllers/profile_controller.dart';
 import '../controllers/otp_controller.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class OtpView extends GetView<OtpController> {
+class OtpView extends StatefulWidget {
   OtpView();
-  OtpController otpController = Get.put(OtpController());
+
+  @override
+  State<OtpView> createState() => _OtpViewState();
+}
+
+class _OtpViewState extends State<OtpView> {
+  OtpController controller = Get.put(OtpController());
+  ProfileController profileController = Get.put(ProfileController());
+
+  @override
+  var state;
+  void initState() {
+    super.initState();
+    setState(() {
+      if (Get.arguments[1] == "Update") {
+        print(Get.arguments);
+        state = false;
+      } else {
+        state = true;
+      }
+    });
+  }
 
   final _globalKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,23 +57,25 @@ class OtpView extends GetView<OtpController> {
           ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 16.0,
-              right: 16.0,
-              top: 25.0,
-            ),
-            child: InkWell(
-              onTap: (() {
-                Get.to(MobileView());
-              }),
-              child: Text(
-                'Change Number',
-                style: GoogleFonts.poppins(
-                    color: Color(0xFFE55425), fontSize: F20()),
-              ),
-            ),
-          ),
+          state
+              ? Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16.0,
+                    right: 16.0,
+                    top: 25.0,
+                  ),
+                  child: InkWell(
+                    onTap: (() {
+                      Get.to(MobileView());
+                    }),
+                    child: Text(
+                      'Change Number',
+                      style: GoogleFonts.poppins(
+                          color: Color(0xFFE55425), fontSize: F20()),
+                    ),
+                  ),
+                )
+              : Text(""),
         ],
         elevation: 0,
       ),
@@ -71,7 +96,7 @@ class OtpView extends GetView<OtpController> {
                 height: 15,
               ),
               Text(
-                "Enter OTP sent to your mobile number \n ${otpController.signInController.mobileNumber.text}",
+                "Enter OTP sent to your mobile number \n ${Get.arguments[0]}",
                 style: GoogleFonts.kadwa(
                     fontSize: F20(), color: Color(0xFF767676), height: 1.4),
               ),
@@ -106,7 +131,10 @@ class OtpView extends GetView<OtpController> {
                     // controller: otpController.otp,
                     length: 4,
                     onChanged: (value) {
-                      otpController.otp.value = value;
+                      if (Get.arguments[1]=="Update") {
+                        profileController.otp.text = value;
+                      }
+                      else {controller.otp.value = value;}
                     },
                     appContext: (context),
                   ),
@@ -127,7 +155,8 @@ class OtpView extends GetView<OtpController> {
                         child: controller.time.value == '00:01'
                             ? InkWell(
                                 onTap: () {
-                                  otpController.resendOtp();
+                                  controller.resendOtp(
+                                      Get.arguments[0], Get.arguments[1]);
                                   controller.startTimer(60);
                                 },
                                 child: Text(
@@ -176,9 +205,10 @@ class OtpView extends GetView<OtpController> {
   void check() {
     final _isValid = _globalKey.currentState!.validate();
     if (_isValid == true) {
-      if (Get.arguments == "Edit Phone") {
+      if (Get.arguments[1]=="Update") {
+        profileController.VerifyPhoneNumber();
       } else {
-        otpController.verifyOtp();
+        controller.verifyOtp();
       }
     } else {
       errorSnackbar("Please Enter OTP ");

@@ -10,6 +10,7 @@ import '../../../../widgets/shape.dart';
 import '../../../custom_widget/font_size.dart';
 import '../../../utils/localStorage.dart';
 import '../../Onboarding/views/onboarding_view.dart';
+import '../../dashboard/controllers/dashboard_controller.dart';
 import '../../dashboard/views/dashboard_view.dart';
 import '../controllers/language_controller.dart';
 import '../widgets/language.dart';
@@ -25,7 +26,9 @@ class _LanguageViewState extends State<LanguageView> {
   var device_height = 802.9090909090909;
   var device_width = 392.72727272727275;
   final box = GetStorage();
-  var controller = Get.put(LanguageController());
+  LanguageController controller = Get.put(LanguageController());
+  DashboardController dashboardController = Get.put(DashboardController());
+
   @override
   Widget build(BuildContext context) {
 //Yamini
@@ -46,7 +49,8 @@ class _LanguageViewState extends State<LanguageView> {
                         var lang = controller.lang_data
                             .firstWhere((element) => element['isActive'] == 1);
                         box.write("lang", lang['textT']);
-                        Get.to(DashboardView());
+                        dashboardController.GetDashboard();
+                        // Get.to(DashboardView(ReelsList: [],));
                       } else {
                         var lang = controller.lang_data
                             .firstWhere((element) => element['isActive'] == 1);
@@ -132,22 +136,24 @@ class _LanguageViewState extends State<LanguageView> {
             }).toList(),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical:12.0),
-            child: DynamicButton("Continue", true, () { if (LocalStorage.shared.isLoggedIn()) {
-                        print(LocalStorage.shared.isLoggedIn());
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
+            child: DynamicButton("Continue", true, () {
+              if (LocalStorage.shared.isLoggedIn()) {
+                print(LocalStorage.shared.isLoggedIn());
 
-                        var lang = controller.lang_data
-                            .firstWhere((element) => element['isActive'] == 1);
-                        box.write("lang", lang['textT']);
-                        Get.to(DashboardView());
-                      } else {
-                        var lang = controller.lang_data
-                            .firstWhere((element) => element['isActive'] == 1);
-                        box.write("lang", lang['textT']);
-                        print(LocalStorage.shared.isLoggedIn());
+                var lang = controller.lang_data
+                    .firstWhere((element) => element['isActive'] == 1);
+                box.write("lang", lang['textT']);
+                dashboardController.GetDashboard();
+              } else {
+                var lang = controller.lang_data
+                    .firstWhere((element) => element['isActive'] == 1);
+                box.write("lang", lang['textT']);
+                print(LocalStorage.shared.isLoggedIn());
 
-                        Get.to(OnboardingView());
-                      }}),
+                Get.to(OnboardingView());
+              }
+            }),
           ),
         ],
       ),

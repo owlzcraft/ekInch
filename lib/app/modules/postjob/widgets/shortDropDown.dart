@@ -305,6 +305,52 @@ class TextFeildWhiteBorder extends StatelessWidget {
         ));
   }
 }
+class TextFeildGreyBorder extends StatelessWidget {
+  final String? hintText;
+  final TextInputType? keyboardtype;
+  final String? initialValue;
+  final TextInputFormatter? inputFormatter;
+  final TextEditingController? controller;
+  final EdgeInsetsGeometry? margin;
+  TextFeildGreyBorder(
+      {Key? key,
+      this.hintText,
+      this.margin,
+      this.initialValue,
+      this.controller,
+      this.inputFormatter,
+      this.keyboardtype})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+        //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
+        decoration: BoxDecoration(
+            color: whitedark,
+            borderRadius: BorderRadius.circular(6),
+            border: Border.all(color: Colors.grey, width: 0.5)),
+        child: TextField(
+          controller: controller,
+//autofocus: true,
+          keyboardType: keyboardtype,
+          decoration: InputDecoration(
+              contentPadding: const EdgeInsets.all(10),
+              hintText: hintText,
+              hintStyle: GoogleFonts.kadwa(color: Colors.grey, fontSize: F16()),
+              border: const UnderlineInputBorder(borderSide: BorderSide.none),
+              focusedBorder:
+                  const UnderlineInputBorder(borderSide: BorderSide.none),
+              enabledBorder:
+                  const UnderlineInputBorder(borderSide: BorderSide.none),
+              prefixIcon: Icon(
+                Icons.search_rounded,
+                color: greybox,
+              )),
+        ));
+  }
+}
 
 class TextFeildWhite extends StatelessWidget {
   final String? hintText;
@@ -353,6 +399,7 @@ class TextFeildWhite extends StatelessWidget {
         ));
   }
 }
+
 
 class TextFeildNumber extends StatelessWidget {
   final String? hintText;

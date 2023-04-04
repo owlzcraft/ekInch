@@ -22,11 +22,13 @@ Widget ProfileImage(String path) {
               color: Colors.black,
               shape: BoxShape.circle,
               image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: LocalStorage.shared.getProfile() ==
-                          "https://d3nypwrzdy6f4k.cloudfront.net/"
-                      ? AssetImage('assets/images/profile_icon.png')
-                      : NetworkImage(path) as ImageProvider),
+                fit: BoxFit.cover,
+                image: (path == "https://d3nypwrzdy6f4k.cloudfront.net/")
+                    ? AssetImage('assets/images/profile_icon.png')
+                    : (path == "assets/images/profile_icon.png")
+                        ? AssetImage('assets/images/profile_icon.png')
+                        : NetworkImage(path) as ImageProvider),
+              
               border: Border.all(color: KColors.greyLine, width: 2.0),
             ),
           ),

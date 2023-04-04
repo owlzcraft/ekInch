@@ -47,8 +47,9 @@ class MobileController extends GetxController {
                 success: (value) {
                   if (value!.status == 200) {
                     LocalStorage.shared.saveNumber(value.userId as String);
-                   
-                    Get.offAndToNamed(Routes.OTP);
+                    LocalStorage.shared.saveCompanyLogo(" ");
+                    Get.offAndToNamed(Routes.OTP,
+                        arguments: [mobileNumber.text, "Login"]);
                   } else if (value.status == 400) {
                     errorSnackbar("Phone Number Already Exist");
                   } else {
