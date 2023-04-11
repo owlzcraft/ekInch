@@ -16,7 +16,7 @@ class OtpModel {
   String? errorMessage;
   String? userId;
   String? token;
-  String? uid;
+  int? uid;
   bool? newUser;
 
   OtpModel.fromJson(Map<String, dynamic> json) {

@@ -20,8 +20,15 @@ class RegisterController extends GetxController {
   TextEditingController name = TextEditingController();
   TextEditingController profession = TextEditingController();
   DashboardController dashboardController = Get.put(DashboardController());
-  Future<void> register() async {
+
+  //longitude and latitude
+
+  Future<void> register(String latitude, String longitude) async {
     print("**************************");
+    print(longitude);
+    print(longitude);
+    print("**************************");
+
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
@@ -30,7 +37,8 @@ class RegisterController extends GetxController {
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
-
+          data["latitude"] = latitude;
+          data["longitude"] = longitude;
           data["name"] = name.text;
           data["profession"] = profession.text;
           await apiRepository
@@ -43,8 +51,7 @@ class RegisterController extends GetxController {
                     LocalStorage.shared
                         .savephoto(value.userData!.photo as String);
                     dashboardController.GetDashboard();
-                                            // Get.to(DashboardView(ReelsList: [],));
-
+                    // Get.to(DashboardView(ReelsList: [], RecentlyAddedList: [],));
                   } else if (value.status == 400) {
                     errorSnackbar("Something Went Wrong");
                   } else {

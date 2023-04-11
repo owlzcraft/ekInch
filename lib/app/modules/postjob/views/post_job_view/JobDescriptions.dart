@@ -32,54 +32,8 @@ class _JobDescriptionsState extends State<JobDescriptions> {
           // crossAxisAlignment: CrossAxisAlignment.start,
           //    mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              'Qualification',
-              style: GoogleFonts.kadwa(
-                fontSize: F18(),
-                fontWeight: FontWeight.w700,
-                color: black,
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.002,
-            ),
-            Dropdownprefix(
-              controller: controller.qualification,
-              hintText: "Enter Graduation",
-              // dropdownvalue: '10th',
-              items: [
-                '10th',
-                '11th',
-                '12th',
-              ],
-            ),
-
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            Text(
-              'Gender',
-              style: GoogleFonts.kadwa(
-                fontSize: F18(),
-                fontWeight: FontWeight.w700,
-                color: black,
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.002,
-            ),
-            DropdownFieldFull(
-              controller: controller.gender,
-              hintText: "Select Gender",
-              items: [
-                'Male',
-                'Female',
-              ],
-            ),
-
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
+            
+           
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

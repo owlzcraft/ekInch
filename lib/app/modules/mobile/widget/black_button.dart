@@ -13,7 +13,7 @@ class BlackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         height: Get.height / 15, //height of button
-        width: Get.width / 1.13, //width of button
+        width: Get.width , //width of button
         child: ElevatedButton(
           onPressed: () {
             print("_____pressed");

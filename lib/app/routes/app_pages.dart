@@ -1,5 +1,6 @@
 import 'package:ekinch/app/modules/Onboarding/bindings/onboarding_binding.dart';
 import 'package:ekinch/app/modules/Onboarding/views/onboarding_view.dart';
+import 'package:ekinch/app/modules/company/view/company_view.dart';
 import 'package:ekinch/app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:ekinch/app/modules/job/form/views/jobs_landing.dart';
@@ -65,6 +66,12 @@ class AppPages {
         transition: Transition.rightToLeft,
         page: () => MobileView(),
         binding: MobileBinding()),
+         GetPage(
+        name: _Paths.COMPANY,
+        transition: Transition.rightToLeft,
+        page: () => CompanyView(),
+        // binding: MobileBinding()
+        ),
     GetPage(
         name: _Paths.REGISTER,
         transition: Transition.rightToLeft,

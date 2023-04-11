@@ -50,7 +50,7 @@ class _LanguageViewState extends State<LanguageView> {
                             .firstWhere((element) => element['isActive'] == 1);
                         box.write("lang", lang['textT']);
                         dashboardController.GetDashboard();
-                        // Get.to(DashboardView(ReelsList: [],));
+                        // Get.to(DashboardView(ReelsList: [], RecentlyAddedList: [],));
                       } else {
                         var lang = controller.lang_data
                             .firstWhere((element) => element['isActive'] == 1);
@@ -136,7 +136,7 @@ class _LanguageViewState extends State<LanguageView> {
             }).toList(),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0),
+            padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 16.0),
             child: DynamicButton("Continue", true, () {
               if (LocalStorage.shared.isLoggedIn()) {
                 print(LocalStorage.shared.isLoggedIn());
@@ -144,12 +144,14 @@ class _LanguageViewState extends State<LanguageView> {
                 var lang = controller.lang_data
                     .firstWhere((element) => element['isActive'] == 1);
                 box.write("lang", lang['textT']);
+                print(lang);
                 dashboardController.GetDashboard();
               } else {
                 var lang = controller.lang_data
                     .firstWhere((element) => element['isActive'] == 1);
                 box.write("lang", lang['textT']);
                 print(LocalStorage.shared.isLoggedIn());
+                print(lang);
 
                 Get.to(OnboardingView());
               }

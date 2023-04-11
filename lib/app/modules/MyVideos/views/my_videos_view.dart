@@ -143,20 +143,20 @@ class MyVideosView extends GetView<MyVideosController> {
                 )
               ],
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              // width: MediaQuery.of(context).size.width ,
-              height: MediaQuery.of(context).size.height / 2,
-              // color: Color.fromARGB(255, 14, 14, 14),
-              child: GridView.count(
-                crossAxisCount: 2,
-                children: List.generate(3, (index) {
-                  return Padding(
-                      padding: EdgeInsets.only(left: 11, right: 11),
-                      child: work(image: 'assets/images/sample_thumb.jpg'));
-                }),
-              ),
-            ),
+            // SizedBox(
+            //   width: MediaQuery.of(context).size.width,
+            //   // width: MediaQuery.of(context).size.width ,
+            //   height: MediaQuery.of(context).size.height / 2,
+            //   // color: Color.fromARGB(255, 14, 14, 14),
+            //   child: GridView.count(
+            //     crossAxisCount: 2,
+            //     children: List.generate(3, (index) {
+            //       return Padding(
+            //           padding: EdgeInsets.only(left: 11, right: 11),
+            //           child: work(image: 'assets/images/sample_thumb.jpg'));
+            //     }),
+            //   ),
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -179,20 +179,20 @@ class MyVideosView extends GetView<MyVideosController> {
                 )
               ],
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              // width: MediaQuery.of(context).size.width ,
-              height: MediaQuery.of(context).size.height / 2.11842105263,
-              // color: Color.fromARGB(255, 14, 14, 14),
-              child: GridView.count(
-                crossAxisCount: 2,
-                children: List.generate(3, (index) {
-                  return Center(
-                    child: work(image: 'assets/images/sample_thumb.jpg'),
-                  );
-                }),
-              ),
-            ),
+            // SizedBox(
+            //   width: MediaQuery.of(context).size.width,
+            //   // width: MediaQuery.of(context).size.width ,
+            //   height: MediaQuery.of(context).size.height / 2.11842105263,
+            //   // color: Color.fromARGB(255, 14, 14, 14),
+            //   child: GridView.count(
+            //     crossAxisCount: 2,
+            //     children: List.generate(3, (index) {
+            //       return Center(
+            //         child: work(image: 'assets/images/sample_thumb.jpg'),
+            //       );
+            //     }),
+            //   ),
+            // ),
           ],
         ),
       ),

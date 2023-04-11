@@ -16,6 +16,7 @@ import 'package:getwidget/components/button/gf_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
+import '../../../networking/get_current_location.dart';
 import '../../mobile/widget/yellow_button.dart';
 import '../controllers/register.controller.dart';
 
@@ -27,9 +28,20 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   RegisterController registerController = Get.put(RegisterController());
   var drop = false;
+  var latitude = "";
+  var longitude = "";
   openCategories() {
     setState(() {
       drop = true;
+    });
+  }
+
+  Future<void> getCurrentAddress() async {
+    var coords = await getCurrentLocation();
+
+    setState(() {
+      latitude = coords['latitude'].toString();
+      longitude = coords['longitude'].toString();
     });
   }
 
@@ -139,10 +151,10 @@ class _RegisterViewState extends State<RegisterView> {
                   },
                   controller: registerController.name,
                   cursorColor: const Color(0xFFFEBA0F),
-                  style:  TextStyle(fontSize: F20()),
+                  style: TextStyle(fontSize: F20()),
                   decoration: InputDecoration(
-                      hintStyle:
-                          TextStyle(fontSize: F20(), color: const Color(0xFF999898)),
+                      hintStyle: TextStyle(
+                          fontSize: F20(), color: const Color(0xFF999898)),
                       hintText: "Enter Full Name",
                       focusedBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -159,7 +171,8 @@ class _RegisterViewState extends State<RegisterView> {
                     Timer(const Duration(milliseconds: 500), openCategories);
                   },
                   child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),
                     width: Get.width,
@@ -172,10 +185,10 @@ class _RegisterViewState extends State<RegisterView> {
                       children: [
                         Text(
                           cat_list[selected[0]][selected[1]],
-                          style:
-                              GoogleFonts.kadwa(color: const Color(0xFF999898), fontSize: F20()),
+                          style: GoogleFonts.kadwa(
+                              color: const Color(0xFF999898), fontSize: F20()),
                         ),
-                         Icon(
+                        Icon(
                           Icons.keyboard_arrow_down,
                           color: Color(0xFF999999),
                           size: 30.sp,
@@ -198,7 +211,7 @@ class _RegisterViewState extends State<RegisterView> {
 
                               drop = false;
                               selected = [cat_list.indexOf(e), 0];
-                             
+
                               registerController.profession.text =
                                   cat_list[cat_list.indexOf(e)][0] as String;
                             });
@@ -220,7 +233,8 @@ class _RegisterViewState extends State<RegisterView> {
                                     (cat_list[selected[0]][selected[1]] == e[0])
                                         ? Colors.black
                                         : const Color(0xFFF8F8F8),
-                                border: Border.all(color: const Color(0xFFCDCDCD)),
+                                border:
+                                    Border.all(color: const Color(0xFFCDCDCD)),
                                 borderRadius: BorderRadius.circular(6)),
                           ),
                         ),
@@ -228,10 +242,10 @@ class _RegisterViewState extends State<RegisterView> {
                           onTap: () {
                             setState(() {
                               FocusManager.instance.primaryFocus?.unfocus();
-                              
+
                               drop = false;
                               selected = [cat_list.indexOf(e), 1];
-                            
+
                               registerController.profession.text =
                                   cat_list[cat_list.indexOf(e)][1] as String;
                               print(registerController.profession.text);
@@ -255,7 +269,8 @@ class _RegisterViewState extends State<RegisterView> {
                                     (cat_list[selected[0]][selected[1]] == e[1])
                                         ? Colors.black
                                         : const Color(0xFFF8F8F8),
-                                border: Border.all(color: const Color(0xFFCDCDCD)),
+                                border:
+                                    Border.all(color: const Color(0xFFCDCDCD)),
                                 borderRadius: BorderRadius.circular(6)),
                           ),
                         ),
@@ -264,7 +279,7 @@ class _RegisterViewState extends State<RegisterView> {
                   }).toList()),
                 ),
           Container(
-            margin: const EdgeInsets.only(top: 35),
+            margin: const EdgeInsets.only(top: 35,left: 16.0,right: 16.0),
             child: DynamicButton("Proceed", true, () {
               check();
             }),
@@ -278,9 +293,8 @@ class _RegisterViewState extends State<RegisterView> {
     final _isValid = _globalKey.currentState!.validate();
     print(_isValid);
     if (_isValid) {
-      print("haerfskgfkdgfjgdakharkutg");
       LocalStorage.shared.saveLoggedIn();
-      registerController.register();
+      registerController.register(latitude,longitude);
     } else {
       errorSnackbar("Please Enter Your Name");
     }

@@ -153,21 +153,21 @@ class CertificateView extends StatelessWidget {
                   ],
                 ),
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                child: Row(
-                  children: [
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg')
-                  ],
-                ),
-              ),
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   padding: EdgeInsets.symmetric(horizontal: 10.sp),
+              //   child: Row(
+              //     children: [
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg')
+              //     ],
+              //   ),
+              // ),
 
               SizedBox(height: getVerticalSize(30),)
 

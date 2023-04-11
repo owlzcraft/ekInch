@@ -1,3 +1,4 @@
+import 'package:ekinch/app/modules/job/form/controllers/job.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/job/form/views/details_form.dart';
@@ -16,12 +17,13 @@ import '../../../dashboard/widgets/navigation.dart';
 class JobLanding extends StatelessWidget {
   JobLanding({super.key});
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  JobController controller = Get.put(JobController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       drawer: const SettingsView(),
-        bottomNavigationBar: BottomTabView(2),
+      bottomNavigationBar: BottomTabView(2),
       // bottomNavigationBar: MyNavigator(),
       appBar: AppBar(
         elevation: 0,
@@ -89,12 +91,19 @@ class JobLanding extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
               child: DynamicButton("Get Job", true, () {
+                // controller.CheckResumeStatusValue();
                 Get.to(DetailsForm());
               }),
             ),
-            BlackButton("Hire Mechanic", true, () {Get.to(JobInterestedView());}),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: BlackButton("Hire Mechanic", true, () {
+                Get.to(JobInterestedView());
+              }),
+            ),
           ],
         ),
       )),

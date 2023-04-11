@@ -1,10 +1,16 @@
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:ekinch/app/models/language_model.dart';
+import 'package:ekinch/app/networking/app_repo.dart';
 import 'package:get/get.dart';
+
+import '../../../../widgets/loader.dart';
+import '../../../models/profile_model.dart';
+import '../../../networking/api_result.dart';
 
 class LanguageController extends GetxController {
   //TODO: Implement LanguageController
   var activatedComp = 0;
-  
+
   var lang_data = [
     {
       "index": 0,
@@ -71,6 +77,39 @@ class LanguageController extends GetxController {
     //   "isActive": 0
     // }
   ];
+  final APIRepository apiRepository = APIRepository(isTokenRequired: false);
+
+  //language selection
+
+  Future<void> languageSelection() async {
+    Get.showOverlay(
+        asyncFunction: () async {
+          final Map<String, dynamic> data = <String, dynamic>{};
+          data["LANG"] = 2;
+
+          await apiRepository
+              .selectLanguage(data)
+              .then((ApiResult<LocalizationModel> value) {
+            value.when(
+                success: (value) {
+                  // if (value!.status == 200) {
+                  //   LocalStorage.shared.saveUserData(value);
+                  //   LocalStorage.shared
+                  //       .savephoto(value.userData!.photo as String);
+                  //   dashboardController.GetDashboard();
+                  //   // Get.to(DashboardView(ReelsList: [], RecentlyAddedList: [],));
+                  // } else if (value.status == 400) {
+                  //   errorSnackbar("Something Went Wrong");
+                  // } else {
+                  //   errorSnackbar("Please Try After Sometime");
+                  // }
+                },
+                failure: (networkExceptions) {});
+          });
+        },
+        loadingWidget: const LoadingIndicator());
+  }
+
   final count = 0.obs;
   @override
   void onInit() {

@@ -1,15 +1,19 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/job/form/views/widgets/skill_card.dart';
+import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
+import 'package:ekinch/app/modules/notication/view/widget/notifcation_card.dart';
+import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
+import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/skills_options.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/components/button/gf_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../custom_widget/color.dart';
-import '../../../../../generated/assets.dart';
-import '../../../../../utils/math_utils.dart';
 import '../../../../dashboard/widgets/navigation.dart';
 import '../../../../notication/view/notification_view.dart';
 import '../../../../settings/views/settings_view.dart';
@@ -21,107 +25,214 @@ class AddSkillView extends StatefulWidget {
   State<AddSkillView> createState() => _AddSkillViewState();
 }
 
+class ListItem<T> {
+  bool isSelected = false; //Selection property to highlight or not
+  T data; //Data of the user
+  ListItem(this.data); //Constructor to assign the data
+}
+
 class _AddSkillViewState extends State<AddSkillView> {
   GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
-  final List<Map<String, dynamic>> _allUsers = [
-    {"id": 1, "name": "Andy", "age": 29},
-    {"id": 2, "name": "Aragon", "age": 40},
-    {"id": 3, "name": "Bob", "age": 5},
-    {"id": 4, "name": "Barbara", "age": 35},
-    {"id": 5, "name": "Candy", "age": 21},
-    {"id": 6, "name": "Colin", "age": 55},
-    {"id": 7, "name": "Audra", "age": 30},
-    {"id": 8, "name": "Banana", "age": 14},
-    {"id": 9, "name": "Caversky", "age": 100},
-    {"id": 10, "name": "Becky", "age": 32},
+  List skillList = [
+    {"title": "Light Fitting"},
+    {"title": "Wire Fitting"},
+    {"title": "Motor Repairing"},
+    {"title": "Generator Repair"},
+    {"title": "Motor Repairing"},
+    {"title": "Light Fitting"},
+    {"title": "Wire Fitting"},
+    {"title": "Motor Repairing"},
+    {"title": "Generator Repair"},
+    {"title": "Motor Repairing"},
   ];
-
-  // This list holds the data for the list view
-  List<Map<String, dynamic>> _foundUsers = [];
-  @override
-  initState() {
-    // at the beginning, all users are shown
-    _foundUsers = _allUsers;
-    super.initState();
-  }
-
-  // This function is called whenever the text field changes
-  void _runFilter(String enteredKeyword) {
-    List<Map<String, dynamic>> results = [];
-    if (enteredKeyword.isEmpty) {
-      // if the search field is empty or only contains white-space, we'll display all users
-      results = _allUsers;
-    } else {
-      results = _allUsers
-          .where((user) =>
-              user["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
-          .toList();
-      // we use the toLowerCase() method to make it case-insensitive
-    }
-
-    // Refresh the UI
-    setState(() {
-      _foundUsers = results;
-    });
-  }
- List<String> _items = List.generate(20, (index) => 'Item ${index + 1}');
-  List<String> _selectedItems = [];
-  @override
-  Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-        title: const Text('Multi-Selection ListView Example'),
-      ),
-      body: ListView.builder(
-        itemCount: _items.length,
-        itemBuilder: (context, index) {
-          final item = _items[index];
-
-          return CheckboxListTile(
-            value: _selectedItems.contains(item),
-            title: Text(item),
-            controlAffinity: ListTileControlAffinity.leading,
-            onChanged: (value) {
-              setState(() {
-                if (value!) {
-                  _selectedItems.add(item);
-                } else {
-                  _selectedItems.remove(item);
-                }
-              });
-            },
-          );
-        },
-      ),
-      bottomNavigationBar: BottomAppBar(
+  SkillCard(String title, bool selected) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            border: Border.all(
+                color: Color.fromARGB(255, 193, 191, 191), width: 1.0)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: ElevatedButton(
-            onPressed: _selectedItems.isEmpty
-                ? null
-                : () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Selected Items'),
-                          content: Text(_selectedItems.join(', ')),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: const Text('Close'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-            child: const Text('Show Selected Items'),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style:
+                    GoogleFonts.kadwa(fontSize: F18(), color: KColors.textGrey),
+              ),
+              selected
+                  ? Text(
+                      "ADDED",
+                      style: GoogleFonts.kadwa(
+                          fontSize: F18(), color: KColors.green),
+                    )
+                  : Text(
+                      "ADD",
+                      style: GoogleFonts.kadwa(
+                          fontSize: F18(), color: Colors.black),
+                    )
+            ],
           ),
         ),
       ),
     );
+  }
+
+  late List<ListItem<String>> list;
+  @override
+  void initState() {
+    super.initState();
+    populateData();
+  }
+
+  void populateData() {
+    list = [];
+    for (int i = 0; i < skillList.length; i++) {
+      print(list);
+      list.add(ListItem(skillList[i]['title']));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: BottomTabView(2),
+      key: notDrawerKey,
+      drawer: SettingsView(),
+      appBar: AppBar(
+        foregroundColor: Colors.black,
+        bottomOpacity: 0,
+        title: Text(
+          "Add Your Skills",
+          style: GoogleFonts.kadwa(
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+              fontSize: F24()),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: SvgPicture.asset(Assets.drawerIcon_white),
+          onPressed: () {
+            if (!notDrawerKey.currentState!.isDrawerOpen) {
+              //check if drawer is closed
+              notDrawerKey.currentState!.openDrawer(); //open drawer
+            }
+          },
+        ),
+        actions: [
+          IconButton(
+            padding: EdgeInsetsDirectional.only(end: 9.11),
+            onPressed: (() => {Get.to(() => NotificationView())}),
+            icon: SvgPicture.asset(Assets.notification),
+          ),
+        ],
+        backgroundColor: Colors.black,
+        elevation: 0.0,
+      ),
+      body: Column(
+        children: [
+          Stack(
+            children: [
+              Container(
+                height: getVerticalSize(40),
+                color: Colors.black,
+              ),
+              Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 12.0, horizontal: 16.0),
+                  child: TextFeildGreyBorder(
+                    hintText: "Start type your skills",
+                  )),
+            ],
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: list.length,
+              itemBuilder: _getListItemTile,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 15, left: 16, right: 16.0),
+            child: DynamicButton("Save & Next", true, () {
+              Get.back();
+            }),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _getListItemTile(BuildContext context, int index) {
+    return GestureDetector(
+        onTap: () {
+          if (list.any((item) => item.isSelected)) {
+            print("632438483648");
+            print(list[index].data);
+            setState(() {
+              list[index].isSelected = !list[index].isSelected;
+            });
+          } else {
+            
+            print(list);
+            print(list[index].data);
+
+            setState(() {
+              list[index].isSelected = true;
+            });
+          }
+        },
+        child: list[index].isSelected
+            ? SkillCard(skillList[index]['title'], true)
+            : SkillCard(skillList[index]['title'], false)
+        //  SingleChildScrollView(
+        //   child: Column(
+        //     mainAxisAlignment: MainAxisAlignment.start,
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //      Stack(
+        //           children: [
+        //             Container(
+        //               height: getVerticalSize(40),
+        //               color: Colors.black,
+        //             ),
+        //             Padding(
+        //                 padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 16.0),
+        //                 child: TextFeildGreyBorder(hintText: "Start type your skills",)),
+        //           ],
+        //         ),
+        //       SkillCard(
+        //         "Light Fitting",
+        //         () => null,
+        //       ),
+        //       SkillCard("Wire Fitting", () => null),
+        //       SkillCard(
+        //         "Light Fitting",
+        //         () => null,
+        //       ),
+        //       SkillCard("Wire Fitting", () => null),
+        //       SkillCard(
+        //         "Light Fitting",
+        //         () => null,
+        //       ),
+        //       SkillCard("Wire Fitting", () => null),
+        //       SkillCard(
+        //         "Light Fitting",
+        //         () => null,
+        //       ),
+        //       SkillCard("Wire Fitting", () => null),
+        //       SkillCard(
+        //         "Light Fitting",
+        //         () => null,
+        //       ),
+        //       SkillCard("Wire Fitting", () => null),
+        //     ],
+        //   ),
+        // ),
+// bottomNavigationBar: BottomTabView(9),
+        // bottomNavigationBar: MyNavigator(),
+        );
   }
 }

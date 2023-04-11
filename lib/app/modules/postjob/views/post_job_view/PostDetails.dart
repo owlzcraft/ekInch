@@ -21,12 +21,22 @@ class PostDetails extends StatefulWidget {
 
 class _PostDetailsState extends State<PostDetails> {
   int _count = 0;
-  final formKey = GlobalKey<FormState>();
-PostjobController controller= Get.put(PostjobController());
+  final _formKey = GlobalKey<FormState>();
+  PostjobController controller = Get.put(PostjobController());
   List<Widget> _buildColumn() {
     List<Widget> addColumn = [];
     for (int i = 0; i < _count; i++) {
-      addColumn.add(HireColumn(context,formKey,controller.profession,controller.numberOfPerson,controller.salary,controller.experience,controller.location,controller.language));
+      addColumn.add(HireColumn(
+          context,
+          // _formKey,
+          controller.profession,
+          controller.numberOfPerson,
+          controller.salary,
+          controller.experience,
+          controller.location,
+          controller.language,
+          controller.qualification,
+          controller.gender));
     }
     return addColumn;
   }
@@ -42,7 +52,17 @@ PostjobController controller= Get.put(PostjobController());
             crossAxisAlignment: CrossAxisAlignment.end,
             //    mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              HireColumn(context,formKey,controller.profession,controller.numberOfPerson,controller.salary,controller.experience,controller.location,controller.language),
+              HireColumn(
+                  context,
+                  // _formKey,
+                  controller.profession,
+                  controller.numberOfPerson,
+                  controller.salary,
+                  controller.experience,
+                  controller.location,
+                  controller.language,
+                  controller.qualification,
+                  controller.gender),
               ..._buildColumn(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),

@@ -19,7 +19,7 @@ JobApplicationCard(
     String salary,
     String location,
     String language,
-    String views) {
+    String views, ) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: GestureDetector(

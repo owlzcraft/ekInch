@@ -1,11 +1,8 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/Job_Application_List/view/widget/approve_deny.dart';
-import 'package:ekinch/app/modules/Job_Application_List/view/widget/job_List.dart';
-import 'package:ekinch/app/modules/Job_Application_List/view/widget/request_list.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:ekinch/app/modules/postjob/Style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';

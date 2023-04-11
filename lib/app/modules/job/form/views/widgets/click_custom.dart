@@ -62,14 +62,23 @@ ClickAdd(
                               borderRadius: BorderRadius.circular(100)),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical:12.0),
-                            child: Text(
-                              skill,
-                              style: GoogleFonts.kadwa(
+                            child: Text(skill,style:GoogleFonts.kadwa(
                                   height: 1.2,
                                   color: Colors.black,
                                   fontSize: F16(),
-                                  fontWeight: FontWeight.bold),
-                            ),
+                                  fontWeight: FontWeight.bold),)
+                            // child: TextFormField(
+                            //   readOnly: true,
+                            //   decoration: InputDecoration(
+                            //     hintText:skill,
+                            //   hintStyle: GoogleFonts.kadwa(
+                            //       height: 1.2,
+                            //       color: Colors.black,
+                            //       fontSize: F16(),
+                            //       fontWeight: FontWeight.bold),
+                            //   ),
+                              
+                            // ),
                           ),
                         ),
                       ),
@@ -78,20 +87,23 @@ ClickAdd(
                       flex: 1,
                       child: Padding(
                         padding: EdgeInsets.only(left: 12.sp),
-                        child: Container(
-                          height: getVerticalSize(46),
-                          width: getVerticalSize(99),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: KColors.orange),
-                              color: KColors.orange,
-                              borderRadius: BorderRadius.circular(100)),
-                          child: Center(
-                            child: Text(
-                              "Add",
-                              style: GoogleFonts.kadwa(
-                                  color: Colors.black,
-                                  fontSize: F18(),
-                                  fontWeight: FontWeight.w400),
+                        child: InkWell(
+                          onTap: onTap,
+                          child: Container(
+                            height: getVerticalSize(46),
+                            width: getVerticalSize(99),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: KColors.orange),
+                                color: KColors.orange,
+                                borderRadius: BorderRadius.circular(100)),
+                            child: Center(
+                              child: Text(
+                                "Add",
+                                style: GoogleFonts.kadwa(
+                                    color: Colors.black,
+                                    fontSize: F18(),
+                                    fontWeight: FontWeight.w400),
+                              ),
                             ),
                           ),
                         ),

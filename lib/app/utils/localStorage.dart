@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:ekinch/app/models/sign_in.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../models/company_profile.dart';
 import '../models/login_model.dart';
 import '../models/profile_model.dart';
 
@@ -47,6 +48,19 @@ class LocalStorage {
     }
     return null;
   }
+ void saveCompanyData(CompanyProfileModel userData) async {
+    localBox.write("COMPANY_DATA", companyModelToJson(userData));
+  }
+
+  CompanyProfileModel? getCompanyData() {
+    CompanyProfileModel? userData;
+    final String? user = localBox.read("USER_DATA");
+    if (user != null) {
+      userData = CompanyProfileModel.fromJson(json.decode(user));
+      return userData;
+    }
+    return null;
+  }
 
   void saveFCMTOKEN(String value) {
     localBox.write("FCM_TOKEN", value);
@@ -62,7 +76,7 @@ class LocalStorage {
   void saveNumber(String value) {
     localBox.write("number", value);
   }
-void saveUID(String value) {
+void saveUID(int value) {
     localBox.write("uid", value);
   }
 

@@ -10,6 +10,6 @@ import 'package:google_fonts/google_fonts.dart';
   TabButton(String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Text(text,style: GoogleFonts.kadwa(fontSize: F18(),color: Colors.black),),
+      child: InkWell(child: Text(text,style: GoogleFonts.kadwa(fontSize: F18(),color: Colors.black),)),
     );
   }

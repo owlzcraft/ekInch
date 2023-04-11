@@ -6,18 +6,21 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/shortDropDown.dart';
 
 HireColumn(
-    BuildContext context,
-    key,
-    TextEditingController professionController,
-    TextEditingController numberController,
-    TextEditingController salaryController,
-    TextEditingController expController,
-    TextEditingController locController,
-    TextEditingController langController) {
+  BuildContext context,
+  // key,
+  TextEditingController professionController,
+  TextEditingController numberController,
+  TextEditingController salaryController,
+  TextEditingController expController,
+  TextEditingController locController,
+  TextEditingController langController,
+  TextEditingController qualification,
+  TextEditingController gender,
+) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: Form(
-      key: key,
+      // key: key,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         //    mainAxisAlignment: MainAxisAlignment.start,
@@ -111,6 +114,52 @@ HireColumn(
               'Hindi',
               'English',
               'Gujrati',
+            ],
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Text(
+            'Qualification',
+            style: GoogleFonts.kadwa(
+              fontSize: F18(),
+              fontWeight: FontWeight.w700,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.002,
+          ),
+          Dropdownprefix(
+            controller: qualification,
+            hintText: "Enter Graduation",
+            // dropdownvalue: '10th',
+            items: [
+              '10th',
+              '11th',
+              '12th',
+            ],
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.01,
+          ),
+          Text(
+            'Gender',
+            style: GoogleFonts.kadwa(
+              fontSize: F18(),
+              fontWeight: FontWeight.w700,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.002,
+          ),
+          DropdownFieldFull(
+            controller: gender,
+            hintText: "Select Gender",
+            items: [
+              'Male',
+              'Female',
             ],
           ),
         ],

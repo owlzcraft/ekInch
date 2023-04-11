@@ -85,7 +85,8 @@ class CompanyController extends GetxController {
                     successSnackBar("Profile Pic Uploaded");
                     LocalStorage.shared
                         .saveCompanyLogo(value.userPhoto as String);
-                    Get.offAll(CompanyView());
+                    print("Api not working");
+                    // Get.offAll(CompanyView());
                   } else {
                     errorSnackbar("Image not Found");
                   }
@@ -107,7 +108,10 @@ class CompanyController extends GetxController {
           data["token"] = fcmToken;
           data["name"] = companyName.text;
           data["email"] = companyEmail.text;
-          data["user"] = LocalStorage.shared.getUID();
+          data["uid"] = 117180;
+          data["contact"] = companyEmail.text;
+
+          // data["uid"] = LocalStorage.shared.getUID();
           data["address"] = companyAddress.text;
 
           await apiRepository
@@ -115,13 +119,13 @@ class CompanyController extends GetxController {
               .then((ApiResult<CompanyProfileModel> value) {
             value.when(
                 success: (value) {
-                  // if (value!.status == 200) {
-                  //   Get.offAndToNamed(Routes.PROFILE);
-                  // } else if (value.status == 400) {
-                  //   errorSnackbar("Something Went Wrong");
-                  // } else {
-                  //   errorSnackbar("Please Try After Sometime");
-                  // }
+                  if (value?.ok == true) {
+                    Get.offAndToNamed(Routes.COMPANY);
+                  } else if (value?.ok == false) {
+                    errorSnackbar("Something Went Wrong");
+                  } else {
+                    errorSnackbar("Please Try After Sometime");
+                  }
                 },
                 failure: (networkExceptions) {});
           });

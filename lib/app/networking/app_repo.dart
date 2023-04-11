@@ -1,10 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:ekinch/app/models/data_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ekinch/app/models/sign_in.dart';
 import 'package:ekinch/app/networking/service_routes.dart';
 
 import '../../widgets/snack_bar.dart';
+import '../models/GetJobForm.dart';
+import '../models/available_job_list.dart';
+import '../models/categories_video.dart';
 import '../models/company_profile.dart';
+import '../models/getCategories.dart';
+import '../models/language_model.dart';
 import '../models/login_model.dart';
 import '../models/otp_model.dart';
 import '../models/profile_model.dart';
@@ -52,6 +58,26 @@ class APIRepository {
   }
 
   ///////////////////////////////////////////////API/////////////////////////////////////////////////
+
+  //LANGUAGE SELECTION
+
+  Future<ApiResult<LocalizationModel>> selectLanguage(
+      Map<String, dynamic> data) async {
+    try {
+      print("*********************************************");
+      final response =
+          await dioClient!.post(ServiceConstants.PROFILE, data: data);
+      final LocalizationModel model = LocalizationModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
   ///Sign In
   Future<ApiResult<SignInModel>> login(Map<String, dynamic> data) async {
     try {
@@ -103,14 +129,16 @@ class APIRepository {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
-    //Company Profile
+  //Company Profile
 
-  Future<ApiResult<CompanyProfileModel>> updateCompanyProfile(Map<String, dynamic> data) async {
+  Future<ApiResult<CompanyProfileModel>> updateCompanyProfile(
+      Map<String, dynamic> data) async {
     try {
       print("*********************************************");
       final response =
           await dioClient!.put(ServiceConstants.COMPANYPROFILE, data: data);
-      final CompanyProfileModel model = CompanyProfileModel.fromJson(response.data);
+      final CompanyProfileModel model =
+          CompanyProfileModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -172,7 +200,8 @@ class APIRepository {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
-    /// CHANGE COMPANY IMAGE
+
+  /// CHANGE COMPANY IMAGE
   Future<ApiResult<ProfilePic>> changeComapnyImage(data) async {
     try {
       final response = await dioClient!.post(ServiceConstants.COMPANYLOGO,
@@ -190,12 +219,101 @@ class APIRepository {
 
   //Get Reels
 
-  Future<ApiResult<ReelModel>> getReels(
-      Map<String, dynamic> data) async {
+  Future<ApiResult<ReelModel>> getReels(Map<String, dynamic> data) async {
     try {
       final response =
           await dioClient!.post(ServiceConstants.GETREELS, data: data);
       final ReelModel model = ReelModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+  //Get Category Vidoes
+
+  Future<ApiResult<CategoriesVideoModel>> categoryVidoesData(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.CATEGORIESVIDEO, data: data);
+      final CategoriesVideoModel model =
+          CategoriesVideoModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+  //Get categories
+
+  Future<ApiResult<GetcategoriesModel>> getCategories(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.GETCATEGORIES, data: data);
+      final GetcategoriesModel model =
+          GetcategoriesModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  //Get job form fill
+
+  Future<ApiResult<GetJobFormModel>> GetJobForm(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.put(ServiceConstants.GETJOBFORM, data: data);
+      final GetJobFormModel model = GetJobFormModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  //Get Available job list
+
+  Future<ApiResult<AvailableJobsModel>> availableJobList(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.JOBLIST, data: data);
+      final AvailableJobsModel model =
+          AvailableJobsModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+  //Check Status for resume
+
+  Future<ApiResult<CheckStatusModel>> checkResumeStatus(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.GETJOBFORMSTATUS, data: data);
+      final CheckStatusModel model = CheckStatusModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {

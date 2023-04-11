@@ -3,22 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
-import 'package:ekinch/app/modules/listpostjob/views/jobDescription.dart';
 import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-import '../../../custom_widget/dash_header.dart';
 import '../../../custom_widget/font_size.dart';
 import '../../../generated/assets.dart';
-import '../../dashboard/widgets/bottomNavigate.wodget.dart';
+import '../../../models/available_job_list.dart';
 import '../../notication/view/notification_view.dart';
 import '../../settings/views/settings_view.dart';
 
 class JobView extends StatefulWidget {
-  const JobView({super.key});
+  List <Data>JobList;
+  JobView({super.key, required this.JobList});
 
   @override
   State<JobView> createState() => _JobViewState();
@@ -53,7 +51,6 @@ class _JobViewState extends State<JobView> {
                 fontWeight: FontWeight.w700),
           ),
           actions: [
-           
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: IconButton(
@@ -130,6 +127,24 @@ class _JobViewState extends State<JobView> {
                         )
                       ],
                     ),
+                    // Column(
+                    //   children: (widget.JobList).map((e) => JobApplicationCard(
+                    //       image: e.company.photo,
+                    //       title:e.title,
+                    //       subtitle:e.description,
+                    //       time:"2 days",
+                    //       qualification:e.jobDetails[0].qual,
+                    //       experience:e.jobDetails[0].exp,
+                    //       salary:e.jobDetails[0].slrStr,
+                    //       location:e.city,
+                    //       language:e.jobDetails[0].lngSpk,
+                    //       views:"200")).toList(),
+                    //   // children: (widget.JobList)
+                    //   //         .map((e) => JobApplicationCard(
+
+                    //   //             ))
+                    //   //         .toList(),
+                    // ),
                     JobApplicationCard(
                         "assets/images/ultra1.png",
                         "Plumber Engineer",

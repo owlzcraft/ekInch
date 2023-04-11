@@ -1,22 +1,51 @@
-class CompanyProfileModel {
-  int? id;
-  int? user;
-  String? name;
-  String? email;
-  String? contact;
-  String? address;
-  String? photo;
 
-  CompanyProfileModel(
-      {this.id,
+import 'dart:convert';
+
+CompanyProfileModel companyModelFromJson(String str) =>
+    CompanyProfileModel.fromJson(json.decode(str));
+
+String companyModelToJson(CompanyProfileModel data) => json.encode(data.toJson());
+
+class CompanyProfileModel {
+  CompanyProfileModel({
+      this.data,
+      required this.ok,
+  });
+    Data? data;
+    bool? ok;
+  
+  CompanyProfileModel.fromJson(Map<String, dynamic> json){
+    data = Data.fromJson(json['data']);
+    ok = json['ok'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['data'] = data?.toJson();
+    _data['ok'] = ok;
+    return _data;
+  }
+}
+
+class Data {
+  Data({
+      this.id,
       this.user,
       this.name,
       this.email,
       this.contact,
       this.address,
-      this.photo});
-
-  CompanyProfileModel.fromJson(Map<String, dynamic> json) {
+      this.photo,
+  });
+    int? id;
+    int? user;
+    String? name;
+    String? email;
+    String? contact;
+    String? address;
+    String? photo;
+  
+  Data.fromJson(Map<String, dynamic> json){
     id = json['id'];
     user = json['user'];
     name = json['name'];
@@ -27,14 +56,14 @@ class CompanyProfileModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user'] = this.user;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['contact'] = this.contact;
-    data['address'] = this.address;
-    data['photo'] = this.photo;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['id'] = id;
+    _data['user'] = user;
+    _data['name'] = name;
+    _data['email'] = email;
+    _data['contact'] = contact;
+    _data['address'] = address;
+    _data['photo'] = photo;
+    return _data;
   }
 }

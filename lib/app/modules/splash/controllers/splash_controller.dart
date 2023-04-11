@@ -22,10 +22,9 @@ class SplashController extends GetxController {
     super.onInit();
 
     Future.delayed(const Duration(seconds: 3), () {
+      print("here");
       if (LocalStorage.shared.isLoggedIn()) {
-        // Get.to(DashboardView(
-        //   ReelsList: [],
-        // ));
+        // Get.to(DashboardView(ReelsList: [], RecentlyAddedList: [], CivilList: [],));
 
         dashboardController.GetDashboard();
         // Get.offAllNamed(Routes.HOME);

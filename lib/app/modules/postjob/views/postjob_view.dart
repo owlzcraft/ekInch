@@ -25,7 +25,7 @@ class PostjobView extends StatefulWidget {
 class _PostjobViewState extends State<PostjobView> {
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   PageController controller = PageController(initialPage: 0);
-  final _stepsText = ["Job Details", "Job Descriptions", "Company Details"];
+  final _stepsText = ["Job Details", "Job Descriptions"];
 
   final _stepCircleRadius = 8.0;
 
@@ -150,27 +150,27 @@ class _PostjobViewState extends State<PostjobView> {
                       ],
                     ),
                   ),
-                  Container(
-                    height: MediaQuery.of(context).size.height,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Text(
-                            'Company Only',
-                            style: GoogleFonts.kadwa(
-                                fontSize: F20(),
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                               ),
-                          ),
-                        ),
-                        const Expanded(child: CompanyDetails()),
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   height: MediaQuery.of(context).size.height,
+                  //   child: Column(
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     mainAxisAlignment: MainAxisAlignment.start,
+                  //     children: [
+                  //       Padding(
+                  //         padding: const EdgeInsets.all(15.0),
+                  //         child: Text(
+                  //           'Company Only',
+                  //           style: GoogleFonts.kadwa(
+                  //               fontSize: F20(),
+                  //               color: Colors.black,
+                  //               fontWeight: FontWeight.bold,
+                  //              ),
+                  //         ),
+                  //       ),
+                  //       const Expanded(child: CompanyDetails()),
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -183,7 +183,7 @@ class _PostjobViewState extends State<PostjobView> {
                     child: MaterialButton(
                         minWidth: MediaQuery.of(context).size.width,
                         onPressed: () {
-                          if (_curPage == 3) {
+                          if (_curPage == 2) {
                             Get.to(PostJobProfile(company: "Post Job", jobTitle: "abc", subtitle: "subtitle", location: "location", salary: "salary", qualification: "qualification", language: "language", require: "require", jobInfo: "jobInfo", experience: "experience", jobTime: "jobTime", interviewTime: "interviewTime", address: "address"));
                           } else {
                             print(_curPage);
@@ -197,7 +197,7 @@ class _PostjobViewState extends State<PostjobView> {
                         },
                         child: Center(
                           child: Text(
-                            _curPage == 3 ? 'Done' : 'Next',
+                            _curPage == 2 ? 'Done' : 'Next',
                             style: GoogleFonts.kadwa(
                                 color: black,
                                 fontSize: F18(),

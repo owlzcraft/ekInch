@@ -6,9 +6,9 @@ class work extends StatelessWidget {
   final String view;
   final String text;
   work(
-      {this.image = "assets/image/work.png",
-      this.view = "33",
-      this.text = "Building work"});
+      {required this.image ,
+      required this.view ,
+      required this.text });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class work extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            width: (MediaQuery.of(context).size.width / 3.5).sp,
+            width: (MediaQuery.of(context).size.width / 3.2).sp,
             height: (MediaQuery.of(context).size.height / 4.04809009283).sp,
             decoration: BoxDecoration(
                 image: DecorationImage(

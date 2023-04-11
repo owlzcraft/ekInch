@@ -44,16 +44,21 @@ class OtpController extends GetxController {
           await apiRepository.verifyOtp(data).then((ApiResult<OtpModel> value) {
             value.when(
                 success: (value) {
-                  if (value!.status == 200) {
-                    LocalStorage.shared.saveFCMTOKEN(value.token as String);
-
+                   LocalStorage.shared.saveFCMTOKEN(value?.token as String);
+                    LocalStorage.shared.saveUID(value?.uid as int);
                     print(LocalStorage.shared.getFCMToken());
-                    Get.offAndToNamed(Routes.REGISTER);
-                  } else if (value.status == 400) {
-                    errorSnackbar("InCorrent Otp");
-                  } else {
-                    errorSnackbar("Please Try After Sometime");
-                  }
+                                      Get.offAndToNamed(Routes.REGISTER);
+
+                  // if (value!.status == 200) {
+                  //   LocalStorage.shared.saveFCMTOKEN(value.token as String);
+                  //   LocalStorage.shared.saveUID(value.uid as int);
+                  //   print(LocalStorage.shared.getFCMToken());
+                  //   Get.offAndToNamed(Routes.REGISTER);
+                  // } else if (value.status == 400) {
+                  //   errorSnackbar("InCorrent Otp");
+                  // } else {
+                  //   errorSnackbar("Please Try After Sometime");
+                  // }
                 },
                 failure: (networkExceptions) {});
           });
@@ -63,7 +68,7 @@ class OtpController extends GetxController {
 
   //Resend Otp
 
-  Future<void> resendOtp(number,String path) async {
+  Future<void> resendOtp(number, String path) async {
     // final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
@@ -74,7 +79,7 @@ class OtpController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.status == 200) {
-                    Get.offAndToNamed(Routes.OTP,arguments: [number,path]);
+                    Get.offAndToNamed(Routes.OTP, arguments: [number, path]);
                     successSnackBar("Otp Sent");
                   } else if (value.status == 400) {
                     errorSnackbar("Phone Number Already Exist");

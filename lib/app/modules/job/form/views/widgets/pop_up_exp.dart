@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -8,9 +9,10 @@ import '../../../../../custom_widget/font_size.dart';
 import '../../../../../utils/math_utils.dart';
 
 Future showDataAlert(BuildContext context, String title, String subTitle,
-    List<String> list, String hint) async {
- return await showDialog(
+    List<String> list, String hint, controller) async {
+  return await showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           insetPadding: EdgeInsets.all(16),
@@ -23,8 +25,7 @@ Future showDataAlert(BuildContext context, String title, String subTitle,
           ),
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-                         mainAxisSize: MainAxisSize.min,
-
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 title,
@@ -53,42 +54,58 @@ Future showDataAlert(BuildContext context, String title, String subTitle,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(color: Color(0xFFCDCDCD))),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      hint: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          hint,
-                          style: GoogleFonts.kadwa(
-                              fontSize: F22(), color: Color(0xFF636363)),
+                  child: DropdownButtonFormField2(
+                    
+                          decoration: InputDecoration(
+                          
+                            isDense: true,
+                            contentPadding: EdgeInsets.zero,
+                            border: OutlineInputBorder(
+                              borderSide:
+                                  const BorderSide(color: Color(0xFFCDCDCD)),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          isExpanded: false,
+                          hint: Text(
+                            hint,
+                            style: GoogleFonts.kadwa(
+                                fontSize: getFontSize(22),
+                                color: const Color(0xFF636363)),
+                          ),
+                          icon: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.keyboard_arrow_down,
+                              color: Colors.black45,
+                            ),
+                          ),
+                          iconSize: 30,
+                          buttonHeight: 60,
+                          dropdownDecoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          items: list.map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: GoogleFonts.kadwa(
+                                      fontSize: getFontSize(22),
+                                      color: const Color(0xFF636363)),
+                                ),
+                              )).toList(),
+                          validator: (value) {
+                            if (value == null) {
+                              return 'Select Option';
+                            }
+                          },
+                          onSaved:(value) {
+                            controller = value as String;
+                          } ,
+                          onChanged: (value) {
+                            controller = value as String;
+                          },
                         ),
-                      ),
-                      icon: Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Color(0xFF999999),
-                        ),
-                      ),
-                      isExpanded: true,
-                      focusColor: Color(0xFFFEBA0F),
-                      items: list.map((value) {
-                        return DropdownMenuItem<String>(
-                            value: value,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(
-                                value,
-                                style: GoogleFonts.kadwa(
-                                    fontSize: getFontSize(22),
-                                    color: Color(0xFF636363)),
-                              ),
-                            ));
-                      }).toList(),
-                      onChanged: (_) {},
-                    ),
-                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 25.0),

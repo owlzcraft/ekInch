@@ -191,250 +191,250 @@ class DetailsForm extends StatelessWidget {
                           },
                         ),
                       ),
-                      Text(
-                        "Qualification ?*",
-                        style: GoogleFonts.kadwa(
-                            fontWeight: FontWeight.w700, fontSize: F18()),
-                      ),
-                      Obx(() {
-                        return Row(children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                controller.activeQualification.value = 0;
-                              },
-                              child: AnimatedContainer(
-                                duration: const Duration(microseconds: 800),
-                                curve: Curves.bounceIn,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 10, bottom: 10),
-                                  child: Container(
-                                    width: double.infinity,
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10, horizontal: 30),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: const Color(0xFFCDCDCD)),
-                                        color: (controller.activeQualification
-                                                    .value ==
-                                                0)
-                                            ? Colors.black
-                                            : const Color(0xFFF8F8F8),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          controller.qualificationData[0]
-                                                  ['text1']
-                                              .toString(),
-                                          style: GoogleFonts.kadwa(
-                                              height: 1.2,
-                                              fontSize: F16(),
-                                              color: (controller
-                                                          .activeQualification
-                                                          .value ==
-                                                      0)
-                                                  ? Colors.white
-                                                  : const Color(0xFF767676),
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        Text(
-                                          controller.qualificationData[0]
-                                                  ['text2']
-                                              .toString(),
-                                          style: GoogleFonts.kadwa(
-                                              height: 1.2,
-                                              fontSize: F16(),
-                                              color: (controller
-                                                          .activeQualification
-                                                          .value ==
-                                                      0)
-                                                  ? Colors.white
-                                                  : const Color(0xFF767676),
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                controller.activeQualification.value = 1;
-                              },
-                              child: AnimatedContainer(
-                                duration: const Duration(microseconds: 800),
-                                curve: Curves.bounceIn,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 10.0),
-                                  child: Container(
-                                    width: double.infinity,
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 20, horizontal: 30),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: const Color(0xFFCDCDCD)),
-                                        color: (controller.activeQualification
-                                                    .value ==
-                                                1)
-                                            ? Colors.black
-                                            : const Color(0xFFF8F8F8),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                      child: Text(
-                                        controller.qualificationData[1]['text1']
-                                            .toString(),
-                                        style: GoogleFonts.kadwa(
-                                            height: 1.2,
-                                            fontSize: F16(),
-                                            color: (controller
-                                                        .activeQualification
-                                                        .value ==
-                                                    1)
-                                                ? Colors.white
-                                                : const Color(0xFF767676),
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ]);
-                      }),
-                      Obx(() {
-                        return Row(children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                controller.activeQualification.value = 2;
-                              },
-                              child: AnimatedContainer(
-                                duration: const Duration(microseconds: 800),
-                                curve: Curves.bounceIn,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 10.0),
-                                  child: Container(
-                                    width: double.infinity,
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10, horizontal: 30),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: const Color(0xFFCDCDCD)),
-                                        color: (controller.activeQualification
-                                                    .value ==
-                                                2)
-                                            ? Colors.black
-                                            : const Color(0xFFF8F8F8),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          controller.qualificationData[2]
-                                                  ['text1']
-                                              .toString(),
-                                          style: GoogleFonts.kadwa(
-                                              height: 1.2,
-                                              fontSize: F16(),
-                                              color: (controller
-                                                          .activeQualification
-                                                          .value ==
-                                                      2)
-                                                  ? Colors.white
-                                                  : const Color(0xFF767676),
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        Text(
-                                          controller.qualificationData[2]
-                                                  ['text2']
-                                              .toString(),
-                                          style: GoogleFonts.kadwa(
-                                              height: 1.2,
-                                              fontSize: F16(),
-                                              color: (controller
-                                                          .activeQualification
-                                                          .value ==
-                                                      2)
-                                                  ? Colors.white
-                                                  : const Color(0xFF767676),
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                controller.activeQualification.value = 3;
-                              },
-                              child: AnimatedContainer(
-                                duration: const Duration(microseconds: 800),
-                                curve: Curves.bounceIn,
-                                child: Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 30),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: const Color(0xFFCDCDCD)),
-                                      color: (controller
-                                                  .activeQualification.value ==
-                                              3)
-                                          ? Colors.black
-                                          : const Color(0xFFF8F8F8),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        controller.qualificationData[3]['text1']
-                                            .toString(),
-                                        style: GoogleFonts.kadwa(
-                                            height: 1.2,
-                                            fontSize: F16(),
-                                            color: (controller
-                                                        .activeQualification
-                                                        .value ==
-                                                    3)
-                                                ? Colors.white
-                                                : const Color(0xFF767676),
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Text(
-                                        controller.qualificationData[3]['text2']
-                                            .toString(),
-                                        style: GoogleFonts.kadwa(
-                                            height: 1.2,
-                                            fontSize: F16(),
-                                            color: (controller
-                                                        .activeQualification
-                                                        .value ==
-                                                    3)
-                                                ? Colors.white
-                                                : const Color(0xFF767676),
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ]);
-                      }),
+                      // Text(
+                      //   "Qualification ?*",
+                      //   style: GoogleFonts.kadwa(
+                      //       fontWeight: FontWeight.w700, fontSize: F18()),
+                      // ),
+                      // Obx(() {
+                      //   return Row(children: [
+                      //     Expanded(
+                      //       child: GestureDetector(
+                      //         onTap: () {
+                      //           controller.activeQualification.value = 0;
+                      //         },
+                      //         child: AnimatedContainer(
+                      //           duration: const Duration(microseconds: 800),
+                      //           curve: Curves.bounceIn,
+                      //           child: Padding(
+                      //             padding: const EdgeInsets.only(
+                      //                 right: 10, bottom: 10),
+                      //             child: Container(
+                      //               width: double.infinity,
+                      //               padding: const EdgeInsets.symmetric(
+                      //                   vertical: 10, horizontal: 30),
+                      //               decoration: BoxDecoration(
+                      //                   border: Border.all(
+                      //                       color: const Color(0xFFCDCDCD)),
+                      //                   color: (controller.activeQualification
+                      //                               .value ==
+                      //                           0)
+                      //                       ? Colors.black
+                      //                       : const Color(0xFFF8F8F8),
+                      //                   borderRadius:
+                      //                       BorderRadius.circular(10)),
+                      //               child: Column(
+                      //                 children: [
+                      //                   Text(
+                      //                     controller.qualificationData[0]
+                      //                             ['text1']
+                      //                         .toString(),
+                      //                     style: GoogleFonts.kadwa(
+                      //                         height: 1.2,
+                      //                         fontSize: F16(),
+                      //                         color: (controller
+                      //                                     .activeQualification
+                      //                                     .value ==
+                      //                                 0)
+                      //                             ? Colors.white
+                      //                             : const Color(0xFF767676),
+                      //                         fontWeight: FontWeight.w400),
+                      //                   ),
+                      //                   Text(
+                      //                     controller.qualificationData[0]
+                      //                             ['text2']
+                      //                         .toString(),
+                      //                     style: GoogleFonts.kadwa(
+                      //                         height: 1.2,
+                      //                         fontSize: F16(),
+                      //                         color: (controller
+                      //                                     .activeQualification
+                      //                                     .value ==
+                      //                                 0)
+                      //                             ? Colors.white
+                      //                             : const Color(0xFF767676),
+                      //                         fontWeight: FontWeight.w400),
+                      //                   ),
+                      //                 ],
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     Expanded(
+                      //       child: GestureDetector(
+                      //         onTap: () {
+                      //           controller.activeQualification.value = 1;
+                      //         },
+                      //         child: AnimatedContainer(
+                      //           duration: const Duration(microseconds: 800),
+                      //           curve: Curves.bounceIn,
+                      //           child: Padding(
+                      //             padding: const EdgeInsets.only(bottom: 10.0),
+                      //             child: Container(
+                      //               width: double.infinity,
+                      //               padding: const EdgeInsets.symmetric(
+                      //                   vertical: 20, horizontal: 30),
+                      //               decoration: BoxDecoration(
+                      //                   border: Border.all(
+                      //                       color: const Color(0xFFCDCDCD)),
+                      //                   color: (controller.activeQualification
+                      //                               .value ==
+                      //                           1)
+                      //                       ? Colors.black
+                      //                       : const Color(0xFFF8F8F8),
+                      //                   borderRadius:
+                      //                       BorderRadius.circular(10)),
+                      //               child: Center(
+                      //                 child: Text(
+                      //                   controller.qualificationData[1]['text1']
+                      //                       .toString(),
+                      //                   style: GoogleFonts.kadwa(
+                      //                       height: 1.2,
+                      //                       fontSize: F16(),
+                      //                       color: (controller
+                      //                                   .activeQualification
+                      //                                   .value ==
+                      //                               1)
+                      //                           ? Colors.white
+                      //                           : const Color(0xFF767676),
+                      //                       fontWeight: FontWeight.w400),
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     )
+                      //   ]);
+                      // }),
+                      // Obx(() {
+                      //   return Row(children: [
+                      //     Expanded(
+                      //       child: GestureDetector(
+                      //         onTap: () {
+                      //           controller.activeQualification.value = 2;
+                      //         },
+                      //         child: AnimatedContainer(
+                      //           duration: const Duration(microseconds: 800),
+                      //           curve: Curves.bounceIn,
+                      //           child: Padding(
+                      //             padding: const EdgeInsets.only(right: 10.0),
+                      //             child: Container(
+                      //               width: double.infinity,
+                      //               padding: const EdgeInsets.symmetric(
+                      //                   vertical: 10, horizontal: 30),
+                      //               decoration: BoxDecoration(
+                      //                   border: Border.all(
+                      //                       color: const Color(0xFFCDCDCD)),
+                      //                   color: (controller.activeQualification
+                      //                               .value ==
+                      //                           2)
+                      //                       ? Colors.black
+                      //                       : const Color(0xFFF8F8F8),
+                      //                   borderRadius:
+                      //                       BorderRadius.circular(10)),
+                      //               child: Column(
+                      //                 children: [
+                      //                   Text(
+                      //                     controller.qualificationData[2]
+                      //                             ['text1']
+                      //                         .toString(),
+                      //                     style: GoogleFonts.kadwa(
+                      //                         height: 1.2,
+                      //                         fontSize: F16(),
+                      //                         color: (controller
+                      //                                     .activeQualification
+                      //                                     .value ==
+                      //                                 2)
+                      //                             ? Colors.white
+                      //                             : const Color(0xFF767676),
+                      //                         fontWeight: FontWeight.w400),
+                      //                   ),
+                      //                   Text(
+                      //                     controller.qualificationData[2]
+                      //                             ['text2']
+                      //                         .toString(),
+                      //                     style: GoogleFonts.kadwa(
+                      //                         height: 1.2,
+                      //                         fontSize: F16(),
+                      //                         color: (controller
+                      //                                     .activeQualification
+                      //                                     .value ==
+                      //                                 2)
+                      //                             ? Colors.white
+                      //                             : const Color(0xFF767676),
+                      //                         fontWeight: FontWeight.w400),
+                      //                   ),
+                      //                 ],
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     Expanded(
+                      //       child: GestureDetector(
+                      //         onTap: () {
+                      //           controller.activeQualification.value = 3;
+                      //         },
+                      //         child: AnimatedContainer(
+                      //           duration: const Duration(microseconds: 800),
+                      //           curve: Curves.bounceIn,
+                      //           child: Container(
+                      //             width: double.infinity,
+                      //             padding: const EdgeInsets.symmetric(
+                      //                 vertical: 10, horizontal: 30),
+                      //             decoration: BoxDecoration(
+                      //                 border: Border.all(
+                      //                     color: const Color(0xFFCDCDCD)),
+                      //                 color: (controller
+                      //                             .activeQualification.value ==
+                      //                         3)
+                      //                     ? Colors.black
+                      //                     : const Color(0xFFF8F8F8),
+                      //                 borderRadius: BorderRadius.circular(10)),
+                      //             child: Column(
+                      //               children: [
+                      //                 Text(
+                      //                   controller.qualificationData[3]['text1']
+                      //                       .toString(),
+                      //                   style: GoogleFonts.kadwa(
+                      //                       height: 1.2,
+                      //                       fontSize: F16(),
+                      //                       color: (controller
+                      //                                   .activeQualification
+                      //                                   .value ==
+                      //                               3)
+                      //                           ? Colors.white
+                      //                           : const Color(0xFF767676),
+                      //                       fontWeight: FontWeight.w400),
+                      //                 ),
+                      //                 Text(
+                      //                   controller.qualificationData[3]['text2']
+                      //                       .toString(),
+                      //                   style: GoogleFonts.kadwa(
+                      //                       height: 1.2,
+                      //                       fontSize: F16(),
+                      //                       color: (controller
+                      //                                   .activeQualification
+                      //                                   .value ==
+                      //                               3)
+                      //                           ? Colors.white
+                      //                           : const Color(0xFF767676),
+                      //                       fontWeight: FontWeight.w400),
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     )
+                      //   ]);
+                      // }),
                       Padding(
-                        padding: const EdgeInsets.only(top: 15, bottom: 5),
+                        padding: const EdgeInsets.only(top: 10, bottom: 5),
                         child: Text(
                           "My School Board Was ?*",
                           style: GoogleFonts.kadwa(
@@ -445,6 +445,8 @@ class DetailsForm extends StatelessWidget {
                         return Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: controller.schoolMediums.map((m) {
+                            controller.schoolBoard.text = controller
+                                .schoolMediums[controller.activeMedium.value];
                             int index = controller.schoolMediums.indexOf(m);
                             return GestureDetector(
                               onTap: () {
@@ -500,6 +502,9 @@ class DetailsForm extends StatelessWidget {
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: controller.englishFluency.map((m) {
                             int index = controller.englishFluency.indexOf(m);
+                            controller.englishLevel.text =
+                                      controller.englishFluency[
+                                          controller.activeFluency.value];
                             return Expanded(
                               child: GestureDetector(
                                 onTap: () {
@@ -568,10 +573,14 @@ class DetailsForm extends StatelessWidget {
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: controller.expData.map((m) {
                             int index = controller.expData.indexOf(m);
+                            controller.experienceTap.text = controller
+                                      .expData[controller.activeExp.value];
                             return Expanded(
                               child: GestureDetector(
                                 onTap: () {
                                   controller.activeExp.value = index;
+                                  controller.experienceTap.text = controller
+                                      .expData[controller.activeExp.value];
                                 },
                                 child: Padding(
                                   padding: (index == 0)
@@ -619,9 +628,12 @@ class DetailsForm extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          CustomDropDown(days, "Day", "Day", 1, 0),
-                          CustomDropDown(monthNumber, "Month", "Month", 1, 4),
-                          CustomDropDown(years, "Years", "Year", 1, 0),
+                          CustomDropDown(
+                              days, "Day", "Day", 1, 0, controller.date),
+                          CustomDropDown(monthNumber, "Month", "Month", 1, 4,
+                              controller.month),
+                          CustomDropDown(
+                              years, "Years", "Year", 1, 0, controller.year),
                         ],
                       ),
                       Padding(

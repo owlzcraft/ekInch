@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../widgets/math_utils.dart';
 import '../../../utils/localStorage.dart';
 
 
-  TextFieldWithIcon(String initialValue,String image,TextEditingController controller) {
-    return  TextFormField(
+  TextFieldWithIcon(String hint,String image,TextEditingController controller) {
+    return  TextField(
                   onChanged: (value) {
                     controller.text = value as String;
                   },
-                  initialValue:
-                     initialValue,
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                    hintText: hint,
+                    contentPadding: EdgeInsets.symmetric(vertical: 8.sp),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide: const BorderSide(color: Color(0xFFFEBA0F))),

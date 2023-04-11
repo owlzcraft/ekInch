@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../../widgets/math_utils.dart';
 
-CustomDropDown(
-    List<String> list, String title, String select, int flex, double h) {
+CustomDropDown(List<String> list, String title, String select, int flex,
+    double h, TextEditingController controller) {
   return Expanded(
     flex: flex,
     child: Container(
@@ -53,7 +53,9 @@ CustomDropDown(
             return select;
           }
         },
-        onChanged: (value) {},
+        onChanged: (value) {
+          controller.text = value as String;
+        },
       ),
     ),
   );

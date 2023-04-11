@@ -31,19 +31,18 @@ class CompanyView extends StatefulWidget {
 }
 
 class _CompanyViewState extends State<CompanyView> {
-  @override
   CompanyController controller = Get.put(CompanyController());
   DashboardController dashboardController = Get.put(DashboardController());
 
   // List of items in our dropdown menu
-  final List<String> companyList = [
-    "Cement Company",
-    "Electric Company",
-    "B Company",
-    "D Company",
-    "E Company",
-    "A Company",
-  ];
+  // final List<String> companyList = [
+  //   "Cement Company",
+  //   "Electric Company",
+  //   "B Company",
+  //   "D Company",
+  //   "E Company",
+  //   "A Company",
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -145,18 +144,21 @@ class _CompanyViewState extends State<CompanyView> {
             ),
           ),
           Text(
+            // LocalStorage.shared.getCompanyData()?.data?.name == null
+            //     ?
             "Company Name",
+            // : "${LocalStorage.shared.getCompanyData()!.data?.name}",
             style: GoogleFonts.kadwa(
                 color: const Color(0xFF1A1D1E),
                 height: 1.2,
                 fontSize: F28(),
                 fontWeight: FontWeight.w400),
           ),
-          Text(
-            "Company Type",
-            style: GoogleFonts.kadwa(
-                height: 1.2, fontSize: F18(), color: const Color(0xFF6A6A6A)),
-          ),
+          // Text(
+          //   "Company Type",
+          //   style: GoogleFonts.kadwa(
+          //       height: 1.2, fontSize: F18(), color: const Color(0xFF6A6A6A)),
+          // ),
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Image.asset(
@@ -172,87 +174,101 @@ class _CompanyViewState extends State<CompanyView> {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: TextFieldWithIcon(
+                      // LocalStorage.shared.getCompanyData()?.data?.name == null
+                      //     ?
                       "Company Name",
+                      // : "${LocalStorage.shared.getCompanyData()!.data?.name}",
                       'assets/images/name_text_icon.png',
                       controller.companyName),
                 ),
                 TextFieldWithIcon(
-                    "Cement Email",
+                    // LocalStorage.shared.getCompanyData()?.data?.email == null
+                    //     ?
+                    "Company Email",
+                    // : "${LocalStorage.shared.getCompanyData()!.data?.email}",
                     'assets/images/name_text_icon.png',
                     controller.companyEmail),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: MobileTextFieldEdit(
                     context,
-                    true,
+                    false,
                     controller.mobileNumber,
                     "",
-                    "${LocalStorage.shared.getUserData()?.userId}",
+                    // LocalStorage.shared.getCompanyData()?.data?.contact == null
+                    // ?
+                    "Company Contact",
+                    // : "${LocalStorage.shared.getCompanyData()!.data?.contact}",
                   ),
                 ),
                 TextFieldWithIcon(
+                    // LocalStorage.shared.getCompanyData()?.data?.address == null
+                    // ?
                     "Company Address",
+                    // : "${LocalStorage.shared.getCompanyData()!.data?.address}",
                     'assets/images/location_text_icon.png',
                     controller.companyAddress),
+                // Padding(
+                //   padding: EdgeInsets.symmetric(vertical: 12.sp),
+                //   child: DropdownButtonFormField2(
+                //     decoration: InputDecoration(
+                //       prefixIcon: Padding(
+                //         padding: const EdgeInsets.only(left: 8.0),
+                //         child: Image.asset(
+                //             'assets/images/profession_text_icon.png'),
+                //       ),
+                //       isDense: true,
+                //       contentPadding: EdgeInsets.zero,
+                //       border: OutlineInputBorder(
+                //         borderSide: const BorderSide(color: Color(0xFFCDCDCD)),
+                //         borderRadius: BorderRadius.circular(5),
+                //       ),
+                //     ),
+                //     isExpanded: false,
+                //     hint: Text(
+                //       "Select Company",
+                //       style: GoogleFonts.kadwa(
+                //           fontSize: getFontSize(22),
+                //           color: const Color(0xFF636363)),
+                //     ),
+                //     icon: const Padding(
+                //       padding: EdgeInsets.all(8.0),
+                //       child: Icon(
+                //         Icons.keyboard_arrow_down,
+                //         color: Colors.black45,
+                //       ),
+                //     ),
+                //     iconSize: 30,
+                //     buttonHeight: 60,
+                //     dropdownDecoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(5),
+                //     ),
+                //     items: companyList
+                //         .map((item) => DropdownMenuItem<String>(
+                //               value: item,
+                //               child: Text(
+                //                 item,
+                //                 style: GoogleFonts.kadwa(
+                //                     fontSize: getFontSize(22),
+                //                     color: const Color(0xFF636363)),
+                //               ),
+                //             ))
+                //         .toList(),
+                //     validator: (value) {
+                //       if (value == null) {
+                //         return 'Please Select Company';
+                //       }
+                //     },
+                //     onChanged: (value) {
+                //       controller.companyType.text = value as String;
+                //       // controller.companytype.text = value as String;
+                //     },
+                //   ),
+                // ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 12.sp),
-                  child: DropdownButtonFormField2(
-                    decoration: InputDecoration(
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Image.asset(
-                            'assets/images/profession_text_icon.png'),
-                      ),
-                      isDense: true,
-                      contentPadding: EdgeInsets.zero,
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Color(0xFFCDCDCD)),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                    isExpanded: false,
-                    hint: Text(
-                      "Select Company",
-                      style: GoogleFonts.kadwa(
-                          fontSize: getFontSize(22),
-                          color: const Color(0xFF636363)),
-                    ),
-                    icon: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.keyboard_arrow_down,
-                        color: Colors.black45,
-                      ),
-                    ),
-                    iconSize: 30,
-                    buttonHeight: 60,
-                    dropdownDecoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    items: companyList
-                        .map((item) => DropdownMenuItem<String>(
-                              value: item,
-                              child: Text(
-                                item,
-                                style: GoogleFonts.kadwa(
-                                    fontSize: getFontSize(22),
-                                    color: const Color(0xFF636363)),
-                              ),
-                            ))
-                        .toList(),
-                    validator: (value) {
-                      if (value == null) {
-                        return 'Please Select Company';
-                      }
-                    },
-                    onChanged: (value) {
-                      controller.companyType.text = value as String;
-                      // controller.companytype.text = value as String;
-                    },
+                  padding: EdgeInsets.symmetric(
+                    vertical: 20.sp,
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: DynamicButton("Update", true, () {
                     controller.updateCompanyProfile();
                   }),

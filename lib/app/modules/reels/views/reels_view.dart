@@ -225,21 +225,21 @@ class _VideoAppState extends State<ReelsView> {
               Divider(
                 color: KColors.greyLine,
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                child: Row(
-                  children: [
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg')
-                  ],
-                ),
-              ),
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   padding: EdgeInsets.symmetric(horizontal: 10.sp),
+              //   child: Row(
+              //     children: [
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg')
+              //     ],
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal:16.0,vertical: 8.0),
                 child: Row(
@@ -260,21 +260,21 @@ class _VideoAppState extends State<ReelsView> {
                   ],
                 ),
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                child: Row(
-                  children: [
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg')
-                  ],
-                ),
-              ),
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   padding: EdgeInsets.symmetric(horizontal: 10.sp),
+              //   child: Row(
+              //     children: [
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg')
+              //     ],
+              //   ),
+              // ),
                Padding(
                 padding: const EdgeInsets.symmetric(horizontal:16.0,vertical: 8.0),
                 child: Row(
@@ -295,21 +295,21 @@ class _VideoAppState extends State<ReelsView> {
                   ],
                 ),
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                child: Row(
-                  children: [
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg')
-                  ],
-                ),
-              ),
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   padding: EdgeInsets.symmetric(horizontal: 10.sp),
+              //   child: Row(
+              //     children: [
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg')
+              //     ],
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal:16.0,vertical: 8.0),
                 child: Row(
@@ -330,21 +330,21 @@ class _VideoAppState extends State<ReelsView> {
                   ],
                 ),
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                child: Row(
-                  children: [
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg'),
-                    work(image: 'assets/images/sample_thumb.jpg')
-                  ],
-                ),
-              ),
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   padding: EdgeInsets.symmetric(horizontal: 10.sp),
+              //   child: Row(
+              //     children: [
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg'),
+              //       work(image: 'assets/images/sample_thumb.jpg')
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),
