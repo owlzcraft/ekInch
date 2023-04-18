@@ -1,3 +1,4 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
@@ -16,24 +17,21 @@ class SkillOptions {
           borderRadius: BorderRadius.circular(6)),
       child:
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 title,
                 style: GoogleFonts.kadwa(
                     color: KColors.textGrey,
-                    fontSize: 18,
+                    fontSize: F18(),
                     ),
               ),
-              SizedBox(
-                width: getHorizontalSize(185),
-              ),
+              
                Text(
                 "ADD  ",
                 style: GoogleFonts.kadwa(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: F18(),
                     fontWeight: FontWeight.bold),
               )
             ],

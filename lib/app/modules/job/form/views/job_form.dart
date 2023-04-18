@@ -24,6 +24,7 @@ import '../../../../custom_widget/color.dart';
 import '../../../../custom_widget/font_size.dart';
 import '../../../../generated/assets.dart';
 import '../../../dashboard/widgets/navigation.dart';
+import '../../../resume/view/preview_view.dart';
 import '../../../settings/views/settings_view.dart';
 
 class formFillView extends StatefulWidget {
@@ -279,7 +280,7 @@ class _formFillViewState extends State<formFillView> {
                 context,
                 "Experience",
                 "How many years of experience in ?",
-                "$expData",
+                "Click to fill your experience",
                 () {
                   setState(() {
                     expDone = true;
@@ -321,14 +322,27 @@ class _formFillViewState extends State<formFillView> {
                 padding: const EdgeInsets.symmetric(
                     vertical: 16.0, horizontal: 12.0),
                 child: Center(
-                  child: DynamicButton("Submit", true, () {
+                  child: DynamicButton("Preview and Submit", true, () {
                     if (expDone && skillsDone && qualificationDOne) {
                       if (_formKey.currentState!.validate()) {
+                        // Get.to(GetJobPreviewView(
+                        //   category: '${controller.jobCategory.text}',
+                        //   dob:
+                        //       '${controller.date.text}/${controller.month.text}/${controller.year.text}',
+                        //   gender: '${controller.gender}',
+                        //   quali: '${controller.qualification}',
+                        //   experience: '${controller.experience}',
+                        // ));
                         controller.GetJobForm();
                       } else {
                         errorSnackbar("Please fill Form");
                       }
                     } else {
+                      print(expDone);
+                      print(skillsDone);
+
+                      print(qualificationDOne);
+
                       errorSnackbar("Please Fill All Details");
                     }
                   }),

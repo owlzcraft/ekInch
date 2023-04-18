@@ -199,6 +199,7 @@ class Description extends StatelessWidget {
             borderRadius: BorderRadius.circular(6),
             border: Border.all(color: Boxborder, width: 1)),
         child: TextFormField(
+          scrollPadding: EdgeInsets.only(bottom:40),
           controller: controller,
           textInputAction: TextInputAction.newline,
           keyboardType: TextInputType.multiline,

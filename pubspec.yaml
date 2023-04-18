@@ -46,11 +46,11 @@ dependencies:
   another_stepper: ^1.2.2
   permission_handler: ^10.2.0
   geolocator: ^9.0.2
+  bottom_sheet: ^3.1.2
   # chewie: ^1.4.0
   # video_player: ^2.6.0
   # card_swiper: ^2.0.4
   # flutter_multiselect: ^1.0.0
-  # video_player: ^2.6.0
 
 dev_dependencies:
   flutter_lints: 2.0.0

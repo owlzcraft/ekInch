@@ -1,10 +1,10 @@
 class GetJobFormModel {
   GetJobFormModel({
-    required this.data,
-    required this.ok,
+      this.data,
+      this.ok,
   });
-  late final Data1 data;
-  late final bool ok;
+    Data1? data;
+    bool? ok;
   
   GetJobFormModel.fromJson(Map<String, dynamic> json){
     data = Data1.fromJson(json['data']);
@@ -13,7 +13,7 @@ class GetJobFormModel {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['data'] = data.toJson();
+    _data['data'] = data!.toJson();
     _data['ok'] = ok;
     return _data;
   }
@@ -21,33 +21,33 @@ class GetJobFormModel {
 
 class Data1 {
   Data1({
-    required this.id,
-    required this.skills,
-    required this.user,
-    required this.qualification,
-    required this.scMed,
-    required this.engProfi,
-    required this.exp,
-    required this.expYr,
-    required this.ageDt,
-    required this.ageMn,
-    required this.ageYr,
-    required this.interest,
-    required this.gender,
+      this.id,
+      this.skills,
+      this.user,
+      this.qualification,
+      this.scMed,
+      this.engProfi,
+      this.exp,
+      this.expYr,
+      this.ageDt,
+      this.ageMn,
+      this.ageYr,
+      this.interest,
+    this.gender,
   });
-  late final int id;
-  late final String skills;
-  late final int user;
-  late final String qualification;
-  late final String scMed;
-  late final String engProfi;
-  late final String exp;
-  late final int expYr;
-  late final int ageDt;
-  late final int ageMn;
-  late final int ageYr;
-  late final String interest;
-  late final String gender;
+    int? id;
+    String? skills;
+    int? user;
+    String? qualification;
+    String? scMed;
+    String? engProfi;
+    String? exp;
+    int? expYr;
+    int? ageDt;
+    int? ageMn;
+    int? ageYr;
+    String? interest;
+    String? gender;
   
   Data1.fromJson(Map<String, dynamic> json){
     id = json['id'];

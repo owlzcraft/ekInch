@@ -1,4 +1,3 @@
-// import 'dart:html';
 
 import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';

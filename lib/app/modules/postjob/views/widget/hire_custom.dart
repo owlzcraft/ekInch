@@ -10,7 +10,9 @@ HireColumn(
   // key,
   TextEditingController professionController,
   TextEditingController numberController,
-  TextEditingController salaryController,
+  TextEditingController salaryStController,
+    TextEditingController salaryEndController,
+
   TextEditingController expController,
   TextEditingController locController,
   TextEditingController langController,
@@ -71,13 +73,39 @@ HireColumn(
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
-          DropdownFieldFull(
-            controller: salaryController,
-            hintText: "Enter Salary",
-            items: [
-              '10000',
-              '12000',
-              '14000',
+          Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: DropdownFieldFull(
+                  controller: salaryStController,
+                  hintText: "Salary",
+                  items: [
+                    '10000',
+                    '12000',
+                    '14000',
+                  ],
+                ),
+              ),
+              Expanded(
+                  child: Center(
+                    child: Text(
+                                  "To",
+                                  style: GoogleFonts.kadwa(fontSize: F16(),fontWeight: FontWeight.w600),
+                                ),
+                  )),
+              Expanded(
+                flex: 2,
+                child: DropdownFieldFull(
+                  controller: salaryEndController,
+                  hintText: "Salary",
+                  items: [
+                    '10000',
+                    '12000',
+                    '14000',
+                  ],
+                ),
+              ),
             ],
           ),
           SizedBox(

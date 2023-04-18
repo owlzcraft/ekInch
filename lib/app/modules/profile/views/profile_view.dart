@@ -198,15 +198,22 @@ class _ProfileViewState extends State<ProfileView> {
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: MobileTextFieldEdit(
                       context,
-                      true,
+                      true,"${LocalStorage.shared.getnumber()}",
                       controller.mobileNumber,
                       "Edit",
                       "${LocalStorage.shared.getUserData()?.userId}"),
                 ),
-                TextField(
+                TextFormField(
                   onChanged: (value) {
                     controller.address.text = value as String;
                   },
+                  initialValue: LocalStorage.shared
+                                .getUserData()
+                                ?.userData
+                                ?.address ==
+                            null
+                        ? "Enter Your Address"
+                        : "${LocalStorage.shared.getUserData()?.userData?.address}",
                   decoration: InputDecoration(
                     hintText: LocalStorage.shared
                                 .getUserData()

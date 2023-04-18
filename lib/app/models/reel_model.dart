@@ -1,10 +1,10 @@
 class ReelModel {
   ReelModel({
-    required this.data,
-    required this.msg,
+     this.data,
+     this.msg,
   });
-  late final List<Data> data;
-  late final String msg;
+   List<Data>? data;
+   String? msg;
   
   ReelModel.fromJson(Map<String, dynamic> json){
     data = List.from(json['data']).map((e)=>Data.fromJson(e)).toList();
@@ -13,7 +13,7 @@ class ReelModel {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['data'] = data.map((e)=>e.toJson()).toList();
+    _data['data'] = data?.map((e)=>e.toJson()).toList();
     _data['msg'] = msg;
     return _data;
   }

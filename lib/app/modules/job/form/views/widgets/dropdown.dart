@@ -13,6 +13,7 @@ CustomDropDown(List<String> list, String title, String select, int flex,
     child: Container(
       padding: EdgeInsets.symmetric(horizontal: h.sp),
       child: DropdownButtonFormField2(
+      
         alignment: Alignment.centerLeft,
         decoration: InputDecoration(
           isCollapsed: true,
@@ -29,7 +30,7 @@ CustomDropDown(List<String> list, String title, String select, int flex,
           style: GoogleFonts.kadwa(
               fontSize: F16(), color: const Color(0xFF636363)),
         ),
-        icon: Icon(
+        icon: const Icon(
           Icons.keyboard_arrow_down,
           color: Colors.black45,
         ),
@@ -40,6 +41,7 @@ CustomDropDown(List<String> list, String title, String select, int flex,
         ),
         items: list
             .map((item) => DropdownMenuItem<String>(
+              
                   value: item,
                   child: Text(
                     item,
@@ -52,6 +54,10 @@ CustomDropDown(List<String> list, String title, String select, int flex,
           if (value == null) {
             return select;
           }
+        },
+        onSaved: (value){
+                    controller.text = value as String;
+
         },
         onChanged: (value) {
           controller.text = value as String;

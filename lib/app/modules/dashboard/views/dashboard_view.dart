@@ -26,18 +26,21 @@ import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:video_player/video_player.dart';
 import '../../../custom_widget/color.dart';
+import '../../../models/recentlAdded.dart';
 import '../../../models/reel_model.dart';
 import '../controllers/dashboard_controller.dart';
 import 'package:get/get.dart';
 
 class DashboardView extends StatefulWidget {
   List<Data> ReelsList;
-  List<Data> RecentlyAddedList;
-    List CivilList;
-
+  List<RData> RecentlyAddedList;
+  List CivilList;
 
   DashboardView(
-      {super.key, required this.ReelsList, required this.RecentlyAddedList,required this.CivilList});
+      {super.key,
+      required this.ReelsList,
+      required this.RecentlyAddedList,
+      required this.CivilList});
 
   @override
   State<DashboardView> createState() => _DashboardStateView();
@@ -65,6 +68,73 @@ class _DashboardStateView extends State<DashboardView>
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    int activeTab = 0;
+    showDataAlertProfile() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              insetPadding: const EdgeInsets.all(10),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    4.0,
+                  ),
+                ),
+              ),
+              title: Text(
+                "Select Reel",
+                style: GoogleFonts.kadwa(
+                    fontSize: F24(), fontWeight: FontWeight.w700),
+              ),
+              content: Container(
+                child: SingleChildScrollView(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          controller.getVideoFromCamera();
+                        },
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.camera_alt_outlined,
+                              size: 50.sp,
+                            ),
+                            Text(
+                              "Camera",
+                              style: GoogleFonts.kadwa(
+                                  fontWeight: FontWeight.w400),
+                            )
+                          ],
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          controller.getVideoFromGallery();
+                        },
+                        child: Column(
+                          children: [
+                            Icon(Icons.filter, size: 50.sp),
+                            Text(
+                              "Gallery",
+                              style: GoogleFonts.kadwa(
+                                  fontWeight: FontWeight.w400),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          });
+    }
+
     var tabViewVideoes = "civil";
     var videoCategoryData = [
       {
@@ -116,7 +186,7 @@ class _DashboardStateView extends State<DashboardView>
           builder: (context) {
             return AlertDialog(
               insetPadding: EdgeInsets.all(8.sp),
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(
                     4.0,
@@ -176,7 +246,7 @@ class _DashboardStateView extends State<DashboardView>
           builder: (context) {
             return AlertDialog(
               insetPadding: EdgeInsets.all(24.sp),
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(
                     4.0,
@@ -219,32 +289,37 @@ class _DashboardStateView extends State<DashboardView>
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 12.sp),
-                        child: DottedBorder(
-                          dashPattern: [8, 4],
-                          color: Color(0xFFCDCDCD),
-                          strokeCap: StrokeCap.butt,
-                          strokeWidth: 1,
-                          borderType: BorderType.Rect,
-                          child: Padding(
-                            padding: EdgeInsets.all(40.sp),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Upload Video",
-                                  style: GoogleFonts.kadwa(
-                                      fontSize: F24(),
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 8.sp),
-                                  child: Image.asset(
-                                    "assets/images/upload.png",
-                                    scale: 3.0,
+                        child: InkWell(
+                          onTap: () {
+                            showDataAlertProfile();
+                          },
+                          child: DottedBorder(
+                            dashPattern: [8, 4],
+                            color: const Color(0xFFCDCDCD),
+                            strokeCap: StrokeCap.butt,
+                            strokeWidth: 1,
+                            borderType: BorderType.Rect,
+                            child: Padding(
+                              padding: EdgeInsets.all(40.sp),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Upload Video",
+                                    style: GoogleFonts.kadwa(
+                                        fontSize: F24(),
+                                        fontWeight: FontWeight.w700),
                                   ),
-                                )
-                              ],
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 8.sp),
+                                    child: Image.asset(
+                                      "assets/images/upload.png",
+                                      scale: 3.0,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -307,7 +382,7 @@ class _DashboardStateView extends State<DashboardView>
                           'View all >',
                           style: GoogleFonts.kadwa(
                               fontSize: F18(),
-                              color: Color(0xFF767676),
+                              color: const Color(0xFF767676),
                               fontWeight: FontWeight.w400),
                         )
                       ],
@@ -321,8 +396,8 @@ class _DashboardStateView extends State<DashboardView>
                 [
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-                    padding:
-                        EdgeInsets.only(bottom: 10.sp, left: 10.sp, right: 10.sp),
+                    padding: EdgeInsets.only(
+                        bottom: 10.sp, left: 10.sp, right: 10.sp),
                     child: Row(
                       children: [
                         InkWell(
@@ -349,8 +424,8 @@ class _DashboardStateView extends State<DashboardView>
                                   scale: 3.0,
                                 ),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10.0),
                                   child: Text(
                                     "Upload\nVideos",
                                     style: GoogleFonts.kadwa(
@@ -401,10 +476,10 @@ class _DashboardStateView extends State<DashboardView>
               delegate: SliverChildListDelegate.fixed(
                 [
                   Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 10.sp, horizontal: 10.sp),
+                    padding: EdgeInsets.symmetric(
+                        vertical: 10.sp, horizontal: 10.sp),
                     child: GridView.count(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       crossAxisCount: 3,
@@ -429,7 +504,7 @@ class _DashboardStateView extends State<DashboardView>
                       unselectedLabelColor: const Color(0xFF767676),
                       labelColor: Colors.black,
                       indicatorSize: TabBarIndicatorSize.tab,
-                      indicator: BoxDecoration(
+                      indicator: const BoxDecoration(
                           border: Border(
                               bottom: BorderSide(
                                   width: 3, color: Color(0xFFFEBA0F)))),
@@ -468,17 +543,25 @@ class _DashboardStateView extends State<DashboardView>
                       controller: _tabButtonController,
                       backgroundColor: KColors.orange,
                       unselectedBackgroundColor:
-                          Color.fromARGB(255, 227, 224, 224),
+                          const Color.fromARGB(255, 227, 224, 224),
                       labelStyle: GoogleFonts.kadwa(
                           color: KColors.orange, fontSize: F18()),
                       unselectedLabelStyle: GoogleFonts.kadwa(
                           color: KColors.lightGrey, fontSize: F18()),
                       unselectedBorderColor: KColors.greybg,
                       radius: 100,
+                      onTap: (int) {
+                        print(int);
+                        setState(() {
+                          activeTab = int;
+                          print(activeTab);
+                        });
+                      },
                       tabs: [
                         Tab(
-                         
-                          child: TabButton("Civil",),
+                          child: TabButton(
+                            "Civil",
+                          ),
                         ),
                         Tab(
                           child: TabButton("Hospital"),
@@ -493,7 +576,6 @@ class _DashboardStateView extends State<DashboardView>
                           child: TabButton("Plumber"),
                         ),
                         Tab(
-                         
                           child: TabButton("Building"),
                         ),
                         Tab(
@@ -617,8 +699,6 @@ class _DashboardStateView extends State<DashboardView>
             //   ),
             // ),
 
-
-            
             // SliverList(
             //   delegate: SliverChildListDelegate.fixed(
             //     [
@@ -656,34 +736,80 @@ class _DashboardStateView extends State<DashboardView>
             //     ],
             //   ),
             // ),
-            // SliverList(
-            //   delegate: SliverChildListDelegate.fixed(
-            //     [
-            //       SingleChildScrollView(
-            //         scrollDirection: Axis.horizontal,
-            //         padding: EdgeInsets.symmetric(horizontal: 10.sp),
-            //         child: Row(
-            //           children: (widget.CivilList)
-            //                   .map((e) => work(
-            //                         image: e.thumbnail,
-            //                         view: e.view,
-            //                         text: e.title,
-            //                       ))
-            //                   .toList(),
-            //           // children: [
-            //           //   work(image: 'assets/images/sample_thumb.jpg'),
-            //           //   work(image: 'assets/images/sample_thumb.jpg'),
-            //           //   work(image: 'assets/images/sample_thumb.jpg'),
-            //           //   work(image: 'assets/images/sample_thumb.jpg'),
-            //           //   work(image: 'assets/images/sample_thumb.jpg'),
-            //           //   work(image: 'assets/images/sample_thumb.jpg'),
-            //           //   work(image: 'assets/images/sample_thumb.jpg')
-            //           // ],
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            SliverList(
+              delegate: SliverChildListDelegate.fixed(
+                [
+                  Visibility(
+                    visible: (activeTab == 0),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                      child: Row(
+                        // children: (widget.CivilList)
+                        //         .map((e) => work(
+                        //               image: e.thumbnail,
+                        //               view: e.view,
+                        //               text: e.title,
+                        //             ))
+                        //         .toList(),
+                        children: [
+                          work(
+                            image: 'assets/images/sample_thumb.jpg',
+                            text: '',
+                            view: '',
+                          ),
+                          work(
+                            image: 'assets/images/sample_thumb.jpg',
+                            text: '',
+                            view: '',
+                          ),
+                          work(
+                            image: 'assets/images/sample_thumb.jpg',
+                            text: '',
+                            view: '',
+                          ),
+                          work(
+                            image: 'assets/images/sample_thumb.jpg',
+                            text: '',
+                            view: '',
+                          ),
+                          work(
+                            image: 'assets/images/sample_thumb.jpg',
+                            text: '',
+                            view: '',
+                          ),
+                          work(
+                            image: 'assets/images/sample_thumb.jpg',
+                            text: '',
+                            view: '',
+                          ),
+                          work(
+                            image: 'assets/images/sample_thumb.jpg',
+                            text: '',
+                            view: '',
+                          ),
+                          work(
+                            image: 'assets/images/sample_thumb.jpg',
+                            text: '',
+                            view: '',
+                          ),
+                          work(
+                            image: 'assets/images/sample_thumb.jpg',
+                            text: '',
+                            view: '',
+                          ),
+                          work(
+                            image: 'assets/images/sample_thumb.jpg',
+                            text: '',
+                            view: '',
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SliverList(
               delegate: SliverChildListDelegate.fixed(
                 [
@@ -706,7 +832,7 @@ class _DashboardStateView extends State<DashboardView>
                             'View all >',
                             style: GoogleFonts.kadwa(
                                 fontSize: F18(),
-                                color: Color(0xFF767676),
+                                color: const Color(0xFF767676),
                                 fontWeight: FontWeight.w400),
                           ),
                         )
@@ -755,7 +881,7 @@ class _DashboardStateView extends State<DashboardView>
                             'View all >',
                             style: GoogleFonts.kadwa(
                                 fontSize: F18(),
-                                color: Color(0xFF767676),
+                                color: const Color(0xFF767676),
                                 fontWeight: FontWeight.w400),
                           ),
                         )
@@ -827,13 +953,13 @@ class _DashboardStateView extends State<DashboardView>
                         ),
                         InkWell(
                           onTap: () {
-                            Get.to(RecentlyAddedView());
+                            Get.to(const RecentlyAddedView());
                           },
                           child: Text(
                             'View all >',
                             style: GoogleFonts.kadwa(
                                 fontSize: F18(),
-                                color: Color(0xFF767676),
+                                color: const Color(0xFF767676),
                                 fontWeight: FontWeight.w400),
                           ),
                         )

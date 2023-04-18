@@ -1,14 +1,14 @@
 class CategoriesVideoModel {
   CategoriesVideoModel({
-    required this.category,
-    required this.errorCode,
-    required this.errorMessage,
-    required this.status,
+    this.category,
+     this.errorCode,
+    this.errorMessage,
+     this.status,
   });
-  late final List<Category> category;
-  late final String errorCode;
-  late final String errorMessage;
-  late final int status;
+   List<Category>? category;
+  String? errorCode;
+  String? errorMessage;
+   int? status;
   
   CategoriesVideoModel.fromJson(Map<String, dynamic> json){
     category = List.from(json['category']).map((e)=>Category.fromJson(e)).toList();
@@ -19,7 +19,7 @@ class CategoriesVideoModel {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['category'] = category.map((e)=>e.toJson()).toList();
+    _data['category'] = category?.map((e)=>e.toJson()).toList();
     _data['errorCode'] = errorCode;
     _data['errorMessage'] = errorMessage;
     _data['status'] = status;

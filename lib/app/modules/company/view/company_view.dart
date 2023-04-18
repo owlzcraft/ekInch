@@ -24,7 +24,19 @@ import '../../profile/widgets/profile_image.dart';
 import '../contoller/company_controller.dart';
 
 class CompanyView extends StatefulWidget {
-  CompanyView({Key? key}) : super(key: key);
+  String companyName;
+  String email;
+  String contact;
+  String address;
+  String photo;
+
+  CompanyView(
+      {super.key,
+      required this.companyName,
+      required this.address,
+      required this.email,
+      required this.contact,
+      required this.photo});
 
   @override
   State<CompanyView> createState() => _CompanyViewState();
@@ -138,15 +150,14 @@ class _CompanyViewState extends State<CompanyView> {
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: LocalStorage.shared.getComapanyLogo() == " "
-                  ? ProfileImage("assets/images/profile_icon.png")
-                  : ProfileImage("${LocalStorage.shared.getComapanyLogo()}"),
+              child:
+                  ProfileImage(widget.photo),
             ),
           ),
           Text(
             // LocalStorage.shared.getCompanyData()?.data?.name == null
             //     ?
-            "Company Name",
+            "${widget.companyName}",
             // : "${LocalStorage.shared.getCompanyData()!.data?.name}",
             style: GoogleFonts.kadwa(
                 color: const Color(0xFF1A1D1E),
@@ -176,7 +187,7 @@ class _CompanyViewState extends State<CompanyView> {
                   child: TextFieldWithIcon(
                       // LocalStorage.shared.getCompanyData()?.data?.name == null
                       //     ?
-                      "Company Name",
+                      "${widget.companyName}",
                       // : "${LocalStorage.shared.getCompanyData()!.data?.name}",
                       'assets/images/name_text_icon.png',
                       controller.companyName),
@@ -184,7 +195,7 @@ class _CompanyViewState extends State<CompanyView> {
                 TextFieldWithIcon(
                     // LocalStorage.shared.getCompanyData()?.data?.email == null
                     //     ?
-                    "Company Email",
+                    "${widget.email}",
                     // : "${LocalStorage.shared.getCompanyData()!.data?.email}",
                     'assets/images/name_text_icon.png',
                     controller.companyEmail),
@@ -192,19 +203,19 @@ class _CompanyViewState extends State<CompanyView> {
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: MobileTextFieldEdit(
                     context,
-                    false,
-                    controller.mobileNumber,
+                    false,"${widget.contact}",
+                    controller.contact,
                     "",
                     // LocalStorage.shared.getCompanyData()?.data?.contact == null
                     // ?
-                    "Company Contact",
+                    "${widget.contact}",
                     // : "${LocalStorage.shared.getCompanyData()!.data?.contact}",
                   ),
                 ),
                 TextFieldWithIcon(
                     // LocalStorage.shared.getCompanyData()?.data?.address == null
                     // ?
-                    "Company Address",
+                    "${widget.address}",
                     // : "${LocalStorage.shared.getCompanyData()!.data?.address}",
                     'assets/images/location_text_icon.png',
                     controller.companyAddress),

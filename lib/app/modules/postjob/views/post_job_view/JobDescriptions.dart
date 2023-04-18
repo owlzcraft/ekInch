@@ -120,29 +120,29 @@ class _JobDescriptionsState extends State<JobDescriptions> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
-            Text(
-              'Interview Timing',
-              style: GoogleFonts.kadwa(
-                fontSize: F18(),
-                fontWeight: FontWeight.w700,
-                color: black,
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.002,
-            ),
-            DropdownFieldFull(
-              controller: controller.interviewTime,
-              hintText: "Select Interview Timming",
-              items: [
-                '9:00 am - 6:00 pm  |  Mon to Sat',
-                '10:00 am - 7:00 pm  |  Mon to Sat',
-                '11:00 am - 8:00 pm  |  Mon to Sat',
-              ],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
+            // Text(
+            //   'Interview Timing',
+            //   style: GoogleFonts.kadwa(
+            //     fontSize: F18(),
+            //     fontWeight: FontWeight.w700,
+            //     color: black,
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.height * 0.002,
+            // ),
+            // DropdownFieldFull(
+            //   controller: controller.interviewTime,
+            //   hintText: "Select Interview Timming",
+            //   items: [
+            //     '9:00 am - 6:00 pm  |  Mon to Sat',
+            //     '10:00 am - 7:00 pm  |  Mon to Sat',
+            //     '11:00 am - 8:00 pm  |  Mon to Sat',
+            //   ],
+            // ),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.height * 0.03,
+            // ),
             // Material(
             //     borderRadius: BorderRadius.circular(10.0),
             //     color: yellow,

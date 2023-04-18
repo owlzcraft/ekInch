@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../../../widgets/loader.dart';
 import '../../../../widgets/snack_bar.dart';
+import '../../../models/company_profile.dart';
 import '../../../models/otp_model.dart';
 import '../../../models/profile_model.dart';
 import '../../../networking/api_result.dart';
@@ -50,6 +51,7 @@ class RegisterController extends GetxController {
                     LocalStorage.shared.saveUserData(value);
                     LocalStorage.shared
                         .savephoto(value.userData!.photo as String);
+                   
                     dashboardController.GetDashboard();
                     // Get.to(DashboardView(ReelsList: [], RecentlyAddedList: [],));
                   } else if (value.status == 400) {
@@ -63,6 +65,8 @@ class RegisterController extends GetxController {
         },
         loadingWidget: const LoadingIndicator());
   }
+
+ 
 
   @override
   void onInit() {

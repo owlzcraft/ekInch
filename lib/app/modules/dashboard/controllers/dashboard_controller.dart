@@ -1,9 +1,12 @@
 import 'package:ekinch/app/models/categories_video.dart';
+import 'package:ekinch/app/models/recentlAdded.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:get/get.dart';
 // import 'package:video_player/video_player.dart';
-
+import 'package:dio/dio.dart' as dio;
+import 'package:image_picker/image_picker.dart';
+import 'package:mime_type/mime_type.dart';
 import '../../../../widgets/loader.dart';
 import '../../../../widgets/snack_bar.dart';
 import '../../../models/profile_model.dart';
@@ -18,7 +21,7 @@ class DashboardController extends GetxController {
 // late VideoPlayerController videocontroller;
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
   late List<Data> ReelsListApi;
-  late List<Data> RecentlyAddedListApi;
+  late List<RData> RecentlyAddedListApi;
   late List CivilListApi;
 
   final count = 0.obs;
@@ -67,20 +70,21 @@ class DashboardController extends GetxController {
           await apiRepository.getReels(data).then((ApiResult<ReelModel> value) {
             value.when(
                 success: (value) {
-                  if (value!.msg == "success") {
-                    ReelsListApi = value.data;
-                    GetCivilList();
-                    // Get.to(DashboardView(
+                  // if (value!.msg == "success") {
+                    ReelsListApi = value!.data!;
+                    // GetCivilList();
+                    // GetRecentlyAdded();
+                    Get.to(DashboardView(
 
-                    //   ReelsList: ReelsListApi,
-                    //   RecentlyAddedList: [],CivilList: [],
-                    // ));
-                  } else if (value.msg == "page") {
-                    Get.back();
-                    errorSnackbar("Please Refresh");
-                  } else {
-                    errorSnackbar("Check Internet Connection");
-                  }
+                      ReelsList: ReelsListApi,
+                      RecentlyAddedList: [],CivilList: [],
+                    ));
+                  // } else if (value.msg == "page") {
+                  //   // Get.back();
+                  //   errorSnackbar("Please Refresh");
+                  // } else {
+                  //   errorSnackbar("Check Internet Connection");
+                  // }
                 },
                 failure: (networkExceptions) {});
           });
@@ -96,23 +100,21 @@ class DashboardController extends GetxController {
         asyncFunction: () async {
           print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
+          data["userId"] = LocalStorage.shared.getnumber().toString();
           data["token"] = fcmToken;
 
-          await apiRepository.getReels(data).then((ApiResult<ReelModel> value) {
+          await apiRepository
+              .recentlyAdded(data)
+              .then((ApiResult<RecentlyAddedModel> value) {
             value.when(
                 success: (value) {
-                  // if (value!.st == "success") {
-                  // ReelsListApi = value.data;
-                  // Get.to(DashboardView(
-                  //   ReelsList: ReelsListApi,
-                  //   RecentlyAddedList: [],
-                  // ));
-                  // } else if (value.msg == "page") {
-                  //   Get.back();
-                  //   errorSnackbar("Please Refresh");
-                  // } else {
-                  //   errorSnackbar("Check Internet Connection");
-                  // }
+                  RecentlyAddedListApi = value!.data;
+                   Get.to(DashboardView(
+                      ReelsList: ReelsListApi,
+                      RecentlyAddedList: RecentlyAddedListApi,
+                      CivilList: [],
+                    ));
+                  // GetCivilList();
                 },
                 failure: (networkExceptions) {});
           });
@@ -139,9 +141,9 @@ class DashboardController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.status == 200) {
-                    CivilListApi = value.category;
+                    CivilListApi = value.category!;
                     print("*****************");
-                    print(CivilListApi[0]);
+                    // print(CivilListApi[0]);
                     Get.to(DashboardView(
                       ReelsList: ReelsListApi,
                       RecentlyAddedList: [],
@@ -175,7 +177,7 @@ class DashboardController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.msg == "success") {
-                    ReelsListApi = value.data;
+                    ReelsListApi = value.data!;
                     // Get.to(DashboardView(
                     //   ReelsList: ReelsListApi,
                     //   RecentlyAddedList: [],
@@ -191,6 +193,52 @@ class DashboardController extends GetxController {
           });
         },
         loadingWidget: const LoadingIndicator());
+  }
+
+  final isVideoSelected = false.obs;
+  final reel = ''.obs;
+
+  ImagePicker videoPicker = ImagePicker();
+// File? videoFile;
+
+  // pick video in flutter from camera
+  getVideoFromCamera() async {
+    final source = await videoPicker.pickVideo(source: ImageSource.camera);
+    if (source != null) {
+      if (!GetUtils.isVideo(source.path)) {
+        errorSnackbar('Invalid File');
+        return;
+      }
+      isVideoSelected.value = true;
+      reel.value = source.path;
+      // changeLogo();
+    } else {
+      isVideoSelected.value = false;
+      errorSnackbar("Please select video");
+    }
+    // videoFile = File(source!.path as List<Object>);
+    // Navigator.of(context).push(
+    //     MaterialPageRoute(builder: (context) => PlayVideo(data: videoFile!)));
+  }
+
+  // pick video in flutter from gallery
+  getVideoFromGallery() async {
+    final source = await videoPicker.pickVideo(source: ImageSource.gallery);
+    if (source != null) {
+      if (!GetUtils.isVideo(source.path)) {
+        errorSnackbar('Invalid File');
+        return;
+      }
+      isVideoSelected.value = true;
+      reel.value = source.path;
+      // changeLogo();
+    } else {
+      isVideoSelected.value = false;
+      errorSnackbar("Please select video");
+    }
+    // videoFile = File(source!.path as List<Object>);
+    //   Navigator.of(context).push(
+    //       MaterialPageRoute(builder: (context) => PlayVideo(data: videoFile!)));
   }
 
   @override

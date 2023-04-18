@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:ekinch/app/modules/company/contoller/company_controller.dart';
 import 'package:ekinch/app/modules/company/view/company_view.dart';
 import 'package:ekinch/app/modules/myJobs/view/job_applied.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../mobile/views/mobile_view.dart';
+import '../../resume/controller/resume_controller.dart';
+import '../../resume/view/preview_view.dart';
 
 Widget SettingListItem(String image, String title) {
+  var companyController = Get.put(CompanyController());
+    var resumeController = Get.put(ResumeController());
+
   return GestureDetector(
     onTap: () {
       switch (title) {
@@ -29,9 +35,14 @@ Widget SettingListItem(String image, String title) {
           Get.to(FeedbackView());
           break;
         case "My Company":
-          Get.to(CompanyView());
+          companyController.CompanyDataStatus();
           break;
-           case "Jobs":
+        case "My Resume":
+                          resumeController.CheckResumeStatusValue();
+
+       
+          break;
+        case "Jobs":
           Get.to(MyJobsView());
           break;
         case "My Videos (Reels)":
@@ -45,12 +56,11 @@ Widget SettingListItem(String image, String title) {
           break;
         case "Log Out":
           Get.until((route) => route.isFirst);
-                        Get.off(MobileView());
+          Get.off(MobileView());
 
           break;
 
         default:
-        
       }
     },
     child: Padding(
@@ -58,7 +68,10 @@ Widget SettingListItem(String image, String title) {
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Row(
           children: [
-            Image.asset(image,scale: 2.0,),
+            Image.asset(
+              image,
+              scale: 2.0,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Text(

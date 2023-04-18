@@ -36,6 +36,12 @@ class _RegisterViewState extends State<RegisterView> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+    getCurrentAddress();
+  }
+
   Future<void> getCurrentAddress() async {
     var coords = await getCurrentLocation();
 
@@ -46,26 +52,26 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   List<List<String>> cat_list = [
-    ['Electrician', ' Home Mechanic'],
+    ['Electrician', ' Civil Engineer'],
     [
-      'Trowel Mechanic',
+      'Plumber',
       ' Mechanic',
     ],
     [
-      'Electrician2',
-      'Home Mechanic2',
+      'Painter',
+      'Carpenter',
     ],
     [
-      'Trowel Mechanic2',
-      'Mechanic2',
+      'Hospital Work',
+      'Wielder',
     ],
     [
-      'Electrician3',
-      'Home Mechanic3',
+      'Home Mechanic',
+      'Construction',
     ],
     [
-      'Trowel Mechanic3',
-      'Mechanic3',
+      'Floor & Tiles',
+      'Helper',
     ]
   ];
   List selected = [0, 0];
@@ -279,7 +285,7 @@ class _RegisterViewState extends State<RegisterView> {
                   }).toList()),
                 ),
           Container(
-            margin: const EdgeInsets.only(top: 35,left: 16.0,right: 16.0),
+            margin: const EdgeInsets.only(top: 35, left: 16.0, right: 16.0),
             child: DynamicButton("Proceed", true, () {
               check();
             }),
@@ -294,7 +300,7 @@ class _RegisterViewState extends State<RegisterView> {
     print(_isValid);
     if (_isValid) {
       LocalStorage.shared.saveLoggedIn();
-      registerController.register(latitude,longitude);
+      registerController.register(latitude, longitude);
     } else {
       errorSnackbar("Please Enter Your Name");
     }

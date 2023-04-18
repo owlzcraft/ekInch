@@ -39,8 +39,8 @@ class JobController extends GetxController {
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
 
   String gender = "";
-  String qualification = "10th Pass";
-  String experience = "0";
+  String qualification = "";
+  String experience = "";
 
   // String month = "";
   // String year = "";
@@ -72,8 +72,8 @@ class JobController extends GetxController {
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
           data["qualification"] = qualification;
-          data["uid"] = 171180;
-          // data["uid"] = LocalStorage.shared.getUID();
+          // data["uid"] = 171180;
+          data["uid"] = LocalStorage.shared.getUID();
           data["gender"] = gender;
           data["sc_med"] = schoolBoard.text;
           data["eng_profi"] = englishLevel.text;
@@ -83,7 +83,7 @@ class JobController extends GetxController {
           data["age_yr"] = year.text;
           data["age_dt"] = date.text;
           data["interest"] = jobCategory.text;
-          data["skills"] = "Electrician+Plumber";
+          data["skills"] = "Electrician+Plumber+Civil";
 
           await apiRepository.GetJobForm(data)
               .then((ApiResult<GetJobFormModel> value) {
@@ -123,7 +123,7 @@ class JobController extends GetxController {
                 success: (value) {
                   if (value!.ok == true) {
                     print("done");
-                    ApplyJobList = value.data;
+                    ApplyJobList = value.data!;
                     Get.off(JobView(JobList: ApplyJobList));
                   } else if (value.ok == false) {
                     Get.back();
@@ -138,7 +138,7 @@ class JobController extends GetxController {
         loadingWidget: const LoadingIndicator());
   }
 
-//GetJob Dashboard
+//Get Job Status
   Future<void> CheckResumeStatusValue() async {
     print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
@@ -146,10 +146,9 @@ class JobController extends GetxController {
         asyncFunction: () async {
           print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
-          data["uid"] = "11780";
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
-          // data["uid"] = LocalStorage.shared.getUID();
+          data["uid"] = LocalStorage.shared.getUID();
 
           await apiRepository
               .checkResumeStatus(data)

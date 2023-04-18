@@ -6,9 +6,9 @@ import 'package:ekinch/app/modules/language/views/language_view.dart';
 import 'package:ekinch/app/modules/mobile/views/mobile_view.dart';
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
-import '../../../utils/localStorage.dart';
-import '../../dashboard/controllers/dashboard_controller.dart';
+import '../../../../../routes/app_pages.dart';
+import '../../../../../utils/localStorage.dart';
+import '../../../../dashboard/controllers/dashboard_controller.dart';
 
 class SplashController extends GetxController {
   //TODO: Implement SplashController

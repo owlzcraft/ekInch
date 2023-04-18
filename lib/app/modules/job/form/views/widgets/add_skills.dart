@@ -170,15 +170,15 @@ class _AddSkillViewState extends State<AddSkillView> {
         onTap: () {
           if (list.any((item) => item.isSelected)) {
             print("632438483648");
+                  print(list.length);
+
             print(list[index].data);
             setState(() {
               list[index].isSelected = !list[index].isSelected;
             });
           } else {
-            
-            print(list);
+            print(list.length);
             print(list[index].data);
-
             setState(() {
               list[index].isSelected = true;
             });

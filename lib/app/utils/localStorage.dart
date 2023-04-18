@@ -80,7 +80,7 @@ void saveUID(int value) {
     localBox.write("uid", value);
   }
 
-  String getUID() {
+  int getUID() {
     return localBox.read("uid");
   }
   String getFCMToken() {

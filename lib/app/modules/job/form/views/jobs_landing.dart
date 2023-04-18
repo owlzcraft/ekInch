@@ -94,8 +94,8 @@ class JobLanding extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
               child: DynamicButton("Get Job", true, () {
-                // controller.CheckResumeStatusValue();
-                Get.to(DetailsForm());
+                controller.CheckResumeStatusValue();
+                // Get.to(DetailsForm());
               }),
             ),
             Padding(

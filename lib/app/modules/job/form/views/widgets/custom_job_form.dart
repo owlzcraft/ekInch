@@ -25,6 +25,7 @@ JobForm(String title, String hint,String image,TextEditingController controller)
           Padding(
             padding: EdgeInsets.symmetric(vertical: 8.sp),
             child: TextFormField(
+              autofocus: false,
                 controller: controller,
                 validator: ((value) {
                   if (value!.isEmpty) {

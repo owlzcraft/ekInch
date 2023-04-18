@@ -190,9 +190,9 @@ class ProfileController extends GetxController {
           await apiRepository.sendOtp(data).then((ApiResult<OtpModel> value) {
             value.when(
                 success: (value) {
-                  if (value!.status == 200) {
+                  if (value!.ok ==true) {
                     Get.to(OtpView(), arguments: [mobileNumber.text, "Update"]);
-                  } else if (value.status == 400) {
+                  } else if (value.ok==false) {
                     Get.back();
                     errorSnackbar("Phone number Already Exist");
                   } else {

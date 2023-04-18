@@ -27,8 +27,8 @@ import '../modules/register/bindings/register.binding.dart';
 import '../modules/register/views/register.view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
-import '../modules/splash/bindings/splash_binding.dart';
-import '../modules/splash/views/splash_view.dart';
+import '../modules/settings/widgets/splash/bindings/splash_binding.dart';
+import '../modules/settings/widgets/splash/views/splash_view.dart';
 
 part 'app_routes.dart';
 
@@ -69,7 +69,7 @@ class AppPages {
          GetPage(
         name: _Paths.COMPANY,
         transition: Transition.rightToLeft,
-        page: () => CompanyView(),
+        page: () => CompanyView(address: '', companyName: '', contact: '', email: '', photo: '',),
         // binding: MobileBinding()
         ),
     GetPage(

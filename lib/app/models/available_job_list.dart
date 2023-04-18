@@ -1,12 +1,12 @@
 class AvailableJobsModel {
   AvailableJobsModel({
-    required this.msg,
-    required this.data,
-    required this.ok,
+    this.msg,
+    this.data,
+     this.ok,
   });
-  late final String msg;
-  late final List<Data> data;
-  late final bool ok;
+   String? msg;
+List<Data>? data;
+   bool? ok;
   
   AvailableJobsModel.fromJson(Map<String, dynamic> json){
     msg = json['msg'];
@@ -17,7 +17,7 @@ class AvailableJobsModel {
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['msg'] = msg;
-    _data['data'] = data.map((e)=>e.toJson()).toList();
+    _data['data'] = data?.map((e)=>e.toJson()).toList();
     _data['ok'] = ok;
     return _data;
   }

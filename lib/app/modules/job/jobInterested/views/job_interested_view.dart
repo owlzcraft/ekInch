@@ -82,7 +82,7 @@ class JobInterestedView extends GetView<JobInterestedController> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: 20,left: 16.0,right: 16.0),
               child: DynamicButton("Proceed", true, () {
                 Get.to(PostjobView());
               }),

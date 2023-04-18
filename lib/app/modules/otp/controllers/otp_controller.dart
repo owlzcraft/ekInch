@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../../widgets/loader.dart';
 import '../../../../widgets/snack_bar.dart';
@@ -44,21 +45,22 @@ class OtpController extends GetxController {
           await apiRepository.verifyOtp(data).then((ApiResult<OtpModel> value) {
             value.when(
                 success: (value) {
-                   LocalStorage.shared.saveFCMTOKEN(value?.token as String);
-                    LocalStorage.shared.saveUID(value?.uid as int);
-                    print(LocalStorage.shared.getFCMToken());
-                                      Get.offAndToNamed(Routes.REGISTER);
+                  // LocalStorage.shared.saveFCMTOKEN(value?.token as String);
+                  // LocalStorage.shared.saveUID(value?.uid as int);
+                  // print(LocalStorage.shared.getFCMToken());
+                  // Get.offAndToNamed(Routes.REGISTER);
 
-                  // if (value!.status == 200) {
-                  //   LocalStorage.shared.saveFCMTOKEN(value.token as String);
-                  //   LocalStorage.shared.saveUID(value.uid as int);
-                  //   print(LocalStorage.shared.getFCMToken());
-                  //   Get.offAndToNamed(Routes.REGISTER);
-                  // } else if (value.status == 400) {
-                  //   errorSnackbar("InCorrent Otp");
-                  // } else {
-                  //   errorSnackbar("Please Try After Sometime");
-                  // }
+                  if (value!.ok == true) {
+                    LocalStorage.shared.saveFCMTOKEN(value.token as String);
+                    LocalStorage.shared.saveUID(value.uid as int);
+                    print(LocalStorage.shared.getFCMToken());
+                    if (value.newUser == true);
+                    Get.offAndToNamed(Routes.REGISTER);
+                  } else if (value.ok == false) {
+                    errorSnackbar("InCorrent Otp");
+                  } else {
+                    errorSnackbar("Please Try After Sometime");
+                  }
                 },
                 failure: (networkExceptions) {});
           });
@@ -78,10 +80,10 @@ class OtpController extends GetxController {
           await apiRepository.login(data).then((ApiResult<SignInModel> value) {
             value.when(
                 success: (value) {
-                  if (value!.status == 200) {
+                  if (value!.ok == true) {
                     Get.offAndToNamed(Routes.OTP, arguments: [number, path]);
                     successSnackBar("Otp Sent");
-                  } else if (value.status == 400) {
+                  } else if (value.ok == false) {
                     errorSnackbar("Phone Number Already Exist");
                   } else {
                     errorSnackbar("Invalid Phone Number");

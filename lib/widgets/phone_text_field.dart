@@ -13,7 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../app/custom_widget/font_size.dart';
 
-TextFormField MobileTextFieldEdit(BuildContext context, bool static,
+TextFormField MobileTextFieldEdit(BuildContext context, bool static, String initialValue,
     TextEditingController mobile, String editText, String label) {
   var profileController = Get.put(ProfileController());
   showDataAlertEditPhoneNumber() {
@@ -41,7 +41,7 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    MobileTextFieldEdit(context, false, mobile, "",
+                    MobileTextFieldEdit(context, false,"${LocalStorage.shared.getnumber()}", mobile, "",
                         "Enter Phone Number"),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 20.sp),
@@ -71,7 +71,8 @@ TextFormField MobileTextFieldEdit(BuildContext context, bool static,
 
   return TextFormField(
     readOnly: static,
-    initialValue: "${LocalStorage.shared.getnumber()}",
+    
+    initialValue: "$initialValue",
     textInputAction: TextInputAction.done,
 // onTapOutside: hideKeyboard,
     style: GoogleFonts.kadwa(fontSize: F22(), color: Color(0xFF636363)),

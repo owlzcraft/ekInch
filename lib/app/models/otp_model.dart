@@ -6,13 +6,13 @@ String otpModelToJson(OtpModel data) => json.encode(data.toJson());
 
 class OtpModel {
   OtpModel(
-      {this.status,
+      {this.ok,
       this.errorMessage,
       this.userId,
       this.token,
       this.uid,
       this.newUser});
-  int? status;
+  bool? ok;
   String? errorMessage;
   String? userId;
   String? token;
@@ -20,7 +20,7 @@ class OtpModel {
   bool? newUser;
 
   OtpModel.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
+    ok = json['ok'];
     errorMessage = json['errorMessage'];
     userId = json['userId'];
     uid = json['uid'];
@@ -31,7 +31,7 @@ class OtpModel {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['status'] = status;
+    _data['ok'] = ok;
     _data['errorMessage'] = errorMessage;
     _data['userId'] = userId;
     _data['uid'] = uid;

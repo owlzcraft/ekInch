@@ -7,12 +7,13 @@ import '../../../utils/localStorage.dart';
 
 
   TextFieldWithIcon(String hint,String image,TextEditingController controller) {
-    return  TextField(
+    return  TextFormField(
+      initialValue: "$hint",
                   onChanged: (value) {
                     controller.text = value as String;
                   },
                   decoration: InputDecoration(
-                    hintText: hint,
+                    // hintText: hint,
                     contentPadding: EdgeInsets.symmetric(vertical: 8.sp),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),

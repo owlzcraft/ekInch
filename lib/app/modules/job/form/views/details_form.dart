@@ -466,7 +466,6 @@ class DetailsForm extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                           color: const Color(0xFFCDCDCD)),
-                                      // ignore: unrelated_type_equality_checks
                                       color: (controller.activeMedium == index)
                                           ? Colors.black
                                           : const Color(0xFFF8F8F8),

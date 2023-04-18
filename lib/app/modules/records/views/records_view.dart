@@ -21,11 +21,12 @@ class RecordsView extends StatefulWidget {
 }
 
 class _RecordsViewState extends State<RecordsView> {
-  bool visibilitylights = true;
+  bool visibilitylights = false;
   bool visibilityhospitals = false;
   bool visibilitycivil = false;
+  bool visibilitybuilding = false;
+  bool visibilitywielding = false;
   bool visibilityplumber = false;
-  bool visibilitypainiting = false;
   bool isDrawerOpen = false;
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -55,7 +56,13 @@ class _RecordsViewState extends State<RecordsView> {
 
   void showdrop5() {
     setState(() {
-      visibilitypainiting = !visibilitypainiting;
+      visibilitybuilding = !visibilitybuilding;
+    });
+  }
+
+  void showdrop6() {
+    setState(() {
+      visibilitywielding = !visibilitywielding;
     });
   }
 
@@ -107,29 +114,6 @@ class _RecordsViewState extends State<RecordsView> {
           child: Column(children: [
         Container(
           color: Colors.black,
-          //   child: SingleChildScrollView(
-          //     child: Wrap(
-          //       crossAxisAlignment: WrapCrossAlignment.center,
-          //       children: [
-          //         Container(
-          //           child: MJImageSlider(
-          //             options: MjOptions(
-          //               aspectRatio: 16/9,
-          //                 enableInfiniteScroll: false,
-          //                 onPageChanged: (i) {},
-          //                 scrollDirection: Axis.horizontal,
-          //                 viewportFraction: 2.0),
-          //             widgets: [
-          //               ...images
-          //                   .map((e) => Image(image: AssetImage(e),))
-          //                   .toList()
-          //             ],
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ), //
-          // ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -170,9 +154,52 @@ class _RecordsViewState extends State<RecordsView> {
         ),
         Column(children: [
           InkWell(
+            onTap: showdrop3,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: Container(
+                width: getHorizontalSize(396),
+                height: getVerticalSize(50),
+                decoration: BoxDecoration(
+                    color: KColors.greybg,
+                    borderRadius: BorderRadius.circular(6)),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 14.9, right: 14.9),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Text(
+                        "Civil",
+                        style: GoogleFonts.kadwa(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: F18()),
+                      ),
+                      Icon(Icons.arrow_drop_down_sharp, size: 30),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Visibility(
+              visible: visibilitycivil,
+              child:
+                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+              ]),
+            ),
+          ),
+          InkWell(
             onTap: showdrop1,
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 15.0),
+              padding: EdgeInsets.symmetric(vertical: 12.0),
               child: Container(
                 width: getHorizontalSize(396),
                 height: getVerticalSize(50),
@@ -255,8 +282,9 @@ class _RecordsViewState extends State<RecordsView> {
               ]),
             ),
           ),
+
           InkWell(
-            onTap: showdrop3,
+            onTap: showdrop4,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 15.0),
               child: Container(
@@ -273,7 +301,7 @@ class _RecordsViewState extends State<RecordsView> {
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Text(
-                        "Civil",
+                        "Plumber",
                         style: GoogleFonts.kadwa(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -289,7 +317,7 @@ class _RecordsViewState extends State<RecordsView> {
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
-              visible: visibilitycivil,
+              visible: visibilityplumber,
               child:
                   Column(mainAxisAlignment: MainAxisAlignment.start, children: [
                 SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
@@ -298,32 +326,48 @@ class _RecordsViewState extends State<RecordsView> {
               ]),
             ),
           ),
-          Container(
-            width: getHorizontalSize(396),
-            height: getVerticalSize(50),
-            decoration: BoxDecoration(
-                color: KColors.greybg, borderRadius: BorderRadius.circular(6)),
-            child: Padding(
-              padding: EdgeInsets.only(left: 14.9, right: 14.9),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Text(
-                    "Plumber",
-                    style: GoogleFonts.kadwa(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: F18()),
-                  ),
-                  Icon(Icons.arrow_drop_down_sharp, size: 30)
-                ],
+          InkWell(
+            onTap: showdrop5,
+            child: Container(
+              width: getHorizontalSize(396),
+              height: getVerticalSize(50),
+              decoration: BoxDecoration(
+                  color: KColors.greybg,
+                  borderRadius: BorderRadius.circular(6)),
+              child: Padding(
+                padding: EdgeInsets.only(left: 14.9, right: 14.9),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    Text(
+                      "Building",
+                      style: GoogleFonts.kadwa(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: F18()),
+                    ),
+                    Icon(Icons.arrow_drop_down_sharp, size: 30),
+                  ],
+                ),
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Visibility(
+              visible: visibilitybuilding,
+              child:
+                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+              ]),
+            ),
+          ),
           InkWell(
-            onTap: showdrop5,
+            onTap: showdrop6,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 15.0),
               child: Container(
@@ -340,19 +384,31 @@ class _RecordsViewState extends State<RecordsView> {
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Text(
-                        "Painting",
+                        "Wielding",
                         style: GoogleFonts.kadwa(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: F18()),
                       ),
-                      Icon(Icons.arrow_drop_down_sharp, size: 30)
+                      Icon(Icons.arrow_drop_down_sharp, size: 30),
                     ],
                   ),
                 ),
               ),
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Visibility(
+              visible: visibilitywielding,
+              child:
+                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
+              ]),
+            ),
+          ),
           // bottomSheet: Column(children: [
           //   Stack(
           //     children: [

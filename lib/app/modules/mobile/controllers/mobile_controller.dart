@@ -45,12 +45,13 @@ class MobileController extends GetxController {
           await apiRepository.login(data).then((ApiResult<SignInModel> value) {
             value.when(
                 success: (value) {
-                  if (value!.status == 200) {
+                  if (value!.ok == true) {
                     LocalStorage.shared.saveNumber(value.userId as String);
                     LocalStorage.shared.saveCompanyLogo(" ");
                     Get.offAndToNamed(Routes.OTP,
                         arguments: [mobileNumber.text, "Login"]);
-                  } else if (value.status == 400) {
+                    // dispose();
+                  } else if (value.ok == false) {
                     errorSnackbar("Phone Number Already Exist");
                   } else {
                     errorSnackbar("Invalid Phone Number");
