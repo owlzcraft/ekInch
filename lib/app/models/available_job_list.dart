@@ -2,22 +2,22 @@ class AvailableJobsModel {
   AvailableJobsModel({
     this.msg,
     this.data,
-     this.ok,
+    this.ok,
   });
-   String? msg;
-List<Data>? data;
-   bool? ok;
-  
-  AvailableJobsModel.fromJson(Map<String, dynamic> json){
+  String? msg;
+  List<Data>? data;
+  bool? ok;
+
+  AvailableJobsModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
-    data = List.from(json['data']).map((e)=>Data.fromJson(e)).toList();
+    data = List.from(json['data']).map((e) => Data.fromJson(e)).toList();
     ok = json['ok'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['msg'] = msg;
-    _data['data'] = data?.map((e)=>e.toJson()).toList();
+    _data['data'] = data?.map((e) => e.toJson()).toList();
     _data['ok'] = ok;
     return _data;
   }
@@ -25,35 +25,46 @@ List<Data>? data;
 
 class Data {
   Data({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.postedBy,
-    required this.location,
-    required this.active,
-    required this.lattitude,
-    required this.longitude,
-     this.jobTmg,
-    required this.city,
-    required this.crtdOn,
-    required this.company,
-    required this.jobDetails,
+    this.id,
+    this.title,
+    this.description,
+    this.postedBy,
+    this.location,
+    this.active,
+    this.lattitude,
+    this.longitude,
+    this.jobTmg,
+    this.city,
+    this.crtdOn,
+    this.company,
+    this.jobDetails,
   });
-  late final int id;
-  late final String title;
-  late final String description;
-  late final int postedBy;
-  late final String location;
-  late final bool active;
-  late final double lattitude;
-  late final double longitude;
-  late final Null jobTmg;
-  late final String city;
-  late final String crtdOn;
-  late final Company company;
-  late final List<JobDetails> jobDetails;
-  
-  Data.fromJson(Map<String, dynamic> json){
+  int? id;
+  String? title;
+
+  String? description;
+
+  int? postedBy;
+
+  String? location;
+
+  bool? active;
+
+  double? lattitude;
+
+  double? longitude;
+
+  String ? jobTmg;
+
+  String? city;
+
+  String? crtdOn;
+
+  Company? company;
+
+  List<JobDetails>? jobDetails;
+
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     description = json['description'];
@@ -62,11 +73,13 @@ class Data {
     active = json['active'];
     lattitude = json['lattitude'];
     longitude = json['longitude'];
-    jobTmg = null;
+    jobTmg = json['jobTmg'];
     city = json['city'];
     crtdOn = json['crtd_on'];
     company = Company.fromJson(json['company']);
-    jobDetails = List.from(json['job_details']).map((e)=>JobDetails.fromJson(e)).toList();
+    jobDetails = List.from(json['job_details'])
+        .map((e) => JobDetails.fromJson(e))
+        .toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -82,26 +95,27 @@ class Data {
     _data['job_tmg'] = jobTmg;
     _data['city'] = city;
     _data['crtd_on'] = crtdOn;
-    _data['company'] = company.toJson();
-    _data['job_details'] = jobDetails.map((e)=>e.toJson()).toList();
+    _data['company'] = company!.toJson();
+    _data['job_details'] = jobDetails?.map((e) => e.toJson()).toList();
     return _data;
   }
 }
 
 class Company {
   Company({
-    required this.photo,
-     this.name,
-     this.address,
+    this.photo,
+    this.name,
+    this.address,
   });
-  late final String photo;
-  late final String? name;
-  late final String? address;
-  
-  Company.fromJson(Map<String, dynamic> json){
+
+  String? photo;
+  String? name;
+  String? address;
+
+  Company.fromJson(Map<String, dynamic> json) {
     photo = json['photo'];
-    name = null;
-    address = null;
+    name = json['name'];
+    address = json['address'];
   }
 
   Map<String, dynamic> toJson() {
@@ -115,31 +129,31 @@ class Company {
 
 class JobDetails {
   JobDetails({
-    required this.id,
-    required this.profession,
-    required this.capacity,
-     this.qual,
-    required this.slrStr,
-    required this.slrEnd,
-    required this.exp,
-    required this.lngSpk,
-    required this.mustSkill,
+    this.id,
+    this.profession,
+    this.capacity,
+    this.qual,
+    this.slrStr,
+    this.slrEnd,
+    this.exp,
+    this.lngSpk,
+    this.mustSkill,
   });
-  late final int id;
-  late final int profession;
-  late final int capacity;
-  late final String? qual;
-  late final int slrStr;
-  late final int slrEnd;
-  late final int exp;
-  late final String lngSpk;
-  late final List<String> mustSkill;
-  
-  JobDetails.fromJson(Map<String, dynamic> json){
+  int? id;
+  int? profession;
+  int? capacity;
+  String? qual;
+  int? slrStr;
+  int? slrEnd;
+  int? exp;
+  String? lngSpk;
+  List<String>? mustSkill;
+
+  JobDetails.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     profession = json['profession'];
     capacity = json['capacity'];
-    qual = null;
+    qual = json['qual'];
     slrStr = json['slr_str'];
     slrEnd = json['slr_end'];
     exp = json['exp'];

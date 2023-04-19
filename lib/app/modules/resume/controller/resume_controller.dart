@@ -86,9 +86,12 @@ class ResumeController extends GetxController {
   late List<Data> ApplyJobList;
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
 
-  String gender = "";
-  String qualification = "";
-  String experience = "";
+  // String gender = "";
+  // String qualification = "";
+  // String experience = "";
+  TextEditingController gender = TextEditingController();
+  TextEditingController qualification = TextEditingController();
+  TextEditingController experience = TextEditingController();
 
   TextEditingController qualificationTap = TextEditingController();
   TextEditingController board = TextEditingController();
@@ -116,14 +119,13 @@ class ResumeController extends GetxController {
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
-          data["qualification"] = qualification;
-          // data["uid"] = 171180;
+          data["qualification"] = qualification.text;
           data["uid"] = LocalStorage.shared.getUID();
-          data["gender"] = gender;
+          data["gender"] = gender.text;
           data["sc_med"] = schoolBoard.text;
           data["eng_profi"] = englishLevel.text;
           data["exp"] = experienceTap.text;
-          data["exp_yr"] = experience;
+          data["exp_yr"] = experience.text;
           data["age_mn"] = month.text;
           data["age_yr"] = year.text;
           data["age_dt"] = date.text;
@@ -172,12 +174,20 @@ class ResumeController extends GetxController {
                   if (value!.ok == true) {
                     print("done");
                     Get.to(GetJobPreviewView(
-                        category: value.data!.interest.toString(),
-                        dob:
-                            "${value.data!.ageDt}/${value.data!.ageMn}/${value.data!.ageYr}",
-                        gender: value.data!.gender.toString(),
-                        experience: value.data!.expYr.toString(),
-                        quali: value.data!.qualification.toString(), board: value.data!.scMed.toString(), date: value.data!.ageDt.toString(), englishSpk: value.data!.engProfi.toString(), expTap: value.data!.exp.toString(), month: value.data!.ageMn.toString(), year: value.data!.ageYr.toString(),));
+                      category: value.data!.interest.toString(),
+                      dob:
+                          "${value.data!.ageDt}/${value.data!.ageMn}/${value.data!.ageYr}",
+                      gender: value.data!.gender.toString(),
+                      experience: value.data!.expYr.toString(),
+                      quali: value.data!.qualification.toString(),
+                      board: value.data!.scMed.toString(),
+                      date: value.data!.ageDt.toString(),
+                      englishSpk: value.data!.engProfi.toString(),
+                      expTap: value.data!.exp.toString(),
+                      month: value.data!.ageMn.toString(),
+                      year: value.data!.ageYr.toString(),
+                      skill: value.data!.skillsLst as List<String>,
+                    ));
                   } else if (value.ok == false) {
                     Get.back();
                     errorSnackbar("Please Refresh");

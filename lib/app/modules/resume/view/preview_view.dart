@@ -36,15 +36,13 @@ class GetJobPreviewView extends StatefulWidget {
   String dob;
   String quali;
   String experience;
-    String board;
-      String expTap;
-        String date;
-        String month;
-        String year;
-                String englishSpk;
-
-
-
+  String board;
+  String expTap;
+  String date;
+  String month;
+  String year;
+  String englishSpk;
+  List<String> skill;
 
   GetJobPreviewView(
       {super.key,
@@ -53,7 +51,12 @@ class GetJobPreviewView extends StatefulWidget {
       required this.gender,
       required this.englishSpk,
       required this.experience,
-      required this.board,required this.date,required this.expTap,required this.month,required this.year,
+      required this.board,
+      required this.date,
+      required this.expTap,
+      required this.month,
+      required this.year,
+      required this.skill,
       required this.quali});
 
   @override
@@ -289,7 +292,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                     date: widget.date,
                     month: widget.month,
                     jobProfile: widget.category,
-                    qualification:widget.quali,
+                    qualification: widget.quali,
                     year: widget.year,
                   ));
                 },
@@ -698,16 +701,11 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                         Wrap(
                           alignment: WrapAlignment.spaceBetween,
                           direction: Axis.horizontal,
-                          children: <Widget>[
-                            SkillCard(title: "Electrician"),
-                            SkillCard(title: "Civil Engineer"),
-                            SkillCard(title: "Electrician"),
-                            SkillCard(title: "Electrician"),
-                            SkillCard(title: "Mechanic"),
-                            SkillCard(title: "Electrician"),
-                            SkillCard(title: "Electric"),
-                            SkillCard(title: "Builder"),
-                          ],
+                          children: (widget.skill)
+                              .map((e) => SkillCard(
+                                    title: e,
+                                  ))
+                              .toList(),
                         )
                         // GridView.count(
                         //   crossAxisCount: 3,

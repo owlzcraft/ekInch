@@ -206,7 +206,7 @@ class _OtpViewState extends State<OtpView> {
     final _isValid = _globalKey.currentState!.validate();
     if (_isValid == true) {
       if (Get.arguments[1]=="Update") {
-        profileController.VerifyPhoneNumber();
+        profileController.VerifyPhoneNumber(Get.arguments[0]);
       } else {
         controller.verifyOtp();
       }

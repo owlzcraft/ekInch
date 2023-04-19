@@ -321,19 +321,19 @@ class _JobViewState extends State<JobView> {
                 child: Column(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        SizedBox(
-                          height: 40.sp,
-                          width: Get.width / 2.4,
-                          child: Dropdownshort(
-                            dropdownvalue: 'Full-time job',
-                            items: [
-                              'Full-time job',
-                              'Part-time job',
-                            ],
-                          ),
-                        ),
+                        // SizedBox(
+                        //   height: 40.sp,
+                        //   width: Get.width / 2.4,
+                        //   child: Dropdownshort(
+                        //     dropdownvalue: 'Full-time job',
+                        //     items: [
+                        //       'Full-time job',
+                        //       'Part-time job',
+                        //     ],
+                        //   ),
+                        // ),
                         InkWell(
                           onTap: () {},
                           child: SvgPicture.asset(
@@ -346,23 +346,23 @@ class _JobViewState extends State<JobView> {
                     Column(
                       children: (widget.JobList)
                           .map((e) => JobApplicationCard(
-                                image: e.company.photo,
-                                title: e.title,
-                                subtitle: e.location,
-                                time: "2 days",
-                                qualification: e.jobDetails[0].qual.toString(),
+                                image: e.company!.photo.toString(),
+                                title: e.title.toString(),
+                                subtitle: e.location.toString(),
+                                time: " ",
+                                qualification: e.jobDetails![0].qual.toString(),
                                 experience:
-                                    "${e.jobDetails[0].exp.toString()} years experience",
+                                    "${e.jobDetails![0].exp.toString()} years experience",
                                 salary:
-                                    "${e.jobDetails[0].slrStr.toString()}-${e.jobDetails[0].slrEnd.toString()}",
-                                location: e.city,
-                                language: e.jobDetails[0].lngSpk,
-                                views: "200 views",
+                                    "${e.jobDetails![0].slrStr.toString()}-${e.jobDetails![0].slrEnd.toString()}",
+                                location: e.city.toString(),
+                                language: e.jobDetails![0].lngSpk.toString(),
+                                views: " ",
                                 jobInfo: e.description.toString(),
                                 jobTime: e.jobTmg.toString(),
-                                require: e.jobDetails[0].mustSkill.toString(),
-                                address: e.company.address.toString(),
-                                companyName: e.company.name.toString(),
+                                require: e.jobDetails![0].mustSkill.toString(),
+                                address: e.company!.address.toString(),
+                                companyName: e.company!.name.toString(),
                                 jobId: e.id.toString(),
                               ))
                           .toList(),

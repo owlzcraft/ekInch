@@ -69,7 +69,7 @@ class AppPages {
          GetPage(
         name: _Paths.COMPANY,
         transition: Transition.rightToLeft,
-        page: () => CompanyView(address: '', companyName: '', contact: '', email: '', photo: '',),
+        page: () => CompanyView(address: '', companyName: '', contact: '', email: '', photo: '', oldUser: false,),
         // binding: MobileBinding()
         ),
     GetPage(

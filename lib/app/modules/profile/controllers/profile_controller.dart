@@ -190,9 +190,9 @@ class ProfileController extends GetxController {
           await apiRepository.sendOtp(data).then((ApiResult<OtpModel> value) {
             value.when(
                 success: (value) {
-                  if (value!.ok ==true) {
+                  if (value!.ok == true) {
                     Get.to(OtpView(), arguments: [mobileNumber.text, "Update"]);
-                  } else if (value.ok==false) {
+                  } else if (value.ok == false) {
                     Get.back();
                     errorSnackbar("Phone number Already Exist");
                   } else {
@@ -206,8 +206,9 @@ class ProfileController extends GetxController {
   }
 
   //VerifyPhoneNumber
-  Future<void> VerifyPhoneNumber() async {
+  Future<void> VerifyPhoneNumber(String newNumber) async {
     print("**************************");
+    print(newNumber);
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
@@ -216,7 +217,7 @@ class ProfileController extends GetxController {
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
-          data["new_number"] = mobileNumber.text;
+          data["new_number"] = newNumber;
           data["otp"] = otp.text;
 
           await apiRepository.UpdateNumber(data)
@@ -224,7 +225,7 @@ class ProfileController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.status == 200) {
-                    LocalStorage.shared.saveNumber(value.userId as String);
+                    LocalStorage.shared.saveNumber(value.new_number as String);
 
                     Get.to(ProfileView());
                   } else if (value.status == 400) {

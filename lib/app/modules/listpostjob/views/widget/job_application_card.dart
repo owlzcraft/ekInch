@@ -30,8 +30,7 @@ class JobApplicationCard extends StatelessWidget {
   String jobTime;
   String views;
   String companyName;
-    String address;
-
+  String address;
 
   JobApplicationCard({
     super.key,
@@ -49,8 +48,7 @@ class JobApplicationCard extends StatelessWidget {
     required this.jobInfo,
     required this.experience,
     required this.jobTime,
-        required this.address,
-
+    required this.address,
     required this.views,
   });
 
@@ -242,7 +240,11 @@ class JobApplicationCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Expanded(child: Image.asset("assets/images/group.png")),
+                        Expanded(
+                            child: Image.asset(
+                          "assets/images/group.png",
+                          scale: 3.0,
+                        )),
                         Expanded(
                           flex: 2,
                           child: Padding(

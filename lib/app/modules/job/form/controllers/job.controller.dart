@@ -115,6 +115,7 @@ class JobController extends GetxController {
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
+          data["uid"] = LocalStorage.shared.getUID();
 
           await apiRepository
               .availableJobList(data)

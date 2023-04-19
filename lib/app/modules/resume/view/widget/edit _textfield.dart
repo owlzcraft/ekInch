@@ -16,7 +16,7 @@ EditText(String title) {
   );
 }
 
-  EditTextField(String hint, List list,String controller) {
+  EditTextField(String hint, List list,TextEditingController controller) {
     return  DropdownButtonFormField2(
               decoration: InputDecoration(
                 isDense: true,
@@ -62,7 +62,7 @@ EditText(String title) {
                 }
               },
               onChanged: (value) {
-                controller = value as String;
+                controller.text = value as String;
               },
             );
   }

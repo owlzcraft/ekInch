@@ -45,6 +45,18 @@ class EditResume extends StatefulWidget {
 }
 
 class _EditResumeState extends State<EditResume> {
+  @override
+  void initState() {
+    super.initState();
+    controller.jobCategory.text = widget.jobProfile;
+    controller.qualification.text = widget.qualification;
+    controller.gender.text = widget.gender;
+    controller.experience.text = widget.exp;
+    controller.date.text = widget.date;
+    controller.month.text = widget.month;
+    controller.year.text = widget.year;
+  }
+
   ResumeController controller = Get.put(ResumeController());
   final List<String> professionList = [
     "Electrician",
@@ -226,12 +238,13 @@ class _EditResumeState extends State<EditResume> {
                 // ),
                 EditText("Job Profile"),
                 EditTextField("${widget.jobProfile}", professionList,
-                    controller.jobCategory.text),
+                    controller.jobCategory),
                 EditText("Qualification"),
                 EditTextField("${widget.qualification}", QualificationList,
                     controller.qualification),
                 EditText("Gender"),
-                EditTextField("${widget.gender}", GenderList, controller.gender),
+                EditTextField(
+                    "${widget.gender}", GenderList, controller.gender),
                 EditText("Experience"),
                 DropdownButtonFormField2(
                   decoration: InputDecoration(
@@ -253,7 +266,7 @@ class _EditResumeState extends State<EditResume> {
                   ),
                   isExpanded: false,
                   hint: Text(
-                   "${widget.exp}",
+                    "${widget.exp}",
                     style: GoogleFonts.kadwa(
                         fontSize: getFontSize(22),
                         color: const Color(0xFF636363)),
@@ -287,7 +300,7 @@ class _EditResumeState extends State<EditResume> {
                     }
                   },
                   onChanged: (value) {
-                    controller.experience = value as String;
+                    controller.experience.text = value as String;
                   },
                 ),
                 Padding(
@@ -474,12 +487,12 @@ class _EditResumeState extends State<EditResume> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    CustomDropDown(
-                        controller.days, "${widget.date}", "Day", 1, 0, controller.date),
-                    CustomDropDown(controller.monthNumber, "${widget.month}", "Month", 1, 4,
-                        controller.month),
-                    CustomDropDown(controller.years, "${widget.year}", "Year", 1, 0,
-                        controller.year),
+                    CustomDropDown(controller.days, "${widget.date}", "Day", 1,
+                        0, controller.date),
+                    CustomDropDown(controller.monthNumber, "${widget.month}",
+                        "Month", 1, 4, controller.month),
+                    CustomDropDown(controller.years, "${widget.year}", "Year",
+                        1, 0, controller.year),
                   ],
                 ),
                 Padding(

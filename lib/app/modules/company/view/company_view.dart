@@ -29,12 +29,14 @@ class CompanyView extends StatefulWidget {
   String contact;
   String address;
   String photo;
+  bool oldUser;
 
   CompanyView(
       {super.key,
       required this.companyName,
       required this.address,
       required this.email,
+      required this.oldUser,
       required this.contact,
       required this.photo});
 
@@ -45,7 +47,16 @@ class CompanyView extends StatefulWidget {
 class _CompanyViewState extends State<CompanyView> {
   CompanyController controller = Get.put(CompanyController());
   DashboardController dashboardController = Get.put(DashboardController());
-
+  @override
+  void initState() {
+    super.initState();
+    if (widget.oldUser) {
+      controller.companyName.text = widget.companyName;
+      controller.companyAddress.text = widget.address;
+      controller.companyEmail.text = widget.email;
+      controller.contact.text = widget.contact;
+    }
+  }
   // List of items in our dropdown menu
   // final List<String> companyList = [
   //   "Cement Company",
@@ -150,8 +161,7 @@ class _CompanyViewState extends State<CompanyView> {
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child:
-                  ProfileImage(widget.photo),
+              child: ProfileImage(widget.photo),
             ),
           ),
           Text(
@@ -203,7 +213,7 @@ class _CompanyViewState extends State<CompanyView> {
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: MobileTextFieldEdit(
                     context,
-                    false,"${widget.contact}",
+                    false, "${widget.contact}",
                     controller.contact,
                     "",
                     // LocalStorage.shared.getCompanyData()?.data?.contact == null

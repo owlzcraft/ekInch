@@ -1,7 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class JobInterestedController extends GetxController {
-  //TODO: Implement JobInterestedController
+  TextEditingController profession = TextEditingController();
+    TextEditingController capacity = TextEditingController();
+  TextEditingController salaryStr = TextEditingController();
+  // TextEditingController profession = TextEditingController();
+  // TextEditingController profession = TextEditingController();
+  // TextEditingController profession = TextEditingController();
+  // TextEditingController profession = TextEditingController();
+  // TextEditingController profession = TextEditingController();
+  // TextEditingController profession = TextEditingController();
+
   var activeCategory = 0.obs;
   var jobCategory = [
     {

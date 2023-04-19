@@ -97,6 +97,7 @@ class CompanyController extends GetxController {
                       contact: value.data!.contact.toString(),
                       email: value.data!.email.toString(),
                       photo: value.data!.photo.toString(),
+                      oldUser: true,
                     ));
                   } else {
                     errorSnackbar("Image not Found");
@@ -168,11 +169,13 @@ class CompanyController extends GetxController {
                     LocalStorage.shared
                         .saveCompanyData(value as CompanyProfileModel);
                     Get.to(CompanyView(
-                        companyName: value.data!.name.toString(),
-                        address: value.data!.address.toString(),
-                        email: value.data!.email.toString(),
-                        contact: value.data!.contact.toString(),
-                        photo: value.data!.photo.toString()));
+                      companyName: value.data!.name.toString(),
+                      address: value.data!.address.toString(),
+                      email: value.data!.email.toString(),
+                      contact: value.data!.contact.toString(),
+                      photo: value.data!.photo.toString(),
+                      oldUser: true,
+                    ));
                   } else if (value?.ok == false) {
                     errorSnackbar("Something Went Wrong");
                   } else {
@@ -203,7 +206,7 @@ class CompanyController extends GetxController {
             value.when(
                 success: (value) {
                   if (value?.data == true) {
-                    errorSnackbar("Get API");
+                    // errorSnackbar("Get API");
                     GetCompanyProfile();
                     // Get.to(CompanyView(address: '', companyName: '', contact: '', email: '', photo: '',));
                   } else if (value?.data == false) {
@@ -213,6 +216,7 @@ class CompanyController extends GetxController {
                       contact: ' Company Contact no.',
                       email: 'Company Email',
                       photo: 'assets/images/profile_icon.png',
+                      oldUser: false,
                     ));
                   } else {
                     errorSnackbar("Please Try After Sometime");
@@ -252,6 +256,7 @@ class CompanyController extends GetxController {
                       contact: ' Company Contact no.',
                       email: 'Company Email',
                       photo: 'assets/images/profile_icon.png',
+                      oldUser: false,
                     ));
                   } else {
                     errorSnackbar("Please Try After Sometime");
@@ -263,40 +268,40 @@ class CompanyController extends GetxController {
         loadingWidget: const LoadingIndicator());
   }
 
-  //Get Job Status
-  Future<void> CheckResumeStatusValue() async {
-    print("**************************");
-    final fcmToken = LocalStorage.shared.getFCMToken();
-    Get.showOverlay(
-        asyncFunction: () async {
-          print(fcmToken);
-          final Map<String, dynamic> data = <String, dynamic>{};
-          data["token"] = fcmToken;
-          data["userId"] = LocalStorage.shared.getnumber();
-          data["uid"] = LocalStorage.shared.getUID();
+  // //Get Job Status
+  // Future<void> CheckResumeStatusValue() async {
+  //   print("**************************");
+  //   final fcmToken = LocalStorage.shared.getFCMToken();
+  //   Get.showOverlay(
+  //       asyncFunction: () async {
+  //         print(fcmToken);
+  //         final Map<String, dynamic> data = <String, dynamic>{};
+  //         data["token"] = fcmToken;
+  //         data["userId"] = LocalStorage.shared.getnumber();
+  //         data["uid"] = LocalStorage.shared.getUID();
 
-          await apiRepository
-              .checkResumeStatus(data)
-              .then((ApiResult<CheckStatusModel> value) {
-            value.when(
-                success: (value) {
-                  if (value!.data) {
-                    errorSnackbar("Get Resume APi");
-                    Get.to(GetJobPreviewView(
-                        category: "Category",
-                        dob: "09/09/09",
-                        gender: "gender",
-                        experience: "experience",
-                        quali: "quali"));
-                  } else {
-                    Get.to(DetailsForm());
-                  }
-                },
-                failure: (networkExceptions) {});
-          });
-        },
-        loadingWidget: const LoadingIndicator());
-  }
+  //         await apiRepository
+  //             .checkResumeStatus(data)
+  //             .then((ApiResult<CheckStatusModel> value) {
+  //           value.when(
+  //               success: (value) {
+  //                 if (value!.data) {
+  //                   errorSnackbar("Get Resume APi");
+  //                   Get.to(GetJobPreviewView(
+  //                       category: "Category",
+  //                       dob: "09/09/09",
+  //                       gender: "gender",
+  //                       experience: "experience",
+  //                       quali: "quali", date: '', board: '', englishSpk: '', expTap: '', month: '', year: '',));
+  //                 } else {
+  //                   Get.to(DetailsForm());
+  //                 }
+  //               },
+  //               failure: (networkExceptions) {});
+  //         });
+  //       },
+  //       loadingWidget: const LoadingIndicator());
+  // }
 
   @override
   void onInit() {
