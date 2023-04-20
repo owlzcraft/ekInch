@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../../../widgets/loader.dart';
 import '../../../../../widgets/snack_bar.dart';
+import '../../../../models/update_getJob.dart';
 import '../../../../networking/api_result.dart';
 import '../../../../networking/app_repo.dart';
 import '../../../../utils/localStorage.dart';
@@ -39,11 +40,10 @@ class JobController extends GetxController {
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
 
   String gender = "";
-  String qualification = "";
-  String experience = "";
-
-  // String month = "";
-  // String year = "";
+  // String qualification = "";
+  // String experience = "";
+  TextEditingController qualification = TextEditingController();
+  TextEditingController experience = TextEditingController();
 
   TextEditingController qualificationTap = TextEditingController();
   TextEditingController board = TextEditingController();
@@ -71,22 +71,23 @@ class JobController extends GetxController {
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
-          data["qualification"] = qualification;
+          data["qualification"] = qualification.text;
           // data["uid"] = 171180;
-          data["uid"] = LocalStorage.shared.getUID();
+          data["user"] = LocalStorage.shared.getUID();
           data["gender"] = gender;
           data["sc_med"] = schoolBoard.text;
           data["eng_profi"] = englishLevel.text;
           data["exp"] = experienceTap.text;
-          data["exp_yr"] = experience;
+          data["exp_yr"] = experience.text;
           data["age_mn"] = month.text;
           data["age_yr"] = year.text;
           data["age_dt"] = date.text;
+          data["flag"] = 0;
           data["interest"] = jobCategory.text;
-          data["skills"] = "Electrician+Plumber+Civil";
+          data["skills"] = skills.text;
 
           await apiRepository.GetJobForm(data)
-              .then((ApiResult<GetJobFormModel> value) {
+              .then((ApiResult<UpdateGetJobFormModel> value) {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {

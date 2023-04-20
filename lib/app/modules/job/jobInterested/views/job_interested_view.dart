@@ -1,3 +1,4 @@
+import 'package:ekinch/app/modules/listpostjob/controller/post_job_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/job/jobInterested/widget/card.dart';
@@ -12,12 +13,12 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../dashboard/widgets/navigation.dart';
 import '../controllers/job_interested_controller.dart';
 
-class JobInterestedView extends GetView<JobInterestedController> {
+class JobInterestedView extends StatelessWidget {
   JobInterestedView({Key? key}) : super(key: key);
   GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    JobInterestedController controller = Get.put(JobInterestedController());
+   PostJobController  controller = Get.put(PostJobController());
     return Scaffold(
       key: notDrawerKey,
       drawer: const SettingsView(),
@@ -70,6 +71,14 @@ class JobInterestedView extends GetView<JobInterestedController> {
                   int index = controller.jobCategory.indexOf(e);
                   return Obx(() => GestureDetector(
                         onTap: () {
+                          print(controller.activeCategory.value);
+                          print(controller
+                                  .jobCategory[controller.activeCategory.value]
+                              ['title']);
+                          controller.profession.text = controller
+                              .jobCategory[controller.activeCategory.value]
+                                  ['title']
+                              .toString();
                           controller.activeCategory.value = index;
                         },
                         child: JobCategoryCard(
@@ -82,7 +91,8 @@ class JobInterestedView extends GetView<JobInterestedController> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20,left: 16.0,right: 16.0),
+              padding:
+                  const EdgeInsets.only(bottom: 20, left: 16.0, right: 16.0),
               child: DynamicButton("Proceed", true, () {
                 Get.to(PostjobView());
               }),

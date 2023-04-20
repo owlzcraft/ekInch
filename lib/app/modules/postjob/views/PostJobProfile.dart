@@ -16,7 +16,7 @@ class PostJobProfile extends StatefulWidget {
   final String company;
   final String jobTitle;
   final String subtitle;
-  final String location;
+  // final String location;
   final String salary;
   final String qualification;
   final String language;
@@ -24,14 +24,14 @@ class PostJobProfile extends StatefulWidget {
   final String jobInfo;
   final String experience;
   final String jobTime;
-  final String interviewTime;
-  final String address;
+  // final String interviewTime;
+  // final String address;
   PostJobProfile(
       {super.key,
       required this.company,
       required this.jobTitle,
       required this.subtitle,
-      required this.location,
+      // required this.location,
       required this.salary,
       required this.qualification,
       required this.language,
@@ -39,8 +39,9 @@ class PostJobProfile extends StatefulWidget {
       required this.jobInfo,
       required this.experience,
       required this.jobTime,
-      required this.interviewTime,
-      required this.address});
+      // required this.interviewTime,
+      // required this.address
+      });
 
   @override
   _PostJobProfileState createState() => _PostJobProfileState();
@@ -101,17 +102,17 @@ class _PostJobProfileState extends State<PostJobProfile> {
                               color: greylight))
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(Assets.location),
-                      Text(widget.location,
-                          style: GoogleFonts.kadwa(
-                              fontSize: F16(),
-                              fontWeight: FontWeight.w400,
-                              color: greylight))
-                    ],
-                  )
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     SvgPicture.asset(Assets.location),
+                  //     Text(widget.location,
+                  //         style: GoogleFonts.kadwa(
+                  //             fontSize: F16(),
+                  //             fontWeight: FontWeight.w400,
+                  //             color: greylight))
+                  //   ],
+                  // )
                 ],
               ),
               Container(
@@ -158,8 +159,8 @@ class _PostJobProfileState extends State<PostJobProfile> {
                     child: Column(
                       children: [
                         CustomRow(context, "Job Timing", widget.jobTime),
-                        CustomRow(
-                            context, "Interview Timing", widget.interviewTime),
+                        // CustomRow(
+                        //     context, "Interview Timing", widget.interviewTime),
                       ],
                     ),
                   ),
@@ -168,28 +169,28 @@ class _PostJobProfileState extends State<PostJobProfile> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
-              Text(
-                'Company Address',
-                style: GoogleFonts.kadwa(
-                    fontWeight: FontWeight.w700, color: black, fontSize: F18()),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ),
-              Container(
-                  child: Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Padding(
-                        padding: EdgeInsets.all(12.sp),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CustomRow(context, "Address", widget.location)
-                          ],
-                        ),
-                      ))),
+              // Text(
+              //   'Company Address',
+              //   style: GoogleFonts.kadwa(
+              //       fontWeight: FontWeight.w700, color: black, fontSize: F18()),
+              // ),
+              // SizedBox(
+              //   height: MediaQuery.of(context).size.height * 0.01,
+              // ),
+              // Container(
+              //     child: Card(
+              //         elevation: 2,
+              //         shape: RoundedRectangleBorder(
+              //             borderRadius: BorderRadius.circular(5)),
+              //         child: Padding(
+              //           padding: EdgeInsets.all(12.sp),
+              //           child: Row(
+              //             mainAxisAlignment: MainAxisAlignment.start,
+              //             children: [
+              //               CustomRow(context, "Address", widget.location)
+              //             ],
+              //           ),
+              //         ))),
               Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: DynamicButton("Post Job", true, () {

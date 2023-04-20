@@ -53,7 +53,7 @@ class _formFillViewState extends State<formFillView> {
   List<String> experience = ["Fresher", "1-5 Years", "5-10 Years"];
   List<String> qualification = ["10th Pass", "12th Pass", "Graduated"];
   Future showDataAlertExp(BuildContext context, String title, String subTitle,
-      List<String> list, String hint, controller) async {
+      List<String> list, String hint, TextEditingController controller) async {
     return await showDialog(
         context: context,
         barrierDismissible: false,
@@ -153,7 +153,7 @@ class _formFillViewState extends State<formFillView> {
                         }
                       },
                       onChanged: (value) {
-                        controller.value = value as String;
+                        controller.text = value as String;
                       },
                     ),
                   ),
@@ -284,7 +284,7 @@ class _formFillViewState extends State<formFillView> {
                 () {
                   setState(() {
                     expDone = true;
-                    expData = controller.experience;
+                    // expData = controller.experience;
                   });
                   showDataAlertExp(
                       context,
@@ -300,7 +300,7 @@ class _formFillViewState extends State<formFillView> {
                 setState(() {
                   skillsDone = true;
                 });
-                Get.to(AddSkillView());
+                Get.to(AddSkillView(addSkillController:controller.skills));
               }),
               ClickAdd(
                   context,

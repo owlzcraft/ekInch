@@ -18,6 +18,7 @@ import '../models/profile_model.dart';
 import '../models/profile_pic.dart';
 import '../models/recentlAdded.dart';
 import '../models/reel_model.dart';
+import '../models/update_getJob.dart';
 import '../utils/localStorage.dart';
 import 'api_result.dart';
 import 'dio_client.dart';
@@ -324,9 +325,44 @@ class APIRepository {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
-  //Get job form fill
 
-  Future<ApiResult<GetJobFormModel>> GetJobForm(
+   //Post Job
+
+  Future<ApiResult<FeedbackModel>> PostJob(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.POSTJOB, data: data);
+      final FeedbackModel model = FeedbackModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+  //Get job form fill Update
+
+  Future<ApiResult<UpdateGetJobFormModel>> GetJobForm(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.GETJOBFORM, data: data);
+      final UpdateGetJobFormModel model = UpdateGetJobFormModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+   //Get job form fill -Get details
+
+  Future<ApiResult<GetJobFormModel>> FetchGetJobForm(
       Map<String, dynamic> data) async {
     try {
       final response =

@@ -14,8 +14,9 @@ class ServiceConstants {
   static const String COMPANYPROFILE = 'profile/company/';
   static const String COMPANYPROFILESTATUS = 'profile/is_comp_upt/';
   static const String RECENTLYADDED = 'profile/rec_users/';
-
   static const String JOBLIST = 'v2/jobs/get_all_jobs';
+
+  static const String POSTJOB = 'v2/jobs/create_job';
   static const String LANGUAGESELECTION = 'profile/frontend_vars/';
   static const String GETCATEGORIES = 'profile/view_categories/';
   static const String CATEGORIESVIDEO = 'get_video';

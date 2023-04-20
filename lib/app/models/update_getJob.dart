@@ -1,12 +1,12 @@
-class GetJobFormModel {
-  GetJobFormModel({
+class UpdateGetJobFormModel {
+  UpdateGetJobFormModel({
     this.data,
     this.ok,
   });
   DataG? data;
   bool? ok;
 
-  GetJobFormModel.fromJson(Map<String, dynamic> json) {
+  UpdateGetJobFormModel.fromJson(Map<String, dynamic> json) {
     data = DataG.fromJson(json['data']);
     ok = json['ok'];
   }
@@ -22,7 +22,7 @@ class GetJobFormModel {
 class DataG {
   DataG({
     this.id,
-    this.skillsLst,
+    this.skills,
     this.user,
     this.qualification,
     this.scMed,
@@ -38,6 +38,7 @@ class DataG {
   int? id;
   List<String>? skillsLst;
   int? user;
+  String? skills;
 
   String? qualification;
   String? scMed;
@@ -52,9 +53,9 @@ class DataG {
 
   DataG.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    skillsLst = List.castFrom<dynamic, String>(json['skills_lst']);
     user = json['user'];
     qualification = json['qualification'];
+    skills = json['skills'];
 
     scMed = json['sc_med'];
     engProfi = json['eng_profi'];
@@ -70,8 +71,8 @@ class DataG {
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['id'] = id;
-    _data['skills_lst'] = skillsLst;
     _data['user'] = user;
+    _data['skills'] = skills;
     _data['qualification'] = qualification;
     _data['sc_med'] = scMed;
     _data['eng_profi'] = engProfi;

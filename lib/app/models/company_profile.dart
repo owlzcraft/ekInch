@@ -35,7 +35,7 @@ class Data {
       this.email,
       this.contact,
       this.address,
-      this.photo,
+      this.img,
   });
     int? id;
     int? user;
@@ -43,7 +43,7 @@ class Data {
     String? email;
     String? contact;
     String? address;
-    String? photo;
+    String? img;
   
   Data.fromJson(Map<String, dynamic> json){
     id = json['id'];
@@ -52,7 +52,7 @@ class Data {
     email = json['email'];
     contact = json['contact'];
     address = json['address'];
-    photo = json['photo'];
+    img = json['img'];
   }
 
   Map<String, dynamic> toJson() {
@@ -63,7 +63,7 @@ class Data {
     _data['email'] = email;
     _data['contact'] = contact;
     _data['address'] = address;
-    _data['photo'] = photo;
+    _data['img'] = img;
     return _data;
   }
 }

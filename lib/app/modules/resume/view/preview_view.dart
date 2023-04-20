@@ -668,7 +668,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(AddSkillView());
+                                  Get.to(AddSkillView(addSkillController: controller.skills,));
                                 },
                                 child: Container(
                                   width: getHorizontalSize(90),

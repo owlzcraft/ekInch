@@ -1,4 +1,6 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
+import 'package:ekinch/app/modules/listpostjob/controller/post_job_controller.dart';
 import 'package:ekinch/app/modules/postjob/views/post_job_view/PostDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
@@ -24,25 +26,20 @@ class PostjobView extends StatefulWidget {
 
 class _PostjobViewState extends State<PostjobView> {
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  PostJobController postJobController=Get.put(PostJobController());
   PageController controller = PageController(initialPage: 0);
   final _stepsText = ["Job Details", "Job Descriptions"];
-
   final _stepCircleRadius = 8.0;
-
   final _stepProgressViewHeight = 110.0;
-
   final Color _activeColor = yellow;
-
   final Color _inactiveColor = whitedark;
-
-  final TextStyle _headerStyle =
-      GoogleFonts.kadwa(fontSize: F12(), fontWeight: FontWeight.bold, color: whitedark);
-
+  final TextStyle _headerStyle = GoogleFonts.kadwa(
+      fontSize: F12(), fontWeight: FontWeight.bold, color: whitedark);
   final TextStyle _stepStyle = GoogleFonts.kadwa(
-      fontSize: F14(),
-      fontWeight: FontWeight.w500,
-      color: Colors.white,
-      );
+    fontSize: F14(),
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
 
   late Size _safeAreaSize;
 
@@ -72,6 +69,7 @@ class _PostjobViewState extends State<PostjobView> {
     var mediaQD = MediaQuery.of(context);
     _safeAreaSize = mediaQD.size;
     return Scaffold(
+        bottomNavigationBar: BottomTabView(2),
         key: scaffoldKey,
         drawer: const SettingsView(),
         appBar: AppBar(
@@ -87,11 +85,10 @@ class _PostjobViewState extends State<PostjobView> {
               }
             },
           ),
-         
           title: Text(
             'Post Job',
-            style: GoogleFonts.kadwa(
-                fontSize: F20(), fontWeight: FontWeight.w700),
+            style:
+                GoogleFonts.kadwa(fontSize: F20(), fontWeight: FontWeight.w700),
           ),
         ),
         body: Column(
@@ -114,14 +111,15 @@ class _PostjobViewState extends State<PostjobView> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal:16.0,vertical: 8.0),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 8.0),
                           child: Text(
                             'Company Only',
                             style: GoogleFonts.kadwa(
-                                fontSize: F24(),
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                ),
+                              fontSize: F24(),
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         Expanded(child: PostDetails()),
@@ -139,13 +137,12 @@ class _PostjobViewState extends State<PostjobView> {
                           child: Text(
                             'Company Only',
                             style: GoogleFonts.kadwa(
-                                fontSize: F20(),
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                ),
+                              fontSize: F20(),
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                        
                         const Expanded(child: JobDescriptions())
                       ],
                     ),
@@ -184,7 +181,21 @@ class _PostjobViewState extends State<PostjobView> {
                         minWidth: MediaQuery.of(context).size.width,
                         onPressed: () {
                           if (_curPage == 2) {
-                            Get.to(PostJobProfile(company: "Post Job", jobTitle: "abc", subtitle: "subtitle", location: "location", salary: "salary", qualification: "qualification", language: "language", require: "require", jobInfo: "jobInfo", experience: "experience", jobTime: "jobTime", interviewTime: "interviewTime", address: "address"));
+                            Get.to(PostJobProfile(
+                                company: "Post Job",
+                                jobTitle:postJobController.profession.text.toString() ,
+                                subtitle: " ",
+                                // location: " ",
+                                salary: "${postJobController.salaryStr.text}-${postJobController.salaryEnd.text}",
+                                qualification: postJobController.quali.text.toString(),
+                                language: postJobController.language.text.toString(),
+                                require: "Plumbing, Painting",
+                                jobInfo: postJobController.description.text.toString(),
+                                experience: postJobController.exp.text.toString(),
+                                jobTime: postJobController.jobTmg.text.toString(),
+                                // interviewTime: "",
+                                // address: ""
+                                ));
                           } else {
                             print(_curPage);
                             controller.animateToPage(

@@ -19,7 +19,6 @@ class JobDescriptions extends StatefulWidget {
 }
 
 class _JobDescriptionsState extends State<JobDescriptions> {
-  TextEditingController _descriptioncontroller = TextEditingController();
   PostjobController controller = Get.put(PostjobController());
   @override
   Widget build(BuildContext context) {
@@ -90,7 +89,7 @@ class _JobDescriptionsState extends State<JobDescriptions> {
             SizedBox(
               height: 80,
               child: Description(
-                controller: _descriptioncontroller,
+                controller: controller.describe,
                 hintText: 'Please Describe here',
               ),
             ),

@@ -41,6 +41,10 @@ class _SettingsViewState extends State<SettingsView> {
         "title": "My Jobs Application",
         "img": "assets/images/bell.png",
       },
+      {
+        "title": "My Jobs ",
+        "img": "assets/images/message.png",
+      },
        {
         "title": "My Resume",
         "img": "assets/images/person.png",

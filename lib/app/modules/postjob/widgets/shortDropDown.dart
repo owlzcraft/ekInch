@@ -7,21 +7,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DropdownFieldFull extends StatelessWidget {
-  final String? hintText;
-  late TextEditingController controller;
-  final String? initialValue;
-  late final String? dropdownvalue;
+  String? hintText;
+  final TextEditingController controller;
+  String? initialValue;
+  String? dropdownvalue;
   final List<String>? items;
   final EdgeInsetsGeometry? margin;
   DropdownFieldFull(
-      {Key? key,
+      {super.key,
       this.hintText,
-      required TextEditingController controller,
       this.margin,
       this.initialValue,
       this.items,
-      this.dropdownvalue})
-      : super(key: key);
+      this.dropdownvalue, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +59,8 @@ class DropdownFieldFull extends StatelessWidget {
           );
         }).toList(),
         onChanged: (String? value) {
-          dropdownvalue = value!;
-          controller.text = value;
+          // dropdownvalue = value!;
+          controller.text = value!;
           for (int i = 0; i < items!.length; i++) {
             if (value == items![i]) {
               index = indexvalue[i];
@@ -106,7 +104,10 @@ class Dropdownprefix extends StatelessWidget {
         value: dropdownvalue,
         //iconSize: 0.0,
         icon: const Icon(Icons.keyboard_arrow_down, color: Colors.grey),
-hint: Text(hintText as String,style: GoogleFonts.kadwa(color: grey,fontSize: F16()),),
+        hint: Text(
+          hintText as String,
+          style: GoogleFonts.kadwa(color: grey, fontSize: F16()),
+        ),
         style: GoogleFonts.kadwa(color: black, fontSize: F16()),
         decoration: const InputDecoration(
             contentPadding: EdgeInsets.all(10),
@@ -126,7 +127,7 @@ hint: Text(hintText as String,style: GoogleFonts.kadwa(color: grey,fontSize: F16
             ),
           );
         }).toList(),
-        onChanged: ( value) {
+        onChanged: (value) {
           controller.text = value as String;
         },
       ),
@@ -199,7 +200,7 @@ class Description extends StatelessWidget {
             borderRadius: BorderRadius.circular(6),
             border: Border.all(color: Boxborder, width: 1)),
         child: TextFormField(
-          scrollPadding: EdgeInsets.only(bottom:40),
+          scrollPadding: EdgeInsets.only(bottom: 40),
           controller: controller,
           textInputAction: TextInputAction.newline,
           keyboardType: TextInputType.multiline,
@@ -306,6 +307,7 @@ class TextFeildWhiteBorder extends StatelessWidget {
         ));
   }
 }
+
 class TextFeildGreyBorder extends StatelessWidget {
   final String? hintText;
   final TextInputType? keyboardtype;
@@ -400,7 +402,6 @@ class TextFeildWhite extends StatelessWidget {
         ));
   }
 }
-
 
 class TextFeildNumber extends StatelessWidget {
   final String? hintText;

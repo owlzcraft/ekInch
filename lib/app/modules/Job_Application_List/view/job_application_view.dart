@@ -14,6 +14,7 @@ import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
 import '../../notication/view/notification_view.dart';
 import '../../settings/views/settings_view.dart';
+import '../controller/jobApplicationController.dart';
 
 class JobApplicationListView extends StatefulWidget {
   JobApplicationListView({
@@ -34,6 +35,7 @@ class JobApplicationListViewState extends State<JobApplicationListView>
     super.initState();
   }
 
+  JobApplicationController controller = Get.put(JobApplicationController());
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

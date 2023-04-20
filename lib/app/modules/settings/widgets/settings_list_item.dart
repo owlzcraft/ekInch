@@ -1,5 +1,7 @@
 import 'dart:ffi';
 
+import 'package:ekinch/app/modules/Job_Application_List/controller/jobApplicationController.dart';
+import 'package:ekinch/app/modules/Job_Application_List/view/job_application_view.dart';
 import 'package:ekinch/app/modules/company/contoller/company_controller.dart';
 import 'package:ekinch/app/modules/company/view/company_view.dart';
 import 'package:ekinch/app/modules/myJobs/view/job_applied.dart';
@@ -23,7 +25,8 @@ import '../../resume/view/preview_view.dart';
 
 Widget SettingListItem(String image, String title) {
   var companyController = Get.put(CompanyController());
-    var resumeController = Get.put(ResumeController());
+  var resumeController = Get.put(ResumeController());
+  var jobApplicationController = Get.put(JobApplicationController);
 
   return GestureDetector(
     onTap: () {
@@ -38,11 +41,12 @@ Widget SettingListItem(String image, String title) {
           companyController.CompanyDataStatus();
           break;
         case "My Resume":
-                          resumeController.CheckResumeStatusValue();
-
-       
+          resumeController.CheckResumeStatusValue();
           break;
-        case "Jobs":
+        case "My Jobs Application":
+          Get.to(JobApplicationListView());
+          break;
+        case "My Jobs":
           Get.to(MyJobsView());
           break;
         case "My Videos (Reels)":

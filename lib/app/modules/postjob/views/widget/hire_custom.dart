@@ -11,8 +11,7 @@ HireColumn(
   TextEditingController professionController,
   TextEditingController numberController,
   TextEditingController salaryStController,
-    TextEditingController salaryEndController,
-
+  TextEditingController salaryEndController,
   TextEditingController expController,
   TextEditingController locController,
   TextEditingController langController,
@@ -44,12 +43,24 @@ HireColumn(
                 flex: 2,
                 child: DropdownFieldFull(
                   controller: professionController,
-                  hintText: "Select Profession",
-                  // dropdownvalue: 'Electrician',
-                  items: [
-                    'Electrician',
-                    'Engineer',
-                    'Builder',
+                  hintText: "${professionController.text}",
+                  // dropdownvalue: "${professionController.text}",
+                  items: const [
+                    "Labour",
+                    "Plaster Mistri",
+                    "Tiles Mistri",
+                    "Plumber",
+                    "Electrician",
+                    "Painter",
+                    "Carpenter",
+                    "Welder",
+                    "Bar bender",
+                    "Contractor",
+                    "Dukandar",
+                    "Customer",
+                    "Engineer",
+                    "Architect",
+                    "other"
                   ],
                 ),
               ),
@@ -60,10 +71,17 @@ HireColumn(
                     controller: numberController,
                     hintText: "1",
                     // dropdownvalue: '1',
-                    items: [
+                    items: const [
                       '1',
                       '2',
                       '3',
+                      "4",
+                      "5",
+                      "6",
+                      "7",
+                      "8",
+                      "9",
+                      "10"
                     ],
                   ),
                 ),
@@ -80,7 +98,7 @@ HireColumn(
                 child: DropdownFieldFull(
                   controller: salaryStController,
                   hintText: "Salary",
-                  items: [
+                  items: const [
                     '10000',
                     '12000',
                     '14000',
@@ -89,20 +107,21 @@ HireColumn(
               ),
               Expanded(
                   child: Center(
-                    child: Text(
-                                  "To",
-                                  style: GoogleFonts.kadwa(fontSize: F16(),fontWeight: FontWeight.w600),
-                                ),
-                  )),
+                child: Text(
+                  "To",
+                  style: GoogleFonts.kadwa(
+                      fontSize: F16(), fontWeight: FontWeight.w600),
+                ),
+              )),
               Expanded(
                 flex: 2,
                 child: DropdownFieldFull(
                   controller: salaryEndController,
                   hintText: "Salary",
-                  items: [
-                    '10000',
+                  items: const [
                     '12000',
                     '14000',
+                    '16000',
                   ],
                 ),
               ),
@@ -114,7 +133,7 @@ HireColumn(
           DropdownFieldFull(
             controller: expController,
             hintText: "Enter Experience",
-            items: [
+            items: const [
               '1 Year',
               '2 Year',
               '3 Year',
@@ -126,7 +145,7 @@ HireColumn(
           DropdownFieldFull(
             controller: locController,
             hintText: "Select Location",
-            items: [
+            items: const [
               'Roorkee',
               'Talhedi',
               'Laksar',
@@ -137,12 +156,8 @@ HireColumn(
           ),
           DropdownFieldFull(
             controller: locController,
-            hintText: "Select Location",
-            items: [
-              'Hindi',
-              'English',
-              'Gujrati',
-            ],
+            hintText: "Select Language",
+            items: const ['Hindi', 'English', 'Gujrati', "Punjabi", "Tamil"],
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
@@ -162,10 +177,11 @@ HireColumn(
             controller: qualification,
             hintText: "Enter Graduation",
             // dropdownvalue: '10th',
-            items: [
-              '10th',
-              '11th',
-              '12th',
+            items: const [
+              '10th Pass',
+              '12th Pass',
+              'Graduated',
+              "Other"
             ],
           ),
           SizedBox(
@@ -185,9 +201,10 @@ HireColumn(
           DropdownFieldFull(
             controller: gender,
             hintText: "Select Gender",
-            items: [
+            items: const [
               'Male',
               'Female',
+              "Other"
             ],
           ),
         ],

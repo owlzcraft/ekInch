@@ -89,14 +89,14 @@ class CompanyController extends GetxController {
                   if (value!.ok == true) {
                     successSnackBar("Profile Pic Uploaded");
                     LocalStorage.shared
-                        .saveCompanyLogo(value.data?.photo as String);
+                        .saveCompanyLogo(value.data?.img as String);
                     print("Api not working");
                     Get.offAll(CompanyView(
                       companyName: value.data!.name.toString(),
                       address: value.data!.address.toString(),
                       contact: value.data!.contact.toString(),
                       email: value.data!.email.toString(),
-                      photo: value.data!.photo.toString(),
+                      photo: value.data!.img.toString(),
                       oldUser: true,
                     ));
                   } else {
@@ -173,7 +173,7 @@ class CompanyController extends GetxController {
                       address: value.data!.address.toString(),
                       email: value.data!.email.toString(),
                       contact: value.data!.contact.toString(),
-                      photo: value.data!.photo.toString(),
+                      photo: value.data!.img.toString(),
                       oldUser: true,
                     ));
                   } else if (value?.ok == false) {

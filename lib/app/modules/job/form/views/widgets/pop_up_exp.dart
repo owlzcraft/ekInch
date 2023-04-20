@@ -9,7 +9,7 @@ import '../../../../../custom_widget/font_size.dart';
 import '../../../../../utils/math_utils.dart';
 
 Future showDataAlert(BuildContext context, String title, String subTitle,
-    List<String> list, String hint, controller) async {
+    List<String> list, String hint,TextEditingController controller) async {
   return await showDialog(
       context: context,
       barrierDismissible: false,
@@ -100,10 +100,10 @@ Future showDataAlert(BuildContext context, String title, String subTitle,
                             }
                           },
                           onSaved:(value) {
-                            controller = value as String;
+                            controller.text = value as String;
                           } ,
                           onChanged: (value) {
-                            controller = value as String;
+                            controller.text = value as String;
                           },
                         ),
                 ),

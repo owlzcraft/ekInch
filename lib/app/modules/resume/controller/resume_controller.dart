@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../../../../widgets/loader.dart';
 import '../../../../../widgets/snack_bar.dart';
+import '../../../models/update_getJob.dart';
 import '../../../networking/api_result.dart';
 import '../../../networking/app_repo.dart';
 import '../../../utils/localStorage.dart';
@@ -120,7 +121,7 @@ class ResumeController extends GetxController {
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
           data["qualification"] = qualification.text;
-          data["uid"] = LocalStorage.shared.getUID();
+          data["user"] = LocalStorage.shared.getUID();
           data["gender"] = gender.text;
           data["sc_med"] = schoolBoard.text;
           data["eng_profi"] = englishLevel.text;
@@ -131,10 +132,10 @@ class ResumeController extends GetxController {
           data["age_dt"] = date.text;
           data["flag"] = 0;
           data["interest"] = jobCategory.text;
-          data["skills"] = "Electrician";
+          // data["skills"] = skills.text;
 
           await apiRepository.GetJobForm(data)
-              .then((ApiResult<GetJobFormModel> value) {
+              .then((ApiResult<UpdateGetJobFormModel> value) {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
@@ -167,7 +168,7 @@ class ResumeController extends GetxController {
           data["uid"] = LocalStorage.shared.getUID();
           data["flag"] = 1;
 
-          await apiRepository.GetJobForm(data)
+          await apiRepository.FetchGetJobForm(data)
               .then((ApiResult<GetJobFormModel> value) {
             value.when(
                 success: (value) {
