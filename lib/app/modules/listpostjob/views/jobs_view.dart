@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
+import 'package:ekinch/app/modules/listpostjob/controller/post_job_controller.dart';
 import 'package:ekinch/app/modules/listpostjob/views/widget/job_application_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';

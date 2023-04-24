@@ -13,7 +13,7 @@ import '../../../../utils/localStorage.dart';
 import '../../../listpostjob/views/jobs_view.dart';
 import '../views/details_form.dart';
 
-class JobController extends GetxController {
+class GetJobController extends GetxController {
   var activeQualification = 0.obs;
   var qualificationData = [
     {"text1": "Below 10th", "text2": "Pass"},
@@ -38,7 +38,7 @@ class JobController extends GetxController {
   // ignore: non_constant_identifier_names
   late List<Data> ApplyJobList;
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
-
+  List selectedSKills=[];
   String gender = "";
   // String qualification = "";
   // String experience = "";
@@ -56,7 +56,7 @@ class JobController extends GetxController {
   TextEditingController jobTitle = TextEditingController();
   TextEditingController jobCategory = TextEditingController();
   // TextEditingController experience = TextEditingController();
-  TextEditingController skills = TextEditingController();
+  // TextEditingController skills = TextEditingController();
   // TextEditingController qualification = TextEditingController();
 
 //Get Job Form
@@ -84,7 +84,7 @@ class JobController extends GetxController {
           data["age_dt"] = date.text;
           data["flag"] = 0;
           data["interest"] = jobCategory.text;
-          data["skills"] = skills.text;
+          data["skills"] = selectedSKills;
 
           await apiRepository.GetJobForm(data)
               .then((ApiResult<UpdateGetJobFormModel> value) {

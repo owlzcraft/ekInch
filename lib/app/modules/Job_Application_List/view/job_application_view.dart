@@ -12,14 +12,22 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
+import '../../../models/job_application.dart';
 import '../../notication/view/notification_view.dart';
 import '../../settings/views/settings_view.dart';
 import '../controller/jobApplicationController.dart';
 
 class JobApplicationListView extends StatefulWidget {
-  JobApplicationListView({
-    super.key,
-  });
+  String companyName;
+  String companyPhoto;
+  String companyAddress;
+  List<Data> jobPostList;
+  JobApplicationListView(
+      {super.key,
+      required this.companyAddress,
+      required this.companyName,
+      required this.jobPostList,
+      required this.companyPhoto});
 
   @override
   JobApplicationListViewState createState() => JobApplicationListViewState();
@@ -29,13 +37,22 @@ class JobApplicationListViewState extends State<JobApplicationListView>
     with TickerProviderStateMixin {
   TabController? _tabController;
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-
+  bool noData = false;
   void initState() {
     _tabController = new TabController(length: 2, vsync: this);
     super.initState();
+    if (widget.jobPostList == []) {
+      setState(() {
+        noData = true;
+      });
+    } else {
+      setState(() {
+        noData = false;
+      });
+    }
   }
 
-  JobApplicationController controller = Get.put(JobApplicationController());
+  JobPostListController controller = Get.put(JobPostListController());
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -76,11 +93,11 @@ class JobApplicationListViewState extends State<JobApplicationListView>
                       Container(
                         width: getHorizontalSize(85),
                         height: getVerticalSize(40),
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             color: Colors.black,
                             image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: AssetImage("assets/images/ultra1.png"))),
+                                image: NetworkImage("${widget.companyPhoto}"))),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -88,7 +105,7 @@ class JobApplicationListViewState extends State<JobApplicationListView>
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("UltraTech Cement",
+                            Text("${widget.companyName}",
                                 style: GoogleFonts.kadwa(
                                     fontSize: F24(),
                                     color: Colors.white,
@@ -105,7 +122,7 @@ class JobApplicationListViewState extends State<JobApplicationListView>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 3.0),
                                   child: Text(
-                                    "Roorkee Uttarakhand",
+                                    "${widget.companyAddress}",
                                     style: GoogleFonts.kadwa(
                                         height: 1.2,
                                         fontSize: F14(),
@@ -128,7 +145,7 @@ class JobApplicationListViewState extends State<JobApplicationListView>
                     indicatorWeight: 3,
                     unselectedLabelStyle: GoogleFonts.kadwa(fontSize: F18()),
                     labelStyle: GoogleFonts.kadwa(fontSize: F18()),
-                    tabs: [Tab(text: "Job Application"), Tab(text: "Request")],
+                    tabs: [Tab(text: "My Jobs "), Tab(text: "Request")],
                   ),
                 ),
               ],
@@ -149,8 +166,12 @@ class JobApplicationListViewState extends State<JobApplicationListView>
         body: TabBarView(
           controller: _tabController,
           children: [
-            JobsApplicationList(noData: false),
-            RequestList(noData: false),
+            JobsApplicationList(
+              noData: noData,
+              jobPostList: widget.jobPostList,
+              companyPhoto: widget.companyPhoto,
+            ),
+            RequestList(noData: noData),
           ],
         ),
       ),

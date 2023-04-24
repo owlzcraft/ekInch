@@ -19,7 +19,7 @@ import '../../../../notication/view/notification_view.dart';
 import '../../../../settings/views/settings_view.dart';
 
 class AddSkillView extends StatefulWidget {
-  TextEditingController addSkillController;
+  List addSkillController;
   AddSkillView({super.key, required this.addSkillController});
 
   @override
@@ -34,7 +34,6 @@ class ListItem<T> {
 
 class _AddSkillViewState extends State<AddSkillView> {
   GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
-  List selectedSkills = [];
   List skillList = [
     {"title": "Light Fitting"},
     {"title": "Wire Fitting"},
@@ -159,10 +158,7 @@ class _AddSkillViewState extends State<AddSkillView> {
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 16, right: 16.0),
             child: DynamicButton("Save & Next", true, () {
-              for (int i = 0; i < selectedSkills.length; i++) {
-                var data = selectedSkills[i] + ",";
-                widget.addSkillController.text=data;
-              }
+             
               Get.back();
             }),
           )
@@ -175,19 +171,17 @@ class _AddSkillViewState extends State<AddSkillView> {
     return GestureDetector(
         onTap: () {
           if (list.any((item) => item.isSelected)) {
-            print("111111111111111111111111111111111111111111111111");
             print(list[index].data);
-            selectedSkills.remove(list[index].data);
-            print(selectedSkills);
+            widget.addSkillController.remove(list[index].data);
+            print( widget.addSkillController);
             setState(() {
               list[index].isSelected = !list[index].isSelected;
             });
           } else {
-            print("999999999999999999999999999");
             print(list[index].data);
 
-            selectedSkills.add(list[index].data);
-            print(selectedSkills);
+             widget.addSkillController.add(list[index].data);
+            print( widget.addSkillController);
             setState(() {
               list[index].isSelected = true;
             });

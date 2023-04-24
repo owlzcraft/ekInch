@@ -1,6 +1,7 @@
 import 'package:ekinch/app/models/GetJobForm.dart';
-import 'package:ekinch/app/models/available_job_list.dart';
 import 'package:ekinch/app/models/data_model.dart';
+import 'package:ekinch/app/models/job_application.dart';
+import 'package:ekinch/app/models/job_application.dart';
 import 'package:ekinch/app/networking/api_result.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,48 +10,79 @@ import '../../../../../widgets/loader.dart';
 import '../../../../../widgets/snack_bar.dart';
 import '../../../networking/app_repo.dart';
 import '../../../utils/localStorage.dart';
+import '../view/job_application_view.dart';
 
-
-class JobApplicationController extends GetxController {
-  
+class JobPostListController extends GetxController {
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
-
- 
+  late List<Data> jobList;
   // TextEditingController jobCategory = TextEditingController();
-  
 
-//Get Job Form
-  // Future<void> GetJobForm() async {
-  //   print("**************************");
+//Job Post List
+  Future<void> jobPostList() async {
+    print("**************************");
 
-  //   final fcmToken = LocalStorage.shared.getFCMToken();
-  //   Get.showOverlay(
-  //       asyncFunction: () async {
-  //         print(fcmToken);
-  //         final Map<String, dynamic> data = <String, dynamic>{};
-  //         data["token"] = fcmToken;
-  //         data["userId"] = LocalStorage.shared.getnumber();
-         
+    final fcmToken = LocalStorage.shared.getFCMToken();
+    Get.showOverlay(
+        asyncFunction: () async {
+          print(fcmToken);
+          final Map<String, dynamic> data = <String, dynamic>{};
+          data["token"] = fcmToken;
+          data["userId"] = LocalStorage.shared.getnumber();
+          data["uid"] = LocalStorage.shared.getUID();
+          await apiRepository.PostJobList(data)
+              .then((ApiResult<JobPostModel> value) {
+            value.when(
+                success: (value) {
+                  if (value!.ok == true) {
+                    print("done");
+                    jobList = value.data!;
+                    Get.to(JobApplicationListView(
+                      companyAddress: value.company!.address.toString(),
+                      companyName: value.company!.name.toString(),
+                      companyPhoto: value.company!.photo.toString(),
+                      jobPostList: jobList,
+                    ));
+                  } else if (value.ok == false) {
+                    Get.back();
+                    errorSnackbar("Please Refresh");
+                  } else {
+                    errorSnackbar("Check Internet Connection");
+                  }
+                },
+                failure: (networkExceptions) {});
+          });
+        },
+        loadingWidget: const LoadingIndicator());
+  }
 
-  //         await apiRepository.GetJobForm(data)
-  //             .then((ApiResult<GetJobFormModel> value) {
-  //           value.when(
-  //               success: (value) {
-  //                 if (value!.ok == true) {
-  //                   print("done");
-  //                 } else if (value.ok == false) {
-  //                   Get.back();
-  //                   errorSnackbar("Please Refresh");
-  //                 } else {
-  //                   errorSnackbar("Check Internet Connection");
-  //                 }
-  //               },
-  //               failure: (networkExceptions) {});
-  //         });
-  //       },
-  //       loadingWidget: const LoadingIndicator());
-  // }
+  Future<void> CompanyDataStatus() async {
+    print("**************************");
+    final fcmToken = LocalStorage.shared.getFCMToken();
+    Get.showOverlay(
+        asyncFunction: () async {
+          print(fcmToken);
+          final Map<String, dynamic> data = <String, dynamic>{};
+          data["userId"] = LocalStorage.shared.getnumber();
+          data["token"] = fcmToken;
+          data["uid"] = LocalStorage.shared.getUID();
 
+          await apiRepository.CompanyStatus(data)
+              .then((ApiResult<CheckStatusModel> value) {
+            value.when(
+                success: (value) {
+                  if (value?.data == true) {
+                    jobPostList();
+                  } else if (value?.data == false) {
+                    errorSnackbar("No Company");
+                  } else {
+                    errorSnackbar("Please Try After Sometime");
+                  }
+                },
+                failure: (networkExceptions) {});
+          });
+        },
+        loadingWidget: const LoadingIndicator());
+  }
 
   void onInit() {
     super.onInit();

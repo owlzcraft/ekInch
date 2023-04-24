@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ekinch/app/models/data_model.dart';
+import 'package:ekinch/app/models/job_application.dart';
 import 'package:ekinch/app/models/msg_ok.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ekinch/app/models/sign_in.dart';
@@ -11,6 +12,7 @@ import '../models/available_job_list.dart';
 import '../models/categories_video.dart';
 import '../models/company_profile.dart';
 import '../models/getCategories.dart';
+import '../models/get_feedback.dart';
 import '../models/language_model.dart';
 import '../models/login_model.dart';
 import '../models/otp_model.dart';
@@ -325,6 +327,23 @@ class APIRepository {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
+  //Get Feedback
+
+  Future<ApiResult<GetFeedbackModel>> GetFeedback(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.FEEDBACK, data: data);
+      final GetFeedbackModel model = GetFeedbackModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
 
    //Post Job
 
@@ -334,6 +353,24 @@ class APIRepository {
       final response =
           await dioClient!.post(ServiceConstants.POSTJOB, data: data);
       final FeedbackModel model = FeedbackModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+   //Post Job list 
+
+  Future<ApiResult<JobPostModel>> PostJobList(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.MyJobs, data: data);
+      final JobPostModel model = JobPostModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -379,12 +416,12 @@ class APIRepository {
   }
    //Apply for Job
 
-  Future<ApiResult<GetJobFormModel>> ApplyJob(
+  Future<ApiResult<FeedbackModel>> ApplyJob(
       Map<String, dynamic> data) async {
     try {
       final response =
           await dioClient!.post(ServiceConstants.APPLYJOB, data: data);
-      final GetJobFormModel model = GetJobFormModel.fromJson(response.data);
+      final FeedbackModel model = FeedbackModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {

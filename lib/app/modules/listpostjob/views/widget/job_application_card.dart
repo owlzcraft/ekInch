@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../custom_widget/color.dart';
 import '../../../../custom_widget/font_size.dart';
 import '../../../../utils/localStorage.dart';
+import '../../controller/post_job_controller.dart';
 import '../jobDescription.dart';
 
 class JobApplicationCard extends StatelessWidget {
@@ -19,7 +20,6 @@ class JobApplicationCard extends StatelessWidget {
   String subtitle;
   String time;
   String jobId;
-
   String location;
   String salary;
   String qualification;
@@ -51,6 +51,7 @@ class JobApplicationCard extends StatelessWidget {
     required this.address,
     required this.views,
   });
+  ApplyJobController controller = Get.put(ApplyJobController());
 
   @override
   Widget build(BuildContext context) {
@@ -268,7 +269,9 @@ class JobApplicationCard extends StatelessWidget {
                               fixedSize: Size(130, 0),
                               shape: StadiumBorder(),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              controller.ApplyJob(jobId);
+                            },
                             child: Text(
                               'Apply Now',
                               style: GoogleFonts.kadwa(

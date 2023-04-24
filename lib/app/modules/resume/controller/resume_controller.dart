@@ -104,9 +104,7 @@ class ResumeController extends GetxController {
   TextEditingController schoolBoard = TextEditingController();
   TextEditingController jobTitle = TextEditingController();
   TextEditingController jobCategory = TextEditingController();
-  // TextEditingController experience = TextEditingController();
-  TextEditingController skills = TextEditingController();
-  // TextEditingController qualification = TextEditingController();
+  List selectedSKills = [];
 
 //Get Job Form
   Future<void> UpdateGetForm() async {

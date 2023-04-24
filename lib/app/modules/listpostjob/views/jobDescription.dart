@@ -56,7 +56,7 @@ class JobDescription extends StatefulWidget {
 class JobDescriptionState extends State<JobDescription>
     with TickerProviderStateMixin {
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  PostJobController controller = Get.put(PostJobController());
+  ApplyJobController controller = Get.put(ApplyJobController());
   void initState() {
     super.initState();
   }

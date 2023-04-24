@@ -1,7 +1,6 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/postjob/controllers/postjob_controller.dart';
 import 'package:ekinch/app/modules/postjob/views/widget/hire_custom.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
 import 'package:ekinch/app/modules/listpostjob/views/jobDescription.dart';
@@ -26,18 +25,19 @@ class _PostDetailsState extends State<PostDetails> {
   List<Widget> _buildColumn() {
     List<Widget> addColumn = [];
     for (int i = 0; i < _count; i++) {
-      addColumn.add(HireColumn(
-          context,
-          // _formKey,
-          controller.profession,
-          controller.numberOfPerson,
-          controller.salarySt,
-          controller.salaryEnd,
-          controller.experience,
-          controller.location,
-          controller.language,
-          controller.qualification,
-          controller.gender));
+      addColumn.add(
+        HireColumn(
+          expController: controller.exp,
+          gender: controller.gender,
+          langController: controller.language,
+          locController: controller.address,
+          professionController: controller.profession,
+          numberController: controller.capacity,
+          qualification: controller.gender,
+          salaryEndController: controller.salaryEnd,
+          salaryStController: controller.salaryStr,
+        ),
+      );
     }
     return addColumn;
   }
@@ -48,23 +48,22 @@ class _PostDetailsState extends State<PostDetails> {
       backgroundColor: whitedark,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             //    mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               HireColumn(
-                  context,
-                  // _formKey,
-                  controller.profession,
-                  controller.numberOfPerson,
-                  controller.salarySt,
-                  controller.salaryEnd,
-                  controller.experience,
-                  controller.location,
-                  controller.language,
-                  controller.qualification,
-                  controller.gender),
+                expController: controller.exp,
+                gender: controller.gender,
+                langController: controller.language,
+                locController: controller.address,
+                professionController: controller.profession,
+                numberController: controller.capacity,
+                qualification: controller.gender,
+                salaryEndController: controller.salaryEnd,
+                salaryStController: controller.salaryStr,
+              ),
               ..._buildColumn(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),

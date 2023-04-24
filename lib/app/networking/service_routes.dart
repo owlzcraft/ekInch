@@ -24,4 +24,7 @@ class ServiceConstants {
   static const String GETJOBFORMSTATUS = 'profile/is_mtdata_upt/';
   static const String APPLYJOB = 'v2/jobs/apply_for_job';
   static const String FEEDBACK = 'profile/giveFeedback';
+  static const String GETFEEDBACK = 'profile/fetch_fdbk';
+    static const String MyJobs = 'v2/jobs/jobs_by_usr';
+
 }

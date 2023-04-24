@@ -4,6 +4,7 @@ import 'package:ekinch/app/modules/Job_Application_List/controller/jobApplicatio
 import 'package:ekinch/app/modules/Job_Application_List/view/job_application_view.dart';
 import 'package:ekinch/app/modules/company/contoller/company_controller.dart';
 import 'package:ekinch/app/modules/company/view/company_view.dart';
+import 'package:ekinch/app/modules/listpostjob/controller/post_job_controller.dart';
 import 'package:ekinch/app/modules/myJobs/view/job_applied.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/MyVideos/views/my_videos_view.dart';
@@ -19,6 +20,7 @@ import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../feedback/controller/feedback_controller.dart';
 import '../../mobile/views/mobile_view.dart';
 import '../../resume/controller/resume_controller.dart';
 import '../../resume/view/preview_view.dart';
@@ -26,7 +28,8 @@ import '../../resume/view/preview_view.dart';
 Widget SettingListItem(String image, String title) {
   var companyController = Get.put(CompanyController());
   var resumeController = Get.put(ResumeController());
-  var jobApplicationController = Get.put(JobApplicationController);
+  var feedbackController = Get.put(FeedbackController());
+  var jobpostListController = Get.put(JobPostListController());
 
   return GestureDetector(
     onTap: () {
@@ -35,7 +38,7 @@ Widget SettingListItem(String image, String title) {
           Get.to(ProfileView());
           break;
         case "Feedback":
-          Get.to(FeedbackView());
+          feedbackController.GetFeedback();
           break;
         case "My Company":
           companyController.CompanyDataStatus();
@@ -44,7 +47,9 @@ Widget SettingListItem(String image, String title) {
           resumeController.CheckResumeStatusValue();
           break;
         case "My Jobs Application":
-          Get.to(JobApplicationListView());
+          jobpostListController.CompanyDataStatus();
+
+          // Get.to(JobApplicationListView());
           break;
         case "My Jobs":
           Get.to(MyJobsView());

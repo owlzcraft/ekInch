@@ -37,7 +37,7 @@ class formFillView extends StatefulWidget {
 class _formFillViewState extends State<formFillView> {
   GlobalKey<ScaffoldState> notDrawerKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  JobController controller = Get.put(JobController());
+  GetJobController controller = Get.put(GetJobController());
   // List<int> experience = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   final List experienceList = [
     "0",
@@ -300,7 +300,7 @@ class _formFillViewState extends State<formFillView> {
                 setState(() {
                   skillsDone = true;
                 });
-                Get.to(AddSkillView(addSkillController:controller.skills));
+                Get.to(AddSkillView(addSkillController:controller.selectedSKills));
               }),
               ClickAdd(
                   context,

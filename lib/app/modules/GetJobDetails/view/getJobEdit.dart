@@ -41,7 +41,7 @@ class GetJobEditView extends StatefulWidget {
 class GetJobEditViewState extends State<GetJobEditView> {
   GlobalKey<ScaffoldState> notDrawerKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  JobController controller = Get.put(JobController());
+  GetJobController controller = Get.put(GetJobController());
 
   @override
   Widget build(BuildContext context) {

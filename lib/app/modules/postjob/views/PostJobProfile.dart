@@ -1,4 +1,5 @@
 import 'package:ekinch/app/generated/assets.dart';
+import 'package:ekinch/app/modules/postjob/controllers/postjob_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
@@ -26,28 +27,29 @@ class PostJobProfile extends StatefulWidget {
   final String jobTime;
   // final String interviewTime;
   // final String address;
-  PostJobProfile(
-      {super.key,
-      required this.company,
-      required this.jobTitle,
-      required this.subtitle,
-      // required this.location,
-      required this.salary,
-      required this.qualification,
-      required this.language,
-      required this.require,
-      required this.jobInfo,
-      required this.experience,
-      required this.jobTime,
-      // required this.interviewTime,
-      // required this.address
-      });
+  PostJobProfile({
+    super.key,
+    required this.company,
+    required this.jobTitle,
+    required this.subtitle,
+    // required this.location,
+    required this.salary,
+    required this.qualification,
+    required this.language,
+    required this.require,
+    required this.jobInfo,
+    required this.experience,
+    required this.jobTime,
+    // required this.interviewTime,
+    // required this.address
+  });
 
   @override
   _PostJobProfileState createState() => _PostJobProfileState();
 }
 
 class _PostJobProfileState extends State<PostJobProfile> {
+  PostjobController controller = Get.put(PostjobController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -194,7 +196,8 @@ class _PostJobProfileState extends State<PostJobProfile> {
               Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: DynamicButton("Post Job", true, () {
-                    Get.to(Confirmationjob(title:"Title of Job"));
+                    controller.PostJob();
+                    // Get.to(Confirmationjob(title:"Title of Job"));
                   })),
             ],
           ),

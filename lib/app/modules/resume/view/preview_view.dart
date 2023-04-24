@@ -7,6 +7,7 @@ import 'package:ekinch/app/modules/job/form/views/widgets/custom_job_form.dart';
 import 'package:ekinch/app/modules/job/form/views/widgets/pop_up_exp.dart';
 import 'package:ekinch/app/modules/job/form/views/widgets/skill_container.dart';
 import 'package:ekinch/app/modules/listpostjob/views/jobs_view.dart';
+import 'package:ekinch/app/modules/resume/controller/resume_controller.dart';
 import 'package:ekinch/app/modules/resume/view/editResume.dart';
 import 'package:ekinch/app/modules/resume/view/widget/skillCard.dart';
 import 'package:ekinch/app/utils/localStorage.dart';
@@ -66,7 +67,7 @@ class GetJobPreviewView extends StatefulWidget {
 class GetJobPreviewViewState extends State<GetJobPreviewView> {
   GlobalKey<ScaffoldState> notDrawerKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  JobController controller = Get.put(JobController());
+  ResumeController controller = Get.put(ResumeController());
   final List experienceList = [
     "0",
     "1",
@@ -668,7 +669,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(AddSkillView(addSkillController: controller.skills,));
+                                  Get.to(AddSkillView(addSkillController: controller.selectedSKills,));
                                 },
                                 child: Container(
                                   width: getHorizontalSize(90),

@@ -20,6 +20,23 @@ class JobDescriptions extends StatefulWidget {
 
 class _JobDescriptionsState extends State<JobDescriptions> {
   PostjobController controller = Get.put(PostjobController());
+  List skill = [
+    "Electric",
+    "Painitng",
+    "Weilding",
+    "Plumbing",
+    "Electric",
+    "Painitng",
+    "Weilding",
+     "Electric",
+    "Painitng",
+    "Weilding",
+    "Plumbing",
+    "Electric",
+    "Painitng",
+    "Weilding",
+    "Plumbing"
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +48,6 @@ class _JobDescriptionsState extends State<JobDescriptions> {
           // crossAxisAlignment: CrossAxisAlignment.start,
           //    mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            
-           
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -58,20 +73,30 @@ class _JobDescriptionsState extends State<JobDescriptions> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.002,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                //  SelectSkill(context, controller)
-                Text(
-                  'Load More +',
-                  style: GoogleFonts.kadwa(
-                    fontSize: F18(),
-                    fontWeight: FontWeight.w700,
-                    color: black,
-                  ),
-                ),
-              ],
+
+            Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              direction: Axis.horizontal,
+              children: (skill)
+                  .map((e) => SelectSkillCard(
+                        title: e,
+                      ))
+                  .toList(),
             ),
+            // Column(
+            //   crossAxisAlignment: CrossAxisAlignment.end,
+            //   children: [
+            //     //  SelectSkill(context, controller)
+            //     Text(
+            //       'Load More +',
+            //       style: GoogleFonts.kadwa(
+            //         fontSize: F18(),
+            //         fontWeight: FontWeight.w700,
+            //         color: black,
+            //       ),
+            //     ),
+            //   ],
+            // ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
@@ -89,8 +114,9 @@ class _JobDescriptionsState extends State<JobDescriptions> {
             SizedBox(
               height: 80,
               child: Description(
-                controller: controller.describe,
+                controller: controller.description,
                 hintText: 'Please Describe here',
+                initialValue: 'Please Describe here',
               ),
             ),
             SizedBox(
@@ -108,7 +134,7 @@ class _JobDescriptionsState extends State<JobDescriptions> {
               height: MediaQuery.of(context).size.height * 0.002,
             ),
             DropdownFieldFull(
-              controller: controller.jobTime,
+              controller: controller.jobTmg,
               hintText: "Select Job Timming",
               items: [
                 '9:00 am - 6:00 pm  |  Mon to Sat',

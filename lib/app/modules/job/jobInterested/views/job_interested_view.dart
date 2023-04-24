@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../dashboard/widgets/navigation.dart';
+import '../../../postjob/controllers/postjob_controller.dart';
 import '../controllers/job_interested_controller.dart';
 
 class JobInterestedView extends StatelessWidget {
@@ -18,7 +19,7 @@ class JobInterestedView extends StatelessWidget {
   GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-   PostJobController  controller = Get.put(PostJobController());
+   PostjobController  controller = Get.put(PostjobController());
     return Scaffold(
       key: notDrawerKey,
       drawer: const SettingsView(),

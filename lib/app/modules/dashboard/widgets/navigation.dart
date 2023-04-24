@@ -24,7 +24,7 @@ class BottomTabView extends StatelessWidget {
     // int currentIndex = index;
     return Container(
         width: (MediaQuery.of(context).size.width).sp,
-        height: (MediaQuery.of(context).size.height / 11.1518987342).sp,
+        height: (MediaQuery.of(context).size.height / 10.1518987342).sp,
         padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 25.sp),
         decoration: BoxDecoration(
           color: Color(0xffFFFFFF),

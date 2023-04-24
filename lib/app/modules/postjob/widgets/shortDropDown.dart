@@ -8,11 +8,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class DropdownFieldFull extends StatelessWidget {
   String? hintText;
-  final TextEditingController controller;
+  TextEditingController controller;
   String? initialValue;
   String? dropdownvalue;
-  final List<String>? items;
-  final EdgeInsetsGeometry? margin;
+  List<String>? items;
+  EdgeInsetsGeometry? margin;
   DropdownFieldFull(
       {super.key,
       this.hintText,
@@ -178,16 +178,16 @@ class DescriptionLong extends StatelessWidget {
 }
 
 class Description extends StatelessWidget {
-  final String? hintText;
-  final String? initialValue;
-  final TextEditingController? controller;
+   String hintText;
+  String initialValue;
+  TextEditingController controller;
   final EdgeInsetsGeometry? margin;
   Description(
       {Key? key,
-      this.hintText,
+      required this.hintText,
       this.margin,
-      this.initialValue,
-      this.controller})
+      required this.initialValue,
+      required this.controller})
       : super(key: key);
   @override
   Widget build(BuildContext context) {

@@ -18,16 +18,25 @@ import '../../postjob/widgets/shortDropDown.dart';
 import '../../settings/views/settings_view.dart';
 
 class FeedbackView extends StatefulWidget {
-  const FeedbackView({super.key});
+  String hint;
+  double initialStar;
+  FeedbackView({
+    super.key,required this.hint,required this.initialStar
+  });
 
   @override
   State<FeedbackView> createState() => _FeedbackViewState();
 }
 
 class _FeedbackViewState extends State<FeedbackView> {
-  GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> notDrawerKey = GlobalKey<ScaffoldState>();
   FeedbackController controller = Get.put(FeedbackController());
-    var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+    controller.GetFeedback();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +45,7 @@ class _FeedbackViewState extends State<FeedbackView> {
       key: notDrawerKey, drawer: const SettingsView(),
       // appBar: UpperBar("Records", "Records", true, true),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70),
+        preferredSize: const Size.fromHeight(70),
         child: AppBar(
           title: Text(
             "Feedback",
@@ -103,7 +112,7 @@ class _FeedbackViewState extends State<FeedbackView> {
                             fontSize: 24, fontWeight: FontWeight.w700),
                       ),
                       RatingBar(
-                        initialRating: 5,
+                        initialRating: widget.initialStar,
                         direction: Axis.horizontal,
                         allowHalfRating: false,
                         itemCount: 5,
@@ -115,7 +124,8 @@ class _FeedbackViewState extends State<FeedbackView> {
                           half: SvgPicture.asset(Assets.star),
                           empty: SvgPicture.asset(Assets.star),
                         ),
-                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                        itemPadding:
+                            const EdgeInsets.symmetric(horizontal: 4.0),
                         onRatingUpdate: (rating) {
                           controller.star = rating;
                         },
@@ -127,7 +137,8 @@ class _FeedbackViewState extends State<FeedbackView> {
                         height: getVerticalSize(150),
                         child: Description(
                           controller: controller.feedback,
-                          hintText: 'Comment',
+                          hintText: widget.hint,
+                          initialValue: widget.hint,
                         ),
                       ),
                       SizedBox(
@@ -136,7 +147,7 @@ class _FeedbackViewState extends State<FeedbackView> {
                       GFButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                          controller.PostFeedback();
+                            controller.PostFeedback();
                           } else {
                             errorSnackbar("Please Add Comment");
                           }
@@ -151,7 +162,6 @@ class _FeedbackViewState extends State<FeedbackView> {
                             fontSize: 18.0),
                         // shape: GFButtonShape.standard,
                       ),
-                      
                     ],
                   ),
                 ),

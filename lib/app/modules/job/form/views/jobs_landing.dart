@@ -17,7 +17,7 @@ import '../../../dashboard/widgets/navigation.dart';
 class JobLanding extends StatelessWidget {
   JobLanding({super.key});
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  JobController controller = Get.put(JobController());
+  GetJobController controller = Get.put(GetJobController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

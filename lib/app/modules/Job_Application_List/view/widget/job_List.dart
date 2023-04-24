@@ -1,4 +1,5 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/models/job_application.dart';
 import 'package:ekinch/app/modules/Job_Application_List/view/widget/job_application_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,13 @@ import '../../../postjob/widgets/shortDropDown.dart';
 
 class JobsApplicationList extends StatelessWidget {
   bool noData;
-  JobsApplicationList({super.key, required this.noData});
+  String companyPhoto;
+  List<Data> jobPostList;
+  JobsApplicationList(
+      {super.key,
+      required this.noData,
+      required this.jobPostList,
+      required this.companyPhoto});
 
   @override
   Widget build(BuildContext context) {
@@ -45,58 +52,32 @@ class JobsApplicationList extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
-        child: Column(
-          children: noData
-              ? [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 60.0),
-                    child: Center(
-                        child: Text(
-                      "No Jobs Applied",
-                      style: GoogleFonts.kadwa(
-                          fontSize: F18(), color: Colors.grey),
-                    )),
-                  )
-                ]
-              : [
-                  JobApplicationRequestCard(
-                      "assets/images/ultra1.png",
-                      "Plumber Engineer",
-                      "UltraTech Cement, India",
-                      "2 days ago",
-                      "10th Pass",
-                      "2 years experience",
-                      "1800-2500/month",
-                      "Roorkee",
-                      "Good speak hindi ",
-                      "78 already applied",
-                      false),
-                  JobApplicationRequestCard(
-                      "assets/images/ultra1.png",
-                      "Plumber Engineer",
-                      "UltraTech Cement, India",
-                      "2 days ago",
-                      "10th Pass",
-                      "2 years experience",
-                      "1800-2500/month",
-                      "Roorkee",
-                      "Good speak hindi ",
-                      "78 already applied",
-                      true),
-                  JobApplicationRequestCard(
-                      "assets/images/ultra1.png",
-                      "Plumber Engineer",
-                      "UltraTech Cement, India",
-                      "2 days ago",
-                      "10th Pass",
-                      "2 years experience",
-                      "1800-2500/month",
-                      "Roorkee",
-                      "Good speak hindi ",
-                      "78 already applied",
-                      false),
-                ],
-        ),
+        child: noData
+            ? Padding(
+                padding: const EdgeInsets.symmetric(vertical: 60.0),
+                child: Center(
+                    child: Text(
+                  "No Jobs Posted",
+                  style: GoogleFonts.kadwa(fontSize: F18(), color: Colors.grey),
+                )),
+              )
+            : Column(
+                children: (jobPostList)
+                    .map((e) => JobApplicationRequestCard(
+                        experience: "${e.jobDetails![0].exp.toString()} years experience",
+                        image: companyPhoto.toString(),
+                        language: e.jobDetails![0].lngSpk.toString(),
+                        location: e.location.toString(),
+                        open: e.active as bool,
+                        qualification: e.jobDetails![0].qual.toString(),
+                        salary:
+                            "${e.jobDetails![0].slrStr.toString()}-${e.jobDetails![0].slrEnd.toString()}",
+                        subtitle: e.city.toString(),
+                        time: "",
+                        title: e.title.toString(),
+                        views: "${e.appiledCnt.toString()} Job Request"))
+                    .toList(),
+              ),
       ),
     ]));
   }

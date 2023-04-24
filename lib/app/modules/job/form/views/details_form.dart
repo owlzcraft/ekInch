@@ -29,7 +29,7 @@ import '../../../dashboard/widgets/navigation.dart';
 
 class DetailsForm extends StatelessWidget {
   DetailsForm({super.key});
-  JobController controller = Get.put(JobController());
+  GetJobController controller = Get.put(GetJobController());
   final List<String> Gender = [
     "Male",
     "Female",

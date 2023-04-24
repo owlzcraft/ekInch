@@ -26,7 +26,7 @@ class PostjobView extends StatefulWidget {
 
 class _PostjobViewState extends State<PostjobView> {
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  PostJobController postJobController=Get.put(PostJobController());
+  PostjobController postJobController=Get.put(PostjobController());
   PageController controller = PageController(initialPage: 0);
   final _stepsText = ["Job Details", "Job Descriptions"];
   final _stepCircleRadius = 8.0;
@@ -189,7 +189,7 @@ class _PostjobViewState extends State<PostjobView> {
                                 salary: "${postJobController.salaryStr.text}-${postJobController.salaryEnd.text}",
                                 qualification: postJobController.quali.text.toString(),
                                 language: postJobController.language.text.toString(),
-                                require: "Plumbing, Painting",
+                                require: postJobController.selectedSKills[0],
                                 jobInfo: postJobController.description.text.toString(),
                                 experience: postJobController.exp.text.toString(),
                                 jobTime: postJobController.jobTmg.text.toString(),
