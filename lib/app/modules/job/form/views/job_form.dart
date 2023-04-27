@@ -300,7 +300,7 @@ class _formFillViewState extends State<formFillView> {
                 setState(() {
                   skillsDone = true;
                 });
-                Get.to(AddSkillView(addSkillController:controller.selectedSKills));
+                Get.to(AddSkillView(addSkillList:controller.selectedSKills, resultList: controller.selectedSKills,),arguments: "getJob");
               }),
               ClickAdd(
                   context,

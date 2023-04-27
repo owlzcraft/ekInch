@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:ekinch/app/models/data_model.dart';
 import 'package:ekinch/app/models/job_application.dart';
 import 'package:ekinch/app/models/msg_ok.dart';
+import 'package:ekinch/app/models/myJobModel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ekinch/app/models/sign_in.dart';
 import 'package:ekinch/app/networking/service_routes.dart';
@@ -345,6 +346,40 @@ class APIRepository {
     }
   }
 
+  //Availble users for job
+
+  Future<ApiResult<AvailableUserModel>> availableUserList(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.AVAILABLEUSERLIST, data: data);
+      final AvailableUserModel model = AvailableUserModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+//check Post Job Status
+
+  Future<ApiResult<CheckStatusModel>> checkPostJobStatus(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.CHECKPOSTJOBSTATUS, data: data);
+      final CheckStatusModel model = CheckStatusModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
    //Post Job
 
   Future<ApiResult<FeedbackModel>> PostJob(

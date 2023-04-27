@@ -1,4 +1,6 @@
+import 'package:ekinch/app/models/data_model.dart';
 import 'package:ekinch/app/models/msg_ok.dart';
+import 'package:ekinch/app/models/myJobModel.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
 import 'package:get/get.dart';
@@ -8,6 +10,8 @@ import '../../../../widgets/snack_bar.dart';
 import '../../../networking/api_result.dart';
 import '../../../networking/app_repo.dart';
 import '../../../utils/localStorage.dart';
+import '../../job/jobInterested/views/job_interested_view.dart';
+import '../../job/job_list/view/jobs_list.dart';
 
 class PostjobController extends GetxController {
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
@@ -99,10 +103,69 @@ class PostjobController extends GetxController {
       "title": "Other",
     }
   ].obs;
-//Get Job Form
-  Future<void> PostJob() async {
-    print("**************************");
 
+  //POST JOB STATUS
+  Future<void> checkPostJobStatus() async {
+    final fcmToken = LocalStorage.shared.getFCMToken();
+    Get.showOverlay(
+        asyncFunction: () async {
+          print(fcmToken);
+          final Map<String, dynamic> data = <String, dynamic>{};
+          data["token"] = fcmToken;
+          data["userId"] = LocalStorage.shared.getnumber();
+          data["uid"] = LocalStorage.shared.getUID();
+          await apiRepository
+              .checkPostJobStatus(data)
+              .then((ApiResult<CheckStatusModel> value) {
+            value.when(
+                success: (value) {
+                  if (value!.data == true) {
+                    // errorSnackbar("Api pending");
+                    AvailableUser();
+                  } else if (value.data == false) {
+                    Get.to(JobInterestedView());
+                  } else {
+                    errorSnackbar("Check Internet Connection");
+                  }
+                },
+                failure: (networkExceptions) {});
+          });
+        },
+        loadingWidget: const LoadingIndicator());
+  }
+
+//Available list user
+  Future<void> AvailableUser() async {
+    final fcmToken = LocalStorage.shared.getFCMToken();
+    Get.showOverlay(
+        asyncFunction: () async {
+          print(fcmToken);
+          final Map<String, dynamic> data = <String, dynamic>{};
+          data["token"] = fcmToken;
+          data["userId"] = LocalStorage.shared.getnumber();
+          data["profession"] = [50];
+          await apiRepository
+              .availableUserList(data)
+              .then((ApiResult<AvailableUserModel> value) {
+            value.when(
+                success: (value) {
+                  if (value!.ok == true) {
+                    print(value);
+                    Get.to(JobsList(userList:value.data as List<Data>,));
+                  } else if (value.ok == false) {
+                    errorSnackbar("Something went wrong");
+                  } else {
+                    errorSnackbar("Check Internet Connection");
+                  }
+                },
+                failure: (networkExceptions) {});
+          });
+        },
+        loadingWidget: const LoadingIndicator());
+  }
+
+//POST JOB
+  Future<void> PostJob() async {
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
@@ -116,19 +179,29 @@ class PostjobController extends GetxController {
           data["description"] = description.text;
           data["active"] = true;
           data["job_tmg"] = jobTmg.text;
-          data["date"] = new DateTime(now.year, now.month, now.day);
-          data["details"] = [
-            {
-              data["profession"] = profession.text,
-              data["capacity"] = capacity.text,
-              data["slr_str"] = salaryStr.text,
-              data["slr_end"] = salaryEnd.text,
-              data["exp"] = exp.text,
-              data["lng_spk"] = language.text,
-              data["qual"] = quali.text,
-              data["must_skill"] = selectedSKills,
-            }
-          ];
+          // data["date"] = DateTime(now.year, now.month, now.day).toString();
+          // data["details"] = [
+          //   {
+          //     data["profession"] = profession.text,
+          //     data["capacity"] = capacity.text,
+          //     data["slr_str"] = salaryStr.text,
+          //     data["slr_end"] = salaryEnd.text,
+          //     data["exp"] = exp.text,
+          //     data["lng_spk"] = language.text,
+          //     data["qual"] = quali.text,
+          //     data["must_skill"] = selectedSKills,
+          //   },
+          //   {
+          //     data["profession"] = profession.text,
+          //     data["capacity"] = capacity.text,
+          //     data["slr_str"] = salaryStr.text,
+          //     data["slr_end"] = salaryEnd.text,
+          //     data["exp"] = exp.text,
+          //     data["lng_spk"] = language.text,
+          //     data["qual"] = quali.text,
+          //     data["must_skill"] = selectedSKills,
+          //   }
+          // ];
           // data["gender"] = gender.text;
           // data["gender"] = gender.text;
           // data["gender"] = gender.text;

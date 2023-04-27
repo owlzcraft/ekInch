@@ -81,7 +81,7 @@ class AppPages {
         name: _Paths.LANGUAGE,
         page: () => LanguageView(),
         binding: LanguageBinding()),
-    GetPage(name: _Paths.OTP, page: () => OtpView(), binding: OtpBinding()),
+    // GetPage(name: _Paths.OTP, page: () => OtpView(), binding: OtpBinding()),
     GetPage(
         name: _Paths.RECORDS,
         transition: Transition.fadeIn,

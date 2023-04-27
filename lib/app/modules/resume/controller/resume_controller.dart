@@ -105,11 +105,10 @@ class ResumeController extends GetxController {
   TextEditingController jobTitle = TextEditingController();
   TextEditingController jobCategory = TextEditingController();
   List selectedSKills = [];
-
+  late String result;
 //Get Job Form
   Future<void> UpdateGetForm() async {
     print("**************************");
-
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
@@ -130,7 +129,42 @@ class ResumeController extends GetxController {
           data["age_dt"] = date.text;
           data["flag"] = 0;
           data["interest"] = jobCategory.text;
-          // data["skills"] = skills.text;
+
+          await apiRepository.GetJobForm(data)
+              .then((ApiResult<UpdateGetJobFormModel> value) {
+            value.when(
+                success: (value) {
+                  if (value!.ok == true) {
+                    print("done");
+                    GetFormDetails();
+                  } else if (value.ok == false) {
+                    Get.back();
+                    errorSnackbar("Please Refresh");
+                  } else {
+                    errorSnackbar("Check Internet Connection");
+                  }
+                },
+                failure: (networkExceptions) {});
+          });
+        },
+        loadingWidget: const LoadingIndicator());
+  }
+
+//add more skills;
+  Future<void> UpdateSkills() async {
+    print("**************************");
+   
+    final fcmToken = LocalStorage.shared.getFCMToken();
+    Get.showOverlay(
+        asyncFunction: () async {
+          print(fcmToken);
+          print(qualificationTap.text);
+          final Map<String, dynamic> data = <String, dynamic>{};
+          data["token"] = fcmToken;
+          data["userId"] = LocalStorage.shared.getnumber();
+          data["user"] = LocalStorage.shared.getUID();
+          data["flag"] = 0;
+          data["skills"] = selectedSKills.join(',');
 
           await apiRepository.GetJobForm(data)
               .then((ApiResult<UpdateGetJobFormModel> value) {

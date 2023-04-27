@@ -22,6 +22,7 @@ class JobApplicationListView extends StatefulWidget {
   String companyPhoto;
   String companyAddress;
   List<Data> jobPostList;
+  
   JobApplicationListView(
       {super.key,
       required this.companyAddress,
@@ -35,6 +36,7 @@ class JobApplicationListView extends StatefulWidget {
 
 class JobApplicationListViewState extends State<JobApplicationListView>
     with TickerProviderStateMixin {
+      
   TabController? _tabController;
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   bool noData = false;
@@ -170,6 +172,7 @@ class JobApplicationListViewState extends State<JobApplicationListView>
               noData: noData,
               jobPostList: widget.jobPostList,
               companyPhoto: widget.companyPhoto,
+              companyName: widget.companyName,
             ),
             RequestList(noData: noData),
           ],

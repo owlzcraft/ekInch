@@ -20,10 +20,11 @@ import '../../../referNearn/views/refer_nearn_view.dart';
 import '../../../settings/views/settings_view.dart';
 
 class JobProfileView extends StatelessWidget {
+  String photo;
   final String title;
   final String subTitle;
   final String location;
-  final String salary;
+  final String schoolBoard;
   final String qualification;
   final String experience;
   final String language;
@@ -33,10 +34,11 @@ class JobProfileView extends StatelessWidget {
   final String skill;
   JobProfileView(
       {super.key,
+      required this.photo,
       required this.title,
       required this.subTitle,
       required this.location,
-      required this.salary,
+      required this.schoolBoard,
       required this.qualification,
       required this.experience,
       required this.language,
@@ -115,7 +117,7 @@ class JobProfileView extends StatelessWidget {
                               child: CircleAvatar(
                                 radius: 42.sp,
                                 backgroundImage:
-                                    AssetImage("assets/images/profile.jpg"),
+                                    NetworkImage(photo),
                               ),
                             ),
                           ],
@@ -174,29 +176,29 @@ class JobProfileView extends StatelessWidget {
                                   fontSize: F20(),
                                   fontWeight: FontWeight.w400),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SvgPicture.asset(Assets.certified),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 6.0),
-                                  child: Text(
-                                    "View Certificate",
-                                    style: GoogleFonts.kadwa(
-                                        color: KColors.textGrey,
-                                        fontSize: F18(),
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ),
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.start,
+                            //   children: [
+                            //     SvgPicture.asset(Assets.certified),
+                            //     Padding(
+                            //       padding: const EdgeInsets.symmetric(
+                            //           horizontal: 6.0),
+                            //       child: Text(
+                            //         "View Certificate",
+                            //         style: GoogleFonts.kadwa(
+                            //             color: KColors.textGrey,
+                            //             fontSize: F18(),
+                            //             fontWeight: FontWeight.w400),
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
                           ],
                         ),
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 4.0),
+                            horizontal: 4.0,),
                         child: Divider(
                           color: KColors.greyLine,
                         ),
@@ -282,7 +284,7 @@ class JobProfileView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 8.0),
                                       child: Text(
-                                        salary,
+                                        schoolBoard,
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             fontSize: F16(),
@@ -436,7 +438,7 @@ class JobProfileView extends StatelessWidget {
             ),
             Padding(
               padding:
-                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
+                  const EdgeInsets.symmetric(vertical: 25.0, horizontal: 20),
               child: GFButton(
                 onPressed: () {
                   // check();
@@ -444,12 +446,11 @@ class JobProfileView extends StatelessWidget {
                 color: KColors.orange,
                 fullWidthButton: true,
                 size: 50.2,
-                text: "Hire Me",
-                textStyle: const TextStyle(
+                text: "Hire",
+                textStyle: GoogleFonts.kadwa(
                     color: Colors.black,
-                    fontWeight: FontWeight.w900,
-                    fontSize: 24.0,
-                    fontFamily: 'Kadwa'),
+                    fontWeight: FontWeight.w700,
+                    fontSize: F24(),),
               ),
             ),
           ],

@@ -14,7 +14,8 @@ import '../../notication/view/notification_view.dart';
 import '../../settings/views/settings_view.dart';
 
 class AllApplicationListView extends StatefulWidget {
-  final String company;
+  final String companyPhoto;
+  final String companyName;
   final String title;
   final String location;
   final String salary;
@@ -24,7 +25,8 @@ class AllApplicationListView extends StatefulWidget {
   final String time;
   AllApplicationListView({
     super.key,
-    required this.company,
+    required this.companyPhoto,
+    required this.companyName,
     required this.title,
     required this.location,
     required this.salary,
@@ -78,11 +80,11 @@ class AllApplicationListViewState extends State<AllApplicationListView>
                 Container(
                   width: getHorizontalSize(85),
                   height: getVerticalSize(40),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       color: Colors.black,
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage("assets/images/ultra1.png"))),
+                          image: NetworkImage(widget.companyPhoto))),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -90,7 +92,7 @@ class AllApplicationListViewState extends State<AllApplicationListView>
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("UltraTech Cement",
+                      Text(widget.companyName,
                           style: GoogleFonts.kadwa(
                               fontSize: F24(),
                               color: Colors.white,
@@ -107,7 +109,7 @@ class AllApplicationListViewState extends State<AllApplicationListView>
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 3.0),
                             child: Text(
-                              "Roorkee Uttarakhand",
+                              widget.location,
                               style: GoogleFonts.kadwa(
                                   height: 1.2,
                                   fontSize: F14(),
@@ -317,15 +319,7 @@ class AllApplicationListViewState extends State<AllApplicationListView>
             child: Column(
               children: [
                 ApproveDenyCard(
-                    "", "Naveen Kumar", "Plumber", "2 Years Experience"),
-                ApproveDenyCard(
-                    "", "Naveen Kumar", "Plumber", "2 Years Experience"),
-                ApproveDenyCard(
-                    "", "Naveen Kumar", "Plumber", "2 Years Experience"),
-                ApproveDenyCard(
-                    "", "Naveen Kumar", "Plumber", "2 Years Experience"),
-                ApproveDenyCard(
-                    "", "Naveen Kumar", "Plumber", "2 Years Experience")
+                    image: "", experience: "", profession: "", title: "")
               ],
             ),
           )

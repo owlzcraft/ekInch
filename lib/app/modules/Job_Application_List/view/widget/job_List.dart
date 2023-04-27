@@ -13,10 +13,12 @@ import '../../../postjob/widgets/shortDropDown.dart';
 
 class JobsApplicationList extends StatelessWidget {
   bool noData;
+  String companyName;
   String companyPhoto;
   List<Data> jobPostList;
   JobsApplicationList(
       {super.key,
+      required this.companyName,
       required this.noData,
       required this.jobPostList,
       required this.companyPhoto});
@@ -75,7 +77,7 @@ class JobsApplicationList extends StatelessWidget {
                         subtitle: e.city.toString(),
                         time: "",
                         title: e.title.toString(),
-                        views: "${e.appiledCnt.toString()} Job Request"))
+                        views: "${e.appiledCnt.toString()} Job Request", companyName: companyName,))
                     .toList(),
               ),
       ),

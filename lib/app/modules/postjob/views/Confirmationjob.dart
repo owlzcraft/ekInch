@@ -73,8 +73,8 @@ class _ConfirmationjobState extends State<Confirmationjob> {
                 child: MaterialButton(
                     minWidth: MediaQuery.of(context).size.width,
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => JobsList()));
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => JobsList(userList: [],)));
                     },
                     child: Center(
                       child: Text(

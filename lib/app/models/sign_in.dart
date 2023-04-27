@@ -8,23 +8,23 @@ String signInModelToJson(SignInModel data) => json.encode(data.toJson());
 class SignInModel {
   SignInModel({
     this.ok,
-    this.errorMessage,
+    this.msg,
     this.userId,
   });
   bool? ok;
-  String? errorMessage;
+  String? msg;
   String? userId;
 
   SignInModel.fromJson(Map<String, dynamic> json) {
     ok = json['ok'];
-    errorMessage = json['errorMessage'];
+    msg = json['msg'];
     userId = json['userId'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['ok'] = ok;
-    _data['errorMessage'] = errorMessage;
+    _data['msg'] = msg;
     _data['userId'] = userId;
     return _data;
   }

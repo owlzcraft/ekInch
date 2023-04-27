@@ -13,13 +13,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import '../../../../../widgets/math_utils.dart';
 import '../../../../custom_widget/color.dart';
+import '../../../../models/myJobModel.dart';
 import '../../../dashboard/widgets/navigation.dart';
 import '../../../settings/views/settings_view.dart';
 import '../../profile/view/job_profile.dart';
 
 class JobsList extends StatefulWidget {
-  const JobsList({Key? key}) : super(key: key);
-
+  JobsList({super.key, required this.userList});
+  List<Data> userList;
   @override
   JobsListState createState() => JobsListState();
 }
@@ -55,12 +56,12 @@ class JobsListState extends State<JobsList> with TickerProviderStateMixin {
           ),
           backgroundColor: Colors.black,
           title: Text(
-            'Job List',
+            'Hire Mechanic',
             style:
                 GoogleFonts.kadwa(fontSize: F20(), fontWeight: FontWeight.w700),
           ),
           actions: [
-            Icon(
+            const Icon(
               Icons.share_outlined,
               size: 20,
             ),
@@ -74,7 +75,10 @@ class JobsListState extends State<JobsList> with TickerProviderStateMixin {
             indicatorWeight: 3,
             unselectedLabelStyle: GoogleFonts.kadwa(fontSize: F18()),
             labelStyle: GoogleFonts.kadwa(fontSize: F18()),
-            tabs: [Tab(text: "New Jobs (120)"), Tab(text: "Recent (12)")],
+            tabs: [
+              const Tab(text: "Available Users"),
+              const Tab(text: "Recent")
+            ],
           ),
         ),
         backgroundColor: Colors.white,
@@ -141,62 +145,25 @@ class JobsListState extends State<JobsList> with TickerProviderStateMixin {
                   ],
                 ),
               ),
-              JobCardWidget(
-                  "Arun Singh",
-                  "Electrician, 1 hrs ago ",
-                  "Roorkee",
-                  "Intermediate",
-                  "Good Hindi",
-                  "18000-25000/month",
-                  "3 Years Experience",
-                  "+91 7878787891"),
-              JobCardWidget(
-                  "Sanjay Singh",
-                  "Carpenter, 1 hrs ago ",
-                  "Roorkee",
-                  "Intermediate",
-                  "Good Hindi",
-                  "18000-25000/month",
-                  "3 Years Experience",
-                  "+91 7878787891"),
-              JobCardWidget(
-                  "Varun Singh",
-                  "Painter, 5 hrs ago ",
-                  "Noida",
-                  "Intermediate",
-                  "Good Hindi",
-                  "18000-25000/month",
-                  "3 Years Experience",
-                  "+91 7878787891"), JobCardWidget(
-                  "Arun Singh",
-                  "Electrician, 1 hrs ago ",
-                  "Roorkee",
-                  "Intermediate",
-                  "Good Hindi",
-                  "18000-25000/month",
-                  "3 Years Experience",
-                  "+91 7878787891"),
-              JobCardWidget(
-                  "Sanjay Singh",
-                  "Carpenter, 1 hrs ago ",
-                  "Roorkee",
-                  "Intermediate",
-                  "Good Hindi",
-                  "18000-25000/month",
-                  "3 Years Experience",
-                  "+91 7878787891"),
-              JobCardWidget(
-                  "Varun Singh",
-                  "Painter, 5 hrs ago ",
-                  "Noida",
-                  "Intermediate",
-                  "Good Hindi",
-                  "18000-25000/month",
-                  "3 Years Experience",
-                  "+91 7878787891")
+              Column(
+                
+                children: (widget.userList).map((e) => JobCardWidget(
+                  photo:e.photo.toString(),
+                    contactNumber: e.phoneNumber.toString(),
+                    dob: "${e.info!.ageDt}/${e.info!.ageMn}/${e.info!.ageYr}",
+                    experience: "${e.info!.expYr} years Experience",
+                    gender: e.info!.gender.toString(),
+                    language: "Need change",
+                    location: e.address.toString(),
+                    name: e.firstName.toString(),
+                    profession: e.info!.interest.toString(),
+                    qualification: e.info!.qualification.toString(),
+                    schoolBoard: e.info!.scMed.toString(),
+                    skills: e.info!.skillsLst!.join(','))).toList(),
+              )
             ])),
 
-            RecentJob()
+            const RecentJob()
 
 //             Column(crossAxisAlignment: CrossAxisAlignment.center,
 //               children: [

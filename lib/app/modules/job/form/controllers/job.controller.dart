@@ -38,7 +38,8 @@ class GetJobController extends GetxController {
   // ignore: non_constant_identifier_names
   late List<Data> ApplyJobList;
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
-  List selectedSKills=[];
+  List selectedSKills = [];
+  late String result;
   String gender = "";
   // String qualification = "";
   // String experience = "";
@@ -62,7 +63,13 @@ class GetJobController extends GetxController {
 //Get Job Form
   Future<void> GetJobForm() async {
     print("**************************");
-
+    // for (int i = 0; i < selectedSKills.length-1; i++) {
+    //   result=selectedSKills.join(" , ");
+    //   // var data=;
+    //   // data = data + "," + selectedSKills[i];
+    //   result = data;
+     
+    // }
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
@@ -84,7 +91,7 @@ class GetJobController extends GetxController {
           data["age_dt"] = date.text;
           data["flag"] = 0;
           data["interest"] = jobCategory.text;
-          data["skills"] = selectedSKills;
+          data["skills"] = selectedSKills.join(" , ");
 
           await apiRepository.GetJobForm(data)
               .then((ApiResult<UpdateGetJobFormModel> value) {

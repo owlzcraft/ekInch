@@ -13,6 +13,7 @@ import '../../../../custom_widget/font_size.dart';
 import '../../../listpostjob/views/jobDescription.dart';
 
 class JobApplicationRequestCard extends StatelessWidget {
+  String companyName;
   String image;
   String title;
   String subtitle;
@@ -26,6 +27,7 @@ class JobApplicationRequestCard extends StatelessWidget {
   bool open;
   JobApplicationRequestCard(
       {super.key,
+      required this.companyName,
       required this.experience,
       required this.image,
       required this.language,
@@ -45,14 +47,16 @@ class JobApplicationRequestCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Get.to(AllApplicationListView(
-              company: "companyName",
-              title: title,
-              location: location,
-              salary: salary,
-              qualification: qualification,
-              language: language,
-              experience: experience,
-              time: time));
+            title: title,
+            location: location,
+            salary: salary,
+            qualification: qualification,
+            language: language,
+            experience: experience,
+            time: time,
+            companyName: companyName,
+            companyPhoto: image,
+          ));
         },
         child: Stack(
           children: [

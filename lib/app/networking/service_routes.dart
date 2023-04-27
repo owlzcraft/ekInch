@@ -25,6 +25,8 @@ class ServiceConstants {
   static const String APPLYJOB = 'v2/jobs/apply_for_job';
   static const String FEEDBACK = 'profile/giveFeedback';
   static const String GETFEEDBACK = 'profile/fetch_fdbk';
-    static const String MyJobs = 'v2/jobs/jobs_by_usr';
+  static const String MyJobs = 'v2/jobs/jobs_by_usr';
+  static const String CHECKPOSTJOBSTATUS = 'v2/jobs/is_usr_pstd_jobs';
+    static const String AVAILABLEUSERLIST = 'profile/list_users/';
 
 }

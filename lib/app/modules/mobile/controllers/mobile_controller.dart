@@ -46,8 +46,10 @@ class MobileController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
+                    print("i am here");
                     LocalStorage.shared.saveNumber(value.userId as String);
                     LocalStorage.shared.saveCompanyLogo(" ");
+                    // errorSnackbar("done");
                     Get.offAndToNamed(Routes.OTP,
                         arguments: [mobileNumber.text, "Login"]);
                     // dispose();
