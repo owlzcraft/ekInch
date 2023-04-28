@@ -9,10 +9,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
 import '../../../models/job_application.dart';
+import '../../job/jobInterested/views/job_interested_view.dart';
 import '../../notication/view/notification_view.dart';
 import '../../settings/views/settings_view.dart';
 import '../controller/jobApplicationController.dart';
@@ -22,7 +22,7 @@ class JobApplicationListView extends StatefulWidget {
   String companyPhoto;
   String companyAddress;
   List<Data> jobPostList;
-  
+
   JobApplicationListView(
       {super.key,
       required this.companyAddress,
@@ -36,15 +36,15 @@ class JobApplicationListView extends StatefulWidget {
 
 class JobApplicationListViewState extends State<JobApplicationListView>
     with TickerProviderStateMixin {
-      
   TabController? _tabController;
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   bool noData = false;
   void initState() {
     _tabController = new TabController(length: 2, vsync: this);
     super.initState();
-    if (widget.jobPostList == []) {
+    if (widget.jobPostList.length == 0) {
       setState(() {
+        widget.jobPostList = [];
         noData = true;
       });
     } else {
@@ -147,20 +147,25 @@ class JobApplicationListViewState extends State<JobApplicationListView>
                     indicatorWeight: 3,
                     unselectedLabelStyle: GoogleFonts.kadwa(fontSize: F18()),
                     labelStyle: GoogleFonts.kadwa(fontSize: F18()),
-                    tabs: [Tab(text: "My Jobs "), Tab(text: "Request")],
+                    tabs: [Tab(text: "Jobs "), Tab(text: "Accepted Request")],
                   ),
                 ),
               ],
             ),
           ),
         ),
-        floatingActionButton: CircleAvatar(
-          radius: 25.sp,
-          backgroundColor: KColors.orange,
-          child: Image.asset(
-            "assets/images/job.png",
-            color: Colors.black,
-            scale: 3.0,
+        floatingActionButton: InkWell(
+          onTap: () {
+            Get.to(JobInterestedView());
+          },
+          child: CircleAvatar(
+            radius: 25.sp,
+            backgroundColor: KColors.orange,
+            child: Image.asset(
+              "assets/images/job.png",
+              color: Colors.black,
+              scale: 3.0,
+            ),
           ),
         ),
         bottomNavigationBar: BottomTabView(2),

@@ -1,6 +1,7 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/Job_Application_List/view/widget/approve_deny.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
+import 'package:ekinch/app/modules/job/jobInterested/views/job_interested_view.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
+import '../../../models/application_request.dart';
 import '../../notication/view/notification_view.dart';
 import '../../settings/views/settings_view.dart';
 
@@ -22,9 +24,13 @@ class AllApplicationListView extends StatefulWidget {
   final String qualification;
   final String language;
   final String experience;
+  int jobId;
   final String time;
+  List<DataR> appreqList;
   AllApplicationListView({
     super.key,
+    required this.appreqList,
+    required this.jobId,
     required this.companyPhoto,
     required this.companyName,
     required this.title,
@@ -126,13 +132,18 @@ class AllApplicationListViewState extends State<AllApplicationListView>
           ),
         ),
       ),
-      floatingActionButton: CircleAvatar(
-        radius: 25.sp,
-        backgroundColor: KColors.orange,
-        child: Image.asset(
-          "assets/images/job.png",
-          color: Colors.black,
-          scale: 3.0,
+      floatingActionButton: InkWell(
+        onTap: () {
+          Get.to(JobInterestedView());
+        },
+        child: CircleAvatar(
+          radius: 25.sp,
+          backgroundColor: KColors.orange,
+          child: Image.asset(
+            "assets/images/job.png",
+            color: Colors.black,
+            scale: 3.0,
+          ),
         ),
       ),
       bottomNavigationBar: BottomTabView(2),
@@ -265,14 +276,14 @@ class AllApplicationListViewState extends State<AllApplicationListView>
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "All Request",
+                              "All Requests",
                               style: GoogleFonts.kadwa(
                                   fontSize: F18(),
                                   color: Colors.black,
                                   fontWeight: FontWeight.w700),
                             ),
                             Text(
-                              "Accepted (4)",
+                              "Accepted",
                               style: GoogleFonts.kadwa(
                                   fontSize: F14(),
                                   color: Colors.black,
@@ -317,11 +328,14 @@ class AllApplicationListViewState extends State<AllApplicationListView>
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
-              children: [
-                ApproveDenyCard(
-                    image: "", experience: "", profession: "", title: "")
-              ],
-            ),
+                children: (widget.appreqList)
+                    .map((e) => ApproveDenyCard(
+                        image: e.userImage.toString(),
+                        experience:
+                            "${e.userInfo!.expYr.toString()} years Experience",
+                        profession: e.userOccupation.toString(),
+                        title: e.userName.toString()))
+                    .toList()),
           )
         ],
       ),

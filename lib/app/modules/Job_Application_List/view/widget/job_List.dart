@@ -31,7 +31,7 @@ class JobsApplicationList extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
         child: TextFeildGreyBorder(
           // controller: _searchcontroller,
-          hintText: 'Search company by name',
+          hintText: 'Search Job Post by name',
         ),
       ),
       Padding(
@@ -66,6 +66,7 @@ class JobsApplicationList extends StatelessWidget {
             : Column(
                 children: (jobPostList)
                     .map((e) => JobApplicationRequestCard(
+                      jobId:e.id as int,
                         experience: "${e.jobDetails![0].exp.toString()} years experience",
                         image: companyPhoto.toString(),
                         language: e.jobDetails![0].lngSpk.toString(),
@@ -77,7 +78,7 @@ class JobsApplicationList extends StatelessWidget {
                         subtitle: e.city.toString(),
                         time: "",
                         title: e.title.toString(),
-                        views: "${e.appiledCnt.toString()} Job Request", companyName: companyName,))
+                        views: "${e.appiledCnt.toString()} Job Request", companyName: companyName))
                     .toList(),
               ),
       ),

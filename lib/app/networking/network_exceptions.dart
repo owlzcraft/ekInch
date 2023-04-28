@@ -142,7 +142,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
     }, badRequest: () {
       errorMessage = "Bad request";
     }, unauthorisedRequest: () {
-      errorMessage = "Unauthorised request";
+      errorMessage = "Something Went Wrong";
     }, unexpectedError: () {
       errorMessage = "Unexpected error occurred";
     }, requestTimeout: () {

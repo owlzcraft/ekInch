@@ -28,14 +28,8 @@ class _JobDescriptionsState extends State<JobDescriptions> {
     "Electric",
     "Painitng",
     "Weilding",
-     "Electric",
-    "Painitng",
-    "Weilding",
-    "Plumbing",
     "Electric",
-    "Painitng",
-    "Weilding",
-    "Plumbing"
+    
   ];
   @override
   Widget build(BuildContext context) {
@@ -48,6 +42,25 @@ class _JobDescriptionsState extends State<JobDescriptions> {
           // crossAxisAlignment: CrossAxisAlignment.start,
           //    mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Text(
+              'Location',
+              style: GoogleFonts.kadwa(
+                fontSize: F18(),
+                fontWeight: FontWeight.w700,
+                color: black,
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.002,
+            ),
+            DropdownFieldFull(
+              controller: controller.address,
+              hintText: "Select Location",
+              items: const ['Roorkee', 'Talhedi', 'Laksar', "Noida", "Delhi"],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.012,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -60,7 +73,7 @@ class _JobDescriptionsState extends State<JobDescriptions> {
                   ),
                 ),
                 Text(
-                  'Added  (3)',
+                  'Added',
                   style: GoogleFonts.kadwa(
                     fontSize: F18(),
                     fontWeight: FontWeight.w700,
@@ -137,9 +150,9 @@ class _JobDescriptionsState extends State<JobDescriptions> {
               controller: controller.jobTmg,
               hintText: "Select Job Timming",
               items: [
-                '9:00 am - 6:00 pm  |  Mon to Sat',
-                '10:00 am - 7:00 pm  |  Mon to Sat',
-                '11:00 am - 8:00 pm  |  Mon to Sat',
+                '9:00 am - 6:00 pm',
+                '10:00 am - 7:00 pm',
+                '11:00 am - 8:00 pm',
               ],
             ),
             SizedBox(

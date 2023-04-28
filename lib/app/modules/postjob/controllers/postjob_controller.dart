@@ -1,6 +1,7 @@
 import 'package:ekinch/app/models/data_model.dart';
 import 'package:ekinch/app/models/msg_ok.dart';
 import 'package:ekinch/app/models/myJobModel.dart';
+import 'package:ekinch/app/modules/postjob/views/Confirmationjob.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,7 @@ class PostjobController extends GetxController {
   TextEditingController description = TextEditingController();
   TextEditingController jobTmg = TextEditingController();
   List selectedSKills = [];
+  late int professionId;
   var activeCategory = 0.obs;
   DateTime now = new DateTime.now();
   var jobCategory = [
@@ -143,7 +145,7 @@ class PostjobController extends GetxController {
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
-          data["profession"] = [50];
+          data["profession"] = [50]; //need change
           await apiRepository
               .availableUserList(data)
               .then((ApiResult<AvailableUserModel> value) {
@@ -151,7 +153,9 @@ class PostjobController extends GetxController {
                 success: (value) {
                   if (value!.ok == true) {
                     print(value);
-                    Get.to(JobsList(userList:value.data as List<Data>,));
+                    Get.to(JobsList(
+                      userList: value.data as List<Data>,
+                    ));
                   } else if (value.ok == false) {
                     errorSnackbar("Something went wrong");
                   } else {
@@ -167,47 +171,97 @@ class PostjobController extends GetxController {
 //POST JOB
   Future<void> PostJob() async {
     final fcmToken = LocalStorage.shared.getFCMToken();
+    switch (profession.text) {
+      case "Labour":
+        professionId = 0;
+        break;
+      case "Plaster Mistri":
+        professionId = 1;
+        break;
+      case "Weilding":
+        professionId = 2;
+        break;
+      case "Plumber":
+        professionId = 3;
+        break;
+      case "Electrcian":
+        professionId = 4;
+        break;
+      case "Painter":
+        professionId = 5;
+        break;
+      case "Carpenter":
+        professionId = 6;
+        break;
+      case "TilesMistri":
+        professionId = 7;
+        break;
+      case "Engineer":
+        professionId = 8;
+        break;
+      case "Architect":
+        professionId = 9;
+        break;
+      case "Dukandar":
+        professionId = 10;
+        break;
+      case "Contractor":
+        professionId = 11;
+        break;
+      case "Customer":
+        professionId = 12;
+        break;
+      case "Other":
+        professionId = 13;
+        break;
+
+      default:
+    }
     Get.showOverlay(
         asyncFunction: () async {
+          List<dynamic> ListData = [
+            {
+              "gender": gender.text.toString(),
+              "profession": professionId,
+              "capacity": capacity.text,
+              "slr_str": salaryStr.text,
+              "slr_end": salaryEnd.text,
+              "exp": exp.text,
+              "lng_spk": language.text,
+              "qual": quali.text,
+              "must_skill": selectedSKills
+            },
+            //  {
+            //     "gender": "",
+            //     "profession": 4,
+            //     "capacity": 1,
+            //     "slr_str": 6,
+            //     "slr_end": "",
+            //     "exp":0,
+            //     // "exp": exp.text as int,
+            //     "lng_spk": " ",
+            //     "qual": "",
+            //     "must_skill": []
+            //   },
+          ];
           print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
+          // final Map<String, dynamic> details = <String, dynamic>{};
+
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
-          // data["uid"] = 171180;
+          data["location"] = address.text;
+          data["lattitude"] = "5362";//need change
+          data["longitude"] = "5362";//need change
+          data["city"] = "need change";
           data["posted_by"] = LocalStorage.shared.getUID();
           data["title"] = profession.text;
           data["description"] = description.text;
           data["active"] = true;
           data["job_tmg"] = jobTmg.text;
-          // data["date"] = DateTime(now.year, now.month, now.day).toString();
-          // data["details"] = [
-          //   {
-          //     data["profession"] = profession.text,
-          //     data["capacity"] = capacity.text,
-          //     data["slr_str"] = salaryStr.text,
-          //     data["slr_end"] = salaryEnd.text,
-          //     data["exp"] = exp.text,
-          //     data["lng_spk"] = language.text,
-          //     data["qual"] = quali.text,
-          //     data["must_skill"] = selectedSKills,
-          //   },
-          //   {
-          //     data["profession"] = profession.text,
-          //     data["capacity"] = capacity.text,
-          //     data["slr_str"] = salaryStr.text,
-          //     data["slr_end"] = salaryEnd.text,
-          //     data["exp"] = exp.text,
-          //     data["lng_spk"] = language.text,
-          //     data["qual"] = quali.text,
-          //     data["must_skill"] = selectedSKills,
-          //   }
-          // ];
-          // data["gender"] = gender.text;
-          // data["gender"] = gender.text;
-          // data["gender"] = gender.text;
-          // data["gender"] = gender.text;
-          // data["gender"] = gender.text;
-          // data["gender"] = gender.text;
+          data["date"] = DateTime(now.year, now.month, now.day).toString();
+          data["details"] = ListData;
+        
 
           await apiRepository.PostJob(data)
               .then((ApiResult<FeedbackModel> value) {
@@ -215,6 +269,9 @@ class PostjobController extends GetxController {
                 success: (value) {
                   if (value!.ok == true) {
                     print("done");
+                    errorSnackbar(value.msg.toString());
+                    Get.offAll(
+                        Confirmationjob(title: profession.text.toString()));
                   } else if (value.ok == false) {
                     Get.back();
                     errorSnackbar("Please Fill All Details");

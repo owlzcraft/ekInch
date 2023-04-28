@@ -1,20 +1,22 @@
 import 'package:ekinch/app/models/GetJobForm.dart';
 import 'package:ekinch/app/models/data_model.dart';
 import 'package:ekinch/app/models/job_application.dart';
-import 'package:ekinch/app/models/job_application.dart';
 import 'package:ekinch/app/networking/api_result.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../widgets/loader.dart';
 import '../../../../../widgets/snack_bar.dart';
+import '../../../models/application_request.dart';
 import '../../../networking/app_repo.dart';
 import '../../../utils/localStorage.dart';
+import '../view/all_request.dart';
 import '../view/job_application_view.dart';
 
 class JobPostListController extends GetxController {
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
-  late List<Data> jobList;
+   List<Data> jobList=[];
+  List<DataR> applicationList=[];
   // TextEditingController jobCategory = TextEditingController();
 
 //Job Post List
@@ -76,6 +78,52 @@ class JobPostListController extends GetxController {
                     errorSnackbar("No Company");
                   } else {
                     errorSnackbar("Please Try After Sometime");
+                  }
+                },
+                failure: (networkExceptions) {});
+          });
+        },
+        loadingWidget: const LoadingIndicator());
+  }
+
+  //Application list
+  Future<void> applicationRequest(jobId, image, title, time, companyName,
+      experience, location, language, salary, qualification) async {
+    print("**************************");
+
+    final fcmToken = LocalStorage.shared.getFCMToken();
+    Get.showOverlay(
+        asyncFunction: () async {
+          print(fcmToken);
+          final Map<String, dynamic> data = <String, dynamic>{};
+          data["token"] = fcmToken;
+          data["userId"] = LocalStorage.shared.getnumber();
+          data["job_id"] = jobId;
+          await apiRepository.ApplicationRequest(data)
+              .then((ApiResult<ApplicationRequestModel> value) {
+            value.when(
+                success: (value) {
+                  if (value!.ok == true) {
+                    print("done");
+                    applicationList = value.data!;
+                    Get.to(AllApplicationListView(
+                      appreqList: applicationList,
+                      jobId: jobId,
+                      title: title,
+                      location: location,
+                      salary: salary,
+                      qualification: qualification,
+                      language: language,
+                      experience: experience,
+                      time: time,
+                      companyName: companyName,
+                      companyPhoto: image,
+                    ));
+                  } else if (value.ok == false) {
+                    Get.back();
+                    errorSnackbar("No Application");
+                  } else {
+                    errorSnackbar("Check Internet Connection");
                   }
                 },
                 failure: (networkExceptions) {});

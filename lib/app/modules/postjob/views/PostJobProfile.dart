@@ -17,7 +17,7 @@ class PostJobProfile extends StatefulWidget {
   final String company;
   final String jobTitle;
   final String subtitle;
-  // final String location;
+  final String location;
   final String salary;
   final String qualification;
   final String language;
@@ -32,7 +32,7 @@ class PostJobProfile extends StatefulWidget {
     required this.company,
     required this.jobTitle,
     required this.subtitle,
-    // required this.location,
+    required this.location,
     required this.salary,
     required this.qualification,
     required this.language,
@@ -104,17 +104,17 @@ class _PostJobProfileState extends State<PostJobProfile> {
                               color: greylight))
                     ],
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     SvgPicture.asset(Assets.location),
-                  //     Text(widget.location,
-                  //         style: GoogleFonts.kadwa(
-                  //             fontSize: F16(),
-                  //             fontWeight: FontWeight.w400,
-                  //             color: greylight))
-                  //   ],
-                  // )
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(Assets.location),
+                      Text(widget.location,
+                          style: GoogleFonts.kadwa(
+                              fontSize: F16(),
+                              fontWeight: FontWeight.w400,
+                              color: greylight))
+                    ],
+                  )
                 ],
               ),
               Container(

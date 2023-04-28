@@ -28,5 +28,7 @@ class ServiceConstants {
   static const String MyJobs = 'v2/jobs/jobs_by_usr';
   static const String CHECKPOSTJOBSTATUS = 'v2/jobs/is_usr_pstd_jobs';
     static const String AVAILABLEUSERLIST = 'profile/list_users/';
+        static const String APPLICATIONREQUESTLIST = 'v2/jobs/job_applis';
+
 
 }

@@ -1,15 +1,21 @@
 import 'package:ekinch/app/generated/assets.dart';
+import 'package:ekinch/app/modules/Job_Application_List/controller/jobApplicationController.dart';
 import 'package:ekinch/app/modules/Job_Application_List/view/all_request.dart';
 import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
+import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../../widgets/loader.dart';
 import '../../../../custom_widget/color.dart';
 import '../../../../custom_widget/font_size.dart';
+import '../../../../models/application_request.dart';
+import '../../../../networking/api_result.dart';
+import '../../../../networking/app_repo.dart';
 import '../../../listpostjob/views/jobDescription.dart';
 
 class JobApplicationRequestCard extends StatelessWidget {
@@ -24,9 +30,13 @@ class JobApplicationRequestCard extends StatelessWidget {
   String location;
   String language;
   String views;
+  int jobId;
   bool open;
+  JobPostListController controller = Get.put(JobPostListController());
+
   JobApplicationRequestCard(
       {super.key,
+      required this.jobId,
       required this.companyName,
       required this.experience,
       required this.image,
@@ -46,17 +56,10 @@ class JobApplicationRequestCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: GestureDetector(
         onTap: () {
-          Get.to(AllApplicationListView(
-            title: title,
-            location: location,
-            salary: salary,
-            qualification: qualification,
-            language: language,
-            experience: experience,
-            time: time,
-            companyName: companyName,
-            companyPhoto: image,
-          ));
+          print("**************************");
+
+          controller.applicationRequest(jobId, image, title, time, companyName,
+              experience, location, language, salary, qualification);
         },
         child: Stack(
           children: [
@@ -246,7 +249,19 @@ class JobApplicationRequestCard extends StatelessWidget {
                               fixedSize: const Size(140, 0),
                               shape: const StadiumBorder(),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              controller.applicationRequest(
+                                  jobId,
+                                  image,
+                                  title,
+                                  time,
+                                  companyName,
+                                  experience,
+                                  location,
+                                  language,
+                                  salary,
+                                  qualification);
+                            },
                             child: Text(
                               'View Request',
                               style: GoogleFonts.kadwa(

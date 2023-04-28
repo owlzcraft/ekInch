@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:ekinch/app/models/application_request.dart';
 import 'package:ekinch/app/models/data_model.dart';
 import 'package:ekinch/app/models/job_application.dart';
 import 'package:ekinch/app/models/msg_ok.dart';
@@ -388,6 +389,24 @@ class APIRepository {
       final response =
           await dioClient!.post(ServiceConstants.POSTJOB, data: data);
       final FeedbackModel model = FeedbackModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  //Application Request List 
+
+  Future<ApiResult<ApplicationRequestModel>> ApplicationRequest(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.APPLICATIONREQUESTLIST, data: data);
+      final ApplicationRequestModel model = ApplicationRequestModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {

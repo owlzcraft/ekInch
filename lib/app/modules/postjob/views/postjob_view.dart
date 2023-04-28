@@ -180,16 +180,17 @@ class _PostjobViewState extends State<PostjobView> {
                     child: MaterialButton(
                         minWidth: MediaQuery.of(context).size.width,
                         onPressed: () {
+                          
                           if (_curPage == 2) {
                             Get.to(PostJobProfile(
                                 company: "Post Job",
                                 jobTitle:postJobController.profession.text.toString() ,
                                 subtitle: " ",
-                                // location: " ",
+                                location: postJobController.address.text.toString(),
                                 salary: "${postJobController.salaryStr.text}-${postJobController.salaryEnd.text}",
                                 qualification: postJobController.quali.text.toString(),
                                 language: postJobController.language.text.toString(),
-                                require: postJobController.selectedSKills[0],
+                                require: postJobController.selectedSKills.join(','),
                                 jobInfo: postJobController.description.text.toString(),
                                 experience: postJobController.exp.text.toString(),
                                 jobTime: postJobController.jobTmg.text.toString(),

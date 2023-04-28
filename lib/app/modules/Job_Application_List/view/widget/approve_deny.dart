@@ -23,8 +23,9 @@ class ApproveDenyCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                     radius: 20.sp,
-                    backgroundImage:
-                        AssetImage("assets/images/profile_icon.png")),
+                    backgroundImage:NetworkImage(image)
+                        // AssetImage("assets/images/profile_icon.png")
+                        ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Column(

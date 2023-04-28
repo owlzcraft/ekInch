@@ -1,22 +1,16 @@
-import 'package:circle_progress_bar/circle_progress_bar.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/job/job_list/widget/job_card.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/job/job_list/widget/recentJob.dart';
-import 'package:ekinch/app/modules/listpostjob/views/review.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
-import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import '../../../../../widgets/math_utils.dart';
 import '../../../../custom_widget/color.dart';
 import '../../../../models/myJobModel.dart';
 import '../../../dashboard/widgets/navigation.dart';
 import '../../../settings/views/settings_view.dart';
-import '../../profile/view/job_profile.dart';
 
 class JobsList extends StatefulWidget {
   JobsList({super.key, required this.userList});
@@ -146,20 +140,22 @@ class JobsListState extends State<JobsList> with TickerProviderStateMixin {
                 ),
               ),
               Column(
-                
-                children: (widget.userList).map((e) => JobCardWidget(
-                  photo:e.photo.toString(),
-                    contactNumber: e.phoneNumber.toString(),
-                    dob: "${e.info!.ageDt}/${e.info!.ageMn}/${e.info!.ageYr}",
-                    experience: "${e.info!.expYr} years Experience",
-                    gender: e.info!.gender.toString(),
-                    language: "Need change",
-                    location: e.address.toString(),
-                    name: e.firstName.toString(),
-                    profession: e.info!.interest.toString(),
-                    qualification: e.info!.qualification.toString(),
-                    schoolBoard: e.info!.scMed.toString(),
-                    skills: e.info!.skillsLst!.join(','))).toList(),
+                children: (widget.userList)
+                    .map((e) => JobCardWidget(
+                        photo: e.photo.toString(),
+                        contactNumber: e.phoneNumber.toString(),
+                        dob:
+                            "${e.info!.ageDt}/${e.info!.ageMn}/${e.info!.ageYr}",
+                        experience: "${e.info!.expYr} years Experience",
+                        gender: e.info!.gender.toString(),
+                        language: e.info!.engProfi.toString(),
+                        location: e.address.toString(),
+                        name: e.firstName.toString(),
+                        profession: e.info!.interest.toString(),
+                        qualification: e.info!.qualification.toString(),
+                        schoolBoard: e.info!.scMed.toString(),
+                        skills: e.info!.skillsLst!.join(',')))
+                    .toList(),
               )
             ])),
 

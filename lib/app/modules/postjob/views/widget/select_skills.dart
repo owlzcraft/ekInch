@@ -56,7 +56,7 @@ class _SelectSkillCardState extends State<SelectSkillCard> {
             child: Text(
               widget.title,
               style: GoogleFonts.kadwa(
-                  fontSize: F14(),
+                  fontSize: F16(),
                   color: const Color.fromARGB(255, 91, 90, 90)),
             ),
           ),

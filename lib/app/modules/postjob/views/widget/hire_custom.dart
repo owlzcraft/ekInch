@@ -13,7 +13,7 @@ class HireColumn extends StatelessWidget {
   TextEditingController salaryStController;
   TextEditingController salaryEndController;
   TextEditingController expController;
-  TextEditingController locController;
+  // TextEditingController locController;
   TextEditingController langController;
   TextEditingController qualification;
   TextEditingController gender;
@@ -24,7 +24,7 @@ class HireColumn extends StatelessWidget {
       required this.salaryStController,
       required this.salaryEndController,
       required this.expController,
-      required this.locController,
+      // required this.locController,
       required this.langController,
       required this.qualification,
       required this.gender});
@@ -145,21 +145,17 @@ class HireColumn extends StatelessWidget {
             ),
             DropdownFieldFull(
               controller: expController,
-              hintText: "Enter Experience",
-              items: const [
-                '1 Year',
-                '2 Year',
-                '3 Year',
-              ],
+              hintText: "Enter Experience in Years",
+              items: const ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            DropdownFieldFull(
-              controller: locController,
-              hintText: "Select Location",
-              items: const ['Roorkee', 'Talhedi', 'Laksar', "Noida", "Delhi"],
-            ),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.height * 0.02,
+            // ),
+            // DropdownFieldFull(
+            //   controller: locController,
+            //   hintText: "Select Location",
+            //   items: const ['Roorkee', 'Talhedi', 'Laksar', "Noida", "Delhi"],
+            // ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
             ),
@@ -179,15 +175,24 @@ class HireColumn extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
+
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.002,
             ),
-            Dropdownprefix(
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.height * 0.02,
+            // ),
+            DropdownFieldFull(
               controller: qualification,
               hintText: "Enter Graduation",
-              // dropdownvalue: '10th',
               items: const ['8th Pass', '10th Pass', '12th Pass', 'Graduated'],
             ),
+            // Dropdownprefix(
+            //   controller: qualification,
+            //   hintText: "Enter Graduation",
+            //   // dropdownvalue: '10th',
+            //   items: const ['8th Pass', '10th Pass', '12th Pass', 'Graduated'],
+            // ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.01,
             ),
