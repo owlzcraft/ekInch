@@ -42,7 +42,7 @@ class _SettingsViewState extends State<SettingsView> {
         "img": "assets/images/bell.png",
       },
       {
-        "title": "My Jobs ",
+        "title": "My Jobs",
         "img": "assets/images/message.png",
       },
        {

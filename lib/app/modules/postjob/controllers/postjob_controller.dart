@@ -30,7 +30,7 @@ class PostjobController extends GetxController {
   TextEditingController description = TextEditingController();
   TextEditingController jobTmg = TextEditingController();
   List selectedSKills = [];
-  late int professionId;
+   var professionId=0.obs;
   var activeCategory = 0.obs;
   DateTime now = new DateTime.now();
   var jobCategory = [
@@ -173,46 +173,46 @@ class PostjobController extends GetxController {
     final fcmToken = LocalStorage.shared.getFCMToken();
     switch (profession.text) {
       case "Labour":
-        professionId = 0;
+        professionId = 0.obs;
         break;
       case "Plaster Mistri":
-        professionId = 1;
+        professionId = 1.obs;
         break;
       case "Weilding":
-        professionId = 2;
+        professionId = 2.obs;
         break;
       case "Plumber":
-        professionId = 3;
+        professionId = 3.obs;
         break;
       case "Electrcian":
-        professionId = 4;
+        professionId = 4.obs;
         break;
       case "Painter":
-        professionId = 5;
+        professionId = 5.obs;
         break;
       case "Carpenter":
-        professionId = 6;
+        professionId = 6.obs;
         break;
       case "TilesMistri":
-        professionId = 7;
+        professionId = 7.obs;
         break;
       case "Engineer":
-        professionId = 8;
+        professionId = 8.obs;
         break;
       case "Architect":
-        professionId = 9;
+        professionId = 9.obs;
         break;
       case "Dukandar":
-        professionId = 10;
+        professionId = 10.obs;
         break;
       case "Contractor":
-        professionId = 11;
+        professionId = 11.obs;
         break;
       case "Customer":
-        professionId = 12;
+        professionId = 12.obs;
         break;
       case "Other":
-        professionId = 13;
+        professionId = 13.obs;
         break;
 
       default:
@@ -222,7 +222,7 @@ class PostjobController extends GetxController {
           List<dynamic> ListData = [
             {
               "gender": gender.text.toString(),
-              "profession": professionId,
+              "profession": professionId.value,
               "capacity": capacity.text,
               "slr_str": salaryStr.text,
               "slr_end": salaryEnd.text,

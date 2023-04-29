@@ -1,5 +1,7 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class work extends StatelessWidget {
   final String image;
@@ -13,7 +15,7 @@ class work extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 5.0),
+      padding:  EdgeInsets.symmetric(horizontal: 6.sp, vertical: 5.sp),
       child: Stack(
         children: [
           Container(
@@ -22,11 +24,14 @@ class work extends StatelessWidget {
             decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(image),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
                 borderRadius: BorderRadius.circular(20.sp)),
           ),
           Positioned(
+            left: 0.0,
+            right: 0.0,
+            top: 0.0,
               child: Container(
             decoration: BoxDecoration(
                 gradient: const LinearGradient(
@@ -41,7 +46,6 @@ class work extends StatelessWidget {
           )),
           Positioned(
               left: 40.sp,
-              bottom: 60.sp,
               right: 40.sp,
               top: 60.sp,
               child: Image.asset(
@@ -68,7 +72,7 @@ class work extends StatelessWidget {
                 children: [
                   Text(
                     text,
-                    style: const TextStyle(color: Colors.white),
+                    style:  GoogleFonts.kadwa(height: 1.2,color: Colors.white),
                   ),
                   Row(children: [
                     Icon(
@@ -80,7 +84,7 @@ class work extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 4.0,right: 10.0),
                       child: Text(view,
                           style:
-                              TextStyle(fontSize: 9.5.sp, color: Colors.white)),
+                              GoogleFonts.kadwa(fontSize: F12(), color: Colors.white)),
                     ),
                     Icon(
                       Icons.thumb_up_off_alt_outlined,
@@ -91,7 +95,7 @@ class work extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 4.0,right: 10.0),
                       child: Text(view,
                           style:
-                              TextStyle(fontSize: 10.5.sp, color: Colors.white)),
+                              GoogleFonts.kadwa(fontSize: F12(), color: Colors.white)),
                     )
                   ])
                 ],

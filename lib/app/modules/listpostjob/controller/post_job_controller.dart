@@ -10,6 +10,7 @@ import '../../../../../widgets/snack_bar.dart';
 import '../../../networking/api_result.dart';
 import '../../../networking/app_repo.dart';
 import '../../../utils/localStorage.dart';
+import '../views/jobDescription.dart';
 
 class ApplyJobController extends GetxController {
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
@@ -28,7 +29,20 @@ class ApplyJobController extends GetxController {
   TextEditingController description = TextEditingController();
   TextEditingController jobTmg = TextEditingController();
 //Apply Job
-  Future<void> ApplyJob(String jobId) async {
+  Future<void> ApplyJob(
+      String jobId,
+      address,
+      jobTime,
+      require,
+      location,
+      qualification,
+      language,
+      salary,
+      jobInfo,
+      jobTitle,
+      experience,
+      company,
+      subtitle) async {
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
@@ -46,6 +60,23 @@ class ApplyJobController extends GetxController {
                   if (value!.ok == true) {
                     print(value.msg.toString());
                     // GetJobList();
+                    // print("777777777777777777777777777");
+                    Get.off(JobDescription(
+                      address: address,
+                      jobTime: jobTime,
+                      require: require,
+                      location: location,
+                      qualification: qualification,
+                      status: false,
+                      language: language,
+                      salary: salary,
+                      jobInfo: jobInfo,
+                      jobId: jobId,
+                      jobTitle: jobTitle,
+                      experience: experience,
+                      company: company,
+                      subtitle: subtitle,
+                    ));
                   } else if (value.ok == false) {
                     // Get.back();
                     errorSnackbar(value.msg.toString());

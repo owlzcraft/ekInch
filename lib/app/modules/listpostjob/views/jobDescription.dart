@@ -1,4 +1,5 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:ekinch/app/modules/listpostjob/controller/post_job_controller.dart';
 import 'package:ekinch/app/modules/listpostjob/views/widget/key_value.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
@@ -31,6 +32,7 @@ class JobDescription extends StatefulWidget {
   final String jobTime;
   // final String interviewTime;
   final String address;
+  final bool status;
 
   JobDescription(
       {super.key,
@@ -46,9 +48,9 @@ class JobDescription extends StatefulWidget {
       required this.jobInfo,
       required this.experience,
       required this.jobTime,
+      required this.status,
       // required this.interviewTime,
       required this.address});
-
   @override
   JobDescriptionState createState() => JobDescriptionState();
 }
@@ -65,6 +67,7 @@ class JobDescriptionState extends State<JobDescription>
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      bottomNavigationBar: BottomTabView(2),
       drawer: const SettingsView(),
       appBar: AppBar(
         elevation: 0,
@@ -236,11 +239,28 @@ class JobDescriptionState extends State<JobDescription>
                           ],
                         ),
                       ))),
-              Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: DynamicButton("Apply Now", true, () {
-                    controller.ApplyJob(widget.jobId);
-                  })),
+              (widget.status)
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      child: DynamicButton("Apply Now", true, () {
+                        controller.ApplyJob(
+                            widget.jobId,
+                            widget.address,
+                            widget.jobTime,
+                            widget.require,
+                            widget.location,
+                            widget.qualification,
+                            widget.language,
+                            widget.salary,
+                            widget.jobInfo,
+                            widget.jobTitle,
+                            widget.experience,
+                            widget.company,
+                            widget.subtitle);
+                      }))
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      child: DynamicButton("Applied", false, () {})),
             ],
           ),
         ),

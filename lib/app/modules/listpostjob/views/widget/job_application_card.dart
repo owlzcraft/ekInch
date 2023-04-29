@@ -31,10 +31,12 @@ class JobApplicationCard extends StatelessWidget {
   String views;
   String companyName;
   String address;
+  bool status;
 
   JobApplicationCard({
     super.key,
     required this.image,
+    required this.status,
     required this.title,
     required this.companyName,
     required this.jobId,
@@ -60,6 +62,7 @@ class JobApplicationCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Get.to(JobDescription(
+            status: status,
             company: companyName,
             jobTitle: title,
             subtitle: subtitle,
@@ -270,7 +273,20 @@ class JobApplicationCard extends StatelessWidget {
                               shape: StadiumBorder(),
                             ),
                             onPressed: () {
-                              controller.ApplyJob(jobId);
+                              controller.ApplyJob(
+                                  jobId,
+                                  address,
+                                  jobTime,
+                                  require,
+                                  location,
+                                  qualification,
+                                  language,
+                                  salary,
+                                  jobInfo,
+                                  title,
+                                  experience,
+                                  companyName,
+                                  subtitle);
                             },
                             child: Text(
                               'Apply Now',

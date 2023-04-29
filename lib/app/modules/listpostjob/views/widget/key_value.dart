@@ -17,22 +17,19 @@ CustomRow(BuildContext context, String key, String value) {
           )),
       SizedBox(
         width: MediaQuery.of(context).size.width * 0.03,
-        child: Text(
+        child: const Text(
           ":",
           style: TextStyle(color: KColors.textGrey),
         ),
       ),
-      Expanded(
-        child:
-         Text(
-          value,
-          style: GoogleFonts.kadwa(
-              color: KColors.textGrey,
-              height: 1.3,
-              fontSize: F16(),
-              fontWeight: FontWeight.w400),
-        ),
-      )
+      Text(
+       value,
+       style: GoogleFonts.kadwa(
+           color: KColors.textGrey,
+           height: 1.3,
+           fontSize: F16(),
+           fontWeight: FontWeight.w400),
+        )
     ],
   );
 }

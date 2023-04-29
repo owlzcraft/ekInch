@@ -5,6 +5,7 @@ import 'package:ekinch/app/modules/Job_Application_List/view/job_application_vie
 import 'package:ekinch/app/modules/company/contoller/company_controller.dart';
 import 'package:ekinch/app/modules/company/view/company_view.dart';
 import 'package:ekinch/app/modules/listpostjob/controller/post_job_controller.dart';
+import 'package:ekinch/app/modules/myJobs/controller/myjobcontroller.dart';
 import 'package:ekinch/app/modules/myJobs/view/job_applied.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/MyVideos/views/my_videos_view.dart';
@@ -30,6 +31,7 @@ Widget SettingListItem(String image, String title) {
   var resumeController = Get.put(ResumeController());
   var feedbackController = Get.put(FeedbackController());
   var jobpostListController = Get.put(JobPostListController());
+  var appliedJobController = Get.put(AppliedJobController());
 
   return GestureDetector(
     onTap: () {
@@ -52,10 +54,10 @@ Widget SettingListItem(String image, String title) {
           // Get.to(JobApplicationListView());
           break;
         case "My Jobs":
-          Get.to(MyJobsView());
+          appliedJobController.appliedJobList();
           break;
         case "My Videos (Reels)":
-          Get.to(ReelsView());
+          Get.to(MyVideosView());
           break;
         case "Notifications":
           Get.to(NotificationView());

@@ -5,13 +5,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../models/job_applied_list.dart';
 import '../../../listpostjob/views/widget/job_application_card.dart';
 import '../../../postjob/widgets/shortDropDown.dart';
 import 'job_applied_card.dart';
 
 class JobsApplied extends StatelessWidget {
   bool noData;
-  JobsApplied({super.key,required this.noData});
+  List<Data> JobAppliedList;
+  JobsApplied({super.key, required this.noData, required this.JobAppliedList});
 
   @override
   Widget build(BuildContext context) {
@@ -58,52 +60,35 @@ class JobsApplied extends StatelessWidget {
         ),
       ),
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
-        child: 
-        
-        Column(
-          children: 
-          noData?[Padding(
-            padding: const EdgeInsets.symmetric(vertical:60.0),
-            child: Center(child: Text("No Jobs Applied",style: GoogleFonts.kadwa(fontSize: F18(),color: Colors.grey),)),
-          )]:
-          [
-            JobAppliedCard(
-                "assets/images/ultra1.png",
-                "Plumber Engineer",
-                "UltraTech Cement, India",
-                "2 days ago",
-                "10th Pass",
-                "2 years experience",
-                "1800-2500/month",
-                "Roorkee",
-                "Good speak hindi ",
-                "78 already applied"),
-            JobAppliedCard(
-                "assets/images/ultra1.png",
-                "Plumber Engineer",
-                "UltraTech Cement, India",
-                "30 days ago",
-                "10th Pass",
-                "2 years experience",
-                "1800-2500/month",
-                "Roorkee",
-                "Good speak hindi ",
-                "10 already applied"),
-            JobAppliedCard(
-                "assets/images/ultra1.png",
-                "Plumber Engineer",
-                "UltraTech Cement, India",
-                "2 days ago",
-                "10th Pass",
-                "2 years experience",
-                "1800-2500/month",
-                "Roorkee",
-                "Good speak hindi ",
-                "78 already applied"),
-          ],
-        ),
-      ),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
+          // child: Column(
+          //   children: noData
+          //       ?
+          //           Padding(
+          //             padding: const EdgeInsets.symmetric(vertical: 60.0),
+          //             child: Center(
+          //                 child: Text(
+          //               "No Jobs Applied",
+          //               style: GoogleFonts.kadwa(
+          //                   fontSize: F18(), color: Colors.grey),
+          //             )),
+          //           )
+
+          // :
+          child: Column(
+              children: (JobAppliedList)
+                  .map((e) => JobAppliedCard(
+                      experience: e.job!.jobDetails[0].exp.toString(),
+                      image: e.job!.company.photo.toString(),
+                      language: e.job!.jobDetails[0].lngSpk.toString(),
+                      location: e.job!.company.address.toString(),
+                      qualification: e.job!.jobDetails[0].qual.toString(),
+                      salary: "${e.job!.jobDetails[0].slrStr.toString()}",
+                      subtitle: "",
+                      time: "",
+                      title: e.job!.title.toString(),
+                      views: "already applied"))
+                  .toList()))
     ]));
   }
 }

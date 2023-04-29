@@ -15,6 +15,7 @@ import '../models/categories_video.dart';
 import '../models/company_profile.dart';
 import '../models/getCategories.dart';
 import '../models/get_feedback.dart';
+import '../models/job_applied_list.dart';
 import '../models/language_model.dart';
 import '../models/login_model.dart';
 import '../models/otp_model.dart';
@@ -320,6 +321,23 @@ class APIRepository {
       final response =
           await dioClient!.post(ServiceConstants.FEEDBACK, data: data);
       final FeedbackModel model = FeedbackModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+  //Get List of Applied Jobs
+
+  Future<ApiResult<JobAppliedListModel>> appliedJobList(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.APPLIEDJOBLIST, data: data);
+      final JobAppliedListModel model = JobAppliedListModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {

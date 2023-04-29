@@ -1,5 +1,6 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/awards_certificate.dart/view/widget/grid_view.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:ekinch/app/modules/listpostjob/views/widget/key_value.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
 import 'package:ekinch/app/modules/myJobs/view/widget/jobs.dart';
@@ -15,22 +16,21 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
+import '../../../models/job_applied_list.dart';
 import '../../../utils/localStorage.dart';
 import '../../notication/view/notification_view.dart';
 import '../../profile/views/profile_view.dart';
 import '../../settings/views/settings_view.dart';
 
 class MyJobsView extends StatefulWidget {
-  MyJobsView({
-    super.key,
-  });
+  List<Data> jobAppliedList;
+  MyJobsView({super.key, required this.jobAppliedList});
 
   @override
   MyJobsViewState createState() => MyJobsViewState();
 }
 
-class MyJobsViewState extends State<MyJobsView>
-    with TickerProviderStateMixin {
+class MyJobsViewState extends State<MyJobsView> with TickerProviderStateMixin {
   TabController? _tabController;
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -45,6 +45,7 @@ class MyJobsViewState extends State<MyJobsView>
       length: 2,
       child: Scaffold(
         key: scaffoldKey,
+        bottomNavigationBar: BottomTabView(2),
         drawer: const SettingsView(),
         appBar: AppBar(
           elevation: 0.0,
@@ -142,8 +143,12 @@ class MyJobsViewState extends State<MyJobsView>
         body: TabBarView(
           controller: _tabController,
           children: [
-           JobsApplied(noData:true),
-RecentJobs()      ],
+            JobsApplied(
+              noData: false,
+              JobAppliedList: widget.jobAppliedList,
+            ),
+            RecentJobs()
+          ],
         ),
       ),
     );

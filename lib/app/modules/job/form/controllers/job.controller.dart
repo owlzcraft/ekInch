@@ -36,7 +36,7 @@ class GetJobController extends GetxController {
   }
 
   // ignore: non_constant_identifier_names
-  late List<Data> ApplyJobList;
+  List<Data> ApplyJobList = [];
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
   List selectedSKills = [];
   late String result;
@@ -68,7 +68,7 @@ class GetJobController extends GetxController {
     //   // var data=;
     //   // data = data + "," + selectedSKills[i];
     //   result = data;
-     
+
     // }
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
@@ -133,7 +133,8 @@ class GetJobController extends GetxController {
                   if (value!.ok == true) {
                     print("done");
                     ApplyJobList = value.data!;
-                    Get.off(JobView(JobList: ApplyJobList));
+                    print(value.data);
+                    Get.to(JobView(JobList: ApplyJobList));
                   } else if (value.ok == false) {
                     Get.back();
                     errorSnackbar("Please Refresh");
