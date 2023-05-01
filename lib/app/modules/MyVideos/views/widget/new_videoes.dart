@@ -1,9 +1,8 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
+import 'package:ekinch/app/modules/MyVideos/views/widget/reelCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../dashboard/widgets/work.widget.dart';
 
 class NewVideo extends StatelessWidget {
   String videoU;
@@ -21,7 +20,8 @@ class NewVideo extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 18.sp),
+                padding:
+                    EdgeInsets.symmetric(horizontal: 18.sp, vertical: 10.sp),
                 child: Text(
                   "Verified Videos",
                   style: GoogleFonts.kadwa(
@@ -76,34 +76,46 @@ class NewVideo extends StatelessWidget {
           SizedBox(
             width: MediaQuery.of(context).size.width,
             // width: MediaQuery.of(context).size.width ,
-            height: MediaQuery.of(context).size.height / 2,
+            // height: MediaQuery.of(context).size.height / 2,
             // color: Color.fromARGB(255, 14, 14, 14),
             child: GridView.count(
-              crossAxisCount: 2,
-              children: [ work(
-                image: 'assets/images/sample_thumb.jpg',
-                text: 'Hello',
-                view: '256',
-              ),work(
-                image: 'assets/images/sample_thumb.jpg',
-                text: 'Hello',
-                view: '256',
-              ),work(
-                image: 'assets/images/sample_thumb.jpg',
-                text: 'Hello',
-                view: '256',
-              ),work(
-                image: 'assets/images/sample_thumb.jpg',
-                text: 'Hello',
-                view: '256',
-              )
-        ]),
+                physics: const ScrollPhysics(),
+                reverse: false,
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                children: [
+                  reelCard(
+                    image: 'assets/images/splash_screen.png',
+                    text: 'Hello',
+                    view: '256',
+                  ),
+                  reelCard(
+                    image: 'assets/images/splash_screen.png',
+                    text: 'Hello',
+                    view: '256',
+                  ),
+                  reelCard(
+                    image: 'assets/images/sample_thumb.jpg',
+                    text: 'Hello',
+                    view: '256',
+                  ),
+                  reelCard(
+                    image: 'assets/images/sample_thumb.jpg',
+                    text: 'Hello',
+                    view: '256',
+                  ),
+                  reelCard(
+                    image: 'assets/images/sample_thumb.jpg',
+                    text: 'Hello',
+                    view: '256',
+                  )
+                ]),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 18),
+                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10.sp),
                 child: Text(
                   "Unverified Videos",
                   style: GoogleFonts.kadwa(
@@ -111,7 +123,7 @@ class NewVideo extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 12),
+                padding: const EdgeInsets.only(right: 12),
                 child: Text(
                   "${videoU} videos",
                   style: GoogleFonts.kadwa(
@@ -121,6 +133,39 @@ class NewVideo extends StatelessWidget {
                 ),
               )
             ],
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            // width: MediaQuery.of(context).size.width ,
+            height: MediaQuery.of(context).size.height / 2,
+            // color: Color.fromARGB(255, 14, 14, 14),
+            child: GridView.count(
+                physics: const ScrollPhysics(),
+                reverse: false,
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                children: [
+                  reelCard(
+                    image: 'assets/images/splash_screen.png',
+                    text: 'Hello',
+                    view: '256',
+                  ),
+                  reelCard(
+                    image: 'assets/images/splash_screen.png',
+                    text: 'Hello',
+                    view: '256',
+                  ),
+                  reelCard(
+                    image: 'assets/images/sample_thumb.jpg',
+                    text: 'Hello',
+                    view: '256',
+                  ),
+                  reelCard(
+                    image: 'assets/images/sample_thumb.jpg',
+                    text: 'Hello',
+                    view: '256',
+                  )
+                ]),
           ),
 
           // SizedBox(
@@ -132,7 +177,7 @@ class NewVideo extends StatelessWidget {
           //     crossAxisCount: 2,
           //     children: List.generate(3, (index) {
           //       return Center(
-          //         child: work(image: 'assets/images/sample_thumb.jpg'),
+          //         child: reelCard(image: 'assets/images/sample_thumb.jpg'),
           //       );
           //     }),
           //   ),

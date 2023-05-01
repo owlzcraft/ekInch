@@ -38,7 +38,7 @@ class JobPostListController extends GetxController {
                   if (value!.ok == true) {
                     print("done");
                     jobList = value.data!;
-                    Get.to(JobApplicationListView(
+                    Get.off(JobApplicationListView(
                       companyAddress: value.company!.address.toString(),
                       companyName: value.company!.name.toString(),
                       companyPhoto: value.company!.photo.toString(),

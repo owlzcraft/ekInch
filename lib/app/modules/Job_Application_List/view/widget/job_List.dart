@@ -10,12 +10,14 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../listpostjob/views/widget/job_application_card.dart';
 import '../../../myJobs/view/widget/job_applied_card.dart';
 import '../../../postjob/widgets/shortDropDown.dart';
+import '../../controller/jobApplicationController.dart';
 
 class JobsApplicationList extends StatelessWidget {
   bool noData;
   String companyName;
   String companyPhoto;
   List<Data> jobPostList;
+  JobPostListController jobpostcontroller=Get.put(JobPostListController());
   JobsApplicationList(
       {super.key,
       required this.companyName,
@@ -44,7 +46,8 @@ class JobsApplicationList extends StatelessWidget {
               style: GoogleFonts.kadwa(fontSize: F16()),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {          jobpostcontroller.CompanyDataStatus();
+},
               child: SvgPicture.asset(
                 "assets/images/refresh.svg",
               ),
@@ -54,15 +57,15 @@ class JobsApplicationList extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
-        child: noData
-            ? Padding(
-                padding: const EdgeInsets.symmetric(vertical: 60.0),
-                child: Center(
-                    child: Text(
-                  "No Jobs Posted",
-                  style: GoogleFonts.kadwa(fontSize: F18(), color: Colors.grey),
-                )),
-              )
+        child: (jobPostList.length == 0||jobPostList[0].jobDetails!.length==0)
+                        ? Center(
+                            child: Text(
+                              "0 Jobs Applied",
+                              style: GoogleFonts.kadwa(
+                                  fontSize: F24(), color: Colors.grey),
+                            ),
+                          )
+                         
             : Column(
                 children: (jobPostList)
                     .map((e) => JobApplicationRequestCard(

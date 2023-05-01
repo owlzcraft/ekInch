@@ -10,10 +10,18 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../widgets/loader.dart';
 import '../../../../widgets/math_utils.dart';
+import '../../../../widgets/snack_bar.dart';
 import '../../../generated/assets.dart';
+import '../../../models/profile_model.dart';
+import '../../../models/records_model.dart';
+import '../../../networking/api_result.dart';
+import '../../../networking/app_repo.dart';
+import '../../../utils/localStorage.dart';
 import '../../dashboard/widgets/navigation.dart';
 import '../../notication/view/notification_view.dart';
+import '../controllers/records_controller.dart';
 
 class RecordsView extends StatefulWidget {
   @override
@@ -23,46 +31,169 @@ class RecordsView extends StatefulWidget {
 class _RecordsViewState extends State<RecordsView> {
   bool visibilitylights = false;
   bool visibilityhospitals = false;
+  bool visibilitywood = false;
   bool visibilitycivil = false;
   bool visibilitybuilding = false;
   bool visibilitywielding = false;
   bool visibilityplumber = false;
   bool isDrawerOpen = false;
+  List<DataH> civilList = [];
+  List<DataH> lightList = [];
+  List<DataH> hospitalList = [];
+  List<DataH> plumberList = [];
+  List<DataH> builderList = [];
+  List<DataH> ironList = [];
+  List<DataH> woodList = [];
+
+  int categoryId = 100;
+  final APIRepository apiRepository = APIRepository(isTokenRequired: true);
+
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  RecordsController controller = Get.put(RecordsController());
+//Records
+
+  Future<void> Records(category) async {
+    final fcmToken = LocalStorage.shared.getFCMToken();
+    Get.showOverlay(
+        asyncFunction: () async {
+          switch (category) {
+            case "Civil work":
+              categoryId = 100;
+              break;
+
+            case "Electrical work":
+              categoryId = 300;
+              break;
+            case "Hospital work":
+              categoryId = 200;
+              break;
+            case "Iron work":
+              categoryId = 400;
+              break;
+            case "Plumbing work":
+              categoryId = 500;
+              break;
+            case "Building painting work":
+              categoryId = 600;
+              break;
+            case "wood work":
+              categoryId = 700;
+              break;
+          }
+          print(fcmToken);
+          final Map<String, dynamic> data = <String, dynamic>{};
+          data["userId"] = LocalStorage.shared.getnumber();
+          data["token"] = fcmToken;
+          data["catId"] = categoryId;
+
+          await apiRepository
+              .records(data)
+              .then((ApiResult<RecordsModel> value) {
+            value.when(
+                success: (value) {
+                  if (value!.ok == true) {
+                    print("working");
+                    switch (categoryId) {
+                      case 100:
+                        setState(() {
+                          civilList = value.data!;
+                        });
+                        break;
+                      case 200:
+                        setState(() {
+                          hospitalList = value.data!;
+                        });
+                        break;
+                      case 300:
+                        setState(() {
+                          lightList = value.data!;
+                        });
+                        break;
+                      case 400:
+                        setState(() {
+                          ironList = value.data!;
+                        });
+                        break;
+                      case 500:
+                        setState(() {
+                          plumberList = value.data!;
+                        });
+                        break;
+                      case 600:
+                        setState(() {
+                          builderList = value.data!;
+                        });
+                        break;
+                      case 700:
+                        setState(() {
+                          woodList = value.data!;
+                        });
+                        break;
+                    }
+                    setState(() {});
+                  } else if (value.ok == false) {
+                    errorSnackbar("Something Went Wrong");
+                  } else {
+                    errorSnackbar("Please Try After Sometime");
+                  }
+                },
+                failure: (networkExceptions) {});
+          });
+        },
+        loadingWidget: const LoadingIndicator());
+  }
 
   void showdrop1() {
     setState(() {
+      Records("Electrical work");
       visibilitylights = !visibilitylights;
     });
   }
 
   void showdrop2() {
     setState(() {
+      Records("Hospital work");
+
       visibilityhospitals = !visibilityhospitals;
     });
   }
 
   void showdrop3() {
     setState(() {
+      Records("Civil work");
+
       visibilitycivil = !visibilitycivil;
     });
   }
 
   void showdrop4() {
     setState(() {
+      Records("Plumbing work");
       visibilityplumber = !visibilityplumber;
     });
   }
 
   void showdrop5() {
     setState(() {
+      Records("Building painting work");
+
       visibilitybuilding = !visibilitybuilding;
     });
   }
 
   void showdrop6() {
     setState(() {
+      Records("Iron work");
+
       visibilitywielding = !visibilitywielding;
+    });
+  }
+
+  void showdrop7() {
+    setState(() {
+      Records("wood work");
+
+      visibilitywood = !visibilitywood;
     });
   }
 
@@ -171,7 +302,7 @@ class _RecordsViewState extends State<RecordsView> {
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Text(
-                        "Civil",
+                        "Civil work",
                         style: GoogleFonts.kadwa(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -188,12 +319,29 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilitycivil,
-              child:
-                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-              ]),
+              child: (civilList.length == 0)
+                  ? Container(
+                      color: Colors.white,
+                      width: Get.width,
+                      height: getVerticalSize(30),
+                      child: Center(
+                        child: Text(
+                          "No Data",
+                          style: GoogleFonts.kadwa(
+                              fontSize: F18(), color: Colors.grey),
+                        ),
+                      ))
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: (civilList)
+                          .map((e) => SectionCard(
+                                subtitle: e.subcatName.toString(),
+                                views: e.viewsCount.toString(),
+                                title: e.videoFileName.toString(),
+                                time: e.seenLength.toString(),
+                                videoImage: '',
+                              ))
+                          .toList()),
             ),
           ),
           InkWell(
@@ -214,7 +362,7 @@ class _RecordsViewState extends State<RecordsView> {
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Text(
-                        "Lights",
+                        "Electrical work",
                         style: GoogleFonts.kadwa(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -231,16 +379,29 @@ class _RecordsViewState extends State<RecordsView> {
               padding: const EdgeInsets.only(left: 16.0),
               child: Visibility(
                 visible: visibilitylights,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SectionCard(
-                          "Lights Part 1", "Electrician", "122", "1:80"),
-                      SectionCard(
-                          "Lights Part 1", "Electrician", "122", "1:80"),
-                      SectionCard(
-                          "Lights Part 1", "Electrician", "122", "1:80"),
-                    ]),
+                child: (lightList.length == 0)
+                    ? Container(
+                        color: Colors.white,
+                        width: Get.width,
+                        height: getVerticalSize(30),
+                        child: Center(
+                          child: Text(
+                            "No Data",
+                            style: GoogleFonts.kadwa(
+                                fontSize: F18(), color: Colors.grey),
+                          ),
+                        ))
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: (lightList)
+                            .map((e) => SectionCard(
+                                  subtitle: e.subcatName.toString(),
+                                  views: e.viewsCount.toString(),
+                                  title: e.videoFileName.toString(),
+                                  time: e.seenLength.toString(),
+                                  videoImage: '',
+                                ))
+                            .toList()),
               )),
           InkWell(
             onTap: showdrop2,
@@ -258,7 +419,7 @@ class _RecordsViewState extends State<RecordsView> {
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
                     Text(
-                      "Hospitals",
+                      "Hospitals work",
                       style: GoogleFonts.kadwa(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -274,12 +435,29 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilityhospitals,
-              child:
-                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-              ]),
+              child: (hospitalList.length == 0)
+                  ? Container(
+                      color: Colors.white,
+                      width: Get.width,
+                      height: getVerticalSize(30),
+                      child: Center(
+                        child: Text(
+                          "No Data",
+                          style: GoogleFonts.kadwa(
+                              fontSize: F18(), color: Colors.grey),
+                        ),
+                      ))
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: (hospitalList)
+                          .map((e) => SectionCard(
+                                subtitle: e.subcatName.toString(),
+                                views: e.viewsCount.toString(),
+                                title: e.videoFileName.toString(),
+                                time: e.seenLength.toString(),
+                                videoImage: 'need chane',
+                              ))
+                          .toList()),
             ),
           ),
 
@@ -301,7 +479,7 @@ class _RecordsViewState extends State<RecordsView> {
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Text(
-                        "Plumber",
+                        "Plumbing work",
                         style: GoogleFonts.kadwa(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -318,12 +496,29 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilityplumber,
-              child:
-                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-              ]),
+              child: (plumberList.length == 0)
+                  ? Container(
+                      color: Colors.white,
+                      width: Get.width,
+                      height: getVerticalSize(30),
+                      child: Center(
+                        child: Text(
+                          "No Data",
+                          style: GoogleFonts.kadwa(
+                              fontSize: F18(), color: Colors.grey),
+                        ),
+                      ))
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: (plumberList)
+                          .map((e) => SectionCard(
+                                subtitle: e.subcatName.toString(),
+                                views: e.viewsCount.toString(),
+                                title: e.videoFileName.toString(),
+                                time: e.seenLength.toString(),
+                                videoImage: '',
+                              ))
+                          .toList()),
             ),
           ),
           InkWell(
@@ -342,7 +537,7 @@ class _RecordsViewState extends State<RecordsView> {
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
                     Text(
-                      "Building",
+                      "Building painting work",
                       style: GoogleFonts.kadwa(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -358,12 +553,29 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilitybuilding,
-              child:
-                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-              ]),
+              child: (builderList.length == 0)
+                  ? Container(
+                      color: Colors.white,
+                      width: Get.width,
+                      height: getVerticalSize(30),
+                      child: Center(
+                        child: Text(
+                          "No Data",
+                          style: GoogleFonts.kadwa(
+                              fontSize: F18(), color: Colors.grey),
+                        ),
+                      ))
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: (builderList)
+                          .map((e) => SectionCard(
+                                subtitle: e.subcatName.toString(),
+                                views: e.viewsCount.toString(),
+                                title: e.videoFileName.toString(),
+                                time: e.seenLength.toString(),
+                                videoImage: '',
+                              ))
+                          .toList()),
             ),
           ),
           InkWell(
@@ -384,7 +596,7 @@ class _RecordsViewState extends State<RecordsView> {
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Text(
-                        "Wielding",
+                        "Iron Work",
                         style: GoogleFonts.kadwa(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -401,12 +613,89 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilitywielding,
-              child:
-                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-                SectionCard("Lights Part 1", "Electrician", "122", "1:80"),
-              ]),
+              child: (ironList.length == 0)
+                  ? Container(
+                      color: Colors.white,
+                      width: Get.width,
+                      height: getVerticalSize(30),
+                      child: Center(
+                        child: Text(
+                          "No Data",
+                          style: GoogleFonts.kadwa(
+                              fontSize: F18(), color: Colors.grey),
+                        ),
+                      ))
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: (ironList)
+                          .map((e) => SectionCard(
+                                subtitle: e.subcatName.toString(),
+                                views: e.viewsCount.toString(),
+                                title: e.videoFileName.toString(),
+                                time: e.seenLength.toString(),
+                                videoImage: '',
+                              ))
+                          .toList()),
+            ),
+          ),
+          InkWell(
+            onTap: showdrop7,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15.0),
+              child: Container(
+                width: getHorizontalSize(396),
+                height: getVerticalSize(50),
+                decoration: BoxDecoration(
+                    color: KColors.greybg,
+                    borderRadius: BorderRadius.circular(6)),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 14.9, right: 14.9),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Text(
+                        "Wood work",
+                        style: GoogleFonts.kadwa(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: F18()),
+                      ),
+                      Icon(Icons.arrow_drop_down_sharp, size: 30),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Visibility(
+              visible: visibilitywood,
+              child: (woodList.length == 0)
+                  ? Container(
+                      color: Colors.white,
+                      width: Get.width,
+                      height: getVerticalSize(30),
+                      child: Center(
+                        child: Text(
+                          "No Data",
+                          style: GoogleFonts.kadwa(
+                              fontSize: F18(), color: Colors.grey),
+                        ),
+                      ))
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: (woodList)
+                          .map((e) => SectionCard(
+                                subtitle: e.subcatName.toString(),
+                                views: e.viewsCount.toString(),
+                                title: e.videoFileName.toString(),
+                                time: e.seenLength.toString(),
+                                videoImage: '',
+                              ))
+                          .toList()),
             ),
           ),
           // bottomSheet: Column(children: [

@@ -15,8 +15,8 @@ class ServiceConstants {
   static const String COMPANYPROFILESTATUS = 'profile/is_comp_upt/';
   static const String RECENTLYADDED = 'profile/rec_users/';
   static const String JOBLIST = 'v2/jobs/get_all_jobs';
-
   static const String POSTJOB = 'v2/jobs/create_job';
+  static const String FILTERJOBS = 'v2/jobs/jobs_with_prof';
   static const String LANGUAGESELECTION = 'profile/frontend_vars/';
   static const String GETCATEGORIES = 'profile/view_categories/';
   static const String CATEGORIESVIDEO = 'get_video';
@@ -30,4 +30,6 @@ class ServiceConstants {
   static const String AVAILABLEUSERLIST = 'profile/list_users/';
   static const String APPLICATIONREQUESTLIST = 'v2/jobs/job_applis';
   static const String APPLIEDJOBLIST = 'v2/jobs/applied_jobs';
+    static const String RECORDS = 'profile/fetch_mrk_shts/';
+
 }

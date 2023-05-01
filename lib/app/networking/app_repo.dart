@@ -22,6 +22,7 @@ import '../models/otp_model.dart';
 import '../models/profile_model.dart';
 import '../models/profile_pic.dart';
 import '../models/recentlAdded.dart';
+import '../models/records_model.dart';
 import '../models/reel_model.dart';
 import '../models/update_getJob.dart';
 import '../utils/localStorage.dart';
@@ -147,6 +148,24 @@ class APIRepository {
           await dioClient!.post(ServiceConstants.COMPANYPROFILE, data: data);
       final CompanyProfileModel model =
           CompanyProfileModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  //Register
+
+  Future<ApiResult<RecordsModel>> records(Map<String, dynamic> data) async {
+    try {
+      print("*********************************************");
+      final response =
+          await dioClient!.post(ServiceConstants.RECORDS, data: data);
+      final RecordsModel model = RecordsModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -477,6 +496,23 @@ class APIRepository {
       final response =
           await dioClient!.post(ServiceConstants.GETJOBFORM, data: data);
       final GetJobFormModel model = GetJobFormModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  
+  Future<ApiResult<AvailableJobsModel>> FilterJob(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.FILTERJOBS, data: data);
+      final AvailableJobsModel model = AvailableJobsModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {

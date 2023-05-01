@@ -5,7 +5,9 @@ import 'package:ekinch/app/modules/postjob/views/Confirmationjob.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
 import 'package:get/get.dart';
+import 'dart:convert';
 
+import "package:http/http.dart" as http;
 import '../../../../widgets/loader.dart';
 import '../../../../widgets/snack_bar.dart';
 import '../../../networking/api_result.dart';
@@ -168,6 +170,25 @@ class PostjobController extends GetxController {
         loadingWidget: const LoadingIndicator());
   }
 
+  //Get Lat and log
+Future<Map<String, double>> getLatLong(String cityName) async {
+  final apiKey = 'YOUR_API_KEY'; // Replace with your Google Maps API key
+  final query = Uri.encodeFull(cityName);
+  final url = Uri.parse(
+      'https://maps.googleapis.com/maps/api/geocode/json?address=$query&key=$apiKey');
+
+  final response = await http.get(url);
+  final data = json.decode(response.body);
+
+  if (data['status'] == 'OK') {
+    final location = data['results'][0]['geometry']['location'];
+    final lat = location['lat'];
+    final lng = location['lng'];
+    return {'lat': lat, 'lng': lng};
+  } else {
+    throw Exception('Failed to get location data');
+  }
+}
 //POST JOB
   Future<void> PostJob() async {
     final fcmToken = LocalStorage.shared.getFCMToken();
@@ -253,7 +274,7 @@ class PostjobController extends GetxController {
           data["location"] = address.text;
           data["lattitude"] = "5362";//need change
           data["longitude"] = "5362";//need change
-          data["city"] = "need change";
+          data["city"] = address.text;
           data["posted_by"] = LocalStorage.shared.getUID();
           data["title"] = profession.text;
           data["description"] = description.text;

@@ -1,4 +1,5 @@
 import 'package:ekinch/app/generated/assets.dart';
+import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:ekinch/app/modules/postjob/controllers/postjob_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +54,7 @@ class _PostJobProfileState extends State<PostJobProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomTabView(2),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: AppBar(
