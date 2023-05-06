@@ -52,26 +52,33 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   List<List<String>> cat_list = [
-    ['Electrician', ' Civil Engineer'],
     [
-      'Plumber',
-      ' Mechanic',
+      "Labour",
+      "Plaster Mistri",
     ],
     [
-      'Painter',
-      'Carpenter',
+      "Tiles Mistri",
+      "Plumber",
     ],
     [
-      'Hospital Work',
+      "Electrician",
+      "Painter",
+    ],
+    [
+      "Carpenter",
       'Wielder',
     ],
     [
-      'Home Mechanic',
-      'Construction',
+      "Bar bender",
+      "Contractor",
     ],
     [
-      'Floor & Tiles',
-      'Helper',
+      "Dukandar",
+      "Customer",
+    ],
+    [
+      "Engineer",
+      "Architect",
     ]
   ];
   List selected = [0, 0];
@@ -97,200 +104,206 @@ class _RegisterViewState extends State<RegisterView> {
         ),
         elevation: 0,
       ),
-      body: Container(
-        width: Get.width,
-        color: Colors.white,
-        child: Column(children: [
-          Container(
-            margin: EdgeInsets.only(top: Get.height / 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          padding: const EdgeInsets.symmetric(vertical: 7),
-                          child: Text(
-                            "Registration",
-                            style: GoogleFonts.kadwa(
-                                fontWeight: FontWeight.w700,
-                                fontSize: F32(),
-                                color: const Color(0xFF525252)),
-                          )),
-                      Text(
-                        "Select Your Job",
-                        style: GoogleFonts.kadwa(
-                            fontSize: F22(),
-                            color: const Color(0xFF767676),
-                            height: 1.4),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: SvgPicture.asset(Assets.regis),
-                )
-              ],
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Form(
-              key: _globalKey,
-              child: TextFormField(
-                  validator: ((value) {
-                    if (value!.isEmpty) {
-                      return "Please Enter Your Name";
-                    } else {
-                      return null;
-                    }
-                  }),
-                  onTap: () {
-                    setState(() {
-                      drop = false;
-                    });
-                  },
-                  controller: registerController.name,
-                  cursorColor: const Color(0xFFFEBA0F),
-                  style: TextStyle(fontSize: F20()),
-                  decoration: InputDecoration(
-                      hintStyle: TextStyle(
-                          fontSize: F20(), color: const Color(0xFF999898)),
-                      hintText: "Enter Full Name",
-                      focusedBorder: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                          borderSide: BorderSide(color: Color(0xFFFEBA0F))),
-                      border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                          borderSide: BorderSide(color: Color(0xFFCDCDCD))))),
-            ),
-          ),
-          (!drop)
-              ? GestureDetector(
-                  onTap: () {
-                    FocusManager.instance.primaryFocus?.unfocus();
-                    Timer(const Duration(milliseconds: 500), openCategories);
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                            width: 1, color: const Color(0xFFCDCDCD))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SingleChildScrollView(
+        child: Container(
+          width: Get.width,
+          color: Colors.white,
+          child: Column(children: [
+            Container(
+              margin: EdgeInsets.only(top: Get.height / 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Container(
+                            padding: const EdgeInsets.symmetric(vertical: 7),
+                            child: Text(
+                              "Registration",
+                              style: GoogleFonts.kadwa(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: F32(),
+                                  color: const Color(0xFF525252)),
+                            )),
                         Text(
-                          cat_list[selected[0]][selected[1]],
+                          "Select Your Job",
                           style: GoogleFonts.kadwa(
-                              color: const Color(0xFF999898), fontSize: F20()),
+                              fontSize: F22(),
+                              color: const Color(0xFF767676),
+                              height: 1.4),
                         ),
-                        Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Color(0xFF999999),
-                          size: 30.sp,
-                        )
                       ],
                     ),
                   ),
-                )
-              : Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                      children: cat_list.map((e) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              FocusManager.instance.primaryFocus?.unfocus();
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SvgPicture.asset(Assets.regis),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Form(
+                key: _globalKey,
+                child: TextFormField(
+                    validator: ((value) {
+                      if (value!.isEmpty) {
+                        return "Please Enter Your Name";
+                      } else {
+                        return null;
+                      }
+                    }),
+                    onTap: () {
+                      setState(() {
+                        drop = false;
+                      });
+                    },
+                    controller: registerController.name,
+                    cursorColor: const Color(0xFFFEBA0F),
+                    style: TextStyle(fontSize: F20()),
+                    decoration: InputDecoration(
+                        hintStyle: TextStyle(
+                            fontSize: F20(), color: const Color(0xFF999898)),
+                        hintText: "Enter Full Name",
+                        focusedBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide: BorderSide(color: Color(0xFFFEBA0F))),
+                        border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            borderSide: BorderSide(color: Color(0xFFCDCDCD))))),
+              ),
+            ),
+            (!drop)
+                ? GestureDetector(
+                    onTap: () {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      Timer(const Duration(milliseconds: 500), openCategories);
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                              width: 1, color: const Color(0xFFCDCDCD))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            cat_list[selected[0]][selected[1]],
+                            style: GoogleFonts.kadwa(
+                                color: const Color(0xFF999898),
+                                fontSize: F20()),
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_down,
+                            color: Color(0xFF999999),
+                            size: 30.sp,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                : Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                        children: cat_list.map((e) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                FocusManager.instance.primaryFocus?.unfocus();
 
-                              drop = false;
-                              selected = [cat_list.indexOf(e), 0];
+                                drop = false;
+                                selected = [cat_list.indexOf(e), 0];
 
-                              registerController.profession.text =
-                                  cat_list[cat_list.indexOf(e)][0] as String;
-                            });
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(top: 10),
-                            child: Text(
-                              e[0],
-                              style: TextStyle(
-                                  fontSize: F20(),
+                                registerController.profession.text =
+                                    cat_list[cat_list.indexOf(e)][0] as String;
+                              });
+                            },
+                            child: Container(
+                              child: Text(
+                                e[0],
+                                style: GoogleFonts.kadwa(
+                                    fontSize: F20(),
+                                    color: (cat_list[selected[0]]
+                                                [selected[1]] ==
+                                            e[0])
+                                        ? Colors.white
+                                        : Colors.black),
+                              ),
+                              padding: const EdgeInsets.all(15),
+                              decoration: BoxDecoration(
                                   color: (cat_list[selected[0]][selected[1]] ==
                                           e[0])
-                                      ? Colors.white
-                                      : Colors.black),
+                                      ? Colors.black
+                                      : const Color(0xFFF8F8F8),
+                                  border: Border.all(
+                                      color: const Color(0xFFCDCDCD)),
+                                  borderRadius: BorderRadius.circular(6)),
                             ),
-                            padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                                color:
-                                    (cat_list[selected[0]][selected[1]] == e[0])
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                FocusManager.instance.primaryFocus?.unfocus();
+
+                                drop = false;
+                                selected = [cat_list.indexOf(e), 1];
+
+                                registerController.profession.text =
+                                    cat_list[cat_list.indexOf(e)][1] as String;
+                                print(registerController.profession.text);
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical:4.0,horizontal: 2.0),
+                              child: Container(
+                                child: Text(
+                                  e[1],
+                                  style: GoogleFonts.kadwa(
+                                      fontSize: F20(),
+                                      color: (cat_list[selected[0]]
+                                                  [selected[1]] ==
+                                              e[1])
+                                          ? Colors.white
+                                          : Colors.black),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 25),
+                                decoration: BoxDecoration(
+                                    color: (cat_list[selected[0]][selected[1]] ==
+                                            e[1])
                                         ? Colors.black
                                         : const Color(0xFFF8F8F8),
-                                border:
-                                    Border.all(color: const Color(0xFFCDCDCD)),
-                                borderRadius: BorderRadius.circular(6)),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              FocusManager.instance.primaryFocus?.unfocus();
-
-                              drop = false;
-                              selected = [cat_list.indexOf(e), 1];
-
-                              registerController.profession.text =
-                                  cat_list[cat_list.indexOf(e)][1] as String;
-                              print(registerController.profession.text);
-                            });
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(top: 10),
-                            child: Text(
-                              e[1],
-                              style: TextStyle(
-                                  fontSize: F20(),
-                                  color: (cat_list[selected[0]][selected[1]] ==
-                                          e[1])
-                                      ? Colors.white
-                                      : Colors.black),
+                                    border: Border.all(
+                                        color: const Color(0xFFCDCDCD)),
+                                    borderRadius: BorderRadius.circular(6)),
+                              ),
                             ),
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 25),
-                            decoration: BoxDecoration(
-                                color:
-                                    (cat_list[selected[0]][selected[1]] == e[1])
-                                        ? Colors.black
-                                        : const Color(0xFFF8F8F8),
-                                border:
-                                    Border.all(color: const Color(0xFFCDCDCD)),
-                                borderRadius: BorderRadius.circular(6)),
                           ),
-                        ),
-                      ],
-                    );
-                  }).toList()),
-                ),
-          Container(
-            margin: const EdgeInsets.only(top: 35, left: 16.0, right: 16.0),
-            child: DynamicButton("Proceed", true, () {
-              check();
-            }),
-          )
-        ]),
+                        ],
+                      );
+                    }).toList()),
+                  ),
+            Container(
+              margin: const EdgeInsets.only(top: 35, left: 16.0, right: 16.0),
+              child: DynamicButton("Proceed", true, () {
+                check();
+              }),
+            )
+          ]),
+        ),
       ),
     );
   }
@@ -299,7 +312,7 @@ class _RegisterViewState extends State<RegisterView> {
     final _isValid = _globalKey.currentState!.validate();
     print(_isValid);
     if (_isValid) {
-      LocalStorage.shared.saveLoggedIn();
+      LocalStorage.shared.saveLoggedIn(true);
       registerController.register(latitude, longitude);
     } else {
       errorSnackbar("Please Enter Your Name");

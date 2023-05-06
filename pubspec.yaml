@@ -27,7 +27,6 @@ dependencies:
   flutter_image_slideshow: ^0.1.4
   flutter_custom_tab_bar: ^1.2.1
   persistent_bottom_nav_bar: ^5.0.2
-  velocity_x: ^3.6.0
   intl_phone_number_input: ^0.7.2
   intl_phone_field: ^3.1.0
   # video_viewer: ^1.2.7
@@ -47,12 +46,20 @@ dependencies:
   permission_handler: ^10.2.0
   geolocator: ^9.0.2
   bottom_sheet: ^3.1.2
+  shared_preferences: ^2.1.0
+  share: ^2.0.4
+  device_apps: ^2.2.0
+  share_plus: ^4.5.3
+  flutter_localization: ^0.1.10
+  video_thumbnail: ^0.5.3
+
   # chewie: ^1.4.0
   # video_player: ^2.6.0
   # card_swiper: ^2.0.4
   # flutter_multiselect: ^1.0.0
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.9.2"
   flutter_lints: 2.0.0
   flutter_test:
     sdk: flutter

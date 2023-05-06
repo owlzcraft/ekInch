@@ -4,17 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:get/get.dart';
 // import 'package:video_player/video_player.dart';
-import 'package:dio/dio.dart' as dio;
 import 'package:image_picker/image_picker.dart';
-import 'package:mime_type/mime_type.dart';
 import '../../../../widgets/loader.dart';
 import '../../../../widgets/snack_bar.dart';
-import '../../../models/profile_model.dart';
 import '../../../models/reel_model.dart';
 import '../../../networking/api_result.dart';
 import '../../../networking/app_repo.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/localStorage.dart';
+// import 'package:video_thumbnail/video_thumbnail.dart';
 
 class DashboardController extends GetxController {
   //TODO: Implement DashboardController
@@ -22,7 +20,7 @@ class DashboardController extends GetxController {
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
   late List<Data> ReelsListApi;
   late List<RData> RecentlyAddedListApi;
-  late List CivilListApi;
+  late List<RCategory> CivilListApi;
 
   final count = 0.obs;
   late ScrollController scrollController;
@@ -71,14 +69,14 @@ class DashboardController extends GetxController {
             value.when(
                 success: (value) {
                   // if (value!.msg == "success") {
-                    ReelsListApi = value!.data!;
-                    // GetCivilList();
-                    // GetRecentlyAdded();
-                    Get.to(DashboardView(
+                  ReelsListApi = value!.data!;
+                  GetCivilList();
+                  // GetRecentlyAdded();
+                  // Get.to(DashboardView(
 
-                      ReelsList: ReelsListApi,
-                      RecentlyAddedList: [],CivilList: [],
-                    ));
+                  //   ReelsList: ReelsListApi,
+                  //   RecentlyAddedList: [],CivilList: [],
+                  // ));
                   // } else if (value.msg == "page") {
                   //   // Get.back();
                   //   errorSnackbar("Please Refresh");
@@ -100,20 +98,20 @@ class DashboardController extends GetxController {
         asyncFunction: () async {
           print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
-          data["userId"] = LocalStorage.shared.getnumber().toString();
+          data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
-
+          data['uid'] = LocalStorage.shared.getUID();
           await apiRepository
               .recentlyAdded(data)
               .then((ApiResult<RecentlyAddedModel> value) {
             value.when(
                 success: (value) {
                   RecentlyAddedListApi = value!.data;
-                   Get.to(DashboardView(
-                      ReelsList: ReelsListApi,
-                      RecentlyAddedList: RecentlyAddedListApi,
-                      CivilList: [],
-                    ));
+                  Get.to(DashboardView(
+                    ReelsList: ReelsListApi,
+                    RecentlyAddedList: RecentlyAddedListApi,
+                    CivilList: [],
+                  ));
                   // GetCivilList();
                 },
                 failure: (networkExceptions) {});
@@ -122,7 +120,7 @@ class DashboardController extends GetxController {
         loadingWidget: const LoadingIndicator());
   }
 
-  //Get Reels
+  //Get Category Reels
   Future<void> GetCivilList() async {
     print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
@@ -147,7 +145,7 @@ class DashboardController extends GetxController {
                     Get.to(DashboardView(
                       ReelsList: ReelsListApi,
                       RecentlyAddedList: [],
-                      CivilList: ReelsListApi,
+                      CivilList: CivilListApi,
                     ));
                   } else if (value.status == 400) {
                     errorSnackbar("Please Refresh");
@@ -208,9 +206,17 @@ class DashboardController extends GetxController {
       if (!GetUtils.isVideo(source.path)) {
         errorSnackbar('Invalid File');
         return;
+      } else {
+        isVideoSelected.value = true;
+        //      final thumbnailPath = await VideoThumbnail.thumbnailFile(
+        //   video: source,
+        //   thumbnailPath: (await getTemporaryDirectory()).path,
+        //   imageFormat: ImageFormat.JPEG,
+        //   maxHeight: 100,
+        //   quality: 25,
+        // );
+        reel.value = source.path;
       }
-      isVideoSelected.value = true;
-      reel.value = source.path;
       // changeLogo();
     } else {
       isVideoSelected.value = false;
@@ -228,9 +234,18 @@ class DashboardController extends GetxController {
       if (!GetUtils.isVideo(source.path)) {
         errorSnackbar('Invalid File');
         return;
+      } else {
+        isVideoSelected.value = true;
+        //     final thumbnailPath = await VideoThumbnail.thumbnailFile(
+        //   video: source,
+        //   thumbnailPath: (await getTemporaryDirectory()).path,
+        //   imageFormat: ImageFormat.JPEG,
+        //   maxHeight: 100,
+        //   quality: 25,
+        // );
+
+        reel.value = source.path;
       }
-      isVideoSelected.value = true;
-      reel.value = source.path;
       // changeLogo();
     } else {
       isVideoSelected.value = false;

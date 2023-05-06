@@ -12,7 +12,7 @@ import 'job_applied_card.dart';
 
 class JobsApplied extends StatelessWidget {
   bool noData;
-  List<Data> JobAppliedList;
+  List<Data> JobAppliedList = [];
   JobsApplied({super.key, required this.noData, required this.JobAppliedList});
 
   @override
@@ -75,20 +75,28 @@ class JobsApplied extends StatelessWidget {
           //           )
 
           // :
-          child: Column(
-              children: (JobAppliedList)
-                  .map((e) => JobAppliedCard(
-                      experience: e.job!.jobDetails[0].exp.toString(),
-                      image: e.job!.company.photo.toString(),
-                      language: e.job!.jobDetails[0].lngSpk.toString(),
-                      location: e.job!.company.address.toString(),
-                      qualification: e.job!.jobDetails[0].qual.toString(),
-                      salary: "${e.job!.jobDetails[0].slrStr.toString()}",
-                      subtitle: "",
-                      time: "",
-                      title: e.job!.title.toString(),
-                      views: "already applied"))
-                  .toList()))
+          child: (JobAppliedList.length == 0)
+              ? Center(
+                  child: Text(
+                    "No Data",
+                    style:
+                        GoogleFonts.kadwa(fontSize: F18(), color: Colors.grey),
+                  ),
+                )
+              : Column(
+                  children: (JobAppliedList)
+                      .map((e) => JobAppliedCard(
+                          experience: e.job!.jobDetails[0].exp.toString(),
+                          image: e.job!.company.photo.toString(),
+                          language: e.job!.jobDetails[0].lngSpk.toString(),
+                          location: e.job!.company.address.toString(),
+                          qualification: e.job!.jobDetails[0].qual.toString(),
+                          salary: "${e.job!.jobDetails[0].slrStr.toString()}",
+                          subtitle: "",
+                          time: "",
+                          title: e.job!.title.toString(),
+                          views: "already applied"))
+                      .toList()))
     ]));
   }
 }

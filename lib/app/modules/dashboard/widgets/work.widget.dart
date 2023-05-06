@@ -76,17 +76,17 @@ class work extends StatelessWidget {
                     style:  GoogleFonts.kadwa(height: 1.2,color: Colors.white),
                   ),
                   Row(children: [
-                    Icon(
-                      Icons.remove_red_eye_outlined,
-                      size: 8.sp,
-                      color: Colors.white,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 4.0,right: 10.0),
-                      child: Text(view,
-                          style:
-                              GoogleFonts.kadwa(fontSize: F12(), color: Colors.white)),
-                    ),
+                    // Icon(
+                    //   Icons.remove_red_eye_outlined,
+                    //   size: 8.sp,
+                    //   color: Colors.white,
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 4.0,right: 10.0),
+                    //   child: Text(view,
+                    //       style:
+                    //           GoogleFonts.kadwa(fontSize: F12(), color: Colors.white)),
+                    // ),
                     Icon(
                       Icons.thumb_up_off_alt_outlined,
                       size: 10.sp,

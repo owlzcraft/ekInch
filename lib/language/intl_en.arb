@@ -1,0 +1,6 @@
+{
+  "@@locale": "en",
+  "appTitle": "My App",
+  "helloWorld": "Hello, World!",
+  // add any other localized strings you need
+}

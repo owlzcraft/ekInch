@@ -1,5 +1,9 @@
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:get/get.dart';
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:share/share.dart';
 
 class ReferNearnController extends GetxController {
   //TODO: Implement ReferNearnController
@@ -83,6 +87,9 @@ class ReferNearnController extends GetxController {
       "points": 0
     },
   ];
+
+  //share
+
   @override
   void onInit() {
     super.onInit();

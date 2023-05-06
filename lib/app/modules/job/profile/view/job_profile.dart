@@ -116,8 +116,7 @@ class JobProfileView extends StatelessWidget {
                               backgroundColor: Color(0xFFE0E0E0),
                               child: CircleAvatar(
                                 radius: 42.sp,
-                                backgroundImage:
-                                    NetworkImage(photo),
+                                backgroundImage: NetworkImage(photo),
                               ),
                             ),
                           ],
@@ -198,7 +197,8 @@ class JobProfileView extends StatelessWidget {
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 4.0,),
+                          horizontal: 4.0,
+                        ),
                         child: Divider(
                           color: KColors.greyLine,
                         ),
@@ -348,20 +348,27 @@ class JobProfileView extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(Assets.suitcase),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5.0),
-                              child: Text(
-                                skill,
-                                style: GoogleFonts.kadwa(
-                                    color: KColors.textGrey,
-                                    fontSize: F16(),
-                                    fontWeight: FontWeight.w400),
+                        child: Expanded(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SvgPicture.asset(Assets.suitcase),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 5.0),
+                                  child: Text(
+                                    
+                                    skill,
+                                    style: GoogleFonts.kadwa(
+                                      height: 1.3,
+                                        color: KColors.textGrey,
+                                        fontSize: F16(),
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
@@ -448,9 +455,10 @@ class JobProfileView extends StatelessWidget {
                 size: 50.2,
                 text: "Hire",
                 textStyle: GoogleFonts.kadwa(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700,
-                    fontSize: F24(),),
+                  color: Colors.black,
+                  fontWeight: FontWeight.w700,
+                  fontSize: F24(),
+                ),
               ),
             ),
           ],

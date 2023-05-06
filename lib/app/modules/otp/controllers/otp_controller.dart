@@ -24,6 +24,8 @@ class OtpController extends GetxController {
 
   final APIRepository apiRepository = APIRepository(isTokenRequired: false);
   final otp = "".obs;
+  String latitude = '';
+  String longitude='';
   //TODO: Implement OtpController
   Timer? _timer;
   int remainingSeconds = 1;
@@ -38,6 +40,13 @@ class OtpController extends GetxController {
   void onReady() {
     startTimer(60);
     super.onReady();
+  }
+
+  Future<void> getCurrentAddress() async {
+    var coords = await getCurrentLocation();
+
+    latitude = coords['latitude'].toString();
+    longitude = coords['longitude'].toString();
   }
 
   Future<void> verifyOtp() async {
@@ -61,13 +70,15 @@ class OtpController extends GetxController {
                     LocalStorage.shared.saveFCMTOKEN(value.token as String);
                     LocalStorage.shared.saveUID(value.uid as int);
                     print(LocalStorage.shared.getFCMToken());
+                    LocalStorage.shared.saveLoggedIn(true);
                     if (value.new_pro_check == true) {
                       Get.offAndToNamed(Routes.REGISTER);
                     } else {
-                      register(" ", " ");
+                      getCurrentAddress();
+                      register(latitude, longitude);
                     }
                   } else if (value.ok == false) {
-                    errorSnackbar("InCorrent Otp");
+                    errorSnackbar("Incorrent Otp");
                   } else {
                     errorSnackbar("Please Try After Sometime");
                   }
@@ -98,6 +109,7 @@ class OtpController extends GetxController {
                     LocalStorage.shared.saveUserData(value);
                     LocalStorage.shared
                         .savephoto(value.userData!.photo as String);
+                    LocalStorage.shared.saveLoggedIn(true);
                     dashboardController.GetDashboard();
                     // Get.to(DashboardView(ReelsList: [], RecentlyAddedList: [],));
                   } else if (value.status == 400) {

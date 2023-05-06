@@ -7,6 +7,7 @@ import 'package:ekinch/app/modules/company/view/company_view.dart';
 import 'package:ekinch/app/modules/listpostjob/controller/post_job_controller.dart';
 import 'package:ekinch/app/modules/myJobs/controller/myjobcontroller.dart';
 import 'package:ekinch/app/modules/myJobs/view/job_applied.dart';
+import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/MyVideos/views/my_videos_view.dart';
 import 'package:ekinch/app/modules/certificate/view/certificate.dart';
@@ -67,6 +68,7 @@ Widget SettingListItem(String image, String title) {
           break;
         case "Log Out":
           Get.until((route) => route.isFirst);
+          LocalStorage.shared.saveLoggedIn(false);
           Get.off(MobileView());
 
           break;

@@ -22,14 +22,16 @@ CustomRow(BuildContext context, String key, String value) {
           style: TextStyle(color: KColors.textGrey),
         ),
       ),
-      Text(
-       value,
-       style: GoogleFonts.kadwa(
-           color: KColors.textGrey,
-           height: 1.3,
-           fontSize: F16(),
-           fontWeight: FontWeight.w400),
-        )
+      Expanded(
+        child: Text(
+         value,
+         style: GoogleFonts.kadwa(
+             color: KColors.textGrey,
+             height: 1.3,
+             fontSize: F16(),
+             fontWeight: FontWeight.w400),
+          ),
+      )
     ],
   );
 }

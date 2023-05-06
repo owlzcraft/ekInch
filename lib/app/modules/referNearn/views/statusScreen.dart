@@ -1,3 +1,4 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
@@ -15,32 +16,40 @@ class StatusScreen extends StatelessWidget {
   ReferNearnController controller = Get.put(ReferNearnController());
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        color: Color(0xFFF1F1F1),
-        child: Column(
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25),
-              child: TextFeildWhite(
-                controller: _searchcontroller,
-                hintText: 'Job, location and other',
-              ),
-            ),
-            Column(
-              children: controller.statusData
-                  .map((e) => StatusWidget(
-                      e['image'].toString(),
-                      e['name'].toString(),
-                      e['sentOn'].toString(),
-                      e['code'].toString(),
-                      e['accepted'] == "true" ? true : false,
-                      int.parse(e['points'].toString())))
-                  .toList(),
-            )
-          ],
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Container(
+        height: Get.width,
+        color: Colors.white,
+        child: Center(
+          child: Text(
+            "No Data",
+            style: GoogleFonts.kadwa(fontSize: F20(), color: Colors.grey),
+          ),
         ),
+        // child: Column(
+        //   children: [
+        //     Padding(
+        //       padding:
+        //           const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25),
+        //       child: TextFeildWhite(
+        //         controller: _searchcontroller,
+        //         hintText: 'Job, location and other',
+        //       ),
+        //     ),
+        //     Column(
+        //       children: controller.statusData
+        //           .map((e) => StatusWidget(
+        //               e['image'].toString(),
+        //               e['name'].toString(),
+        //               e['sentOn'].toString(),
+        //               e['code'].toString(),
+        //               e['accepted'] == "true" ? true : false,
+        //               int.parse(e['points'].toString())))
+        //           .toList(),
+        //     )
+        //   ],
+        // ),
       ),
     );
   }

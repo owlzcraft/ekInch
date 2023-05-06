@@ -1,0 +1,6 @@
+{
+  "@@locale": "hi",
+  "appTitle": "मेरा ऐप",
+  "helloWorld": "नमस्ते, दुनिया!",
+  // add any other localized strings you need
+}

@@ -7,7 +7,9 @@ import 'package:ekinch/app/modules/plans/view/plan_view.dart';
 import 'package:ekinch/app/modules/recently_added/view/recently_added.dart';
 import 'package:ekinch/app/modules/reels/bindings/reels_binding.dart';
 import 'package:ekinch/app/modules/service/view/service_news.dart';
+import 'package:ekinch/app/networking/app_repo.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
+import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/custom_widget/dash_header.dart';
@@ -25,16 +27,19 @@ import 'package:ekinch/app/modules/dashboard/widgets/work.widget.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 // import 'package:video_player/video_player.dart';
+import '../../../../widgets/loader.dart';
 import '../../../custom_widget/color.dart';
+import '../../../models/categories_video.dart';
 import '../../../models/recentlAdded.dart';
 import '../../../models/reel_model.dart';
+import '../../../networking/api_result.dart';
 import '../controllers/dashboard_controller.dart';
 import 'package:get/get.dart';
 
 class DashboardView extends StatefulWidget {
   List<Data> ReelsList;
   List<RData> RecentlyAddedList;
-  List CivilList;
+  List<RCategory> CivilList;
 
   DashboardView(
       {super.key,
@@ -135,7 +140,65 @@ class _DashboardStateView extends State<DashboardView>
           });
     }
 
+    final APIRepository apiRepository = APIRepository(isTokenRequired: true);
+
+    String categoryId = "100";
     var tabViewVideoes = "civil";
+    Future<void> GetCategoryReels(int index) async {
+      print("**************************");
+      switch (index) {
+        case 0:
+          categoryId = "100";
+          break;
+        case 1:
+          categoryId = "200";
+          break;
+        case 2:
+          categoryId = "300";
+          break;
+        case 3:
+          categoryId = "400";
+          break;
+        case 4:
+          categoryId = "500";
+          break;
+        case 5:
+          categoryId = "600";
+          break;
+        case 6:
+          categoryId = "700";
+          break;
+      }
+      final fcmToken = LocalStorage.shared.getFCMToken();
+      Get.showOverlay(
+          asyncFunction: () async {
+            print(fcmToken);
+            final Map<String, dynamic> data = <String, dynamic>{};
+            data["token"] = fcmToken;
+            data["userId"] = LocalStorage.shared.getnumber();
+            data["categoryId"] = categoryId;
+
+            await apiRepository
+                .categoryVidoesData(data)
+                .then((ApiResult<CategoriesVideoModel> value) {
+              value.when(
+                  success: (value) {
+                    if (value!.status == 200) {
+                      setState(() {
+                        widget.CivilList = value.category!;
+                      });
+                    } else if (value.status == 400) {
+                      errorSnackbar("Please Refresh");
+                    } else {
+                      errorSnackbar("Check Internet Connection");
+                    }
+                  },
+                  failure: (networkExceptions) {});
+            });
+          },
+          loadingWidget: const LoadingIndicator());
+    }
+
     var videoCategoryData = [
       {
         "image": "assets/images/civil.png",
@@ -180,6 +243,32 @@ class _DashboardStateView extends State<DashboardView>
     //   {"name": "Electrician", "active": false},
     //   {"name": "Plumber", "active": false},
     // ];
+    showWarning() {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              insetPadding: EdgeInsets.all(8.sp),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    4.0,
+                  ),
+                ),
+              ),
+              title: Center(
+                child: Text(
+                  "Coming Soon",
+                  style: GoogleFonts.kadwa(
+                      color: Colors.black,
+                      fontSize: F28(),
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
+            );
+          });
+    }
+
     showDataAlertSubscribe(String title, String subtitle) {
       showDialog(
           context: context,
@@ -520,8 +609,9 @@ class _DashboardStateView extends State<DashboardView>
                         Tab(
                           child: InkWell(
                             onTap: () {
-                              showDataAlertSubscribe("Professionl",
-                                  "Do you want to continue with Professionals, Please do Subscribe");
+                              showWarning();
+                              //   showDataAlertSubscribe("Professionl",
+                              //       "Do you want to continue with Professionals, Please do Subscribe");
                             },
                             child: Text("Professional",
                                 style: GoogleFonts.kadwa(
@@ -548,14 +638,14 @@ class _DashboardStateView extends State<DashboardView>
                           color: KColors.orange, fontSize: F18()),
                       unselectedLabelStyle: GoogleFonts.kadwa(
                           color: KColors.lightGrey, fontSize: F18()),
-                      unselectedBorderColor: KColors.greybg,
+                      unselectedBorderColor:
+                          Color.fromRGBO(238, 238, 238, 0.992),
                       radius: 100,
-                      onTap: (int) {
-                        print(int);
-                        setState(() {
-                          activeTab = int;
-                          print(activeTab);
-                        });
+                      onTap: (index) {
+                        var tabViewVideoes = "civil";
+
+                        print(index);
+                        GetCategoryReels(index);
                       },
                       tabs: [
                         Tab(
@@ -739,72 +829,73 @@ class _DashboardStateView extends State<DashboardView>
             SliverList(
               delegate: SliverChildListDelegate.fixed(
                 [
-                  Visibility(
-                    visible: (activeTab == 0),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.symmetric(horizontal: 10.sp),
-                      child: Row(
-                        // children: (widget.CivilList)
-                        //         .map((e) => work(
-                        //               image: e.thumbnail,
-                        //               view: e.view,
-                        //               text: e.title,
-                        //             ))
-                        //         .toList(),
-                        children: [
-                          work(
-                            image: 'assets/images/sample_thumb.jpg',
-                            text: '',
-                            view: '',
-                          ),
-                          work(
-                            image: 'assets/images/sample_thumb.jpg',
-                            text: '',
-                            view: '',
-                          ),
-                          work(
-                            image: 'assets/images/sample_thumb.jpg',
-                            text: '',
-                            view: '',
-                          ),
-                          work(
-                            image: 'assets/images/sample_thumb.jpg',
-                            text: '',
-                            view: '',
-                          ),
-                          work(
-                            image: 'assets/images/sample_thumb.jpg',
-                            text: '',
-                            view: '',
-                          ),
-                          work(
-                            image: 'assets/images/sample_thumb.jpg',
-                            text: '',
-                            view: '',
-                          ),
-                          work(
-                            image: 'assets/images/sample_thumb.jpg',
-                            text: '',
-                            view: '',
-                          ),
-                          work(
-                            image: 'assets/images/sample_thumb.jpg',
-                            text: '',
-                            view: '',
-                          ),
-                          work(
-                            image: 'assets/images/sample_thumb.jpg',
-                            text: '',
-                            view: '',
-                          ),
-                          work(
-                            image: 'assets/images/sample_thumb.jpg',
-                            text: '',
-                            view: '',
-                          ),
-                        ],
-                      ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.symmetric(horizontal: 10.sp),
+                    child: Row(
+                      children: (widget.CivilList)
+                          .map((e) => work(
+                                image: e.subCategories[0].subCategoryData[0]
+                                    .coursesImage,
+                                view: e.subCategories[0].subCategoryData[0]
+                                    .totalLikes
+                                    .toString(),
+                                text:
+                                    e.subCategories[0].subCategoryData[0].title,
+                              ))
+                          .toList(),
+                      // children: [
+                      //   work(
+                      //     image: 'assets/images/sample_thumb.jpg',
+                      //     text: '',
+                      //     view: '',
+                      //   ),
+                      //   work(
+                      //     image: 'assets/images/sample_thumb.jpg',
+                      //     text: '',
+                      //     view: '',
+                      //   ),
+                      //   work(
+                      //     image: 'assets/images/sample_thumb.jpg',
+                      //     text: '',
+                      //     view: '',
+                      //   ),
+                      //   work(
+                      //     image: 'assets/images/sample_thumb.jpg',
+                      //     text: '',
+                      //     view: '',
+                      //   ),
+                      //   work(
+                      //     image: 'assets/images/sample_thumb.jpg',
+                      //     text: '',
+                      //     view: '',
+                      //   ),
+                      //   work(
+                      //     image: 'assets/images/sample_thumb.jpg',
+                      //     text: '',
+                      //     view: '',
+                      //   ),
+                      //   work(
+                      //     image: 'assets/images/sample_thumb.jpg',
+                      //     text: '',
+                      //     view: '',
+                      //   ),
+                      //   work(
+                      //     image: 'assets/images/sample_thumb.jpg',
+                      //     text: '',
+                      //     view: '',
+                      //   ),
+                      //   work(
+                      //     image: 'assets/images/sample_thumb.jpg',
+                      //     text: '',
+                      //     view: '',
+                      //   ),
+                      //   work(
+                      //     image: 'assets/images/sample_thumb.jpg',
+                      //     text: '',
+                      //     view: '',
+                      //   ),
+                      // ],
                     ),
                   ),
                 ],
@@ -976,34 +1067,17 @@ class _DashboardStateView extends State<DashboardView>
                     scrollDirection: Axis.horizontal,
                     padding: EdgeInsets.symmetric(horizontal: 12.sp),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        HeroProfile(
-                            "assets/images/profile.jpg",
-                            "Electrician",
-                            "Ashok Kumar",
-                            "Roorkee",
-                            "18 Oct, 2022",
-                            "12:10AM",
-                            "10min"),
-                        HeroProfile(
-                            "assets/images/profile.jpg",
-                            "Electrician",
-                            "Ashok Kumar",
-                            "Roorkee",
-                            "18 Oct, 2022",
-                            "12:10AM",
-                            "10min"),
-                        HeroProfile(
-                            "assets/images/profile.jpg",
-                            "Electrician",
-                            "Ashok Kumar",
-                            "Roorkee",
-                            "18 Oct, 2022",
-                            "12:10AM",
-                            "10min")
-                      ],
-                    ),
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: (widget.RecentlyAddedList)
+                            .map((e) => HeroProfile(
+                                date: e.dateOfReg.toString(),
+                                image: e.photo.toString(),
+                                job: e.profession.toString(),
+                                location: e.address.toString(),
+                                minutes: "",
+                                name: e.firstName.toString(),
+                                time: ""))
+                            .toList()),
                   ),
                 ],
               ),
@@ -1024,11 +1098,11 @@ class _DashboardStateView extends State<DashboardView>
   }
 }
 
-Widget buildCard(int index) => Container(
-      color: Colors.red,
-      width: 150.sp,
-      height: 150.sp,
-      child: Center(
-        child: Text('$index'),
-      ),
-    );
+// Widget buildCard(int index) => Container(
+//       color: Colors.red,
+//       width: 150.sp,
+//       height: 150.sp,
+//       child: Center(
+//         child: Text('$index'),
+//       ),
+//     );

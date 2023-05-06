@@ -22,8 +22,8 @@ class LocalStorage {
     return localBox.read("WALKTHROUGH") ?? false;
   }
 
-  void saveLoggedIn() {
-    localBox.write("IS_LOGGED_IN", true);
+  void saveLoggedIn(bool value) {
+    localBox.write("IS_LOGGED_IN", value);
   }
 
   bool isLoggedIn() {

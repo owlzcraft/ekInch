@@ -132,7 +132,7 @@ class GetJobController extends GetxController {
                 success: (value) {
                   if (value!.ok == true) {
                     print("done");
-                    ApplyJobList = value.data!;
+                    ApplyJobList = value.data;
                     print(value.data);
                     Get.to(JobView(JobList: ApplyJobList,filterValue: "Select Category",));
                   } else if (value.ok == false) {

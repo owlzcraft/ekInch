@@ -29,7 +29,7 @@ class ProfileController extends GetxController {
   TextEditingController experience = TextEditingController();
   TextEditingController otp = TextEditingController();
 
-  var professionList = ["Electrician", "Painter", "Labour", "Mechanic"];
+  // var professionList = ["Electrician", "Painter", "Labour", "Mechanic"];
   final count = 0.obs;
   final picker = ImagePicker();
   final isProfileSelected = false.obs;
@@ -110,7 +110,6 @@ class ProfileController extends GetxController {
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
-
           data["name"] = name.text;
           data["profession"] = profession.text;
           data["years"] = experience.text;
@@ -123,7 +122,7 @@ class ProfileController extends GetxController {
                 success: (value) {
                   if (value!.status == 200) {
                     LocalStorage.shared.saveUserData(value);
-
+                    errorSnackbar("Profile Updated");
                     Get.offAndToNamed(Routes.PROFILE);
                   } else if (value.status == 400) {
                     errorSnackbar("Something Went Wrong");

@@ -18,18 +18,7 @@ class ApplyJobController extends GetxController {
   var activeCategory = 0.obs;
   int professionId = 0;
   TextEditingController filter = TextEditingController();
-  TextEditingController profession = TextEditingController();
-  TextEditingController capacity = TextEditingController();
-  TextEditingController salaryStr = TextEditingController();
-  TextEditingController salaryEnd = TextEditingController();
-  TextEditingController exp = TextEditingController();
-  TextEditingController address = TextEditingController();
-  TextEditingController language = TextEditingController();
-  TextEditingController quali = TextEditingController();
-  TextEditingController gender = TextEditingController();
-  TextEditingController skills = TextEditingController();
-  TextEditingController description = TextEditingController();
-  TextEditingController jobTmg = TextEditingController();
+ 
 //Apply Job
   Future<void> ApplyJob(
       String jobId,

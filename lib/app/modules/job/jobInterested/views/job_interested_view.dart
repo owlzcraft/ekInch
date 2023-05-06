@@ -69,14 +69,14 @@ class JobInterestedView extends StatelessWidget {
                 crossAxisSpacing: 2,
                 mainAxisSpacing: 5,
                 children: controller.jobCategory.map((e) {
-                  int index = controller.jobCategory.indexOf(e);
+                  var index = controller.jobCategory.indexOf(e);
                   return Obx(() => GestureDetector(
                         onTap: () {
                           print(controller.activeCategory.value);
                           print(controller
                                   .jobCategory[controller.activeCategory.value]
                               ['title']);
-                          controller.profession.text = controller
+                          controller.profession1.text = controller
                               .jobCategory[controller.activeCategory.value]
                                   ['title']
                               .toString();

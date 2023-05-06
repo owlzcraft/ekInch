@@ -60,7 +60,6 @@ class _RecordsViewState extends State<RecordsView> {
             case "Civil work":
               categoryId = 100;
               break;
-
             case "Electrical work":
               categoryId = 300;
               break;
@@ -145,14 +144,18 @@ class _RecordsViewState extends State<RecordsView> {
 
   void showdrop1() {
     setState(() {
-      Records("Electrical work");
+      if (visibilitylights == false) {
+        Records("Electrical work");
+      }
       visibilitylights = !visibilitylights;
     });
   }
 
   void showdrop2() {
     setState(() {
-      Records("Hospital work");
+      if (visibilityhospitals == false) {
+        Records("Hospital work");
+      }
 
       visibilityhospitals = !visibilityhospitals;
     });
@@ -160,7 +163,9 @@ class _RecordsViewState extends State<RecordsView> {
 
   void showdrop3() {
     setState(() {
-      Records("Civil work");
+      if (visibilitycivil == false) {
+        Records("Civil work");
+      }
 
       visibilitycivil = !visibilitycivil;
     });
@@ -168,14 +173,18 @@ class _RecordsViewState extends State<RecordsView> {
 
   void showdrop4() {
     setState(() {
-      Records("Plumbing work");
+      if (visibilityplumber == false) {
+        Records("Plumbing work");
+      }
       visibilityplumber = !visibilityplumber;
     });
   }
 
   void showdrop5() {
     setState(() {
-      Records("Building painting work");
+      if (visibilitybuilding == false) {
+        Records("Building painting work");
+      }
 
       visibilitybuilding = !visibilitybuilding;
     });
@@ -183,7 +192,9 @@ class _RecordsViewState extends State<RecordsView> {
 
   void showdrop6() {
     setState(() {
-      Records("Iron work");
+      if (visibilitywielding == false) {
+        Records("Iron work");
+      }
 
       visibilitywielding = !visibilitywielding;
     });
@@ -191,7 +202,9 @@ class _RecordsViewState extends State<RecordsView> {
 
   void showdrop7() {
     setState(() {
-      Records("wood work");
+      if (visibilitywood == false) {
+        Records("wood work");
+      }
 
       visibilitywood = !visibilitywood;
     });
@@ -581,7 +594,7 @@ class _RecordsViewState extends State<RecordsView> {
           InkWell(
             onTap: showdrop6,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15.0),
+              padding: const EdgeInsets.only(top: 15.0),
               child: Container(
                 width: getHorizontalSize(396),
                 height: getVerticalSize(50),

@@ -35,18 +35,74 @@ class _ProfileViewState extends State<ProfileView> {
 
   // List of items in our dropdown menu
   final List<String> professionList = [
+    "Labour",
+    "Plaster Mistri",
+    "Tiles Mistri",
+    "Plumber",
     "Electrician",
     "Painter",
-    "Labour",
-    "Mechanic"
+    "Carpenter",
+    "Welder",
+    "Bar bender",
+    "Contractor",
+    "Dukandar",
+    "Customer",
+    "Engineer",
+    "Architect",
+    "Other"
   ];
 
   final List experienceList = [
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
+    '21',
+    '22',
+    '23',
+    '24',
+    '25',
+    '26',
+    '27',
+    '28',
+    '29',
+    '30',
+    '31',
+    '32',
+    '33',
+    '34',
+    '35',
+    '36',
+    '37',
+    '38',
+    '39',
+    '40',
+    '41',
+    '42',
+    '43',
+    '44',
+    '45',
+    '46',
+    '47',
+    '48',
+    '49',
+    '50'
   ];
 
   @override
@@ -198,7 +254,8 @@ class _ProfileViewState extends State<ProfileView> {
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: MobileTextFieldEdit(
                       context,
-                      true,"${LocalStorage.shared.getnumber()}",
+                      true,
+                      "${LocalStorage.shared.getnumber()}",
                       controller.mobileNumber,
                       "Edit",
                       "${LocalStorage.shared.getUserData()?.userId}"),
@@ -208,12 +265,12 @@ class _ProfileViewState extends State<ProfileView> {
                     controller.address.text = value as String;
                   },
                   initialValue: LocalStorage.shared
-                                .getUserData()
-                                ?.userData
-                                ?.address ==
-                            null
-                        ? "Enter Your Address"
-                        : "${LocalStorage.shared.getUserData()?.userData?.address}",
+                              .getUserData()
+                              ?.userData
+                              ?.address ==
+                          null
+                      ? "Enter Your Address"
+                      : "${LocalStorage.shared.getUserData()?.userData?.address}",
                   decoration: InputDecoration(
                     hintText: LocalStorage.shared
                                 .getUserData()

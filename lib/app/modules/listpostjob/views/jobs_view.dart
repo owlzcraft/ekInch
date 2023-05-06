@@ -1,8 +1,10 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
+import 'package:ekinch/app/modules/job/job_list/view/jobs_list.dart';
 import 'package:ekinch/app/modules/listpostjob/controller/post_job_controller.dart';
 import 'package:ekinch/app/modules/listpostjob/views/widget/job_application_card.dart';
+import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -47,7 +49,7 @@ class _JobViewState extends State<JobView> {
     "Dukandar",
     "Customer",
     "Engineer",
-    "architect",
+    "Architect",
     "other"
   ];
 
@@ -549,36 +551,30 @@ class _JobViewState extends State<JobView> {
                         : Column(
                             children: (widget.JobList)
                                 .map((e) => JobApplicationCard(
-                                      image: e.company!.photo.toString(),
+                                      image: e.company.photo.toString(),
                                       title: e.title.toString(),
                                       subtitle: e.location.toString(),
                                       time: " ",
-                                      // qualification: e.jobDetails![0].qual.toString(),
                                       experience:
                                           "${e.jobDetails![0].exp.toString()} years experience",
                                       salary:
-                                          "${e.jobDetails![0].slrStr.toString()}-{e.jobDetails![0].slrEnd.toString()}",
+                                          "${e.jobDetails![0].slrStr.toString()}-${e.jobDetails![0].slrEnd.toString()}",
                                       location: e.city.toString(),
-                                      // language: e.jobDetails![0].lngSpk.toString(),
                                       views: " ",
                                       jobInfo: e.description.toString(),
                                       jobTime: e.jobTmg.toString(),
-                                      qualification: "hsd",
-                                      require: "shd",
-                                      language: "shd",
-                                      // require: e.jobDetails![0].mustSkill.toString(),
+                                      qualification:
+                                          e.jobDetails![0].qual.toString(),
+                                      require:
+                                          e.jobDetails![0].mustSkill.join(', '),
+                                      language:
+                                          e.jobDetails![0].lngSpk.toString(),
                                       address: e.company!.address.toString(),
                                       companyName: e.company!.name.toString(),
                                       jobId: e.id.toString(),
-                                      // status: false,
                                       status: e.applyStatus,
                                     ))
                                 .toList(),
-                            // children: (widget.JobList)
-                            //         .map((e) => JobApplicationCard(
-
-                            //             ))
-                            //         .toList(),
                           ),
                   ],
                 ),

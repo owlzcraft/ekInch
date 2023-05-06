@@ -23,7 +23,7 @@ import '../../profile/views/profile_view.dart';
 import '../../settings/views/settings_view.dart';
 
 class MyJobsView extends StatefulWidget {
-  List<Data> jobAppliedList;
+  List<Data> jobAppliedList=[];
   MyJobsView({super.key, required this.jobAppliedList});
 
   @override

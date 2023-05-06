@@ -26,7 +26,7 @@ class PostjobView extends StatefulWidget {
 
 class _PostjobViewState extends State<PostjobView> {
   GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  PostjobController postJobController=Get.put(PostjobController());
+  PostjobController postJobController = Get.put(PostjobController());
   PageController controller = PageController(initialPage: 0);
   final _stepsText = ["Job Details", "Job Descriptions"];
   final _stepCircleRadius = 8.0;
@@ -180,23 +180,30 @@ class _PostjobViewState extends State<PostjobView> {
                     child: MaterialButton(
                         minWidth: MediaQuery.of(context).size.width,
                         onPressed: () {
-                          
                           if (_curPage == 2) {
                             Get.to(PostJobProfile(
-                                company: "Post Job",
-                                jobTitle:postJobController.profession.text.toString() ,
-                                subtitle: " ",
-                                location: postJobController.address.text.toString(),
-                                salary: "${postJobController.salaryStr.text}-${postJobController.salaryEnd.text}",
-                                qualification: postJobController.quali.text.toString(),
-                                language: postJobController.language.text.toString(),
-                                require: postJobController.selectedSKills.join(','),
-                                jobInfo: postJobController.description.text.toString(),
-                                experience: postJobController.exp.text.toString(),
-                                jobTime: postJobController.jobTmg.text.toString(),
-                                // interviewTime: "",
-                                // address: ""
-                                ));
+                              company: "Post Job",
+                              jobTitle:
+                                  "${postJobController.profession1.text.toString()} ${postJobController.profession2.text.toString()} ${postJobController.profession3.text.toString()}",
+                              subtitle: " ",
+                              location:
+                                  postJobController.address.text.toString(),
+                              salary:
+                                  "${postJobController.salaryStr1.text}-${postJobController.salaryEnd1.text}",
+                              qualification:
+                                  postJobController.quali1.text.toString(),
+                              language:
+                                  postJobController.language1.text.toString(),
+                              require:
+                                  postJobController.selectedSKills.join(','),
+                              jobInfo:
+                                  postJobController.description.text.toString(),
+                              experience:
+                                  "${postJobController.exp1.text.toString()} years experience",
+                              jobTime: postJobController.jobTmg.text.toString(),
+                              // interviewTime: "",
+                              // address: ""
+                            ));
                           } else {
                             print(_curPage);
                             controller.animateToPage(
