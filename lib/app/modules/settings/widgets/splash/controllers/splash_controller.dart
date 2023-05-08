@@ -54,7 +54,7 @@ class SplashController extends GetxController {
 //path
   Future<void> appRoute() async {
     // Get.offAllNamed(Routes.REGISTER);
-    
+
     if (isFirstTime) {
       bool loggedIn = LocalStorage.shared.isLoggedIn();
       if (loggedIn) {
@@ -85,7 +85,6 @@ class SplashController extends GetxController {
       }
     }
   }
-
 
   @override
   void onReady() {

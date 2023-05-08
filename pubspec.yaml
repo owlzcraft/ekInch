@@ -52,6 +52,10 @@ dependencies:
   share_plus: ^4.5.3
   flutter_localization: ^0.1.10
   video_thumbnail: ^0.5.3
+  firebase_auth: ^4.2.2
+  firebase_core: ^2.7.1
+  firebase_database: ^10.0.15
+  firebase_messaging: ^14.4.0
 
   # chewie: ^1.4.0
   # video_player: ^2.6.0
