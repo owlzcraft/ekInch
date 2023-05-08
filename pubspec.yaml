@@ -82,6 +82,7 @@ dependency_overrides:
       path: modal_bottom_sheet
 
 flutter:
+  generate: true
   fonts:
     - family: Kadwa
       fonts:

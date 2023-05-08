@@ -9,7 +9,6 @@ import 'package:ekinch/app/modules/reels/bindings/reels_binding.dart';
 import 'package:ekinch/app/modules/service/view/service_news.dart';
 import 'package:ekinch/app/networking/app_repo.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
-import 'package:ekinch/l10n/app_localizations.dart';
 import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +35,7 @@ import '../../../models/reel_model.dart';
 import '../../../networking/api_result.dart';
 import '../controllers/dashboard_controller.dart';
 import 'package:get/get.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DashboardView extends StatefulWidget {
   List<Data> ReelsList;
@@ -446,8 +446,8 @@ class _DashboardStateView extends State<DashboardView>
         // bottomNavigationBar: BottomBar(),
         drawer: const SettingsView(),
         appBar: DynamicAppBar(
-            "${LocalStorage.shared.getUserData()?.userData?.firstName}",
-            AppLocalizations.of(context).hello,
+            "${LocalStorage.shared.getUserData()!.userData?.firstName}",
+            AppLocalizations.of(context)!.appName,
             true,
             _scaffoldKey),
         body: CustomScrollView(

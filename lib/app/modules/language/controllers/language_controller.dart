@@ -1,4 +1,3 @@
-import 'package:country_code_picker/country_code_picker.dart';
 import 'package:ekinch/app/models/language_model.dart';
 import 'package:ekinch/app/modules/Onboarding/views/onboarding_view.dart';
 import 'package:ekinch/app/modules/dashboard/controllers/dashboard_controller.dart';
@@ -6,10 +5,8 @@ import 'package:ekinch/app/networking/app_repo.dart';
 import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../../l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../widgets/loader.dart';
-import '../../../models/profile_model.dart';
 import '../../../networking/api_result.dart';
 
 class LanguageController extends GetxController {
@@ -89,6 +86,8 @@ class LanguageController extends GetxController {
 
   void changeLanguage(BuildContext context, Locale locale) {
     final newLocale = Locale(locale.languageCode, locale.countryCode);
+    print("111111111111111");
+    print(newLocale);
     AppLocalizations.delegate.load(newLocale);
     if (LocalStorage.shared.isLoggedIn()) {
       dashboardController.GetDashboard();

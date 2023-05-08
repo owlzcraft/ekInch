@@ -4,11 +4,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'app/routes/app_pages.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'app/utils/localStorage.dart';
-import 'l10n/app_localizations.dart';
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
-  const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   const device_height = 802.9090909090909;
   const device_width = 392.72727272727275;
 //comment
@@ -16,10 +17,9 @@ void main() {
 // final FlutterLocalization localization = FlutterLocalization.instance;
   runApp(ScreenUtilInit(builder: ((context, child) {
     return GetMaterialApp(
-      
-     supportedLocales: [
-        Locale('en', 'US'),
-        Locale('hi', 'IN'),
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('hi', 'IN'),
       ],
       localizationsDelegates: [
         AppLocalizations.delegate,
@@ -35,7 +35,7 @@ void main() {
         }
         // If the locale of the device is not supported,
         // fallback to the default locale (English, US).
-        return Locale('en', 'US');
+        return const Locale('en', 'US');
       },
       title: "Application",
       initialRoute: AppPages.INITIAL,
@@ -43,5 +43,4 @@ void main() {
       debugShowCheckedModeBanner: false,
     );
   })));
-  
 }
