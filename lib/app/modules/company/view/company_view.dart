@@ -1,25 +1,13 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/company/view/textwithIcon.dart';
-import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
-import 'package:ekinch/app/modules/mobile/views/mobile_view.dart';
-import 'package:ekinch/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../../widgets/math_utils.dart';
 import '../../../../widgets/phone_text_field.dart';
-import '../../../generated/assets.dart';
-import '../../../utils/localStorage.dart';
 import '../../dashboard/controllers/dashboard_controller.dart';
 import '../../dashboard/widgets/navigation.dart';
 import '../../mobile/widget/yellow_button.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
-
-import '../../profile/controllers/profile_controller.dart';
 import '../../profile/widgets/profile_image.dart';
 import '../contoller/company_controller.dart';
 

@@ -11,6 +11,11 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl_translation: ^0.18.2
+  intl: ^0.18.0
+  build_runner: ^2.0.0
   get_storage: ^2.0.3
   country_code_picker: ^2.0.2
   flutter_otp_text_field: ^1.1.1
@@ -56,6 +61,8 @@ dependencies:
   firebase_core: ^2.7.1
   firebase_database: ^10.0.15
   firebase_messaging: ^14.4.0
+  flutter_local_notifications: ^14.0.0+1
+  
 
   # chewie: ^1.4.0
   # video_player: ^2.6.0

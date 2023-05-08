@@ -9,6 +9,7 @@ import 'package:ekinch/app/modules/reels/bindings/reels_binding.dart';
 import 'package:ekinch/app/modules/service/view/service_news.dart';
 import 'package:ekinch/app/networking/app_repo.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
+import 'package:ekinch/l10n/app_localizations.dart';
 import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -446,7 +447,7 @@ class _DashboardStateView extends State<DashboardView>
         drawer: const SettingsView(),
         appBar: DynamicAppBar(
             "${LocalStorage.shared.getUserData()?.userData?.firstName}",
-            "Welcome !",
+            AppLocalizations.of(context).hello,
             true,
             _scaffoldKey),
         body: CustomScrollView(

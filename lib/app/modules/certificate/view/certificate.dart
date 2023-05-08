@@ -9,7 +9,6 @@ import '../../../../widgets/math_utils.dart';
 import '../../../custom_widget/color.dart';
 import '../../../custom_widget/font_size.dart';
 import '../../../generated/assets.dart';
-import '../../dashboard/widgets/work.widget.dart';
 import '../../settings/views/settings_view.dart';
 
 class CertificateView extends StatelessWidget {

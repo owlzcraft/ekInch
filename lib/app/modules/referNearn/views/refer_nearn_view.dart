@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../custom_widget/font_size.dart';
 import '../../dashboard/widgets/navigation.dart';
 import '../controllers/refer_nearn_controller.dart';
 
@@ -38,7 +39,7 @@ class ReferNearnView extends GetView<ReferNearnController> {
           backgroundColor: Colors.black,
           title:  Text(
             'Refer and Earn',
-            style: GoogleFonts.kadwa(color: Colors.white, fontWeight: FontWeight.w700),
+            style: GoogleFonts.kadwa(color: Colors.white, fontWeight: FontWeight.w700,fontSize: F24()),
           ),
           centerTitle: true,
           bottom: TabBar(

@@ -1,8 +1,13 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:ekinch/app/models/language_model.dart';
+import 'package:ekinch/app/modules/Onboarding/views/onboarding_view.dart';
+import 'package:ekinch/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:ekinch/app/networking/app_repo.dart';
+import 'package:ekinch/app/utils/localStorage.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../widgets/loader.dart';
 import '../../../models/profile_model.dart';
 import '../../../networking/api_result.dart';
@@ -10,6 +15,7 @@ import '../../../networking/api_result.dart';
 class LanguageController extends GetxController {
   //TODO: Implement LanguageController
   var activatedComp = 0;
+  DashboardController dashboardController = Get.put(DashboardController());
 
   var lang_data = [
     {
@@ -80,6 +86,18 @@ class LanguageController extends GetxController {
   final APIRepository apiRepository = APIRepository(isTokenRequired: false);
 
   //language selection
+
+  void changeLanguage(BuildContext context, Locale locale) {
+    final newLocale = Locale(locale.languageCode, locale.countryCode);
+    AppLocalizations.delegate.load(newLocale);
+    if (LocalStorage.shared.isLoggedIn()) {
+      dashboardController.GetDashboard();
+    } else {
+      Get.to(OnboardingView());
+    }
+    // You can save the selected locale to persistent storage here
+    // and use it to initialize the locale in future app launches.
+  }
 
   Future<void> languageSelection() async {
     Get.showOverlay(

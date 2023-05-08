@@ -1,0 +1,12 @@
+targets:
+  $default:
+    builders:
+      intl_translation|extract_to_arb:
+        enabled: true
+        options:
+          generated_file: lib/l10n/app_localizations.dart
+      intl_translation|generate_from_arb:
+        enabled: true
+        options:
+          generated_file: lib/l10n/app_localizations.dart
+          arb_files: lib/l10n/intl_messages.arb
