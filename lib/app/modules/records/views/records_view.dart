@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/records/views/widget/tab_bar.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,6 @@ import '../../../../widgets/loader.dart';
 import '../../../../widgets/math_utils.dart';
 import '../../../../widgets/snack_bar.dart';
 import '../../../generated/assets.dart';
-import '../../../models/profile_model.dart';
 import '../../../models/records_model.dart';
 import '../../../networking/api_result.dart';
 import '../../../networking/app_repo.dart';
@@ -24,6 +25,8 @@ import '../../notication/view/notification_view.dart';
 import '../controllers/records_controller.dart';
 
 class RecordsView extends StatefulWidget {
+  const RecordsView({super.key});
+
   @override
   State<RecordsView> createState() => _RecordsViewState();
 }
@@ -48,7 +51,7 @@ class _RecordsViewState extends State<RecordsView> {
   int categoryId = 100;
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
 
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey =  GlobalKey<ScaffoldState>();
   RecordsController controller = Get.put(RecordsController());
 //Records
 
@@ -56,6 +59,7 @@ class _RecordsViewState extends State<RecordsView> {
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
+          //need change
           switch (category) {
             case "Civil work":
               categoryId = 100;
@@ -79,7 +83,6 @@ class _RecordsViewState extends State<RecordsView> {
               categoryId = 700;
               break;
           }
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
@@ -91,7 +94,6 @@ class _RecordsViewState extends State<RecordsView> {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    print("working");
                     switch (categoryId) {
                       case 100:
                         setState(() {
@@ -260,39 +262,41 @@ class _RecordsViewState extends State<RecordsView> {
           color: Colors.black,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: ImageSlideshow(
-                initialPage: 0,
-                autoPlayInterval: 10000,
-                indicatorColor: KColors.orange,
-                onPageChanged: (value) {
-                  // debugPrint('Page changed: $value');
-                },
-                isLoop: true,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 8.0, bottom: 32.0, top: 32.0),
-                    child: Container(
-                        // width: getHorizontalSize(377),
-                        // height: getVerticalSize(80),
-                        child: Image.asset(Assets.Recordimg1),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                        )),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(left: 8.0, bottom: 32.0, top: 32.0),
-                    child: Container(
-                        // width: getHorizontalSize(377),
-                        // height: getVerticalSize(80),
-                        child: Image.asset(Assets.Recordimg1),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15))),
-                  ),
-                ],
-              ),
+            child: ImageSlideshow(
+              initialPage: 0,
+              autoPlayInterval: 10000,
+              indicatorColor: KColors.orange,
+              onPageChanged: (value) {
+                // debugPrint('Page changed: $value');
+              },
+              isLoop: true,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 8.0, bottom: 32.0, top: 32.0),
+                  child: Container(
+                      // width: getHorizontalSize(377),
+                      // height: getVerticalSize(80),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      // width: getHorizontalSize(377),
+                      // height: getVerticalSize(80),
+                      child: Image.asset(Assets.Recordimg1)),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 8.0, bottom: 32.0, top: 32.0),
+                  child: Container(
+                      // width: getHorizontalSize(377),
+                      // height: getVerticalSize(80),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15)),
+                      // width: getHorizontalSize(377),
+                      // height: getVerticalSize(80),
+                      child: Image.asset(Assets.Recordimg1)),
+                ),
+              ],
             ),
           ),
         ),
@@ -308,7 +312,7 @@ class _RecordsViewState extends State<RecordsView> {
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 14.9, right: 14.9),
+                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -321,7 +325,7 @@ class _RecordsViewState extends State<RecordsView> {
                             fontWeight: FontWeight.bold,
                             fontSize: F18()),
                       ),
-                      Icon(Icons.arrow_drop_down_sharp, size: 30),
+                      const Icon(Icons.arrow_drop_down_sharp, size: 30),
                     ],
                   ),
                 ),
@@ -332,7 +336,7 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilitycivil,
-              child: (civilList.length == 0)
+              child: (civilList.isEmpty)
                   ? Container(
                       color: Colors.white,
                       width: Get.width,
@@ -360,7 +364,7 @@ class _RecordsViewState extends State<RecordsView> {
           InkWell(
             onTap: showdrop1,
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 12.0),
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Container(
                 width: getHorizontalSize(396),
                 height: getVerticalSize(50),
@@ -368,7 +372,7 @@ class _RecordsViewState extends State<RecordsView> {
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 14.9, right: 14.9),
+                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -392,7 +396,7 @@ class _RecordsViewState extends State<RecordsView> {
               padding: const EdgeInsets.only(left: 16.0),
               child: Visibility(
                 visible: visibilitylights,
-                child: (lightList.length == 0)
+                child: (lightList.isEmpty)
                     ? Container(
                         color: Colors.white,
                         width: Get.width,
@@ -425,7 +429,7 @@ class _RecordsViewState extends State<RecordsView> {
                   color: KColors.greybg,
                   borderRadius: BorderRadius.circular(6)),
               child: Padding(
-                padding: EdgeInsets.only(left: 14.9, right: 14.9),
+                padding: const EdgeInsets.only(left: 14.9, right: 14.9),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -438,7 +442,7 @@ class _RecordsViewState extends State<RecordsView> {
                           fontWeight: FontWeight.bold,
                           fontSize: F18()),
                     ),
-                    Icon(Icons.arrow_drop_down_sharp, size: 30),
+                    const Icon(Icons.arrow_drop_down_sharp, size: 30),
                   ],
                 ),
               ),
@@ -448,7 +452,7 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilityhospitals,
-              child: (hospitalList.length == 0)
+              child: (hospitalList.isEmpty)
                   ? Container(
                       color: Colors.white,
                       width: Get.width,
@@ -485,7 +489,7 @@ class _RecordsViewState extends State<RecordsView> {
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 14.9, right: 14.9),
+                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -498,7 +502,7 @@ class _RecordsViewState extends State<RecordsView> {
                             fontWeight: FontWeight.bold,
                             fontSize: F18()),
                       ),
-                      Icon(Icons.arrow_drop_down_sharp, size: 30),
+                      const Icon(Icons.arrow_drop_down_sharp, size: 30),
                     ],
                   ),
                 ),
@@ -509,7 +513,7 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilityplumber,
-              child: (plumberList.length == 0)
+              child: (plumberList.isEmpty)
                   ? Container(
                       color: Colors.white,
                       width: Get.width,
@@ -543,7 +547,7 @@ class _RecordsViewState extends State<RecordsView> {
                   color: KColors.greybg,
                   borderRadius: BorderRadius.circular(6)),
               child: Padding(
-                padding: EdgeInsets.only(left: 14.9, right: 14.9),
+                padding: const EdgeInsets.only(left: 14.9, right: 14.9),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -556,7 +560,7 @@ class _RecordsViewState extends State<RecordsView> {
                           fontWeight: FontWeight.bold,
                           fontSize: F18()),
                     ),
-                    Icon(Icons.arrow_drop_down_sharp, size: 30),
+                    const Icon(Icons.arrow_drop_down_sharp, size: 30),
                   ],
                 ),
               ),
@@ -566,7 +570,7 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilitybuilding,
-              child: (builderList.length == 0)
+              child: (builderList.isEmpty)
                   ? Container(
                       color: Colors.white,
                       width: Get.width,
@@ -602,7 +606,7 @@ class _RecordsViewState extends State<RecordsView> {
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 14.9, right: 14.9),
+                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -615,7 +619,7 @@ class _RecordsViewState extends State<RecordsView> {
                             fontWeight: FontWeight.bold,
                             fontSize: F18()),
                       ),
-                      Icon(Icons.arrow_drop_down_sharp, size: 30),
+                      const Icon(Icons.arrow_drop_down_sharp, size: 30),
                     ],
                   ),
                 ),
@@ -626,7 +630,7 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilitywielding,
-              child: (ironList.length == 0)
+              child: (ironList.isEmpty)
                   ? Container(
                       color: Colors.white,
                       width: Get.width,
@@ -662,7 +666,7 @@ class _RecordsViewState extends State<RecordsView> {
                     color: KColors.greybg,
                     borderRadius: BorderRadius.circular(6)),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 14.9, right: 14.9),
+                  padding: const EdgeInsets.only(left: 14.9, right: 14.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -675,7 +679,7 @@ class _RecordsViewState extends State<RecordsView> {
                             fontWeight: FontWeight.bold,
                             fontSize: F18()),
                       ),
-                      Icon(Icons.arrow_drop_down_sharp, size: 30),
+                      const Icon(Icons.arrow_drop_down_sharp, size: 30),
                     ],
                   ),
                 ),
@@ -686,7 +690,7 @@ class _RecordsViewState extends State<RecordsView> {
             padding: const EdgeInsets.only(left: 16.0),
             child: Visibility(
               visible: visibilitywood,
-              child: (woodList.length == 0)
+              child: (woodList.isEmpty)
                   ? Container(
                       color: Colors.white,
                       width: Get.width,
@@ -781,7 +785,7 @@ class _RecordsViewState extends State<RecordsView> {
           // ]),
         ])
       ])),
-      bottomNavigationBar: BottomTabView(3),
+      bottomNavigationBar: const BottomTabView(3),
       // bottomNavigationBar: MyNavigator(),
     );
   }

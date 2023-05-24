@@ -1,9 +1,9 @@
-import 'package:ekinch/app/models/GetJobForm.dart';
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/models/available_job_list.dart';
 import 'package:ekinch/app/models/data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../widgets/loader.dart';
 import '../../../../../widgets/snack_bar.dart';
 import '../../../../models/update_getJob.dart';
@@ -15,27 +15,17 @@ import '../views/details_form.dart';
 
 class GetJobController extends GetxController {
   var activeQualification = 0.obs;
-  var qualificationData = [
-    {"text1": "Below 10th", "text2": "Pass"},
-    {"text1": "10th Pass", "text2": ""},
-    {"text1": "12th Pass and", "text2": "Above"},
-    {"text1": "Graduate and", "text2": "Above"},
-  ].obs;
   var activeMedium = 0.obs;
   var activeFluency = 0.obs;
   var activeExp = 0.obs;
-  var schoolMediums = ["Hindi", "English", "Others"].obs;
-  var englishFluency = ["No", "Good", "Fluent"].obs;
-  var expData = ["Fresher", "Experience"].obs;
   var years = ["0"];
-  Filyears() {
+  filyears() {
     for (var i = 1968; i <= DateTime.now().year; i++) {
       years.remove("0");
       years.add(i.toString());
     }
   }
 
-  // ignore: non_constant_identifier_names
   List<Data> ApplyJobList = [];
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
   List selectedSKills = [];
@@ -45,7 +35,6 @@ class GetJobController extends GetxController {
   // String experience = "";
   TextEditingController qualification = TextEditingController();
   TextEditingController experience = TextEditingController();
-
   TextEditingController qualificationTap = TextEditingController();
   TextEditingController board = TextEditingController();
   TextEditingController englishLevel = TextEditingController();
@@ -56,13 +45,8 @@ class GetJobController extends GetxController {
   TextEditingController schoolBoard = TextEditingController();
   TextEditingController jobTitle = TextEditingController();
   TextEditingController jobCategory = TextEditingController();
-  // TextEditingController experience = TextEditingController();
-  // TextEditingController skills = TextEditingController();
-  // TextEditingController qualification = TextEditingController();
-
 //Get Job Form
   Future<void> GetJobForm() async {
-    print("**************************");
     // for (int i = 0; i < selectedSKills.length-1; i++) {
     //   result=selectedSKills.join(" , ");
     //   // var data=;
@@ -73,8 +57,6 @@ class GetJobController extends GetxController {
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
-          print(qualificationTap.text);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -98,7 +80,6 @@ class GetJobController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    print("done");
                     GetJobList();
                   } else if (value.ok == false) {
                     Get.back();
@@ -115,11 +96,9 @@ class GetJobController extends GetxController {
 
 //GetJob Dashboard
   Future<void> GetJobList() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -131,10 +110,8 @@ class GetJobController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    print("done");
                     ApplyJobList = value.data;
-                    print(value.data);
-                    Get.to(JobView(JobList: ApplyJobList,filterValue: "Select Category",));
+                    Get.to(JobView(jobList: ApplyJobList,filterValue: "Select Category",));
                   } else if (value.ok == false) {
                     Get.back();
                     errorSnackbar("Please Refresh");
@@ -150,11 +127,9 @@ class GetJobController extends GetxController {
 
 //Get Job Status
   Future<void> CheckResumeStatusValue() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -177,8 +152,9 @@ class GetJobController extends GetxController {
         loadingWidget: const LoadingIndicator());
   }
 
+  @override
   void onInit() {
-    Filyears();
+    filyears();
     super.onInit();
   }
 }

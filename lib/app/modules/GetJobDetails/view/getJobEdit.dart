@@ -1,36 +1,23 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/dashboard_profile.dart';
+// ignore_for_file: file_names
+
 import 'package:ekinch/app/modules/job/form/controllers/job.controller.dart';
-import 'package:ekinch/app/modules/job/form/views/details_form.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/click_custom.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/custom_job_form.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/pop_up_exp.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/skill_container.dart';
-import 'package:ekinch/app/modules/listpostjob/views/jobs_view.dart';
 import 'package:ekinch/app/utils/localStorage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/add_skills.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
-import 'package:ekinch/app/modules/notication/view/notification_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:getwidget/components/button/gf_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../../widgets/math_utils.dart';
-import '../../../../../widgets/snack_bar.dart';
-
 import '../../../custom_widget/color.dart';
 import '../../../custom_widget/font_size.dart';
 import '../../../generated/assets.dart';
 import '../../dashboard/widgets/navigation.dart';
 import '../../settings/views/settings_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GetJobEditView extends StatefulWidget {
-  GetJobEditView({
+  const GetJobEditView({
     super.key,
   });
 
@@ -54,13 +41,13 @@ class GetJobEditViewState extends State<GetJobEditView> {
         child: AppBar(
           centerTitle: true,
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(180),
+            preferredSize: const Size.fromHeight(180),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleAvatar(
                   radius: 40,
-                  backgroundColor: Color(0xFFE0E0E0),
+                  backgroundColor: const Color(0xFFE0E0E0),
                   child: Container(
                     height: 90.sp,
                     width: 90.sp,
@@ -71,9 +58,10 @@ class GetJobEditViewState extends State<GetJobEditView> {
                           fit: BoxFit.cover,
                           image: LocalStorage.shared.getProfile() ==
                                   "https://d3nypwrzdy6f4k.cloudfront.net/"
-                              ? AssetImage('assets/images/profile_icon.png')
+                              ? const AssetImage(
+                                  'assets/images/profile_icon.png')
                               : NetworkImage(
-                                      "${LocalStorage.shared.getProfile()}")
+                                      LocalStorage.shared.getProfile())
                                   as ImageProvider),
                       border: Border.all(color: KColors.greyLine, width: 2.0),
                     ),
@@ -104,8 +92,7 @@ class GetJobEditViewState extends State<GetJobEditView> {
             icon: SvgPicture.asset(Assets.drawerIcon_white),
             onPressed: () {
               if (!notDrawerKey.currentState!.isDrawerOpen) {
-                //check if drawer is closed
-                notDrawerKey.currentState!.openDrawer(); //open drawer
+                notDrawerKey.currentState!.openDrawer(); 
               }
             },
           ),
@@ -125,7 +112,7 @@ class GetJobEditViewState extends State<GetJobEditView> {
                       borderRadius: BorderRadius.circular(6)),
                   child: Center(
                     child: Text(
-                      "Edit",
+                      AppLocalizations.of(context)!.edit,
                       style: GoogleFonts.kadwa(
                           fontSize: F14(), color: Colors.black),
                     ),
@@ -140,17 +127,16 @@ class GetJobEditViewState extends State<GetJobEditView> {
       ),
       body: SingleChildScrollView(
         child: Form(
-          key: _formKey,  
+          key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            
               Padding(
                 padding: const EdgeInsets.symmetric(
                     vertical: 16.0, horizontal: 12.0),
                 child: Center(
-                  child: DynamicButton("Submit", true, () {
+                  child: DynamicButton( AppLocalizations.of(context)!.submit, true, () {
                     controller.GetJobForm();
                   }),
                 ),
@@ -159,7 +145,7 @@ class GetJobEditViewState extends State<GetJobEditView> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomTabView(2),
+      bottomNavigationBar: const BottomTabView(2),
     );
   }
 }

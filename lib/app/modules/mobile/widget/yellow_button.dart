@@ -1,3 +1,4 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +8,7 @@ class DynamicButton extends StatelessWidget {
   final bool active;
   final Function onPressed;
 
-  DynamicButton(this.text, this.active, this.onPressed);
+  const DynamicButton(this.text, this.active, this.onPressed, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +17,8 @@ class DynamicButton extends StatelessWidget {
         width: Get.width, //width of button
         child: ElevatedButton(
           onPressed: () {
-            print("_____pressed");
-            this.onPressed();
+            onPressed();
           },
-          child: Text(
-            text,
-            style: GoogleFonts.kadwa(
-              color: Colors.black,
-              fontSize: 20,
-              letterSpacing: 1,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
           style: ElevatedButton.styleFrom(
             foregroundColor: Colors.black, //change background color of button
             backgroundColor: (active)
@@ -38,6 +29,15 @@ class DynamicButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(5.0),
             ),
             // backgroundColor: const Color(0xFFFEBA0F),
+          ),
+          child: Text(
+            text,
+            style: GoogleFonts.kadwa(
+              color: Colors.black,
+              fontSize: F20(),
+              letterSpacing: 1,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ));
   }

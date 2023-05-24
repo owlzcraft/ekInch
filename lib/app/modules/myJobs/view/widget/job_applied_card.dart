@@ -1,27 +1,24 @@
 import 'package:ekinch/app/generated/assets.dart';
-import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../custom_widget/color.dart';
 import '../../../../custom_widget/font_size.dart';
 
 class JobAppliedCard extends StatelessWidget {
-  String image;
-  String title;
-  String subtitle;
-  String time;
-  String qualification;
-  String experience;
-  String salary;
-  String location;
-  String language;
-  String views;
-  JobAppliedCard(
+  final String image;
+  final String title;
+  final String subtitle;
+  final String time;
+  final String qualification;
+  final String experience;
+  final String salary;
+  final String location;
+  final String language;
+  final String views;
+  const JobAppliedCard(
       {super.key,
       required this.experience,
       required this.image,
@@ -53,7 +50,7 @@ class JobAppliedCard extends StatelessWidget {
                       color: Colors.grey.withOpacity(0.2),
                       spreadRadius: 1,
                       blurRadius: 2,
-                      offset: Offset(0, 4),
+                      offset: const Offset(0, 4),
                     ),
                   ],
                   color: Colors.white,
@@ -184,7 +181,7 @@ class JobAppliedCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: KColors.borderGrey,
                       thickness: 0.5,
                     ),
@@ -213,18 +210,18 @@ class JobAppliedCard extends StatelessWidget {
                           Expanded(
                               flex: 2,
                               child: Container(
+                                decoration: BoxDecoration(
+                                    color: KColors.orange,
+                                    borderRadius: BorderRadius.circular(100)),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 8.0, horizontal: 4.0),
                                   child: Center(
                                       child: Text(
-                                    "Job Applied",
+                                    AppLocalizations.of(context)!.jobsApplied,
                                     style: GoogleFonts.kadwa(fontSize: F16()),
                                   )),
                                 ),
-                                decoration: BoxDecoration(
-                                    color: KColors.orange,
-                                    borderRadius: BorderRadius.circular(100)),
                               ))
                         ],
                       ),
@@ -244,7 +241,7 @@ class JobAppliedCard extends StatelessWidget {
                     color: KColors.lightGrey,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 8.0),
+                    padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
                       time,
                       style: GoogleFonts.kadwa(
@@ -262,4 +259,3 @@ class JobAppliedCard extends StatelessWidget {
     );
   }
 }
-

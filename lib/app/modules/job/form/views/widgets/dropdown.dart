@@ -1,10 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../../../widgets/math_utils.dart';
 
 CustomDropDown(List<String> list, String title, String select, int flex,
     double h, TextEditingController controller) {
@@ -54,6 +55,7 @@ CustomDropDown(List<String> list, String title, String select, int flex,
           if (value == null) {
             return select;
           }
+          return null;
         },
         onSaved: (value){
                     controller.text = value as String;

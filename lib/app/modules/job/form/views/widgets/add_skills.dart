@@ -1,184 +1,40 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/job/form/views/widgets/skill_card.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
-import 'package:ekinch/app/modules/notication/view/widget/notifcation_card.dart';
-import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
-import 'package:ekinch/app/utils/math_utils.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../../../custom_widget/color.dart';
 import '../../../../dashboard/widgets/navigation.dart';
 import '../../../../notication/view/notification_view.dart';
 import '../../../../resume/controller/resume_controller.dart';
 import '../../../../settings/views/settings_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddSkillView extends StatefulWidget {
   List resultList;
   List addSkillList;
-  AddSkillView(
-      {super.key,
-      required this.resultList,
-      required this.addSkillList,
-   });
+  AddSkillView({
+    super.key,
+    required this.resultList,
+    required this.addSkillList,
+  });
 
   @override
   State<AddSkillView> createState() => _AddSkillViewState();
 }
 
 class ListItem<T> {
-  bool isSelected = false; //Selection property to highlight or not
-  T data; //Data of the user
-  ListItem(this.data); //Constructor to assign the data
+  bool isSelected = false;
+  T data;
+  ListItem(this.data);
 }
 
 class _AddSkillViewState extends State<AddSkillView> {
   GlobalKey<ScaffoldState> notDrawerKey = GlobalKey<ScaffoldState>();
-  ResumeController resumeController=Get.put(ResumeController());
-  List skillList = [
-    "Leakage current detection",
-    "Geyser connection",
-    "Fixtures installation",
-    "Three phase connection",
-    "Knowledge about DC",
-    "Two way switch",
-    "Knowledge about HT panels",
-    "Switch board fixing",
-    "Horizontal & vertical chiselling",
-    "Cove lightning work",
-    "Fridge & washing machine connection",
-    "AC connection",
-    "Lightening arrester work",
-    "Two phase connection",
-    "Knowledge about AC",
-    "One way switch",
-    "knowledge about LT panels",
-    "Conduit placement in false ceiling",
-    "Knowledge of series & parallel network",
-    "Decorative light fixture installation",
-    "Lift connection",
-    "Detection of shot circuiting",
-    "Knowledge of wire,cable,switch,MCB,CCB,Fuse,Meter etc.",
-    "Distribution board fixing",
-    "Conduit placement in RCC Slab, wall",
-    "Knowledge of drawing reading",
-    "vertical aligment",
-    "Bar binding at different angles",
-    "Machine binding",
-    "Chair making knowledge",
-    "Drwaing reading",
-    "Erection of bars",
-    "Stirrups cutting & making",
-    "Hand cutting work",
-    "steel bar checking knowledge",
-    "steel bar measurement work",
-    "Horizontal bar alignment",
-    "Placement of bars",
-    "Hand bar binding",
-    "Machine cutting",
-    "Lap length knowledge",
-    "Steel bar straightening work",
-    "Safety knowledge (site)",
-    "Hand cutting work",
-    "Plate welding work",
-    "Welding checking",
-    "Fastner drilling & fixing",
-    "Rod welding",
-    "drawing reading",
-    "Drawing checking",
-    "MS Straightening work",
-    "Mechanical cutting work",
-    "Gas cutting",
-    "Hold fast fabrication",
-    "Gate Fabrication",
-    "Steel welding",
-    "Gas welding",
-    "Cast iron work",
-    "Fillet welding work",
-    "Repair work",
-    "Railing fabrication",
-    "Material checking",
-    "Spot welding",
-    "Argon welding",
-    "Measurement work",
-    "Beading work",
-    "Veneer pasting",
-    "Wardrobe work",
-    "Lock fixing",
-    "Wood Adhesive work",
-    "Wood finshing work",
-    "Drawing checking",
-    "Jali fixing work",
-    "Dressing Table work",
-    "Latch fixing",
-    "Wood grinding work",
-    "Wood Jointing work",
-    "Wood sawing work",
-    "Leveling work",
-    "Glass fixing work",
-    "Bed making work",
-    "Hinges fixing",
-    "Tower bolt fixing",
-    "Mica pasting work",
-    "Pattern painting",
-    "Wood cutting",
-    "Measurement work",
-    "Duco painting",
-    "Lacquer polishing",
-    "Interior painting",
-    "Texture Painting",
-    "PVC Polishing",
-    "Cleaning work",
-    "Polishing (natural)",
-    "Exterior painting",
-    "Roller painting work",
-    "Putty work",
-    "Paint material checking",
-    "Satin painting",
-    "Melamine polishing",
-    "Ground panting",
-    "Pattern painting",
-    "Machine sanding",
-    "Sanding",
-    "Material checking",
-    "Drawing checking",
-    "Drawing reading",
-    "Sewer chamber construction work",
-    "Geyser installation",
-    "Bottle trap fixing",
-    "Jointing work",
-    "Levelling work",
-    "Repairing work",
-    "Spout fixing",
-    "WC fixing",
-    "Threading work",
-    "Water leakage checking",
-    "Water tank fixing",
-    "Water tap fixing",
-    "Pipe fitting",
-    "Core cutting",
-    "Repair work",
-    "Concrete work",
-    "Plastering work",
-    "Steel work",
-    "Levelling work",
-    "Ground filling",
-    "Shuttering work",
-    "Stone work",
-    "Brick work",
-    "Construction Material checking",
-    "Grouting work",
-    "Damp Proofing work",
-    "RCC work",
-    "Tile Work",
-    "Measurement work",
-  ];
+  ResumeController resumeController = Get.put(ResumeController());
+
   late List<ListItem<String>> list;
   @override
   void initState() {
@@ -196,15 +52,154 @@ class _AddSkillViewState extends State<AddSkillView> {
 
   @override
   Widget build(BuildContext context) {
+    List skillList = [
+      AppLocalizations.of(context)!.leakagecurrentdetection,
+      AppLocalizations.of(context)!.geyserConnection,
+      AppLocalizations.of(context)!.fixturesinstallation,
+      AppLocalizations.of(context)!.threephaseconnection,
+      AppLocalizations.of(context)!.knowledgeaboutDC,
+      AppLocalizations.of(context)!.twowayswitch,
+      AppLocalizations.of(context)!.knowledgeaboutHTpanels,
+      AppLocalizations.of(context)!.switchboardfixing,
+      AppLocalizations.of(context)!.horizontalverticalchiselling,
+      AppLocalizations.of(context)!.covelightningwork,
+      AppLocalizations.of(context)!.fridgewashingmachineconnection,
+      AppLocalizations.of(context)!.aCconnection,
+      AppLocalizations.of(context)!.lighteningarresterwork,
+      AppLocalizations.of(context)!.twophaseconnection,
+      AppLocalizations.of(context)!.knowledgeaboutAC,
+      AppLocalizations.of(context)!.one_way_switch,
+      AppLocalizations.of(context)!.knowledge_about_lt_panels,
+      AppLocalizations.of(context)!.conduit_placement_in_false_ceiling,
+      AppLocalizations.of(context)!.knowledge_of_series_parallel_network,
+      AppLocalizations.of(context)!.decorative_light_fixture_installation,
+      AppLocalizations.of(context)!.lift_connection,
+      AppLocalizations.of(context)!.detection_of_shot_circuiting,
+      AppLocalizations.of(context)!
+          .knowledge_of_wirecableswitchmcbccbfusemeter_etc,
+      AppLocalizations.of(context)!.distribution_board_fixing,
+      AppLocalizations.of(context)!.conduit_placement_in_rcc_slabwall,
+      AppLocalizations.of(context)!.knowledge_of_drawing_reading,
+      AppLocalizations.of(context)!.vertical_aligment,
+      AppLocalizations.of(context)!.bar_binding_at_different_angles,
+      AppLocalizations.of(context)!.machine_binding,
+      AppLocalizations.of(context)!.chair_making_knowledge,
+      AppLocalizations.of(context)!.drawing_reading,
+      AppLocalizations.of(context)!.erection_of_bars,
+      AppLocalizations.of(context)!.stirrups_cutting_making,
+      AppLocalizations.of(context)!.hand_cutting_work,
+      AppLocalizations.of(context)!.steel_bar_checking_knowledge,
+      AppLocalizations.of(context)!.steel_bar_measurement_work,
+      AppLocalizations.of(context)!.horizontal_bar_alignment,
+      AppLocalizations.of(context)!.placement_of_bars,
+      AppLocalizations.of(context)!.hand_bar_binding,
+      AppLocalizations.of(context)!.machine_cutting,
+      AppLocalizations.of(context)!.lap_length_knowledge,
+      AppLocalizations.of(context)!.steel_bar_straightening_work,
+      AppLocalizations.of(context)!.safety_knowledge_site,
+      AppLocalizations.of(context)!.hand_cutting_work,
+      AppLocalizations.of(context)!.plate_welding_work,
+      AppLocalizations.of(context)!.welding_checking,
+      AppLocalizations.of(context)!.fastner_drilling_fixing,
+      AppLocalizations.of(context)!.rod_welding,
+      AppLocalizations.of(context)!.drawing_reading,
+      AppLocalizations.of(context)!.drawing_checking,
+      AppLocalizations.of(context)!.ms_straightening_work,
+      AppLocalizations.of(context)!.mechanical_cutting_work,
+      AppLocalizations.of(context)!.gas_cutting,
+      AppLocalizations.of(context)!.hold_fast_fabrication,
+      AppLocalizations.of(context)!.gate_fabrication,
+      AppLocalizations.of(context)!.steel_welding,
+      AppLocalizations.of(context)!.gas_welding,
+      AppLocalizations.of(context)!.cast_iron_work,
+      AppLocalizations.of(context)!.fillet_welding_work,
+      AppLocalizations.of(context)!.repair_work,
+      AppLocalizations.of(context)!.railing_fabrication,
+      AppLocalizations.of(context)!.material_checking,
+      AppLocalizations.of(context)!.spot_welding,
+      AppLocalizations.of(context)!.argon_welding,
+      AppLocalizations.of(context)!.measurement_work,
+      AppLocalizations.of(context)!.beading_work,
+      AppLocalizations.of(context)!.veneer_pasting,
+      AppLocalizations.of(context)!.wardrobe_work,
+      AppLocalizations.of(context)!.lock_fixing,
+      AppLocalizations.of(context)!.wood_adhesive_work,
+      AppLocalizations.of(context)!.wood_finshing_work,
+      AppLocalizations.of(context)!.drawing_checking,
+      AppLocalizations.of(context)!.jali_fixing_work,
+      AppLocalizations.of(context)!.dressing_table_work,
+      AppLocalizations.of(context)!.latch_fixing,
+      AppLocalizations.of(context)!.wood_grinding_work,
+      AppLocalizations.of(context)!.wood_jointing_work,
+      AppLocalizations.of(context)!.wood_sawing_work,
+      AppLocalizations.of(context)!.leveling_work,
+      AppLocalizations.of(context)!.glass_fixing_work,
+      AppLocalizations.of(context)!.bed_making_work,
+      AppLocalizations.of(context)!.hinges_fixing,
+      AppLocalizations.of(context)!.tower_bolt_fixing,
+      AppLocalizations.of(context)!.mica_pasting_work,
+      AppLocalizations.of(context)!.pattern_painting,
+      AppLocalizations.of(context)!.wood_cutting,
+      AppLocalizations.of(context)!.measurement_work,
+      AppLocalizations.of(context)!.duco_painting,
+      AppLocalizations.of(context)!.lacquer_polishing,
+      AppLocalizations.of(context)!.interior_painting,
+      AppLocalizations.of(context)!.texture_painting,
+      AppLocalizations.of(context)!.pvc_polishing,
+      AppLocalizations.of(context)!.cleaning_work,
+      AppLocalizations.of(context)!.polishing_natural,
+      AppLocalizations.of(context)!.exterior_painting,
+      AppLocalizations.of(context)!.roller_painting_work,
+      AppLocalizations.of(context)!.putty_work,
+      AppLocalizations.of(context)!.paint_material_checking,
+      AppLocalizations.of(context)!.satin_painting,
+      AppLocalizations.of(context)!.melamine_polishing,
+      AppLocalizations.of(context)!.ground_panting,
+      AppLocalizations.of(context)!.pattern_painting,
+      AppLocalizations.of(context)!.machine_sanding,
+      AppLocalizations.of(context)!.sanding,
+      AppLocalizations.of(context)!.material_checking,
+      AppLocalizations.of(context)!.drawing_checking,
+      AppLocalizations.of(context)!.drawing_reading,
+      AppLocalizations.of(context)!.sewer_chamber_construction_work,
+      AppLocalizations.of(context)!.geyser_installation,
+      AppLocalizations.of(context)!.bottle_trap_fixing,
+      AppLocalizations.of(context)!.jointing_work,
+      AppLocalizations.of(context)!.levelling_work,
+      AppLocalizations.of(context)!.repairing_work,
+      AppLocalizations.of(context)!.spout_fixing,
+      AppLocalizations.of(context)!.wc_fixing,
+      AppLocalizations.of(context)!.threading_work,
+      AppLocalizations.of(context)!.water_leakage_checking,
+      AppLocalizations.of(context)!.water_tank_fixing,
+      AppLocalizations.of(context)!.water_tap_fixing,
+      AppLocalizations.of(context)!.pipe_fitting,
+      AppLocalizations.of(context)!.core_cutting,
+      AppLocalizations.of(context)!.repair_work,
+      AppLocalizations.of(context)!.concrete_work,
+      AppLocalizations.of(context)!.plastering_work,
+      AppLocalizations.of(context)!.steel_work,
+      AppLocalizations.of(context)!.levelling_work,
+      AppLocalizations.of(context)!.ground_filling,
+      AppLocalizations.of(context)!.shuttering_work,
+      AppLocalizations.of(context)!.stone_work,
+      AppLocalizations.of(context)!.brick_work,
+      AppLocalizations.of(context)!.construction_material_checking,
+      AppLocalizations.of(context)!.grouting_work,
+      AppLocalizations.of(context)!.damp_proofing_work,
+      AppLocalizations.of(context)!.rcc_work,
+      AppLocalizations.of(context)!.tile_work,
+      AppLocalizations.of(context)!.measurement_work
+    ];
     return Scaffold(
-      bottomNavigationBar: BottomTabView(2),
+      bottomNavigationBar: const BottomTabView(2),
       key: notDrawerKey,
       drawer: const SettingsView(),
       appBar: AppBar(
         foregroundColor: Colors.black,
         bottomOpacity: 0,
         title: Text(
-          "Add Your Skills",
+          AppLocalizations.of(context)!.addYourSkills,
           style: GoogleFonts.kadwa(
               color: Colors.white,
               fontWeight: FontWeight.w700,
@@ -215,8 +210,8 @@ class _AddSkillViewState extends State<AddSkillView> {
           icon: SvgPicture.asset(Assets.drawerIcon_white),
           onPressed: () {
             if (!notDrawerKey.currentState!.isDrawerOpen) {
-              //check if drawer is closed
-              notDrawerKey.currentState!.openDrawer(); //open drawer
+          
+              notDrawerKey.currentState!.openDrawer(); 
             }
           },
         ),
@@ -245,7 +240,7 @@ class _AddSkillViewState extends State<AddSkillView> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15, left: 16, right: 16.0),
-              child: DynamicButton("Save & Next", true, () {
+              child: DynamicButton(AppLocalizations.of(context)!.saveNext, true, () {
                 if (Get.arguments == 'resume') {
                   resumeController.UpdateSkills();
                 } else {

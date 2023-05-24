@@ -1,19 +1,15 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
-import 'package:ekinch/app/modules/job/job_list/view/jobs_list.dart';
 import 'package:ekinch/app/modules/listpostjob/controller/post_job_controller.dart';
 import 'package:ekinch/app/modules/listpostjob/views/widget/job_application_card.dart';
-import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
 import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../widgets/math_utils.dart';
 import '../../../custom_widget/font_size.dart';
@@ -23,9 +19,9 @@ import '../../notication/view/notification_view.dart';
 import '../../settings/views/settings_view.dart';
 
 class JobView extends StatefulWidget {
-  List<Data> JobList;
-  String filterValue;
-  JobView({super.key, required this.JobList, required this.filterValue});
+  final List<Data> jobList;
+  final String filterValue;
+  const JobView({super.key, required this.jobList, required this.filterValue});
 
   @override
   State<JobView> createState() => _JobViewState();
@@ -34,27 +30,27 @@ class JobView extends StatefulWidget {
 class _JobViewState extends State<JobView> {
   ApplyJobController controller = Get.put(ApplyJobController());
   // TextEditingController _searchcontroller = TextEditingController();
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-  final List<String> categoryList = [
-    "Labour",
-    "Plaster Mistri",
-    "Tiles Mistri",
-    "Plumber",
-    "Electrician",
-    "Painter",
-    "Carpenter",
-    "Welder",
-    "Bar bender",
-    "Contractor",
-    "Dukandar",
-    "Customer",
-    "Engineer",
-    "Architect",
-    "other"
-  ];
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    final List<String> categoryList = [
+      AppLocalizations.of(context)!.labour,
+      AppLocalizations.of(context)!.plastermistri,
+      AppLocalizations.of(context)!.tilesmistri,
+      AppLocalizations.of(context)!.plumber,
+      AppLocalizations.of(context)!.electrician,
+      AppLocalizations.of(context)!.painter,
+      AppLocalizations.of(context)!.carpenter,
+      AppLocalizations.of(context)!.welder,
+      AppLocalizations.of(context)!.barbender,
+      AppLocalizations.of(context)!.contractor,
+      AppLocalizations.of(context)!.dukandar,
+      AppLocalizations.of(context)!.customer,
+      AppLocalizations.of(context)!.engineer,
+      AppLocalizations.of(context)!.architect,
+      AppLocalizations.of(context)!.other
+    ];
     filter() {
       return showModalBottomSheet(
           backgroundColor: Colors.transparent,
@@ -78,7 +74,7 @@ class _JobViewState extends State<JobView> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: Text(
-                          'Filter by',
+                          AppLocalizations.of(context)!.filterBy,
                           style: GoogleFonts.kadwa(
                             fontSize: F22(),
                             fontWeight: FontWeight.w700,
@@ -121,7 +117,7 @@ class _JobViewState extends State<JobView> {
                                 ),
                                 isExpanded: false,
                                 hint: Text(
-                                  "Select Category",
+                                  AppLocalizations.of(context)!.selectCategory,
                                   style: GoogleFonts.kadwa(
                                       fontSize: getFontSize(18),
                                       color: const Color(0xFF636363)),
@@ -151,8 +147,10 @@ class _JobViewState extends State<JobView> {
                                     .toList(),
                                 validator: (value) {
                                   if (value == null) {
-                                    return 'Please Select Company';
+                                    return AppLocalizations.of(context)!
+                                        .selectCategory;
                                   }
+                                  return null;
                                 },
                                 onChanged: (value) {
                                   controller.filter.text == value.toString();
@@ -183,7 +181,8 @@ class _JobViewState extends State<JobView> {
                                         ),
                                         child: Center(
                                           child: Text(
-                                            'Cancel',
+                                            AppLocalizations.of(context)!
+                                                .cancel,
                                             style: GoogleFonts.kadwa(
                                               fontSize: F24(),
                                               fontWeight: FontWeight.w700,
@@ -213,7 +212,8 @@ class _JobViewState extends State<JobView> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              'Apply',
+                                              AppLocalizations.of(context)!
+                                                  .apply,
                                               style: GoogleFonts.kadwa(
                                                 fontSize: F24(),
                                                 fontWeight: FontWeight.w700,
@@ -436,7 +436,7 @@ class _JobViewState extends State<JobView> {
 //     }
 
     return Scaffold(
-        bottomNavigationBar: BottomTabView(2),
+        bottomNavigationBar: const BottomTabView(2),
         key: scaffoldKey,
         drawer: const SettingsView(),
         appBar: AppBar(
@@ -487,7 +487,8 @@ class _JobViewState extends State<JobView> {
                         width: Get.width / 1.4,
                         child: TextFeildWhite(
                           // controller: _searchcontroller,
-                          hintText: 'Job, location and other',
+                          hintText:
+                              AppLocalizations.of(context)!.searchjobbyname,
                         ),
                       ),
                       InkWell(
@@ -540,23 +541,23 @@ class _JobViewState extends State<JobView> {
                         )
                       ],
                     ),
-                    (widget.JobList.length == 0)
+                    (widget.jobList.isEmpty)
                         ? Center(
                             child: Text(
-                              "0 Jobs Found",
+                              "0 ${AppLocalizations.of(context)!.jobsFound}",
                               style: GoogleFonts.kadwa(
                                   fontSize: F24(), color: Colors.grey),
                             ),
                           )
                         : Column(
-                            children: (widget.JobList)
+                            children: (widget.jobList)
                                 .map((e) => JobApplicationCard(
                                       image: e.company.photo.toString(),
                                       title: e.title.toString(),
                                       subtitle: e.location.toString(),
                                       time: " ",
                                       experience:
-                                          "${e.jobDetails![0].exp.toString()} years experience",
+                                          "${e.jobDetails![0].exp.toString()} ${AppLocalizations.of(context)!.yearsExperience}",
                                       salary:
                                           "${e.jobDetails![0].slrStr.toString()}-${e.jobDetails![0].slrEnd.toString()}",
                                       location: e.city.toString(),
@@ -569,8 +570,8 @@ class _JobViewState extends State<JobView> {
                                           e.jobDetails![0].mustSkill.join(', '),
                                       language:
                                           e.jobDetails![0].lngSpk.toString(),
-                                      address: e.company!.address.toString(),
-                                      companyName: e.company!.name.toString(),
+                                      address: e.company.address.toString(),
+                                      companyName: e.company.name.toString(),
                                       jobId: e.id.toString(),
                                       status: e.applyStatus,
                                     ))

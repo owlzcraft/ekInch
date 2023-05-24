@@ -1,4 +1,3 @@
-import 'package:circle_progress_bar/circle_progress_bar.dart';
 import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/generated/assets.dart';
@@ -8,23 +7,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../../../widgets/math_utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JobCardWidget extends StatelessWidget {
-  String photo;
-  String name;
-  String profession;
-  String location;
-  String dob;
-  String qualification;
-  String language;
-  String gender;
-  String schoolBoard;
-  String experience;
-  String skills;
-  String contactNumber;
-  JobCardWidget(
+  final String photo;
+  final String name;
+  final String profession;
+  final String location;
+  final String dob;
+  final String qualification;
+  final String language;
+  final String gender;
+  final String schoolBoard;
+  final String experience;
+  final String skills;
+  final String contactNumber;
+  const JobCardWidget(
       {super.key,
       required this.photo,
       required this.contactNumber,
@@ -46,7 +44,7 @@ class JobCardWidget extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Get.to(JobProfileView(
-            photo:photo,
+            photo: photo,
             title: name,
             subTitle: profession,
             location: location,
@@ -69,7 +67,7 @@ class JobCardWidget extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.2),
                     spreadRadius: 1,
                     blurRadius: 2,
-                    offset: Offset(2, 4),
+                    offset: const Offset(2, 4),
                   ),
                 ],
                 color: Colors.white,
@@ -276,7 +274,7 @@ class JobCardWidget extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Call",
+                                      AppLocalizations.of(context)!.call,
                                       style: GoogleFonts.kadwa(
                                           color: KColors.textGrey,
                                           fontSize: F16(),
@@ -292,7 +290,7 @@ class JobCardWidget extends StatelessWidget {
                                   children: [
                                     SvgPicture.asset(Assets.msg),
                                     Text(
-                                      "chat",
+                                      AppLocalizations.of(context)!.chat,
                                       style: GoogleFonts.kadwa(
                                           color: KColors.textGrey,
                                           fontSize: F16(),

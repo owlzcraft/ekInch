@@ -1,16 +1,19 @@
+// ignore_for_file: non_constant_identifier_names, file_names
+
 import 'package:flutter/material.dart';
 
 PreferredSizeWidget UpperBar(String title, String pageName, bool notification,bool bell) {
   return PreferredSize(
-      child: Container(padding: EdgeInsets.symmetric(vertical: 40),
-        decoration: BoxDecoration(color: Colors.black,),
+      preferredSize: const Size(double.infinity, 90),
+      child: Container(padding: const EdgeInsets.symmetric(vertical: 40),
+        decoration: const BoxDecoration(color: Colors.black,),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.asset("assets/images/burger.png"),
-                Text(title,style: TextStyle(color: Colors.white,fontSize: 24),),
+                Text(title,style: const TextStyle(color: Colors.white,fontSize: 24),),
                 Row(
                   children: [
                     Visibility(
@@ -20,7 +23,7 @@ PreferredSizeWidget UpperBar(String title, String pageName, bool notification,bo
                       visible: pageName=="ReferNearn",
                       child: Image.asset("assets/images/whiteback.png"),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Stack(
                       children: [
                         Visibility(visible: bell,child: 
@@ -47,6 +50,5 @@ PreferredSizeWidget UpperBar(String title, String pageName, bool notification,bo
             ),
           ],
         ),
-      ),
-      preferredSize: Size(double.infinity, 90));
+      ));
 }

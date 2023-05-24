@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,8 +9,8 @@ class work extends StatelessWidget {
   final String image;
   final String view;
   final String text;
-  work(
-      {required this.image ,
+  const work(
+      {super.key, required this.image ,
       required this.view ,
       required this.text });
 

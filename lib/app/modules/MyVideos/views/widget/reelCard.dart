@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, file_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,7 @@ class reelCard extends StatelessWidget {
   final String image;
   final String view;
   final String text;
-  reelCard({required this.image, required this.view, required this.text});
+  const reelCard({super.key, required this.image, required this.view, required this.text});
 
   @override
   Widget build(BuildContext context) {

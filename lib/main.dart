@@ -5,26 +5,33 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'app/routes/app_pages.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'app/utils/localStorage.dart';
+import 'package:ekinch/l10n/l10n.dart';
 
-void main() {
+Locale _locale = const Locale('en');
+
+Locale get locale => _locale;
+
+void changeAppLanguage(Locale newLocale) {
+  _locale = newLocale;
+  Get.updateLocale(newLocale);
+}
+
+void main() async {
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-  const device_height = 802.9090909090909;
-  const device_width = 392.72727272727275;
+  // await LocalStorage.init();
+  WidgetsFlutterBinding.ensureInitialized();
 //comment
-  var walkThrough = LocalStorage.shared.isWalkthroughComplete();
 // final FlutterLocalization localization = FlutterLocalization.instance;
   runApp(ScreenUtilInit(builder: ((context, child) {
     return GetMaterialApp(
-      supportedLocales: [
-        const Locale('en', 'US'),
-        const Locale('hi', 'IN'),
-      ],
-      localizationsDelegates: [
+      supportedLocales: L10n.all,
+      locale: _locale,
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
       ],
       localeResolutionCallback: (locale, supportedLocales) {
         for (var supportedLocale in supportedLocales) {
@@ -33,8 +40,6 @@ void main() {
             return supportedLocale;
           }
         }
-        // If the locale of the device is not supported,
-        // fallback to the default locale (English, US).
         return const Locale('en', 'US');
       },
       title: "Application",

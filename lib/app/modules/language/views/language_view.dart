@@ -1,6 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
+import 'package:ekinch/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,14 +10,11 @@ import '../../../../widgets/math_utils.dart';
 import '../../../../widgets/shape.dart';
 import '../../../custom_widget/font_size.dart';
 import '../../../utils/localStorage.dart';
-import '../../Onboarding/views/onboarding_view.dart';
-import '../../dashboard/controllers/dashboard_controller.dart';
-import '../../dashboard/views/dashboard_view.dart';
 import '../controllers/language_controller.dart';
 import '../widgets/language.dart';
 
 class LanguageView extends StatefulWidget {
-  LanguageView({super.key});
+  const LanguageView({super.key});
 
   @override
   State<LanguageView> createState() => _LanguageViewState();
@@ -40,8 +39,8 @@ class _LanguageViewState extends State<LanguageView> {
               children: [
                 InkWell(
                     onTap: () {
+                      // changeLanguage('en');
                       if (LocalStorage.shared.isLoggedIn()) {
-                        print(LocalStorage.shared.isLoggedIn());
 
                         var lang = controller.lang_data
                             .firstWhere((element) => element['isActive'] == 1);
@@ -52,12 +51,22 @@ class _LanguageViewState extends State<LanguageView> {
                         var lang = controller.lang_data
                             .firstWhere((element) => element['isActive'] == 1);
                         box.write("lang", lang['textT']);
-                        print(LocalStorage.shared.isLoggedIn());
+                        // Locale currentLocale = const Locale('en');
 
+                        // void _changeLanguage(value) {
+                        //   print('done');
+                        //   setState(() {
+                        //     if (value == 'hi_IN') {
+                        //       currentLocale = const Locale('hi');
+                        //     } else {
+                        //       currentLocale = const Locale('en');
+                        //     }
+                        //   });
+                        // }
                         // Get.to(OnboardingView());
                       }
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_forward,
                       color: Colors.black,
                       size: 30,
@@ -71,7 +80,7 @@ class _LanguageViewState extends State<LanguageView> {
               'भाषा चुने / Select Language ',
               textAlign: TextAlign.start,
               style: GoogleFonts.kadwa(
-                  color: Color.fromRGBO(0, 0, 0, 1),
+                  color: const Color.fromRGBO(0, 0, 0, 1),
                   fontSize: F30(),
                   fontWeight: FontWeight.w800),
             ),
@@ -139,18 +148,14 @@ class _LanguageViewState extends State<LanguageView> {
               var lang = controller.lang_data
                   .firstWhere((element) => element['isActive'] == 1);
               box.write("lang", lang['textT']);
-              print(lang['index']);
-              int index;
-              var locale = Locale('en', 'US');
+              var locale = const Locale('en');
               if (lang['index'] == 0) {
                 setState(() {
-                  locale = Locale('hi', 'IN');
+                  locale = const Locale('hi');
                 });
-                print("doneeee");
               }
-              print(locale);
+              changeAppLanguage(locale);
               controller.changeLanguage(context, locale);
-             
             }),
           ),
         ],

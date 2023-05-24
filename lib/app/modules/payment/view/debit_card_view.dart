@@ -1,36 +1,29 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
-import 'package:ekinch/app/modules/notication/view/widget/notifcation_card.dart';
 import 'package:ekinch/app/modules/payment/controller/payment_controller.dart';
-import 'package:ekinch/app/modules/payment/view/card.dart';
 import 'package:ekinch/app/modules/payment/view/payment_status_view.dart';
 import 'package:ekinch/app/modules/payment/view/widget/textField.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../widgets/math_utils.dart';
 import '../../../custom_widget/color.dart';
 import '../../dashboard/widgets/navigation.dart';
 import '../../notication/view/notification_view.dart';
-import '../../referNearn/views/refer_nearn_view.dart';
 import '../../settings/views/settings_view.dart';
 
 class DebitCardView extends StatefulWidget {
-  DebitCardView({super.key});
+  const DebitCardView({super.key});
 
   @override
   State<DebitCardView> createState() => DebitCardViewState();
 }
 
 class DebitCardViewState extends State<DebitCardView> {
-  GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> notDrawerKey =  GlobalKey<ScaffoldState>();
 
   PaymentController controller = Get.put(PaymentController());
   bool status = false;
@@ -38,13 +31,13 @@ class DebitCardViewState extends State<DebitCardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: notDrawerKey, drawer: SettingsView(),
+      key: notDrawerKey, drawer: const SettingsView(),
       // appBar: UpperBar("Records", "Records", true, true),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(190),
+        preferredSize: const Size.fromHeight(190),
         child: AppBar(
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(90),
+            preferredSize: const Size.fromHeight(90),
             child: Container(
               decoration: BoxDecoration(
                   color: Colors.black, border: Border.all(color: Colors.black)),
@@ -104,7 +97,7 @@ class DebitCardViewState extends State<DebitCardView> {
           ),
           actions: [
             IconButton(
-              padding: EdgeInsetsDirectional.only(end: 9.11),
+              padding: const EdgeInsetsDirectional.only(end: 9.11),
               onPressed: (() => {Get.to(() => NotificationView())}),
               icon: SvgPicture.asset(Assets.notification),
             ),
@@ -217,7 +210,7 @@ class DebitCardViewState extends State<DebitCardView> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             color: Colors.white,
-                            boxShadow: <BoxShadow>[
+                            boxShadow: const <BoxShadow>[
                               BoxShadow(
                                   color: KColors.lightGrey,
                                   blurRadius: 5.0,
@@ -242,7 +235,7 @@ class DebitCardViewState extends State<DebitCardView> {
                                   padding: const EdgeInsets.only(left: 12.0),
                                   child: InkWell(
                                     onTap: () {
-                                      Get.to(PaymentStatusView());
+                                      Get.to(const PaymentStatusView());
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -274,7 +267,7 @@ class DebitCardViewState extends State<DebitCardView> {
               ),
             ]),
       ),
-      bottomNavigationBar: BottomTabView(9),
+      bottomNavigationBar: const BottomTabView(9),
       // bottomNavigationBar: MyNavigator(),
     );
   }

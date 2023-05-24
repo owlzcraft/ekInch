@@ -1,33 +1,35 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:ekinch/app/modules/notication/view/widget/notifcation_card.dart';
 import 'package:ekinch/app/modules/plans/view/widget/plans_card.dart';
 import 'package:ekinch/app/modules/plans/view/widget/related_card.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../custom_widget/color.dart';
 import '../../dashboard/widgets/navigation.dart';
 import '../../notication/view/notification_view.dart';
-import '../../referNearn/views/refer_nearn_view.dart';
 import '../../settings/views/settings_view.dart';
 
-class PlansView extends StatelessWidget {
-  PlansView({super.key});
-  GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
+class PlansView extends StatefulWidget {
+  const PlansView({super.key});
+
+  @override
+  State<PlansView> createState() => _PlansViewState();
+}
+
+class _PlansViewState extends State<PlansView> {
+  GlobalKey<ScaffoldState> notDrawerKey =  GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      key: notDrawerKey, drawer: SettingsView(),
+      key: notDrawerKey, drawer: const SettingsView(),
       // appBar: UpperBar("Records", "Records", true, true),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70),
+        preferredSize: const Size.fromHeight(70),
         child: AppBar(
           title: Text(
             "Plans",
@@ -48,7 +50,7 @@ class PlansView extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              padding: EdgeInsetsDirectional.only(end: 9.11),
+              padding: const EdgeInsetsDirectional.only(end: 9.11),
               onPressed: (() => {Get.to(() => NotificationView())}),
               icon: SvgPicture.asset(Assets.notification),
             ),
@@ -103,7 +105,7 @@ class PlansView extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 "Related Plan ",
                 style: GoogleFonts.kadwa(
@@ -152,7 +154,7 @@ class PlansView extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomTabView(9),
+      bottomNavigationBar: const BottomTabView(9),
       // bottomNavigationBar: MyNavigator(),
     );
   }

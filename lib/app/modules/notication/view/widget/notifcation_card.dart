@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -57,7 +59,7 @@ NotificationCard(String image, String title, String subtitle, String time) {
           )
         ],
       ),
-      Padding(
+      const Padding(
         padding: EdgeInsets.symmetric(vertical: 8.0),
         child: Divider(
           color: KColors.greyLine,

@@ -1,21 +1,16 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:ekinch/app/modules/recently_added/view/widget/user_card.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/components/button/gf_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
-import '../../../../widgets/math_utils.dart';
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
 import '../../notication/view/notification_view.dart';
 import '../../postjob/widgets/shortDropDown.dart';
 import '../../settings/views/settings_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RecentlyAddedView extends StatefulWidget {
   const RecentlyAddedView({super.key});
@@ -25,7 +20,7 @@ class RecentlyAddedView extends StatefulWidget {
 }
 
 class RecentlyAddedViewState extends State<RecentlyAddedView> {
-  GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> notDrawerKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +29,10 @@ class RecentlyAddedViewState extends State<RecentlyAddedView> {
       key: notDrawerKey, drawer: const SettingsView(),
       // appBar: UpperBar("Records", "Records", true, true),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70),
+        preferredSize: const Size.fromHeight(70),
         child: AppBar(
           title: Text(
-            "Recently Added",
+            AppLocalizations.of(context)!.recentlyAdded,
             style: GoogleFonts.kadwa(
                 fontSize: F24(),
                 color: Colors.white,
@@ -48,8 +43,7 @@ class RecentlyAddedViewState extends State<RecentlyAddedView> {
             icon: SvgPicture.asset(Assets.drawerIcon_white),
             onPressed: () {
               if (!notDrawerKey.currentState!.isDrawerOpen) {
-                //check if drawer is closed
-                notDrawerKey.currentState!.openDrawer(); //open drawer
+                notDrawerKey.currentState!.openDrawer();
               }
             },
           ),
@@ -63,7 +57,7 @@ class RecentlyAddedViewState extends State<RecentlyAddedView> {
           elevation: 0.0,
         ),
       ),
-      bottomNavigationBar: BottomTabView(9),
+      bottomNavigationBar: const BottomTabView(9),
       body: SingleChildScrollView(
           child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -72,12 +66,12 @@ class RecentlyAddedViewState extends State<RecentlyAddedView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFeildGreyBorder(
-              hintText: "Search name",
+              hintText: AppLocalizations.of(context)!.searchByName,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0),
               child: Text(
-                "Recently Added Users",
+                AppLocalizations.of(context)!.recentlyAddedUsers,
                 style: GoogleFonts.kadwa(
                     fontSize: F20(),
                     color: Colors.black,

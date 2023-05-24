@@ -1,9 +1,7 @@
-import 'dart:async';
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_overrides
 
 import 'package:get/get.dart';
-
-import '../../../networking/api_result.dart';
-import '../../../networking/app_repo.dart';
 
 class PaymentController extends GetxController {
   var activeCategory = 0.obs;

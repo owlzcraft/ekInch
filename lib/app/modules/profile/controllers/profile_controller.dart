@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names
+
 import 'package:ekinch/app/modules/otp/views/otp_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +20,6 @@ import 'package:mime_type/mime_type.dart';
 import '../views/profile_view.dart';
 
 class ProfileController extends GetxController {
-  //TODO: Implement ProfileController
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
 
   TextEditingController numberController = TextEditingController();
@@ -86,9 +87,7 @@ class ProfileController extends GetxController {
                 success: (value) {
                   if (value!.status == 200) {
                     successSnackBar("Profile Pic Uploaded");
-
                     LocalStorage.shared.savephoto(value.userPhoto as String);
-                    print("${LocalStorage.shared.getProfile()}");
                     Get.offAllNamed(Routes.PROFILE);
                   } else {
                     errorSnackbar("Image not Found");
@@ -101,12 +100,9 @@ class ProfileController extends GetxController {
   }
 
   Future<void> updateProfile() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
-          print(profession.text);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
@@ -138,12 +134,9 @@ class ProfileController extends GetxController {
 
 //Upadte Profile
   Future<void> updatePhoneNumber() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
-          print(profession.text);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
@@ -159,7 +152,6 @@ class ProfileController extends GetxController {
                 success: (value) {
                   if (value!.status == 200) {
                     LocalStorage.shared.saveUserData(value);
-
                     Get.offAndToNamed(Routes.PROFILE);
                   } else if (value.status == 400) {
                     errorSnackbar("Something Went Wrong");
@@ -175,22 +167,19 @@ class ProfileController extends GetxController {
 
   //Send Otp
   Future<void> SendOtpNewPhoneNumber() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
-          print(profession.text);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
           data["mobileNumber"] = mobileNumber.text;
-
           await apiRepository.sendOtp(data).then((ApiResult<OtpModel> value) {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    Get.to(OtpView(), arguments: [mobileNumber.text, "Update"]);
+                    Get.to(const OtpView(),
+                        arguments: [mobileNumber.text, "Update"]);
                   } else if (value.ok == false) {
                     Get.back();
                     errorSnackbar("Phone number Already Exist");
@@ -206,13 +195,9 @@ class ProfileController extends GetxController {
 
   //VerifyPhoneNumber
   Future<void> VerifyPhoneNumber(String newNumber) async {
-    print("**************************");
-    print(newNumber);
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
-          print(profession.text);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
@@ -226,7 +211,7 @@ class ProfileController extends GetxController {
                   if (value!.status == 200) {
                     LocalStorage.shared.saveNumber(value.new_number as String);
 
-                    Get.to(ProfileView());
+                    Get.to(const ProfileView());
                   } else if (value.status == 400) {
                     Get.back();
                     errorSnackbar("Phone number Already Exist");
@@ -240,20 +225,8 @@ class ProfileController extends GetxController {
         loadingWidget: const LoadingIndicator());
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void increment() => count.value++;
 }

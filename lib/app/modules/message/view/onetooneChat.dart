@@ -1,24 +1,25 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: file_names
+
+import 'package:ekinch/app/modules/message/view/widget/receive_message.dart';
+import 'package:ekinch/app/modules/message/view/widget/send_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/components/button/gf_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../widgets/math_utils.dart';
 import '../../../custom_widget/color.dart';
 import '../../../custom_widget/font_size.dart';
 import '../../../generated/assets.dart';
-import '../../dashboard/widgets/navigation.dart';
 import '../../notication/view/notification_view.dart';
 import '../../settings/views/settings_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OneToOneChat extends StatelessWidget {
-  String photo;
-  String name;
-  String profession;
-  OneToOneChat(
+  final String photo;
+  final String name;
+  final String profession;
+  const OneToOneChat(
       {super.key,
       required this.photo,
       required this.name,
@@ -26,7 +27,7 @@ class OneToOneChat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
+    GlobalKey<ScaffoldState> notDrawerKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -118,7 +119,7 @@ class OneToOneChat extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 50.sp,
-                            backgroundColor: Color(0xFFE0E0E0),
+                            backgroundColor: const Color(0xFFE0E0E0),
                             child: CircleAvatar(
                               radius: 42.sp,
                               backgroundImage: AssetImage(photo),
@@ -149,12 +150,59 @@ class OneToOneChat extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+            Container(
+              width: Get.width,
+              color: Colors.white,
+              child: const Column(
+                children: [
+                  SendMessage(msg: "Hello"),
+                  SendMessage(msg: "How"),
+                  SendMessage(msg: "are"),
+                  SendMessage(msg: "you?"),
+                  ReceiveMessage(msg: "Hi"),
+                  ReceiveMessage(msg: "Good")
+                ],
+              ),
             )
           ],
         ),
       ),
 
-      bottomNavigationBar: BottomTabView(2),
+      bottomNavigationBar: SizedBox(
+        width: Get.width,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Icon(Icons.camera_alt_outlined, color: KColors.orange),
+              TextFormField(
+                // controller: ,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6.0),
+                      borderSide: const BorderSide(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    hintText: AppLocalizations.of(context)!.typeMessage),
+              ),
+              CircleAvatar(
+                radius: 6.sp,
+                backgroundColor: Colors.black,
+                child: const Center(
+                  child: Icon(
+                    Icons.send,
+                    color: KColors.orange,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+        // decoration: BoxDecoration(border: Border.symmetric()),
+      ),
 
       // bottomNavigationBar: MyNavigator(),
     );

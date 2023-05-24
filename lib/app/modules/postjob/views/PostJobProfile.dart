@@ -1,18 +1,17 @@
+// ignore_for_file: file_names
+
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:ekinch/app/modules/postjob/controllers/postjob_controller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../custom_widget/font_size.dart';
 import '../../listpostjob/views/widget/key_value.dart';
 import '../../mobile/widget/yellow_button.dart';
-import 'Confirmationjob.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PostJobProfile extends StatefulWidget {
   final String company;
@@ -28,7 +27,7 @@ class PostJobProfile extends StatefulWidget {
   final String jobTime;
   // final String interviewTime;
   // final String address;
-  PostJobProfile({
+  const PostJobProfile({
     super.key,
     required this.company,
     required this.jobTitle,
@@ -46,22 +45,22 @@ class PostJobProfile extends StatefulWidget {
   });
 
   @override
-  _PostJobProfileState createState() => _PostJobProfileState();
+  PostJobProfileState createState() => PostJobProfileState();
 }
 
-class _PostJobProfileState extends State<PostJobProfile> {
+class PostJobProfileState extends State<PostJobProfile> {
   PostjobController controller = Get.put(PostjobController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomTabView(2),
+      bottomNavigationBar: const BottomTabView(2),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: AppBar(
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Get.back();
             },
@@ -82,7 +81,7 @@ class _PostJobProfileState extends State<PostJobProfile> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -119,25 +118,23 @@ class _PostJobProfileState extends State<PostJobProfile> {
                   )
                 ],
               ),
-              Container(
-                child: Card(
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                      children: [
-                        CustomRow(context, "Job Title", widget.jobTitle),
-                        CustomRow(context, "In Hand Salary", widget.salary),
-                        CustomRow(
-                            context, "Qualification", widget.qualification),
-                        CustomRow(context, "Language", widget.language),
-                        CustomRow(context, "Required", widget.require),
-                        CustomRow(context, "Job Info", widget.jobInfo),
-                        CustomRow(context, "Experience", widget.experience),
-                      ],
-                    ),
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      CustomRow(context, AppLocalizations.of(context)!.jobTitle, widget.jobTitle),
+                      CustomRow(context, AppLocalizations.of(context)!.inHandSalary, widget.salary),
+                      CustomRow(
+                          context, AppLocalizations.of(context)!.qualification, widget.qualification),
+                      CustomRow(context, AppLocalizations.of(context)!.language, widget.language),
+                      CustomRow(context, AppLocalizations.of(context)!.required, widget.require),
+                      CustomRow(context, AppLocalizations.of(context)!.jobInfo, widget.jobInfo),
+                      CustomRow(context, AppLocalizations.of(context)!.experience, widget.experience),
+                    ],
                   ),
                 ),
               ),
@@ -145,28 +142,26 @@ class _PostJobProfileState extends State<PostJobProfile> {
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
               Text(
-                'Other Details',
+                AppLocalizations.of(context)!.otherDetails,
                 style: GoogleFonts.kadwa(
                     fontWeight: FontWeight.w700, color: black, fontSize: F18()),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
-              Container(
-                child: Card(
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: 15.0, right: 15, top: 15, bottom: 15),
-                    child: Column(
-                      children: [
-                        CustomRow(context, "Job Timing", widget.jobTime),
-                        // CustomRow(
-                        //     context, "Interview Timing", widget.interviewTime),
-                      ],
-                    ),
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 15.0, right: 15, top: 15, bottom: 15),
+                  child: Column(
+                    children: [
+                      CustomRow(context, AppLocalizations.of(context)!.jobTiming, widget.jobTime),
+                      // CustomRow(
+                      //     context, "Interview Timing", widget.interviewTime),
+                    ],
                   ),
                 ),
               ),
@@ -197,7 +192,7 @@ class _PostJobProfileState extends State<PostJobProfile> {
               //         ))),
               Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: DynamicButton("Post Job", true, () {
+                  child: DynamicButton(AppLocalizations.of(context)!.postJob, true, () {
                     controller.PostJob();
                     // Get.to(Confirmationjob(title:"Title of Job"));
                   })),

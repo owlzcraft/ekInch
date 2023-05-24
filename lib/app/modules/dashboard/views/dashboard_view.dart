@@ -1,16 +1,15 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/awards_certificate.dart/view/award_view.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/TabButton.dart';
-import 'package:ekinch/app/modules/plans/view/plan_view.dart';
 import 'package:ekinch/app/modules/recently_added/view/recently_added.dart';
-import 'package:ekinch/app/modules/reels/bindings/reels_binding.dart';
 import 'package:ekinch/app/modules/service/view/service_news.dart';
 import 'package:ekinch/app/networking/app_repo.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:ekinch/widgets/snack_bar.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/custom_widget/dash_header.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
@@ -19,7 +18,6 @@ import 'package:ekinch/app/modules/settings/views/settings_view.dart';
 import 'package:ekinch/app/utils/localStorage.dart';
 import "package:flutter_screenutil/flutter_screenutil.dart";
 import 'package:ekinch/app/modules/dashboard/widgets/awards.widgets.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/categoryPill.widget.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/recentlyAdded.widget.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/video.widget.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/videoCategory.widget.dart';
@@ -36,13 +34,12 @@ import '../../../networking/api_result.dart';
 import '../controllers/dashboard_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 class DashboardView extends StatefulWidget {
   List<Data> ReelsList;
   List<RData> RecentlyAddedList;
   List<RCategory> CivilList;
 
-  DashboardView(
+   DashboardView(
       {super.key,
       required this.ReelsList,
       required this.RecentlyAddedList,
@@ -71,10 +68,9 @@ class _DashboardStateView extends State<DashboardView>
     //   });
   }
 
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    int activeTab = 0;
     showDataAlertProfile() {
       showDialog(
           context: context,
@@ -89,52 +85,50 @@ class _DashboardStateView extends State<DashboardView>
                 ),
               ),
               title: Text(
-                "Select Reel",
+                AppLocalizations.of(context)!.selectreel,
                 style: GoogleFonts.kadwa(
                     fontSize: F24(), fontWeight: FontWeight.w700),
               ),
-              content: Container(
-                child: SingleChildScrollView(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      InkWell(
-                        onTap: () {
-                          controller.getVideoFromCamera();
-                        },
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.camera_alt_outlined,
-                              size: 50.sp,
-                            ),
-                            Text(
-                              "Camera",
-                              style: GoogleFonts.kadwa(
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
+              content: SingleChildScrollView(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        controller.getVideoFromCamera();
+                      },
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.camera_alt_outlined,
+                            size: 50.sp,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.camera,
+                            style: GoogleFonts.kadwa(
+                                fontWeight: FontWeight.w400),
+                          )
+                        ],
                       ),
-                      InkWell(
-                        onTap: () {
-                          controller.getVideoFromGallery();
-                        },
-                        child: Column(
-                          children: [
-                            Icon(Icons.filter, size: 50.sp),
-                            Text(
-                              "Gallery",
-                              style: GoogleFonts.kadwa(
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        controller.getVideoFromGallery();
+                      },
+                      child: Column(
+                        children: [
+                          Icon(Icons.filter, size: 50.sp),
+                          Text(
+                            AppLocalizations.of(context)!.gallery,
+                            style: GoogleFonts.kadwa(
+                                fontWeight: FontWeight.w400),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
             );
@@ -142,11 +136,8 @@ class _DashboardStateView extends State<DashboardView>
     }
 
     final APIRepository apiRepository = APIRepository(isTokenRequired: true);
-
     String categoryId = "100";
-    var tabViewVideoes = "civil";
     Future<void> GetCategoryReels(int index) async {
-      print("**************************");
       switch (index) {
         case 0:
           categoryId = "100";
@@ -173,12 +164,10 @@ class _DashboardStateView extends State<DashboardView>
       final fcmToken = LocalStorage.shared.getFCMToken();
       Get.showOverlay(
           asyncFunction: () async {
-            print(fcmToken);
             final Map<String, dynamic> data = <String, dynamic>{};
             data["token"] = fcmToken;
             data["userId"] = LocalStorage.shared.getnumber();
             data["categoryId"] = categoryId;
-
             await apiRepository
                 .categoryVidoesData(data)
                 .then((ApiResult<CategoriesVideoModel> value) {
@@ -189,9 +178,11 @@ class _DashboardStateView extends State<DashboardView>
                         widget.CivilList = value.category!;
                       });
                     } else if (value.status == 400) {
-                      errorSnackbar("Please Refresh");
+                      errorSnackbar(
+                          AppLocalizations.of(context)!.pleaseRefresh);
                     } else {
-                      errorSnackbar("Check Internet Connection");
+                      errorSnackbar(AppLocalizations.of(context)!
+                          .checkInternetConnection);
                     }
                   },
                   failure: (networkExceptions) {});
@@ -203,47 +194,41 @@ class _DashboardStateView extends State<DashboardView>
     var videoCategoryData = [
       {
         "image": "assets/images/civil.png",
-        "title": "Civil",
+        "title": AppLocalizations.of(context)!.civil,
         "videos": "6",
         "categoryId": "100"
       },
       {
         "image": "assets/images/hospital.png",
-        "title": "Hospital",
+        "title": AppLocalizations.of(context)!.hospital,
         "videos": "10",
         "categoryId": "200"
       },
       {
         "image": "assets/images/light.png",
-        "title": "Light",
+        "title": AppLocalizations.of(context)!.light,
         "videos": "5",
         "categoryId": "300"
       },
       {
         "image": "assets/images/welding.png",
-        "title": "Welding",
+        "title": AppLocalizations.of(context)!.welding,
         "videos": "7",
         "categoryId": "400"
       },
       {
         "image": "assets/images/plumber.png",
-        "title": "Plumber",
+        "title": AppLocalizations.of(context)!.plumber,
         "videos": "4",
         "categoryId": "500"
       },
       {
         "image": "assets/images/civil.png",
-        "title": "Building",
+        "title": AppLocalizations.of(context)!.wood,
         "videos": "6",
         "categoryId": "600"
       },
     ];
-    // var cat_pill_data = [
-    //   {"name": "Civil", "active": true},
-    //   {"name": "Plumber", "active": false},
-    //   {"name": "Electrician", "active": false},
-    //   {"name": "Plumber", "active": false},
-    // ];
     showWarning() {
       showDialog(
           context: context,
@@ -259,7 +244,7 @@ class _DashboardStateView extends State<DashboardView>
               ),
               title: Center(
                 child: Text(
-                  "Coming Soon",
+                  AppLocalizations.of(context)!.comingSoon,
                   style: GoogleFonts.kadwa(
                       color: Colors.black,
                       fontSize: F28(),
@@ -269,13 +254,72 @@ class _DashboardStateView extends State<DashboardView>
             );
           });
     }
-
-    showDataAlertSubscribe(String title, String subtitle) {
+//payment page
+    // showDataAlertSubscribe(String title, String subtitle) {
+    //   showDialog(
+    //       context: context,
+    //       builder: (context) {
+    //         return AlertDialog(
+    //           insetPadding: EdgeInsets.all(8.sp),
+    //           shape: const RoundedRectangleBorder(
+    //             borderRadius: BorderRadius.all(
+    //               Radius.circular(
+    //                 4.0,
+    //               ),
+    //             ),
+    //           ),
+    //           title: Center(
+    //             child: Text(
+    //               title,
+    //               style: GoogleFonts.kadwa(
+    //                   color: Colors.black,
+    //                   fontSize: F28(),
+    //                   fontWeight: FontWeight.w700),
+    //             ),
+    //           ),
+    //           content: SingleChildScrollView(
+    //             child: Column(
+    //               crossAxisAlignment: CrossAxisAlignment.center,
+    //               mainAxisSize: MainAxisSize.min,
+    //               children: <Widget>[
+    //                 Text(
+    //                   subtitle,
+    //                   textAlign: TextAlign.center,
+    //                   style: GoogleFonts.kadwa(
+    //                       height: 1.2,
+    //                       fontSize: F20(),
+    //                       fontWeight: FontWeight.w400),
+    //                 ),
+    //                 Padding(
+    //                   padding: EdgeInsets.symmetric(vertical: 20.sp),
+    //                   child: GFButton(
+    //                     onPressed: () {
+    //                       Get.to(PlansView());
+    //                     },
+    //                     color: KColors.orange,
+    //                     fullWidthButton: true,
+    //                     size: 50.2,
+    //                     text: AppLocalizations.of(context)!.subscribeNow,
+    //                     textStyle: GoogleFonts.kadwa(
+    //                       color: Colors.black,
+    //                       fontWeight: FontWeight.w700,
+    //                       fontSize: F24(),
+    //                     ),
+    //                     // shape: GFButtonShape.standard,
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //         );
+    //       });
+    // }
+    showDataAlertUploadVideo() {
       showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
-              insetPadding: EdgeInsets.all(8.sp),
+              insetPadding: EdgeInsets.all(24.sp),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(
@@ -283,38 +327,86 @@ class _DashboardStateView extends State<DashboardView>
                   ),
                 ),
               ),
-              title: Center(
-                child: Text(
-                  title,
-                  style: GoogleFonts.kadwa(
-                      color: Colors.black,
-                      fontSize: F28(),
-                      fontWeight: FontWeight.w700),
-                ),
+              title: Text(
+                AppLocalizations.of(context)!.uploadVideos,
+                style: GoogleFonts.kadwa(
+                    fontSize: F24(), fontWeight: FontWeight.w400),
               ),
               content: SingleChildScrollView(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text(
-                      subtitle,
-                      textAlign: TextAlign.center,
+                  children: [
+                    TextFormField(
+                      autofocus: true,
+                      onChanged: (value) {},
+                      decoration: InputDecoration(
+                        hintText:
+                            AppLocalizations.of(context)!.enterVideoTitle,
+                        hintStyle: GoogleFonts.kadwa(
+                            fontSize: F22(), fontWeight: FontWeight.w400),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 10.sp, horizontal: 10.sp),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide:
+                                const BorderSide(color: Color(0xFFFEBA0F))),
+                        border: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Color(0xFFCDCDCD)),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
                       style: GoogleFonts.kadwa(
-                          height: 1.2,
-                          fontSize: F20(),
-                          fontWeight: FontWeight.w400),
+                          fontSize: F20(), color: const Color(0xFF636363)),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 12.sp),
+                      child: InkWell(
+                        onTap: () {
+                          showDataAlertProfile();
+                        },
+                        child: DottedBorder(
+                          dashPattern: const[8, 4],
+                          color: const Color(0xFFCDCDCD),
+                          strokeCap: StrokeCap.butt,
+                          strokeWidth: 1,
+                          borderType: BorderType.Rect,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20.sp, vertical: 40.sp),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!.uploadVideo,
+                                  style: GoogleFonts.kadwa(
+                                      fontSize: F24(),
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 8.sp),
+                                  child: Image.asset(
+                                    "assets/images/upload.png",
+                                    scale: 3.0,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 20.sp),
                       child: GFButton(
-                        onPressed: () {
-                          Get.to(PlansView());
-                        },
+                        onPressed: () {},
                         color: KColors.orange,
                         fullWidthButton: true,
                         size: 50.2,
-                        text: "Subscribe Now",
+                        text: AppLocalizations.of(context)!.upload,
                         textStyle: GoogleFonts.kadwa(
                           color: Colors.black,
                           fontWeight: FontWeight.w700,
@@ -330,124 +422,16 @@ class _DashboardStateView extends State<DashboardView>
           });
     }
 
-    showDataAlertUploadVideo() {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              insetPadding: EdgeInsets.all(24.sp),
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(
-                    4.0,
-                  ),
-                ),
-              ),
-              title: Text(
-                "Update Reel",
-                style: GoogleFonts.kadwa(
-                    fontSize: F24(), fontWeight: FontWeight.w400),
-              ),
-              content: Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextFormField(
-                        autofocus: true,
-                        onChanged: (value) {},
-                        decoration: InputDecoration(
-                          hintText: "    Enter video title",
-                          hintStyle: GoogleFonts.kadwa(
-                              fontSize: F22(), fontWeight: FontWeight.w400),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 10.sp, horizontal: 10.sp),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide:
-                                  const BorderSide(color: Color(0xFFFEBA0F))),
-                          border: OutlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: Color(0xFFCDCDCD)),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                        style: GoogleFonts.kadwa(
-                            fontSize: F20(), color: const Color(0xFF636363)),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12.sp),
-                        child: InkWell(
-                          onTap: () {
-                            showDataAlertProfile();
-                          },
-                          child: DottedBorder(
-                            dashPattern: [8, 4],
-                            color: const Color(0xFFCDCDCD),
-                            strokeCap: StrokeCap.butt,
-                            strokeWidth: 1,
-                            borderType: BorderType.Rect,
-                            child: Padding(
-                              padding: EdgeInsets.all(40.sp),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Upload Video",
-                                    style: GoogleFonts.kadwa(
-                                        fontSize: F24(),
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 8.sp),
-                                    child: Image.asset(
-                                      "assets/images/upload.png",
-                                      scale: 3.0,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.sp),
-                        child: GFButton(
-                          onPressed: () {},
-                          color: KColors.orange,
-                          fullWidthButton: true,
-                          size: 50.2,
-                          text: "Upload",
-                          textStyle: GoogleFonts.kadwa(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: F24(),
-                          ),
-                          // shape: GFButtonShape.standard,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          });
-    }
-
     return DefaultTabController(
       length: 7,
       child: Scaffold(
         key: _scaffoldKey,
-        bottomNavigationBar: BottomTabView(0),
+        bottomNavigationBar: const BottomTabView(0),
         // bottomNavigationBar: BottomBar(),
         drawer: const SettingsView(),
         appBar: DynamicAppBar(
             "${LocalStorage.shared.getUserData()!.userData?.firstName}",
-            AppLocalizations.of(context)!.appName,
+            AppLocalizations.of(context)!.welcomeDash,
             true,
             _scaffoldKey),
         body: CustomScrollView(
@@ -464,12 +448,12 @@ class _DashboardStateView extends State<DashboardView>
                         Container(
                             padding: EdgeInsets.symmetric(horizontal: 10.sp),
                             child: Text(
-                              'Short Videos',
+                              AppLocalizations.of(context)!.shortVideo,
                               style: GoogleFonts.kadwa(
                                   fontWeight: FontWeight.w700, fontSize: F20()),
                             )),
                         Text(
-                          'View all >',
+                          AppLocalizations.of(context)!.viewAll,
                           style: GoogleFonts.kadwa(
                               fontSize: F18(),
                               color: const Color(0xFF767676),
@@ -515,9 +499,10 @@ class _DashboardStateView extends State<DashboardView>
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      vertical: 10.0),
+                                      horizontal: 16.0, vertical: 10.0),
                                   child: Text(
-                                    "Upload\nVideos",
+                                    AppLocalizations.of(context)!.uploadVideos,
+                                    textAlign: TextAlign.center,
                                     style: GoogleFonts.kadwa(
                                         height: 1.2,
                                         fontSize: F18(),
@@ -553,7 +538,7 @@ class _DashboardStateView extends State<DashboardView>
                       Container(
                           padding: EdgeInsets.symmetric(horizontal: 20.sp),
                           child: Text(
-                            'Learn from the Videos',
+                            AppLocalizations.of(context)!.learnVideo,
                             style: GoogleFonts.kadwa(
                                 fontWeight: FontWeight.w700, fontSize: F20()),
                           )),
@@ -577,8 +562,11 @@ class _DashboardStateView extends State<DashboardView>
                       crossAxisSpacing: 10.sp,
                       mainAxisSpacing: 10.sp,
                       children: videoCategoryData.map((e) {
-                        return VideoCategory(e['image'].toString(),
-                            e['title'].toString(), e['videos'].toString());
+                        return VideoCategory(
+                            e['image'].toString(),
+                            e['title'].toString(),
+                            e['videos'].toString(),
+                            context);
                       }).toList(),
                     ),
                   ),
@@ -602,7 +590,7 @@ class _DashboardStateView extends State<DashboardView>
                       tabs: [
                         Tab(
                           child: Text(
-                            "Beginner",
+                            AppLocalizations.of(context)!.beginner,
                             style: GoogleFonts.kadwa(
                                 fontSize: F18(), fontWeight: FontWeight.w700),
                           ),
@@ -614,11 +602,12 @@ class _DashboardStateView extends State<DashboardView>
                               //   showDataAlertSubscribe("Professionl",
                               //       "Do you want to continue with Professionals, Please do Subscribe");
                             },
-                            child: Text("Professional",
-                                style: GoogleFonts.kadwa(
-                                  fontSize: F18(),
-                                  fontWeight: FontWeight.w700,
-                                )),
+                            child:
+                                Text(AppLocalizations.of(context)!.professional,
+                                    style: GoogleFonts.kadwa(
+                                      fontSize: F18(),
+                                      fontWeight: FontWeight.w700,
+                                    )),
                           ),
                         ),
                       ]),
@@ -640,37 +629,38 @@ class _DashboardStateView extends State<DashboardView>
                       unselectedLabelStyle: GoogleFonts.kadwa(
                           color: KColors.lightGrey, fontSize: F18()),
                       unselectedBorderColor:
-                          Color.fromRGBO(238, 238, 238, 0.992),
+                          const Color.fromRGBO(238, 238, 238, 0.992),
                       radius: 100,
                       onTap: (index) {
-                        var tabViewVideoes = "civil";
-
-                        print(index);
                         GetCategoryReels(index);
                       },
                       tabs: [
                         Tab(
                           child: TabButton(
-                            "Civil",
+                            AppLocalizations.of(context)!.civil,
                           ),
                         ),
                         Tab(
-                          child: TabButton("Hospital"),
+                          child:
+                              TabButton(AppLocalizations.of(context)!.hospital),
                         ),
                         Tab(
-                          child: TabButton("Light"),
+                          child: TabButton(AppLocalizations.of(context)!.light),
                         ),
                         Tab(
-                          child: TabButton("Wieldng"),
+                          child:
+                              TabButton(AppLocalizations.of(context)!.welding),
                         ),
                         Tab(
-                          child: TabButton("Plumber"),
+                          child:
+                              TabButton(AppLocalizations.of(context)!.plumber),
                         ),
                         Tab(
-                          child: TabButton("Building"),
+                          child:
+                              TabButton(AppLocalizations.of(context)!.building),
                         ),
                         Tab(
-                          child: TabButton("Wood"),
+                          child: TabButton(AppLocalizations.of(context)!.wood),
                         ),
                       ],
                     ),
@@ -845,58 +835,6 @@ class _DashboardStateView extends State<DashboardView>
                                     e.subCategories[0].subCategoryData[0].title,
                               ))
                           .toList(),
-                      // children: [
-                      //   work(
-                      //     image: 'assets/images/sample_thumb.jpg',
-                      //     text: '',
-                      //     view: '',
-                      //   ),
-                      //   work(
-                      //     image: 'assets/images/sample_thumb.jpg',
-                      //     text: '',
-                      //     view: '',
-                      //   ),
-                      //   work(
-                      //     image: 'assets/images/sample_thumb.jpg',
-                      //     text: '',
-                      //     view: '',
-                      //   ),
-                      //   work(
-                      //     image: 'assets/images/sample_thumb.jpg',
-                      //     text: '',
-                      //     view: '',
-                      //   ),
-                      //   work(
-                      //     image: 'assets/images/sample_thumb.jpg',
-                      //     text: '',
-                      //     view: '',
-                      //   ),
-                      //   work(
-                      //     image: 'assets/images/sample_thumb.jpg',
-                      //     text: '',
-                      //     view: '',
-                      //   ),
-                      //   work(
-                      //     image: 'assets/images/sample_thumb.jpg',
-                      //     text: '',
-                      //     view: '',
-                      //   ),
-                      //   work(
-                      //     image: 'assets/images/sample_thumb.jpg',
-                      //     text: '',
-                      //     view: '',
-                      //   ),
-                      //   work(
-                      //     image: 'assets/images/sample_thumb.jpg',
-                      //     text: '',
-                      //     view: '',
-                      //   ),
-                      //   work(
-                      //     image: 'assets/images/sample_thumb.jpg',
-                      //     text: '',
-                      //     view: '',
-                      //   ),
-                      // ],
                     ),
                   ),
                 ],
@@ -912,16 +850,16 @@ class _DashboardStateView extends State<DashboardView>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Award and Certificate',
+                          AppLocalizations.of(context)!.awardandCertificate,
                           style: GoogleFonts.kadwa(
                               fontWeight: FontWeight.w700, fontSize: F20()),
                         ),
                         InkWell(
                           onTap: () {
-                            Get.to(AwardAndCertificate());
+                            Get.to(const AwardAndCertificate());
                           },
                           child: Text(
-                            'View all >',
+                            AppLocalizations.of(context)!.viewAll,
                             style: GoogleFonts.kadwa(
                                 fontSize: F18(),
                                 color: const Color(0xFF767676),
@@ -940,7 +878,7 @@ class _DashboardStateView extends State<DashboardView>
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     padding: EdgeInsets.symmetric(horizontal: 12.sp),
-                    child: Row(
+                    child: const Row(
                       children: [
                         Award_and_Certificate(image: 'assets/images/award.png'),
                         Award_and_Certificate(image: 'assets/images/award.png'),
@@ -961,16 +899,16 @@ class _DashboardStateView extends State<DashboardView>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Services and News',
+                          AppLocalizations.of(context)!.servicesandNews,
                           style: GoogleFonts.kadwa(
                               fontWeight: FontWeight.w700, fontSize: F20()),
                         ),
                         InkWell(
                           onTap: () {
-                            Get.to(ServiceAndNews());
+                            Get.to(const ServiceAndNews());
                           },
                           child: Text(
-                            'View all >',
+                            AppLocalizations.of(context)!.viewAll,
                             style: GoogleFonts.kadwa(
                                 fontSize: F18(),
                                 color: const Color(0xFF767676),
@@ -1039,7 +977,7 @@ class _DashboardStateView extends State<DashboardView>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Recently Added',
+                          AppLocalizations.of(context)!.recentlyAdded,
                           style: GoogleFonts.kadwa(
                               fontWeight: FontWeight.w700, fontSize: F20()),
                         ),
@@ -1048,7 +986,7 @@ class _DashboardStateView extends State<DashboardView>
                             Get.to(const RecentlyAddedView());
                           },
                           child: Text(
-                            'View all >',
+                            AppLocalizations.of(context)!.viewAll,
                             style: GoogleFonts.kadwa(
                                 fontSize: F18(),
                                 color: const Color(0xFF767676),

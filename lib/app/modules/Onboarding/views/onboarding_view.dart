@@ -1,18 +1,21 @@
+// ignore_for_file: avoid_types_as_parameter_names
+
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ekinch/app/modules/Onboarding/controllers/onboarding_controller.dart';
 import 'package:ekinch/app/modules/Onboarding/widgets/onboardingcontent.dart';
 import 'package:ekinch/app/modules/mobile/views/mobile_view.dart';
-import 'package:ekinch/app/modules/register/views/register.view.dart';
 import 'package:ekinch/app/routes/app_pages.dart';
-import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
-  OnboardingController controller = Get.put(OnboardingController());
+  @override
+  final OnboardingController controller = Get.put(OnboardingController());
   final pageController = PageController();
 
   OnboardingView({super.key});
@@ -31,8 +34,9 @@ class OnboardingView extends GetView<OnboardingController> {
                   controller.saveWalkthrough();
                   Get.toNamed(Routes.MOBILE);
                 },
-                child: Text('Skip >>',
-                    style: GoogleFonts.kadwa(fontSize: 18, color: Color(0xFFE55425))),
+                child: Text('${AppLocalizations.of(context)!.skip} >>',
+                    style: GoogleFonts.kadwa(
+                        fontSize: F20(), color: const Color(0xFFE55425))),
               )),
         ],
         backgroundColor: Colors.white,
@@ -42,7 +46,7 @@ class OnboardingView extends GetView<OnboardingController> {
         color: Colors.black,
         child: Container(
           height: (Get.height / 1.44).sp,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(40),
@@ -51,23 +55,17 @@ class OnboardingView extends GetView<OnboardingController> {
             controller: pageController,
             children: [
               onBoradingContent(
-                  controller.onBoardingData[0]['text_1'].toString(),
-                  controller.onBoardingData[0]['text_2'].toString(),
-                  controller.onBoardingData[0]['text_3'].toString(),
-                  controller.onBoardingData[0]['text_4'].toString(),
-                  controller.onBoardingData[0]['image'].toString()),
+                  AppLocalizations.of(context)!.onboardingTitleOne,
+                  AppLocalizations.of(context)!.onboardingSubtitleOne,
+                  "assets/images/onboarding1.png"),
               onBoradingContent(
-                  controller.onBoardingData[1]['text_1'].toString(),
-                  controller.onBoardingData[1]['text_2'].toString(),
-                  controller.onBoardingData[1]['text_3'].toString(),
-                  controller.onBoardingData[1]['text_4'].toString(),
-                  controller.onBoardingData[1]['image'].toString()),
+                  AppLocalizations.of(context)!.onboardingTitleTwo,
+                  AppLocalizations.of(context)!.onboardingSTwo,
+                  "assets/images/onboarding2.png"),
               onBoradingContent(
-                  controller.onBoardingData[2]['text_1'].toString(),
-                  controller.onBoardingData[2]['text_2'].toString(),
-                  controller.onBoardingData[2]['text_3'].toString(),
-                  controller.onBoardingData[2]['text_4'].toString(),
-                  controller.onBoardingData[2]['image'].toString()),
+                  AppLocalizations.of(context)!.onboardingTThree,
+                  AppLocalizations.of(context)!.onboardingSThree,
+                  "assets/images/onboarding3.png"),
             ],
           ),
         ),
@@ -94,13 +92,9 @@ class OnboardingView extends GetView<OnboardingController> {
             ),
             GestureDetector(
               onTap: () {
-                print(
-                    "*************************************yes***************");
-                print(LocalStorage.shared.isWalkthroughComplete());
-
                 (pageController.page == 2.0)
                     ? Get.to(
-                        MobileView(),
+                        const MobileView(),
                         transition: Transition.leftToRight,
                       )
                     : pageController.nextPage(

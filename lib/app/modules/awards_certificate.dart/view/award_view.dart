@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/awards_certificate.dart/view/widget/grid_view.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
@@ -11,16 +13,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
 import '../../../utils/localStorage.dart';
 import '../../notication/view/notification_view.dart';
 import '../../profile/views/profile_view.dart';
 import '../../settings/views/settings_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AwardAndCertificate extends StatefulWidget {
-  AwardAndCertificate({
+  const AwardAndCertificate({
     super.key,
   });
 
@@ -31,10 +33,11 @@ class AwardAndCertificate extends StatefulWidget {
 class AwardAndCertificateState extends State<AwardAndCertificate>
     with TickerProviderStateMixin {
   TabController? _tabController;
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+  @override
   void initState() {
-    _tabController = new TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -52,8 +55,7 @@ class AwardAndCertificateState extends State<AwardAndCertificate>
             icon: SvgPicture.asset(Assets.drawerIcon_white),
             onPressed: () {
               if (!scaffoldKey.currentState!.isDrawerOpen) {
-                //check if drawer is closed
-                scaffoldKey.currentState!.openDrawer(); //open drawer
+                scaffoldKey.currentState!.openDrawer();
               }
             },
           ),
@@ -96,7 +98,7 @@ class AwardAndCertificateState extends State<AwardAndCertificate>
                         ],
                       ),
                       InkWell(
-                          onTap: () => {Get.to(ProfileView())},
+                          onTap: () => {Get.to(const ProfileView())},
                           child: CircleAvatar(
                             radius: 25,
                             backgroundColor: const Color(0xFFE0E0E0),
@@ -112,9 +114,8 @@ class AwardAndCertificateState extends State<AwardAndCertificate>
                                             "https://d3nypwrzdy6f4k.cloudfront.net/"
                                         ? const AssetImage(
                                             'assets/images/profile_icon.png')
-                                        : NetworkImage(
-                                                "${LocalStorage.shared.getProfile()}")
-                                            as ImageProvider),
+                                        : NetworkImage(LocalStorage.shared
+                                            .getProfile()) as ImageProvider),
                                 border: Border.all(
                                     color: KColors.greyLine, width: 2.0),
                               ),
@@ -130,25 +131,24 @@ class AwardAndCertificateState extends State<AwardAndCertificate>
                   unselectedLabelStyle: GoogleFonts.kadwa(fontSize: F18()),
                   labelStyle: GoogleFonts.kadwa(fontSize: F18()),
                   tabs: [
-                    const Tab(text: "Awards"),
-                    const Tab(text: "Certificate")
+                    Tab(text: AppLocalizations.of(context)!.award),
+                    Tab(text: AppLocalizations.of(context)!.certificate)
                   ],
                 ),
               ],
             ),
           ),
         ),
-        bottomNavigationBar: BottomTabView(8),
+        bottomNavigationBar: const BottomTabView(8),
         backgroundColor: Colors.white,
         body: TabBarView(
           controller: _tabController,
           children: [
             GridView.count(
-              padding: EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(12.0),
               crossAxisSpacing: 2.0,
               crossAxisCount: 2,
               children: <Widget>[
-                
                 AwardCertificateGrid(" ", "Award", "Best Electrician Work"),
                 AwardCertificateGrid(" ", "Award", "Best Electrician Work"),
                 AwardCertificateGrid(" ", "Award", "Best Electrician Work"),

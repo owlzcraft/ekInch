@@ -1,16 +1,16 @@
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../widgets/math_utils.dart';
-import '../../../utils/localStorage.dart';
 
 
   TextFieldWithIcon(String hint,String image,TextEditingController controller) {
     return  TextFormField(
-      initialValue: "$hint",
+      initialValue: hint,
                   onChanged: (value) {
-                    controller.text = value as String;
+                    controller.text = value;
                   },
                   decoration: InputDecoration(
                     // hintText: hint,

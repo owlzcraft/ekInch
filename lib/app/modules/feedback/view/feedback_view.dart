@@ -1,14 +1,12 @@
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:ekinch/app/modules/feedback/controller/feedback_controller.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../widgets/math_utils.dart';
 import '../../../../widgets/snack_bar.dart';
 import '../../../custom_widget/color.dart';
@@ -18,11 +16,10 @@ import '../../postjob/widgets/shortDropDown.dart';
 import '../../settings/views/settings_view.dart';
 
 class FeedbackView extends StatefulWidget {
-  String hint;
-  double initialStar;
-  FeedbackView({
-    super.key,required this.hint,required this.initialStar
-  });
+  final String hint;
+  final double initialStar;
+  const FeedbackView(
+      {super.key, required this.hint, required this.initialStar});
 
   @override
   State<FeedbackView> createState() => _FeedbackViewState();
@@ -32,6 +29,7 @@ class _FeedbackViewState extends State<FeedbackView> {
   GlobalKey<ScaffoldState> notDrawerKey = GlobalKey<ScaffoldState>();
   FeedbackController controller = Get.put(FeedbackController());
   final _formKey = GlobalKey<FormState>();
+  late String feedback;
   @override
   void initState() {
     super.initState();
@@ -48,7 +46,7 @@ class _FeedbackViewState extends State<FeedbackView> {
         preferredSize: const Size.fromHeight(70),
         child: AppBar(
           title: Text(
-            "Feedback",
+            AppLocalizations.of(context)!.feedback,
             style: GoogleFonts.kadwa(
                 fontSize: 24, color: Colors.white, fontWeight: FontWeight.w700),
           ),
@@ -57,8 +55,7 @@ class _FeedbackViewState extends State<FeedbackView> {
             icon: SvgPicture.asset(Assets.drawerIcon_white),
             onPressed: () {
               if (!notDrawerKey.currentState!.isDrawerOpen) {
-                //check if drawer is closed
-                notDrawerKey.currentState!.openDrawer(); //open drawer
+                notDrawerKey.currentState!.openDrawer(); 
               }
             },
           ),
@@ -72,7 +69,7 @@ class _FeedbackViewState extends State<FeedbackView> {
           elevation: 0.0,
         ),
       ),
-      bottomNavigationBar: BottomTabView(9),
+      bottomNavigationBar: const BottomTabView(9),
       body: SafeArea(
         child: InkWell(
           onTap: () {
@@ -107,7 +104,7 @@ class _FeedbackViewState extends State<FeedbackView> {
                         ],
                       ),
                       Text(
-                        "Rate Your Experience",
+                        AppLocalizations.of(context)!.rate5,
                         style: GoogleFonts.kadwa(
                             fontSize: 24, fontWeight: FontWeight.w700),
                       ),
@@ -149,13 +146,13 @@ class _FeedbackViewState extends State<FeedbackView> {
                           if (_formKey.currentState!.validate()) {
                             controller.PostFeedback();
                           } else {
-                            errorSnackbar("Please Add Comment");
+                            errorSnackbar(AppLocalizations.of(context)!.pleaseAddComment);
                           }
                         },
                         color: KColors.orange,
                         fullWidthButton: true,
                         size: 50.2,
-                        text: "Submit",
+                        text: AppLocalizations.of(context)!.submit,
                         textStyle: GoogleFonts.kadwa(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,

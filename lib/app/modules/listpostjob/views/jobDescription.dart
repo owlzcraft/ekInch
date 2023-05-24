@@ -1,16 +1,17 @@
+// ignore_for_file: file_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
 import 'package:ekinch/app/modules/listpostjob/controller/post_job_controller.dart';
 import 'package:ekinch/app/modules/listpostjob/views/widget/key_value.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
 import 'package:flutter/material.dart';
-import 'package:ekinch/app/modules/listpostjob/views/review.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
-import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
@@ -19,7 +20,6 @@ import '../../settings/views/settings_view.dart';
 class JobDescription extends StatefulWidget {
   final String company;
   final String jobId;
-
   final String jobTitle;
   final String subtitle;
   final String location;
@@ -34,7 +34,7 @@ class JobDescription extends StatefulWidget {
   final String address;
   final bool status;
 
-  JobDescription(
+  const JobDescription(
       {super.key,
       required this.company,
       required this.jobId,
@@ -57,8 +57,9 @@ class JobDescription extends StatefulWidget {
 
 class JobDescriptionState extends State<JobDescription>
     with TickerProviderStateMixin {
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   ApplyJobController controller = Get.put(ApplyJobController());
+  @override
   void initState() {
     super.initState();
   }
@@ -67,7 +68,7 @@ class JobDescriptionState extends State<JobDescription>
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      bottomNavigationBar: BottomTabView(2),
+      bottomNavigationBar: const BottomTabView(2),
       drawer: const SettingsView(),
       appBar: AppBar(
         elevation: 0,
@@ -133,55 +134,64 @@ class JobDescriptionState extends State<JobDescription>
                   )
                 ],
               ),
-              Container(
-                child: Card(
-                  elevation: 2,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Column(
-                      children: [
-                        CustomRow(context, "Job Title", widget.jobTitle),
-                        CustomRow(context, "In Hand Salary", widget.salary),
-                        CustomRow(
-                            context, "Qualification", widget.qualification),
-                        CustomRow(context, "Language", widget.language),
-                        CustomRow(context, "Required", widget.require),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                child: Text(
-                                  "Job Info",
-                                  style: GoogleFonts.kadwa(
-                                      fontSize: F16(),
-                                      fontWeight: FontWeight.w400),
-                                )),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.03,
-                              child: const Text(
-                                ":",
-                                style: TextStyle(color: KColors.textGrey),
-                              ),
-                            ),
-                            Expanded(
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Column(
+                    children: [
+                      CustomRow(context, AppLocalizations.of(context)!.jobTitle,
+                          widget.jobTitle),
+                      CustomRow(
+                          context,
+                          AppLocalizations.of(context)!.inHandSalary,
+                          widget.salary),
+                      CustomRow(
+                          context,
+                          AppLocalizations.of(context)!.qualification,
+                          widget.qualification),
+                      CustomRow(context, AppLocalizations.of(context)!.language,
+                          widget.language),
+                      CustomRow(context, AppLocalizations.of(context)!.required,
+                          widget.require),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.3,
                               child: Text(
-                                "${widget.jobInfo}",
+                                AppLocalizations.of(context)!.jobInfo,
                                 style: GoogleFonts.kadwa(
-                                    color: KColors.textGrey,
-                                    height: 1.3,
                                     fontSize: F16(),
                                     fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                        ),
-                        // CustomRow(context, "Job Info", widget.jobInfo),
-                        CustomRow(context, "Experience", widget.experience),
-                      ],
-                    ),
+                              )),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.03,
+                            child: const Text(
+                              ":",
+                              style: TextStyle(color: KColors.textGrey),
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              widget.jobInfo,
+                              style: GoogleFonts.kadwa(
+                                  color: KColors.textGrey,
+                                  height: 1.3,
+                                  fontSize: F16(),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          )
+                        ],
+                      ),
+                      // CustomRow(context, "Job Info", widget.jobInfo),
+                      CustomRow(
+                          context,
+                          AppLocalizations.of(context)!.experience,
+                          widget.experience),
+                    ],
                   ),
                 ),
               ),
@@ -189,60 +199,64 @@ class JobDescriptionState extends State<JobDescription>
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
               Text(
-                'Other Details',
+                AppLocalizations.of(context)!.otherDetails,
                 style: GoogleFonts.kadwa(
                     fontWeight: FontWeight.w700, color: black, fontSize: F18()),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
-              Container(
-                child: Card(
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 15.0, right: 15, top: 15, bottom: 15),
+                  child: Column(
+                    children: [
+                      CustomRow(
+                          context,
+                          AppLocalizations.of(context)!.jobTiming,
+                          widget.jobTime),
+                      // CustomRow(
+                      //     context, "Interview Timing", widget.interviewTime),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              Text(
+                AppLocalizations.of(context)!.companyAddress,
+                style: GoogleFonts.kadwa(
+                    fontWeight: FontWeight.w700, color: black, fontSize: F18()),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+              Card(
                   elevation: 2,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 15.0, right: 15, top: 15, bottom: 15),
-                    child: Column(
+                    padding: EdgeInsets.all(12.sp),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        CustomRow(context, "Job Timing", widget.jobTime),
-                        // CustomRow(
-                        //     context, "Interview Timing", widget.interviewTime),
+                        CustomRow(
+                            context,
+                            AppLocalizations.of(context)!.address,
+                            widget.address)
                       ],
                     ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
-              Text(
-                'Company Address',
-                style: GoogleFonts.kadwa(
-                    fontWeight: FontWeight.w700, color: black, fontSize: F18()),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ),
-              Container(
-                  child: Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Padding(
-                        padding: EdgeInsets.all(12.sp),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CustomRow(context, "Address", widget.address)
-                          ],
-                        ),
-                      ))),
+                  )),
               (widget.status)
                   ? Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20.0),
-                      child: DynamicButton("Apply Now", true, () {
+                      child: DynamicButton(
+                          AppLocalizations.of(context)!.applyNow, true, () {
                         controller.ApplyJob(
                             widget.jobId,
                             widget.address,
@@ -260,7 +274,8 @@ class JobDescriptionState extends State<JobDescription>
                       }))
                   : Padding(
                       padding: const EdgeInsets.symmetric(vertical: 20.0),
-                      child: DynamicButton("Applied", false, () {})),
+                      child: DynamicButton(
+                          AppLocalizations.of(context)!.applied, false, () {})),
             ],
           ),
         ),

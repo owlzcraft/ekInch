@@ -1,9 +1,9 @@
+// ignore_for_file: unnecessary_overrides
+
 import 'dart:async';
-
 import 'package:ekinch/app/modules/dashboard/controllers/dashboard_controller.dart';
+import 'package:ekinch/app/modules/otp/views/otp_view.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-
 import '../../../../widgets/loader.dart';
 import '../../../../widgets/snack_bar.dart';
 import '../../../models/otp_model.dart';
@@ -25,8 +25,7 @@ class OtpController extends GetxController {
   final APIRepository apiRepository = APIRepository(isTokenRequired: false);
   final otp = "".obs;
   String latitude = '';
-  String longitude='';
-  //TODO: Implement OtpController
+  String longitude = '';
   Timer? _timer;
   int remainingSeconds = 1;
   final time = '00.00'.obs;
@@ -50,7 +49,6 @@ class OtpController extends GetxController {
   }
 
   Future<void> verifyOtp() async {
-    print("**************************");
     // final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
@@ -69,7 +67,6 @@ class OtpController extends GetxController {
                   if (value!.ok == true) {
                     LocalStorage.shared.saveFCMTOKEN(value.token as String);
                     LocalStorage.shared.saveUID(value.uid as int);
-                    print(LocalStorage.shared.getFCMToken());
                     LocalStorage.shared.saveLoggedIn(true);
                     if (value.new_pro_check == true) {
                       Get.offAndToNamed(Routes.REGISTER);
@@ -94,7 +91,6 @@ class OtpController extends GetxController {
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
@@ -130,14 +126,14 @@ class OtpController extends GetxController {
     // final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(signInController.mobileNumber.text);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["mobileNumber"] = number;
           await apiRepository.login(data).then((ApiResult<SignInModel> value) {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    Get.offAndToNamed(Routes.OTP, arguments: [number, path]);
+                    Get.to(const OtpView(),arguments: [number,path]);
+                    // Get.offAndToNamed(Routes.OTP, arguments: [number, path]);
                     successSnackBar("Otp Sent");
                   } else if (value.ok == false) {
                     errorSnackbar("Phone Number Already Exist");
@@ -168,9 +164,7 @@ class OtpController extends GetxController {
       } else {
         int minutes = remainingSeconds ~/ 60;
         int seconds = (remainingSeconds % 60);
-        time.value = minutes.toString().padLeft(2, "0") +
-            ":" +
-            seconds.toString().padLeft(2, "0");
+        time.value = "${minutes.toString().padLeft(2, "0")}:${seconds.toString().padLeft(2, "0")}";
         remainingSeconds--;
       }
     });

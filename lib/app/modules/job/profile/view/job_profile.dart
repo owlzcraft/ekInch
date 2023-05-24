@@ -1,26 +1,21 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/message/view/message_chat.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
-import 'package:getwidget/shape/gf_button_shape.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../../widgets/math_utils.dart';
 import '../../../../custom_widget/color.dart';
 import '../../../dashboard/widgets/navigation.dart';
 import '../../../notication/view/notification_view.dart';
-import '../../../profile/widgets/profile_image.dart';
-import '../../../referNearn/views/refer_nearn_view.dart';
 import '../../../settings/views/settings_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class JobProfileView extends StatelessWidget {
-  String photo;
+class JobProfileView extends StatefulWidget {
+  final String photo;
   final String title;
   final String subTitle;
   final String location;
@@ -32,7 +27,7 @@ class JobProfileView extends StatelessWidget {
   final String dob;
   final String gender;
   final String skill;
-  JobProfileView(
+  const JobProfileView(
       {super.key,
       required this.photo,
       required this.title,
@@ -46,7 +41,13 @@ class JobProfileView extends StatelessWidget {
       required this.dob,
       required this.gender,
       required this.skill});
-  GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
+
+  @override
+  State<JobProfileView> createState() => _JobProfileViewState();
+}
+
+class _JobProfileViewState extends State<JobProfileView> {
+  GlobalKey<ScaffoldState> notDrawerKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(
@@ -54,7 +55,8 @@ class JobProfileView extends StatelessWidget {
   ) {
     return Scaffold(
       backgroundColor: Colors.white,
-      key: notDrawerKey, drawer: const SettingsView(),
+      key: notDrawerKey,
+      drawer: const SettingsView(),
       appBar: AppBar(
         leading: InkWell(
             onTap: () {
@@ -113,10 +115,10 @@ class JobProfileView extends StatelessWidget {
                           children: [
                             CircleAvatar(
                               radius: 50.sp,
-                              backgroundColor: Color(0xFFE0E0E0),
+                              backgroundColor: const Color(0xFFE0E0E0),
                               child: CircleAvatar(
                                 radius: 42.sp,
-                                backgroundImage: NetworkImage(photo),
+                                backgroundImage: NetworkImage(widget.photo),
                               ),
                             ),
                           ],
@@ -126,14 +128,14 @@ class JobProfileView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            title,
+                            widget.title,
                             style: GoogleFonts.kadwa(
                                 color: const Color(0xFF1A1D1E),
                                 fontSize: F28(),
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
-                            subTitle,
+                            widget.subTitle,
                             style: GoogleFonts.kadwa(
                                 height: 0.8,
                                 fontSize: F18(),
@@ -169,7 +171,7 @@ class JobProfileView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Self Employee",
+                              AppLocalizations.of(context)!.selfEmployee,
                               style: GoogleFonts.kadwa(
                                   color: const Color(0xFF1A1D1E),
                                   fontSize: F20(),
@@ -218,7 +220,7 @@ class JobProfileView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 8.0),
                                       child: Text(
-                                        location,
+                                        widget.location,
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             fontSize: F16(),
@@ -233,7 +235,7 @@ class JobProfileView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 8.0),
                                       child: Text(
-                                        qualification,
+                                        widget.qualification,
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             fontSize: F16(),
@@ -248,7 +250,7 @@ class JobProfileView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 8.0),
                                       child: Text(
-                                        language,
+                                        widget.language,
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             fontSize: F16(),
@@ -263,7 +265,7 @@ class JobProfileView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 2.0),
                                       child: Text(
-                                        dob,
+                                        widget.dob,
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             fontSize: F16(),
@@ -284,7 +286,7 @@ class JobProfileView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 8.0),
                                       child: Text(
-                                        schoolBoard,
+                                        widget.schoolBoard,
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             fontSize: F16(),
@@ -299,7 +301,7 @@ class JobProfileView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 8.0),
                                       child: Text(
-                                        experience,
+                                        widget.experience,
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             fontSize: F16(),
@@ -314,7 +316,7 @@ class JobProfileView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 8.0),
                                       child: Text(
-                                        contactNumber,
+                                        widget.contactNumber,
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             fontSize: F16(),
@@ -332,7 +334,7 @@ class JobProfileView extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 8.0),
                                       child: Text(
-                                        gender,
+                                        widget.gender,
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             fontSize: F16(),
@@ -357,10 +359,9 @@ class JobProfileView extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 5.0),
                                   child: Text(
-                                    
-                                    skill,
+                                    widget.skill,
                                     style: GoogleFonts.kadwa(
-                                      height: 1.3,
+                                        height: 1.3,
                                         color: KColors.textGrey,
                                         fontSize: F16(),
                                         fontWeight: FontWeight.w400),
@@ -400,7 +401,7 @@ class JobProfileView extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        "Call",
+                                        AppLocalizations.of(context)!.call,
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             fontSize: 14,
@@ -413,7 +414,7 @@ class JobProfileView extends StatelessWidget {
                                   padding: const EdgeInsets.only(top: 3.0),
                                   child: InkWell(
                                     onTap: () {
-                                      Get.to(MessageView());
+                                      Get.to(const MessageView());
                                     },
                                     child: Column(
                                       mainAxisAlignment:
@@ -423,7 +424,7 @@ class JobProfileView extends StatelessWidget {
                                       children: [
                                         SvgPicture.asset(Assets.msg),
                                         Text(
-                                          "Chat",
+                                          AppLocalizations.of(context)!.chat,
                                           style: GoogleFonts.kadwa(
                                               color: KColors.textGrey,
                                               fontSize: 14,
@@ -453,7 +454,7 @@ class JobProfileView extends StatelessWidget {
                 color: KColors.orange,
                 fullWidthButton: true,
                 size: 50.2,
-                text: "Hire",
+                text: AppLocalizations.of(context)!.hire,
                 textStyle: GoogleFonts.kadwa(
                   color: Colors.black,
                   fontWeight: FontWeight.w700,
@@ -464,10 +465,7 @@ class JobProfileView extends StatelessWidget {
           ],
         ),
       ),
-
-      bottomNavigationBar: BottomTabView(2),
-
-      // bottomNavigationBar: MyNavigator(),
+      bottomNavigationBar: const BottomTabView(2),
     );
   }
 }

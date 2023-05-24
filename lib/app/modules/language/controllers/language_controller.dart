@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/models/language_model.dart';
 import 'package:ekinch/app/modules/Onboarding/views/onboarding_view.dart';
 import 'package:ekinch/app/modules/dashboard/controllers/dashboard_controller.dart';
@@ -10,7 +12,6 @@ import '../../../../widgets/loader.dart';
 import '../../../networking/api_result.dart';
 
 class LanguageController extends GetxController {
-  //TODO: Implement LanguageController
   var activatedComp = 0;
   DashboardController dashboardController = Get.put(DashboardController());
 
@@ -85,17 +86,26 @@ class LanguageController extends GetxController {
   //language selection
 
   void changeLanguage(BuildContext context, Locale locale) {
-    final newLocale = Locale(locale.languageCode, locale.countryCode);
-    print("111111111111111");
-    print(newLocale);
-    AppLocalizations.delegate.load(newLocale);
+    // Locale newLocale = Locale('en');
+    // print("afnkkfr");
+    // print(locale);
+    // if (locale == 'en') {
+    //   newLocale = const Locale('en');
+    //   print("here in english");
+    //   // EasyLocalization.of(context)!.setLocale(const Locale('en', 'US'));
+    // } else {
+    //   newLocale = const Locale('hi');
+    //   print("here in hindi");
+
+    //   EasyLocalization.of(context)!.setLocale(const Locale('hi', 'IN'));
+    // }
+    // print(newLocale);
+    AppLocalizations.delegate.load(locale);
     if (LocalStorage.shared.isLoggedIn()) {
       dashboardController.GetDashboard();
     } else {
       Get.to(OnboardingView());
     }
-    // You can save the selected locale to persistent storage here
-    // and use it to initialize the locale in future app launches.
   }
 
   Future<void> languageSelection() async {
@@ -128,20 +138,8 @@ class LanguageController extends GetxController {
   }
 
   final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void increment() => count.value++;
 }

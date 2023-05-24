@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
@@ -8,11 +10,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../utils/localStorage.dart';
 import 'color.dart';
 
-AppBar DynamicAppBar(String name, String greetMsg, bool lang, GlobalKey<ScaffoldState> scaffoldKey) {
+AppBar DynamicAppBar(String name, String greetMsg, bool lang,
+    GlobalKey<ScaffoldState> scaffoldKey) {
   return AppBar(
     elevation: 0.0,
     backgroundColor: Colors.black,
@@ -28,7 +30,7 @@ AppBar DynamicAppBar(String name, String greetMsg, bool lang, GlobalKey<Scaffold
     actions: <Widget>[
       lang
           ? IconButton(
-              onPressed: (() => {Get.to(() => LanguageView())}),
+              onPressed: (() => {Get.to(() => const LanguageView())}),
               icon: SvgPicture.asset(
                 Assets.languageIcon,
                 color: Colors.white,
@@ -42,16 +44,16 @@ AppBar DynamicAppBar(String name, String greetMsg, bool lang, GlobalKey<Scaffold
       ),
     ],
     bottom: PreferredSize(
-      preferredSize: Size.fromHeight(70),
+      preferredSize: const Size.fromHeight(70),
       child: Container(
         color: Colors.black,
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: EdgeInsets.only(left: 10),
+                padding: const EdgeInsets.only(left: 10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,8 +61,9 @@ AppBar DynamicAppBar(String name, String greetMsg, bool lang, GlobalKey<Scaffold
                     Text(
                       greetMsg,
                       style: GoogleFonts.kadwa(
-                        height: 1.7,
-                          fontSize: F20(), color: const Color(0xffE0E0E0)),
+                          height: 1.7,
+                          fontSize: F20(),
+                          color: const Color(0xffE0E0E0)),
                     ),
                     Text(name,
                         style: GoogleFonts.kadwa(
@@ -72,26 +75,28 @@ AppBar DynamicAppBar(String name, String greetMsg, bool lang, GlobalKey<Scaffold
                 ),
               ),
               InkWell(
-                onTap: () => {Get.to(ProfileView())},
-                child: CircleAvatar(
-          radius: 30,
-          backgroundColor: Color(0xFFE0E0E0),
-          child: Container(
-            height: 70.sp,
-            width: 70.sp,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: LocalStorage.shared.getProfile() ==
-                          "https://d3nypwrzdy6f4k.cloudfront.net/"
-                      ? AssetImage('assets/images/profile_icon.png')
-                      : NetworkImage("${LocalStorage.shared.getProfile()}") as ImageProvider),
-              border: Border.all(color: KColors.greyLine, width: 2.0),
-            ),
-          ),)
-              ),
+                  onTap: () => {Get.to(const ProfileView())},
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: const Color(0xFFE0E0E0),
+                    child: Container(
+                      height: 70.sp,
+                      width: 70.sp,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: LocalStorage.shared.getProfile() ==
+                                    "https://d3nypwrzdy6f4k.cloudfront.net/"
+                                ? const AssetImage(
+                                    'assets/images/profile_icon.png')
+                                : NetworkImage(LocalStorage.shared.getProfile())
+                                    as ImageProvider),
+                        border: Border.all(color: KColors.greyLine, width: 2.0),
+                      ),
+                    ),
+                  )),
             ],
           ),
         ),

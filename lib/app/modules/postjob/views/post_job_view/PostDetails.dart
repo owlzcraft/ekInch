@@ -1,14 +1,14 @@
+// ignore_for_file: file_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/postjob/controllers/postjob_controller.dart';
 import 'package:ekinch/app/modules/postjob/views/widget/hire_custom.dart';
 import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
-import 'package:ekinch/app/modules/listpostjob/views/jobDescription.dart';
-import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PostDetails extends StatefulWidget {
   const PostDetails({
@@ -16,14 +16,13 @@ class PostDetails extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _PostDetailsState createState() => _PostDetailsState();
+  PostDetailsState createState() => PostDetailsState();
 }
 
-class _PostDetailsState extends State<PostDetails> {
+class PostDetailsState extends State<PostDetails> {
   int count = 0;
   bool form2 = false;
   bool form3 = false;
-  final _formKey = GlobalKey<FormState>();
   PostjobController controller = Get.put(PostjobController());
   @override
   void initState() {
@@ -121,13 +120,13 @@ class _PostDetailsState extends State<PostDetails> {
                       } else {
                         
                           controller.jobCount.text = count.toString();
-                          errorSnackbar("Maximum Number Reached!");
+                          errorSnackbar(AppLocalizations.of(context)!.maximumNumber);
                   
                       }
                     }
                   },
                   child: Text(
-                    'Add More +',
+                    AppLocalizations.of(context)!.addMore,
                     textAlign: TextAlign.end,
                     style: GoogleFonts.kadwa(
                       fontSize: F20(),

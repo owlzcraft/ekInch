@@ -13,8 +13,9 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+    version: ^0.0.0
+  intl: ^0.18.0  
   intl_translation: ^0.18.2
-  intl: ^0.18.0
   build_runner: ^2.0.0
   get_storage: ^2.0.3
   country_code_picker: ^2.0.2
@@ -55,13 +56,14 @@ dependencies:
   share: ^2.0.4
   device_apps: ^2.2.0
   share_plus: ^4.5.3
-  flutter_localization: ^0.1.10
+  # flutter_localization: ^0.1.10
   video_thumbnail: ^0.5.3
   firebase_auth: ^4.2.2
   firebase_core: ^2.7.1
   firebase_database: ^10.0.15
   firebase_messaging: ^14.4.0
   flutter_local_notifications: ^14.0.0+1
+  easy_localization: ^3.0.2
   
 
   # chewie: ^1.4.0

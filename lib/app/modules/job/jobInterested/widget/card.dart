@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
 import '../controllers/job_interested_controller.dart';
 
 class JobCategoryCard extends StatelessWidget {
@@ -10,14 +8,14 @@ class JobCategoryCard extends StatelessWidget {
   final bool active;
   // ignore: use_key_in_widget_constructors
   JobCategoryCard({required this.data, required this.active});
-  JobInterestedController controller = Get.put(JobInterestedController());
+  final JobInterestedController controller = Get.put(JobInterestedController());
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
       child: Card(
           elevation: 1,
-          shadowColor: Color(0xFF000000),
+          shadowColor: const Color(0xFF000000),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           color: Colors.transparent,
@@ -25,11 +23,11 @@ class JobCategoryCard extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Color(0xFFDBDBDB), width: 1)),
+                border: Border.all(color: const Color(0xFFDBDBDB), width: 1)),
             child: Container(
               decoration: BoxDecoration(
                   border: Border.all(
-                      color: (active) ? Colors.black : Color(0xFFDBDBDB),
+                      color: (active) ? Colors.black : const Color(0xFFDBDBDB),
                       width: 0.2),
                   borderRadius: BorderRadius.circular(20),
                   color: (active) ? Colors.black : Colors.white),
@@ -57,4 +55,3 @@ class JobCategoryCard extends StatelessWidget {
     );
   }
 }
-// onTap: () => Get.to(JobInterestedView()),

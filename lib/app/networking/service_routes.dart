@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 class ServiceConstants {
   static const BASE_URL = 'http://13.232.83.130/';
 

@@ -1,31 +1,25 @@
-import 'dart:async';
+// ignore_for_file: unused_local_variable, unnecessary_null_comparison
 
-import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
-import 'package:ekinch/app/modules/language/bindings/language_binding.dart';
-import 'package:ekinch/app/modules/language/views/language_view.dart';
-import 'package:ekinch/app/modules/mobile/views/mobile_view.dart';
+import 'dart:async';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
-import '../../../../../routes/app_pages.dart';
-import '../../../../../utils/localStorage.dart';
-import '../../../../dashboard/controllers/dashboard_controller.dart';
+import '../../../routes/app_pages.dart';
+import '../../../utils/localStorage.dart';
+import '../../dashboard/controllers/dashboard_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashController extends GetxController {
-  //TODO: Implement SplashController
   DashboardController dashboardController = Get.put(DashboardController());
   bool isFirstTime = false;
   final count = 0.obs;
   @override
   void onInit() {
-    print('get');
-    super.onInit();
     checkFirstTime();
     requestPermissions();
     Future.delayed(const Duration(seconds: 3), () {
-      print("here");
       appRoute();
     });
+    super.onInit();
   }
 
 //permission
@@ -36,7 +30,6 @@ class SplashController extends GetxController {
       Permission.location,
       // Permission.storage,
     ].request();
-    print(statuses);
   }
 
 //set local
@@ -53,48 +46,33 @@ class SplashController extends GetxController {
 
 //path
   Future<void> appRoute() async {
-    // Get.offAllNamed(Routes.REGISTER);
-
     if (isFirstTime) {
-      bool loggedIn = LocalStorage.shared.isLoggedIn();
-      if (loggedIn) {
-        // Get.to(DashboardView(ReelsList: [], RecentlyAddedList: [], CivilList: [],));
+
+      if (LocalStorage.shared.isLoggedIn()) {
         dashboardController.GetDashboard();
-        // Get.offAllNamed(Routes.HOME);
       } else {
         if (LocalStorage.shared.isWalkthroughComplete()) {
           Get.offAllNamed(Routes.MOBILE);
         } else {
-          print(LocalStorage.shared.isWalkthroughComplete());
           Get.offAllNamed(Routes.LANGUAGE);
         }
       }
     } else {
-      bool loggedIn = LocalStorage.shared.isLoggedIn();
-      if (loggedIn) {
+      if (LocalStorage.shared.isWalkthroughComplete()==true) {
         // Get.to(DashboardView(ReelsList: [], RecentlyAddedList: [], CivilList: [],));
         dashboardController.GetDashboard();
         // Get.offAllNamed(Routes.HOME);
       } else {
-        if (LocalStorage.shared.isWalkthroughComplete()) {
+        if (LocalStorage.shared.isWalkthroughComplete()==true) {
           Get.offAllNamed(Routes.MOBILE);
         } else {
-          print(LocalStorage.shared.isWalkthroughComplete());
           Get.offAllNamed(Routes.LANGUAGE);
         }
       }
     }
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void increment() => count.value++;
 }

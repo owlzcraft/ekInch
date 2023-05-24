@@ -1,6 +1,6 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../custom_widget/font_size.dart';
@@ -27,7 +27,7 @@ class LangCom extends StatelessWidget {
         border: Border.all(
           width: 1,
         ),
-        color: (active == 1) ? Color(0xFFFEBA0F) : Colors.white,
+        color: (active == 1) ? const Color(0xFFFEBA0F) : Colors.white,
         borderRadius: const BorderRadius.all(Radius.circular(6)),
       ),
       child: Padding(

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, use_full_hex_values_for_flutter_colors
+
 import 'package:flutter/cupertino.dart';
 
 mixin KColors {
@@ -23,7 +25,7 @@ static const Color textGrey= Color.fromARGB(252, 102, 101, 101);
   static const Color greenBackground = Color(0xFF37524B);
   static const Color greyLine = Color.fromARGB(255, 210, 207, 207);
   static const Color SHADOW_COLOR = Color(0xFFF9F9F9);
-    static const Color plansGreen = Color(0xFFF9BC3B8);
+    static const Color plansGreen = Color(0xfff9bc3b8);
 
   
 }

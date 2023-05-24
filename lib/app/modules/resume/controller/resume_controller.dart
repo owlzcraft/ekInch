@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/models/GetJobForm.dart';
 import 'package:ekinch/app/models/available_job_list.dart';
 import 'package:ekinch/app/models/data_model.dart';
@@ -15,18 +17,9 @@ import '../../job/form/views/details_form.dart';
 
 class ResumeController extends GetxController {
   var activeQualification = 0.obs;
-  var qualificationData = [
-    {"text1": "Below 10th", "text2": "Pass"},
-    {"text1": "10th Pass", "text2": ""},
-    {"text1": "12th Pass and", "text2": "Above"},
-    {"text1": "Graduate and", "text2": "Above"},
-  ].obs;
   var activeMedium = 0.obs;
   var activeFluency = 0.obs;
   var activeExp = 0.obs;
-  var schoolMediums = ["Hindi", "English", "Others"].obs;
-  var englishFluency = ["No", "Good", "Fluent"].obs;
-  var expData = ["Fresher", "Experience"].obs;
   var years = ["0"];
   Filyears() {
     for (var i = 1968; i <= DateTime.now().year; i++) {
@@ -83,17 +76,11 @@ class ResumeController extends GetxController {
     "12",
   ];
 
-  // ignore: non_constant_identifier_names
   late List<Data> ApplyJobList;
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
-
-  // String gender = "";
-  // String qualification = "";
-  // String experience = "";
   TextEditingController gender = TextEditingController();
   TextEditingController qualification = TextEditingController();
   TextEditingController experience = TextEditingController();
-
   TextEditingController qualificationTap = TextEditingController();
   TextEditingController board = TextEditingController();
   TextEditingController englishLevel = TextEditingController();
@@ -108,12 +95,9 @@ class ResumeController extends GetxController {
   late String result;
 //Get Job Form
   Future<void> UpdateGetForm() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
-          print(qualificationTap.text);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -135,7 +119,6 @@ class ResumeController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    print("done");
                     GetFormDetails();
                   } else if (value.ok == false) {
                     Get.back();
@@ -152,13 +135,9 @@ class ResumeController extends GetxController {
 
 //add more skills;
   Future<void> UpdateSkills() async {
-    print("**************************");
-   
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
-          print(qualificationTap.text);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -171,7 +150,6 @@ class ResumeController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    print("done");
                     GetFormDetails();
                   } else if (value.ok == false) {
                     Get.back();
@@ -187,13 +165,10 @@ class ResumeController extends GetxController {
   }
 
   Future<void> GetFormDetails() async {
-    print("**************************");
-
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
-          print(qualificationTap.text);
+         
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -205,7 +180,6 @@ class ResumeController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    print("done");
                     Get.to(GetJobPreviewView(
                       category: value.data!.interest.toString(),
                       dob:
@@ -236,11 +210,9 @@ class ResumeController extends GetxController {
 
   //Get Job Status
   Future<void> CheckResumeStatusValue() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -263,6 +235,7 @@ class ResumeController extends GetxController {
         loadingWidget: const LoadingIndicator());
   }
 
+  @override
   void onInit() {
     Filyears();
     super.onInit();

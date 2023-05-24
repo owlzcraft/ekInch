@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../custom_widget/color.dart';
 import '../../../../../custom_widget/font_size.dart';
 import '../../../../../utils/math_utils.dart';
 
 Future showDataAlert(BuildContext context, String title, String subTitle,
-    List<String> list, String hint,TextEditingController controller) async {
+    List<String> list, String hint, TextEditingController controller) async {
   return await showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          insetPadding: EdgeInsets.all(16),
+          insetPadding: const EdgeInsets.all(16),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(
@@ -33,7 +34,7 @@ Future showDataAlert(BuildContext context, String title, String subTitle,
                     fontSize: F18(), fontWeight: FontWeight.w700),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Text(
                   subTitle,
                   style: GoogleFonts.kadwa(
@@ -53,59 +54,59 @@ Future showDataAlert(BuildContext context, String title, String subTitle,
                   width: Get.width,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      border: Border.all(color: Color(0xFFCDCDCD))),
+                      border: Border.all(color: const Color(0xFFCDCDCD))),
                   child: DropdownButtonFormField2(
-                    
-                          decoration: InputDecoration(
-                          
-                            isDense: true,
-                            contentPadding: EdgeInsets.zero,
-                            border: OutlineInputBorder(
-                              borderSide:
-                                  const BorderSide(color: Color(0xFFCDCDCD)),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
-                          isExpanded: false,
-                          hint: Text(
-                            hint,
-                            style: GoogleFonts.kadwa(
-                                fontSize: getFontSize(22),
-                                color: const Color(0xFF636363)),
-                          ),
-                          icon: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.keyboard_arrow_down,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          iconSize: 30,
-                          buttonHeight: 60,
-                          dropdownDecoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          items: list.map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(
-                                  item,
-                                  style: GoogleFonts.kadwa(
-                                      fontSize: getFontSize(22),
-                                      color: const Color(0xFF636363)),
-                                ),
-                              )).toList(),
-                          validator: (value) {
-                            if (value == null) {
-                              return 'Select Option';
-                            }
-                          },
-                          onSaved:(value) {
-                            controller.text = value as String;
-                          } ,
-                          onChanged: (value) {
-                            controller.text = value as String;
-                          },
-                        ),
+                    decoration: InputDecoration(
+                      isDense: true,
+                      contentPadding: EdgeInsets.zero,
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Color(0xFFCDCDCD)),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                    isExpanded: false,
+                    hint: Text(
+                      hint,
+                      style: GoogleFonts.kadwa(
+                          fontSize: getFontSize(22),
+                          color: const Color(0xFF636363)),
+                    ),
+                    icon: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.black45,
+                      ),
+                    ),
+                    iconSize: 30,
+                    buttonHeight: 60,
+                    dropdownDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    items: list
+                        .map((item) => DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: GoogleFonts.kadwa(
+                                    fontSize: getFontSize(22),
+                                    color: const Color(0xFF636363)),
+                              ),
+                            ))
+                        .toList(),
+                    validator: (value) {
+                      if (value == null) {
+                        return AppLocalizations.of(context)!.selectOption;
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      controller.text = value as String;
+                    },
+                    onChanged: (value) {
+                      controller.text = value as String;
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 25.0),
@@ -116,7 +117,7 @@ Future showDataAlert(BuildContext context, String title, String subTitle,
                     color: KColors.orange,
                     fullWidthButton: true,
                     size: 50.2,
-                    text: "Submit",
+                    text: AppLocalizations.of(context)!.submit,
                     textStyle: GoogleFonts.kadwa(
                       color: Colors.black,
                       fontWeight: FontWeight.w700,

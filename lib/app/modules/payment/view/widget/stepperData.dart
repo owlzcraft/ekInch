@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, file_names, use_full_hex_values_for_flutter_colors
+
 import 'package:another_stepper/dto/stepper_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +21,6 @@ StepperDataCard(String title,String subtitle) {
                 color: Colors.black)),
         iconWidget: CircleAvatar(
           radius: 2.sp,
-          backgroundColor: const Color(0xFFF00FF85),
+          backgroundColor: const Color(0xfff00ff85),
         ));
   }

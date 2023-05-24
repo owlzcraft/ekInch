@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/payment/view/payments_view.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
@@ -78,7 +80,7 @@ PlansCard(
               ),
               Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 30.0, vertical: 16.0),
+                      const EdgeInsets.symmetric(horizontal: 30.0, vertical: 16.0),
                   child: SvgPicture.asset("assets/icons/divider.svg")),
             ],
           )),
@@ -103,7 +105,7 @@ PlansCard(
           right: 76.sp,
           child: InkWell(
             onTap: () {
-              Get.to(PaymentView());
+              Get.to(const PaymentView());
             },
             child: Container(
               width: getHorizontalSize(170),
@@ -124,8 +126,8 @@ PlansCard(
                           fontSize: F18(),
                           fontWeight: FontWeight.w400),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 2.0),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 2.0),
                       child: Icon(
                         Icons.arrow_forward,
                         color: Colors.white,

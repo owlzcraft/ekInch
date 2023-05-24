@@ -1,14 +1,9 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:ekinch/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:ekinch/app/modules/mobile/views/mobile_view.dart';
-import 'package:ekinch/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../widgets/math_utils.dart';
 import '../../../../widgets/phone_text_field.dart';
 import '../../../generated/assets.dart';
@@ -18,39 +13,20 @@ import '../../dashboard/widgets/navigation.dart';
 import '../../mobile/widget/yellow_button.dart';
 import '../controllers/profile_controller.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-
 import '../widgets/profile_image.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileView extends StatefulWidget {
-  ProfileView({Key? key}) : super(key: key);
+  const ProfileView({Key? key}) : super(key: key);
 
   @override
   State<ProfileView> createState() => _ProfileViewState();
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  @override
   ProfileController controller = Get.put(ProfileController());
   DashboardController dashboardController = Get.put(DashboardController());
 
-  // List of items in our dropdown menu
-  final List<String> professionList = [
-    "Labour",
-    "Plaster Mistri",
-    "Tiles Mistri",
-    "Plumber",
-    "Electrician",
-    "Painter",
-    "Carpenter",
-    "Welder",
-    "Bar bender",
-    "Contractor",
-    "Dukandar",
-    "Customer",
-    "Engineer",
-    "Architect",
-    "Other"
-  ];
 
   final List experienceList = [
     '1',
@@ -107,6 +83,23 @@ class _ProfileViewState extends State<ProfileView> {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> professionList = [
+    AppLocalizations.of(context)!.labour,
+    AppLocalizations.of(context)!.plastermistri,
+    AppLocalizations.of(context)!.tilesmistri,
+    AppLocalizations.of(context)!.plumber,
+    AppLocalizations.of(context)!.electrician,
+    AppLocalizations.of(context)!.painter,
+    AppLocalizations.of(context)!.carpenter,
+    AppLocalizations.of(context)!.welder,
+    AppLocalizations.of(context)!.barbender,
+    AppLocalizations.of(context)!.contractor,
+    AppLocalizations.of(context)!.dukandar,
+    AppLocalizations.of(context)!.customer,
+    AppLocalizations.of(context)!.engineer,
+    AppLocalizations.of(context)!.architect,
+    AppLocalizations.of(context)!.other
+  ];
     showDataAlertProfile() {
       showDialog(
           context: context,
@@ -121,59 +114,56 @@ class _ProfileViewState extends State<ProfileView> {
                 ),
               ),
               title: Text(
-                "Select Profile Pic",
+                 AppLocalizations.of(context)!.selectProfilePic,
                 style: GoogleFonts.kadwa(
                     fontSize: F24(), fontWeight: FontWeight.w700),
               ),
-              content: Container(
-                child: SingleChildScrollView(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      InkWell(
-                        onTap: () {
-                          controller.pickProfileCamera();
-                        },
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.camera_alt_outlined,
-                              size: 50.sp,
-                            ),
-                            Text(
-                              "Camera",
-                              style: GoogleFonts.kadwa(
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
+              content: SingleChildScrollView(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        controller.pickProfileCamera();
+                      },
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.camera_alt_outlined,
+                            size: 50.sp,
+                          ),
+                          Text(
+                             AppLocalizations.of(context)!.camera,
+                            style: GoogleFonts.kadwa(
+                                fontWeight: FontWeight.w400),
+                          )
+                        ],
                       ),
-                      InkWell(
-                        onTap: () {
-                          controller.pickProfileGallery();
-                        },
-                        child: Column(
-                          children: [
-                            Icon(Icons.filter, size: 50.sp),
-                            Text(
-                              "Gallery",
-                              style: GoogleFonts.kadwa(
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        controller.pickProfileGallery();
+                      },
+                      child: Column(
+                        children: [
+                          Icon(Icons.filter, size: 50.sp),
+                          Text(
+                             AppLocalizations.of(context)!.gallery,
+                            style: GoogleFonts.kadwa(
+                                fontWeight: FontWeight.w400),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
             );
           });
     }
 
-    String? selectedValue;
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -190,7 +180,7 @@ class _ProfileViewState extends State<ProfileView> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomTabView(4),
+        bottomNavigationBar: const BottomTabView(4),
         body: SingleChildScrollView(
             child: Column(children: [
           InkWell(
@@ -199,7 +189,7 @@ class _ProfileViewState extends State<ProfileView> {
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ProfileImage("${LocalStorage.shared.getProfile()}"),
+              child: ProfileImage(LocalStorage.shared.getProfile().toString()),
             ),
           ),
           Text(
@@ -226,7 +216,7 @@ class _ProfileViewState extends State<ProfileView> {
               children: [
                 TextFormField(
                   onChanged: (value) {
-                    controller.name.text = value as String;
+                    controller.name.text = value;
                   },
                   initialValue:
                       "${LocalStorage.shared.getUserData()?.userData?.firstName}",
@@ -255,21 +245,21 @@ class _ProfileViewState extends State<ProfileView> {
                   child: MobileTextFieldEdit(
                       context,
                       true,
-                      "${LocalStorage.shared.getnumber()}",
+                      LocalStorage.shared.getnumber(),
                       controller.mobileNumber,
-                      "Edit",
+                       AppLocalizations.of(context)!.edit,
                       "${LocalStorage.shared.getUserData()?.userId}"),
                 ),
                 TextFormField(
                   onChanged: (value) {
-                    controller.address.text = value as String;
+                    controller.address.text = value;
                   },
                   initialValue: LocalStorage.shared
                               .getUserData()
                               ?.userData
                               ?.address ==
                           null
-                      ? "Enter Your Address"
+                      ?  AppLocalizations.of(context)!.enteryourAddress
                       : "${LocalStorage.shared.getUserData()?.userData?.address}",
                   decoration: InputDecoration(
                     hintText: LocalStorage.shared
@@ -277,7 +267,7 @@ class _ProfileViewState extends State<ProfileView> {
                                 ?.userData
                                 ?.address ==
                             null
-                        ? "Enter Your Address"
+                        ?  AppLocalizations.of(context)!.enteryourAddress
                         : "${LocalStorage.shared.getUserData()?.userData?.address}",
                     contentPadding: EdgeInsets.symmetric(vertical: 8.sp),
                     focusedBorder: OutlineInputBorder(
@@ -348,6 +338,7 @@ class _ProfileViewState extends State<ProfileView> {
                       if (value == null) {
                         return 'Please Select Profession';
                       }
+                      return null;
                     },
                     onChanged: (value) {
                       controller.profession.text = value as String;
@@ -359,7 +350,7 @@ class _ProfileViewState extends State<ProfileView> {
                     suffix: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40.0),
                       child: Text(
-                        "Years",
+                         AppLocalizations.of(context)!.years,
                         style: GoogleFonts.kadwa(
                             fontSize: getFontSize(22),
                             color: const Color(0xFF636363)),
@@ -380,7 +371,7 @@ class _ProfileViewState extends State<ProfileView> {
                   isExpanded: false,
                   hint: Text(
                     LocalStorage.shared.getUserData()!.userData?.years == null
-                        ? "Your Experience"
+                        ?  AppLocalizations.of(context)!.yourExperience
                         : "${LocalStorage.shared.getUserData()!.userData?.years}",
                     style: GoogleFonts.kadwa(
                         fontSize: getFontSize(22),
@@ -413,6 +404,7 @@ class _ProfileViewState extends State<ProfileView> {
                     if (value == null) {
                       return 'Please Select Experience';
                     }
+                    return null;
                   },
                   onChanged: (value) {
                     controller.experience.text = value as String;
@@ -420,7 +412,7 @@ class _ProfileViewState extends State<ProfileView> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
-                  child: DynamicButton("Update", true, () {
+                  child: DynamicButton( AppLocalizations.of(context)!.update, true, () {
                     controller.updateProfile();
                   }),
                 ),
@@ -429,7 +421,7 @@ class _ProfileViewState extends State<ProfileView> {
                   child: InkWell(
                     onTap: () {
                       Get.until((route) => route.isFirst);
-                      Get.off(MobileView());
+                      Get.off(const MobileView());
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -437,7 +429,7 @@ class _ProfileViewState extends State<ProfileView> {
                         Image.asset('assets/images/logout_icon_profile.png',
                             width: 30, height: 50),
                         Text(
-                          'Log Out',
+                           AppLocalizations.of(context)!.logOut,
                           style: GoogleFonts.kadwa(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,

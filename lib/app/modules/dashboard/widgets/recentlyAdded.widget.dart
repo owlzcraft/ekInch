@@ -2,18 +2,17 @@ import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HeroProfile extends StatelessWidget {
-  String image;
-  String job;
-  String name;
-  String location;
-  String date;
-  String time;
-  String minutes;
-  HeroProfile(
+  final String image;
+  final String job;
+  final String name;
+  final String location;
+  final String date;
+  final String time;
+  final String minutes;
+  const HeroProfile(
       {super.key,
       required this.date,
       required this.image,
@@ -72,7 +71,7 @@ class HeroProfile extends StatelessWidget {
                             fontWeight: FontWeight.w700, fontSize: F18()),
                       ),
                       Text(
-                        location + "  |  " + time + "  |  " + date,
+                        "$location  |  $time  |  $date",
                         style: GoogleFonts.kadwa(
                             color: const Color(0xFF6A6A6A),
                             fontWeight: FontWeight.w400,
@@ -89,7 +88,7 @@ class HeroProfile extends StatelessWidget {
             top: 10.sp,
             right: 16.sp,
             child: Text(
-              minutes ,
+              minutes,
               style: GoogleFonts.kadwa(
                   color: const Color(0xFF6A6A6A),
                   fontSize: F12(),

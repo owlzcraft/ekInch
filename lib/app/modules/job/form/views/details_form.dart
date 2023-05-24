@@ -1,5 +1,4 @@
 // ignore_for_file: unused_import, unrelated_type_equality_checks
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/job/form/views/widgets/dropdown.dart';
@@ -7,8 +6,6 @@ import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/custom_widget/dash_header.dart';
 import 'package:ekinch/app/generated/assets.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottom_bar.dart';
 import 'package:ekinch/app/modules/job/form/controllers/job.controller.dart';
 import 'package:ekinch/app/modules/job/form/views/job_form.dart';
 import 'package:ekinch/app/modules/job/form/views/widgets/profile_form.dart';
@@ -23,30 +20,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../utils/localStorage.dart';
 import '../../../dashboard/widgets/navigation.dart';
 
 class DetailsForm extends StatelessWidget {
   DetailsForm({super.key});
   GetJobController controller = Get.put(GetJobController());
-  final List<String> Gender = [
-    "Male",
-    "Female",
-  ];
-  final List<String> month = [
-    'January',
-    'February,"March',
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
   final List<String> days = [
     "1",
     "2",
@@ -94,22 +74,55 @@ class DetailsForm extends StatelessWidget {
     "11",
     "12",
   ];
+
   List<String> years = List.generate(101, (index) => (2023 - index).toString());
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    var schoolMediums = [
+      AppLocalizations.of(context)!.hindi,
+      AppLocalizations.of(context)!.english,
+      AppLocalizations.of(context)!.others
+    ].obs;
+    var englishFluency = [
+      AppLocalizations.of(context)!.no,
+      AppLocalizations.of(context)!.goodEnglish,
+      AppLocalizations.of(context)!.fluentEnglish
+    ].obs;
+    var expData = [
+      AppLocalizations.of(context)!.fresher,
+      AppLocalizations.of(context)!.experience
+    ].obs;
+    final List<String> gender = [
+      AppLocalizations.of(context)!.male,
+      AppLocalizations.of(context)!.female,
+    ];
+    // final List<String> month = [
+    //   AppLocalizations.of(context)!.january,
+    //   AppLocalizations.of(context)!.february,
+    //   AppLocalizations.of(context)!.march,
+    //   AppLocalizations.of(context)!.april,
+    //   AppLocalizations.of(context)!.may,
+    //   AppLocalizations.of(context)!.june,
+    //   AppLocalizations.of(context)!.july,
+    //   AppLocalizations.of(context)!.august,
+    //   AppLocalizations.of(context)!.september,
+    //   AppLocalizations.of(context)!.october,
+    //   AppLocalizations.of(context)!.november,
+    //   AppLocalizations.of(context)!.december
+    // ];
     return Scaffold(
         key: scaffoldKey,
         drawer: const SettingsView(),
-        bottomNavigationBar: BottomTabView(2),
+        bottomNavigationBar: const BottomTabView(2),
 
         // bottomNavigationBar: BottomBar(),
         appBar: DynamicAppBar(
             "${LocalStorage.shared.getUserData()?.userData?.firstName}",
-            "Hello,",
+            AppLocalizations.of(context)!.hello,
             false,
             scaffoldKey),
         body: SingleChildScrollView(
@@ -125,13 +138,15 @@ class DetailsForm extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Please fill all Details",
+                        AppLocalizations.of(context)!.pleasefillallDetails,
                         style: GoogleFonts.kadwa(
                             height: 1.1,
                             fontWeight: FontWeight.w700,
                             fontSize: F18()),
                       ),
-                      Text("Your profile help us to find best job for you",
+                      Text(
+                          AppLocalizations.of(context)!
+                              .yourprofilehelpustofindbestjobforyou,
                           style: GoogleFonts.kadwa(
                               fontWeight: FontWeight.w400,
                               color: const Color(0xFF767676),
@@ -155,7 +170,7 @@ class DetailsForm extends StatelessWidget {
                           ),
                           isExpanded: false,
                           hint: Text(
-                            "Select Gender",
+                            AppLocalizations.of(context)!.selectGender,
                             style: GoogleFonts.kadwa(
                                 fontSize: getFontSize(22),
                                 color: const Color(0xFF636363)),
@@ -172,19 +187,22 @@ class DetailsForm extends StatelessWidget {
                           dropdownDecoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          items: Gender.map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(
-                                  item,
-                                  style: GoogleFonts.kadwa(
-                                      fontSize: getFontSize(22),
-                                      color: const Color(0xFF636363)),
-                                ),
-                              )).toList(),
+                          items: gender
+                              .map((item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: GoogleFonts.kadwa(
+                                          fontSize: getFontSize(22),
+                                          color: const Color(0xFF636363)),
+                                    ),
+                                  ))
+                              .toList(),
                           validator: (value) {
                             if (value == null) {
-                              return 'Please Select Gender';
+                              return AppLocalizations.of(context)!.selectGender;
                             }
+                            return null;
                           },
                           onChanged: (value) {
                             controller.gender = value as String;
@@ -436,24 +454,22 @@ class DetailsForm extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 10, bottom: 5),
                         child: Text(
-                          "My School Board Was ?*",
+                          AppLocalizations.of(context)!.mySchoolMediumWas,
                           style: GoogleFonts.kadwa(
                               fontWeight: FontWeight.w700, fontSize: F18()),
                         ),
                       ),
                       Obx(() {
                         return Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: controller.schoolMediums.map((m) {
-                            controller.schoolBoard.text = controller
-                                .schoolMediums[controller.activeMedium.value];
-                            int index = controller.schoolMediums.indexOf(m);
+                          children: schoolMediums.map((m) {
+                            controller.schoolBoard.text =
+                                schoolMediums[controller.activeMedium.value];
+                            int index = schoolMediums.indexOf(m);
                             return GestureDetector(
                               onTap: () {
                                 controller.activeMedium.value = index;
-                                controller.schoolBoard.text =
-                                    controller.schoolMediums[
-                                        controller.activeMedium.value];
+                                controller.schoolBoard.text = schoolMediums[
+                                    controller.activeMedium.value];
                               },
                               child: Padding(
                                 padding: (index == 0 || index == 1)
@@ -491,7 +507,7 @@ class DetailsForm extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 15, bottom: 5),
                         child: Text(
-                          "How i Speak English ?*",
+                          AppLocalizations.of(context)!.howiSpeakEnglish,
                           style: GoogleFonts.kadwa(
                               fontWeight: FontWeight.w700, fontSize: F18()),
                         ),
@@ -499,18 +515,16 @@ class DetailsForm extends StatelessWidget {
                       Obx(() {
                         return Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: controller.englishFluency.map((m) {
-                            int index = controller.englishFluency.indexOf(m);
+                          children: englishFluency.map((m) {
+                            int index = englishFluency.indexOf(m);
                             controller.englishLevel.text =
-                                      controller.englishFluency[
-                                          controller.activeFluency.value];
+                                englishFluency[controller.activeFluency.value];
                             return Expanded(
                               child: GestureDetector(
                                 onTap: () {
                                   controller.activeFluency.value = index;
-                                  controller.englishLevel.text =
-                                      controller.englishFluency[
-                                          controller.activeFluency.value];
+                                  controller.englishLevel.text = englishFluency[
+                                      controller.activeFluency.value];
                                 },
                                 child: Padding(
                                   padding: (index == 0 || index == 1)
@@ -541,7 +555,7 @@ class DetailsForm extends StatelessWidget {
                                             fontWeight: FontWeight.w400),
                                       ),
                                       Text(
-                                        "English",
+                                        AppLocalizations.of(context)!.english,
                                         style: GoogleFonts.kadwa(
                                             height: 1.2,
                                             fontSize: F16(),
@@ -562,7 +576,7 @@ class DetailsForm extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 15, bottom: 5),
                         child: Text(
-                          "I’m Fresher/Experience*",
+                          AppLocalizations.of(context)!.imFresherExperience,
                           style: GoogleFonts.kadwa(
                               fontWeight: FontWeight.w700, fontSize: F18()),
                         ),
@@ -570,16 +584,16 @@ class DetailsForm extends StatelessWidget {
                       Obx(() {
                         return Row(
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: controller.expData.map((m) {
-                            int index = controller.expData.indexOf(m);
-                            controller.experienceTap.text = controller
-                                      .expData[controller.activeExp.value];
+                          children: expData.map((m) {
+                            int index = expData.indexOf(m);
+                            controller.experienceTap.text =
+                                expData[controller.activeExp.value];
                             return Expanded(
                               child: GestureDetector(
                                 onTap: () {
                                   controller.activeExp.value = index;
-                                  controller.experienceTap.text = controller
-                                      .expData[controller.activeExp.value];
+                                  controller.experienceTap.text =
+                                      expData[controller.activeExp.value];
                                 },
                                 child: Padding(
                                   padding: (index == 0)
@@ -619,7 +633,7 @@ class DetailsForm extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 15, bottom: 5),
                         child: Text(
-                          "My Date Of Birth*",
+                          AppLocalizations.of(context)!.myDateOfBirth,
                           style: GoogleFonts.kadwa(
                               fontWeight: FontWeight.w700, fontSize: F18()),
                         ),
@@ -628,20 +642,37 @@ class DetailsForm extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           CustomDropDown(
-                              days, "Day", "Day", 1, 0, controller.date),
-                          CustomDropDown(monthNumber, "Month", "Month", 1, 4,
+                              days,
+                              AppLocalizations.of(context)!.day,
+                              AppLocalizations.of(context)!.day,
+                              1,
+                              0,
+                              controller.date),
+                          CustomDropDown(
+                              monthNumber,
+                              AppLocalizations.of(context)!.month,
+                              AppLocalizations.of(context)!.month,
+                              1,
+                              4,
                               controller.month),
                           CustomDropDown(
-                              years, "Years", "Year", 1, 0, controller.year),
+                              years,
+                              AppLocalizations.of(context)!.years,
+                              AppLocalizations.of(context)!.years,
+                              1,
+                              0,
+                              controller.year),
                         ],
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 40.sp),
-                        child: DynamicButton("Submit", true, () {
+                        child: DynamicButton(
+                            AppLocalizations.of(context)!.submit, true, () {
                           if (_formKey.currentState!.validate()) {
-                            Get.to(formFillView());
+                            Get.to(const formFillView());
                           } else {
-                            errorSnackbar("Please fill Form");
+                            errorSnackbar(AppLocalizations.of(context)!
+                                .pleasefillallDetails);
                           }
                         }),
                       )

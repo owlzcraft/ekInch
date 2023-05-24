@@ -3,12 +3,13 @@ import 'package:ekinch/app/modules/MyVideos/views/widget/reelCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NewVideo extends StatelessWidget {
-  String videoU;
-  String videoV;
+  final String videoU;
+  final String videoV;
 
-  NewVideo({super.key, required this.videoU, required this.videoV});
+  const NewVideo({super.key, required this.videoU, required this.videoV});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class NewVideo extends StatelessWidget {
                 padding:
                     EdgeInsets.symmetric(horizontal: 18.sp, vertical: 10.sp),
                 child: Text(
-                  "Verified Videos",
+                  AppLocalizations.of(context)!.verifiedVideos,
                   style: GoogleFonts.kadwa(
                       fontSize: F20(), fontWeight: FontWeight.w700),
                 ),
@@ -31,7 +32,7 @@ class NewVideo extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(right: 12.sp),
                 child: Text(
-                  "${videoV} videos",
+                  "$videoV ${AppLocalizations.of(context)!.videos}",
                   style: GoogleFonts.kadwa(
                       fontSize: F16(),
                       fontWeight: FontWeight.w400,
@@ -83,7 +84,7 @@ class NewVideo extends StatelessWidget {
                 reverse: false,
                 shrinkWrap: true,
                 crossAxisCount: 2,
-                children: [
+                children: const [
                   reelCard(
                     image: 'assets/images/splash_screen.png',
                     text: 'Hello',
@@ -117,7 +118,7 @@ class NewVideo extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 18, vertical: 10.sp),
                 child: Text(
-                  "Unverified Videos",
+                  AppLocalizations.of(context)!.unVerifiedVideos,
                   style: GoogleFonts.kadwa(
                       fontSize: F20(), fontWeight: FontWeight.w700),
                 ),
@@ -125,7 +126,7 @@ class NewVideo extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 12),
                 child: Text(
-                  "${videoU} videos",
+                  "$videoU ${AppLocalizations.of(context)!.videos}",
                   style: GoogleFonts.kadwa(
                       fontSize: F16(),
                       fontWeight: FontWeight.w400,
@@ -144,7 +145,7 @@ class NewVideo extends StatelessWidget {
                 reverse: false,
                 shrinkWrap: true,
                 crossAxisCount: 2,
-                children: [
+                children: const [
                   reelCard(
                     image: 'assets/images/splash_screen.png',
                     text: 'Hello',

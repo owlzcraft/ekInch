@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names
+
 import 'package:ekinch/app/models/data_model.dart';
 import 'package:ekinch/app/modules/company/view/company_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,26 +7,17 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:mime_type/mime_type.dart';
-import 'package:ekinch/app/modules/otp/views/otp_view.dart';
 import 'package:flutter/material.dart';
 import 'package:http_parser/http_parser.dart';
 import '../../../../widgets/loader.dart';
 import '../../../../widgets/snack_bar.dart';
 import '../../../models/company_profile.dart';
-import '../../../models/otp_model.dart';
-import '../../../models/profile_model.dart';
-import '../../../models/profile_pic.dart';
 import '../../../networking/api_result.dart';
 import '../../../networking/app_repo.dart';
-import '../../../routes/app_pages.dart';
 import '../../../utils/localStorage.dart';
-import '../../job/form/views/details_form.dart';
-import '../../resume/view/preview_view.dart';
 
 class CompanyController extends GetxController {
-  //TODO: Implement ReelsController
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
-
   TextEditingController companyName = TextEditingController();
   TextEditingController companyEmail = TextEditingController();
   TextEditingController companyAddress = TextEditingController();
@@ -90,7 +83,6 @@ class CompanyController extends GetxController {
                     successSnackBar("Profile Pic Uploaded");
                     LocalStorage.shared
                         .saveCompanyLogo(value.data?.photo as String);
-                    print("Api not working");
                     Get.offAll(CompanyView(
                       companyName: value.data!.name.toString(),
                       address: value.data!.address.toString(),
@@ -110,11 +102,9 @@ class CompanyController extends GetxController {
   }
 
   Future<void> updateCompanyProfile() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
@@ -132,8 +122,6 @@ class CompanyController extends GetxController {
                 success: (value) {
                   if (value?.ok == true) {
                     errorSnackbar("Profile Updated!");
-                    // LocalStorage.shared
-                    //     .saveCompanyData(value as CompanyProfileModel);
                     GetCompanyProfile();
                   } else if (value?.ok == false) {
                     errorSnackbar("Something Went Wrong");
@@ -149,11 +137,9 @@ class CompanyController extends GetxController {
 
 //Get data For Company Profile
   Future<void> GetCompanyProfile() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
@@ -191,11 +177,9 @@ class CompanyController extends GetxController {
 //Company Data Check
 
   Future<void> CompanyDataStatus() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
@@ -210,7 +194,7 @@ class CompanyController extends GetxController {
                     GetCompanyProfile();
                     // Get.to(CompanyView(address: '', companyName: '', contact: '', email: '', photo: '',));
                   } else if (value?.data == false) {
-                    Get.to(CompanyView(
+                    Get.to(const CompanyView(
                       address: 'Company Address',
                       companyName: 'Company Name',
                       contact: ' Company Contact no.',
@@ -231,11 +215,9 @@ class CompanyController extends GetxController {
 //Get Company Data
 
   Future<void> GetCompanyData() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
@@ -247,10 +229,9 @@ class CompanyController extends GetxController {
                 success: (value) {
                   if (value?.data == true) {
                     errorSnackbar("Get API");
-
                     // Get.to(CompanyView(address: '', companyName: '', contact: '', email: '', photo: '',));
                   } else if (value?.data == false) {
-                    Get.to(CompanyView(
+                    Get.to(const CompanyView(
                       address: 'Company Address',
                       companyName: 'Company Name',
                       contact: ' Company Contact no.',
@@ -303,20 +284,8 @@ class CompanyController extends GetxController {
   //       loadingWidget: const LoadingIndicator());
   // }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void increment() => count.value++;
 }

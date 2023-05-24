@@ -1,23 +1,21 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../widgets/shortDropDown.dart';
 
-class HireColumn extends StatelessWidget {
-  TextEditingController professionController;
-  TextEditingController numberController;
-  TextEditingController salaryStController;
-  TextEditingController salaryEndController;
-  TextEditingController expController;
+class HireColumn extends StatefulWidget {
+  final TextEditingController professionController;
+  final TextEditingController numberController;
+  final TextEditingController salaryStController;
+  final TextEditingController salaryEndController;
+  final TextEditingController expController;
   // TextEditingController locController;
-  TextEditingController langController;
-  TextEditingController qualification;
-  TextEditingController gender;
-  HireColumn(
+  final TextEditingController langController;
+  final TextEditingController qualification;
+  final TextEditingController gender;
+  const HireColumn(
       {super.key,
       required this.professionController,
       required this.numberController,
@@ -30,6 +28,11 @@ class HireColumn extends StatelessWidget {
       required this.gender});
 
   @override
+  State<HireColumn> createState() => _HireColumnState();
+}
+
+class _HireColumnState extends State<HireColumn> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -40,7 +43,7 @@ class HireColumn extends StatelessWidget {
           //    mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              'I want to Hire A',
+              AppLocalizations.of(context)!.iwanttoHireA,
               style: GoogleFonts.kadwa(
                 fontSize: F18(),
                 fontWeight: FontWeight.w700,
@@ -55,25 +58,25 @@ class HireColumn extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: DropdownFieldFull(
-                    controller: professionController,
-                    hintText: "${professionController.text}",
+                    controller: widget.professionController,
+                    hintText: widget.professionController.text,
                     // dropdownvalue: "${professionController.text}",
-                    items: const [
-                      "Labour",
-                      "Plaster Mistri",
-                      "Tiles Mistri",
-                      "Plumber",
-                      "Electrician",
-                      "Painter",
-                      "Carpenter",
-                      "Welder",
-                      "Bar bender",
-                      "Contractor",
-                      "Dukandar",
-                      "Customer",
-                      "Engineer",
-                      "Architect",
-                      "other"
+                    items: [
+                      AppLocalizations.of(context)!.labour,
+                      AppLocalizations.of(context)!.plastermistri,
+                      AppLocalizations.of(context)!.tilesmistri,
+                      AppLocalizations.of(context)!.plumber,
+                      AppLocalizations.of(context)!.electrician,
+                      AppLocalizations.of(context)!.painter,
+                      AppLocalizations.of(context)!.carpenter,
+                      AppLocalizations.of(context)!.welder,
+                      AppLocalizations.of(context)!.barbender,
+                      AppLocalizations.of(context)!.contractor,
+                      AppLocalizations.of(context)!.dukandar,
+                      AppLocalizations.of(context)!.customer,
+                      AppLocalizations.of(context)!.engineer,
+                      AppLocalizations.of(context)!.architect,
+                      AppLocalizations.of(context)!.other
                     ],
                   ),
                 ),
@@ -81,7 +84,7 @@ class HireColumn extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.only(left: 12.sp),
                     child: DropdownFieldFull(
-                      controller: numberController,
+                      controller: widget.numberController,
                       hintText: "1",
                       // dropdownvalue: '1',
                       items: const [
@@ -109,8 +112,8 @@ class HireColumn extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: DropdownFieldFull(
-                      controller: salaryStController,
-                      hintText: "Salary",
+                      controller: widget.salaryStController,
+                      hintText: AppLocalizations.of(context)!.salary,
                       items: const [
                         '5000',
                         '6000',
@@ -163,7 +166,7 @@ class HireColumn extends StatelessWidget {
                 Expanded(
                     child: Center(
                   child: Text(
-                    "To",
+                    AppLocalizations.of(context)!.to,
                     style: GoogleFonts.kadwa(
                         fontSize: F16(), fontWeight: FontWeight.w600),
                   ),
@@ -171,8 +174,8 @@ class HireColumn extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: DropdownFieldFull(
-                      controller: salaryEndController,
-                      hintText: "Salary",
+                      controller: widget.salaryEndController,
+                      hintText: AppLocalizations.of(context)!.salary,
                       items: const [
                         '5000',
                         '6000',
@@ -228,8 +231,8 @@ class HireColumn extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.02,
             ),
             DropdownFieldFull(
-              controller: expController,
-              hintText: "Enter Experience in Years",
+              controller: widget.expController,
+              hintText: AppLocalizations.of(context)!.enterExperienceInYears,
               items: const [
                 '1',
                 '2',
@@ -295,32 +298,32 @@ class HireColumn extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.02,
             ),
             DropdownFieldFull(
-              controller: langController,
-              hintText: "Select Language",
-              items: const [
-                'Hindi',
-                'English',
-                'Bengali',
-                'Telugu',
-                'Marathi',
-                'Tamil',
-                'Gujarati',
-                'Urdu',
-                'Kannada',
-                'Odia',
-                'Punjabi',
-                'Malayalam',
-                'Assamese',
-                'Kashmiri',
-                'Sindhi',
-                'Sanskrit'
+              controller: widget.langController,
+              hintText: AppLocalizations.of(context)!.selectLanguage,
+              items: [
+                AppLocalizations.of(context)!.hindi,
+                AppLocalizations.of(context)!.english,
+                AppLocalizations.of(context)!.bengali,
+                AppLocalizations.of(context)!.telugu,
+                AppLocalizations.of(context)!.marathi,
+                AppLocalizations.of(context)!.tamil,
+                AppLocalizations.of(context)!.gujarati,
+                AppLocalizations.of(context)!.urdu,
+                AppLocalizations.of(context)!.kannada,
+                AppLocalizations.of(context)!.odia,
+                AppLocalizations.of(context)!.punjabi,
+                AppLocalizations.of(context)!.malayalam,
+                AppLocalizations.of(context)!.assamese,
+                AppLocalizations.of(context)!.kashmiri,
+                AppLocalizations.of(context)!.sindhi,
+                AppLocalizations.of(context)!.sanskrit
               ],
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.01,
             ),
             Text(
-              'Qualification',
+              AppLocalizations.of(context)!.qualification,
               style: GoogleFonts.kadwa(
                 fontSize: F18(),
                 fontWeight: FontWeight.w700,
@@ -335,19 +338,19 @@ class HireColumn extends StatelessWidget {
             //   height: MediaQuery.of(context).size.height * 0.02,
             // ),
             DropdownFieldFull(
-              controller: qualification,
-              hintText: "Enter Graduation",
-              items: const [
-                '8th Pass',
-                '10th Pass',
-                '12th Pass',
-                "B.A",
-                "B.Tech",
-                "B.Com",
-                "BCA",
-                "BBA",
-                "Diploma",
-                "Other"
+              controller: widget.qualification,
+              hintText: AppLocalizations.of(context)!.enterQualification,
+              items: [
+                AppLocalizations.of(context)!.ethpass,
+                AppLocalizations.of(context)!.tthpass,
+                AppLocalizations.of(context)!.twthpass,
+                AppLocalizations.of(context)!.ba,
+                AppLocalizations.of(context)!.btech,
+                AppLocalizations.of(context)!.bcom,
+                AppLocalizations.of(context)!.bca,
+                AppLocalizations.of(context)!.bba,
+                AppLocalizations.of(context)!.diploma,
+                AppLocalizations.of(context)!.other
               ],
             ),
             // Dropdownprefix(
@@ -360,7 +363,7 @@ class HireColumn extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.01,
             ),
             Text(
-              'Gender',
+              AppLocalizations.of(context)!.gender,
               style: GoogleFonts.kadwa(
                 fontSize: F18(),
                 fontWeight: FontWeight.w700,
@@ -371,9 +374,13 @@ class HireColumn extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.002,
             ),
             DropdownFieldFull(
-              controller: gender,
-              hintText: "Select Gender",
-              items: const ['Male', 'Female', "Others"],
+              controller: widget.gender,
+              hintText: AppLocalizations.of(context)!.selectGender,
+              items: [
+                AppLocalizations.of(context)!.male,
+                AppLocalizations.of(context)!.female,
+                AppLocalizations.of(context)!.others
+              ],
             ),
           ],
         ),

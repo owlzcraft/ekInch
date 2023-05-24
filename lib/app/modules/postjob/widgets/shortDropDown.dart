@@ -1,31 +1,29 @@
+// ignore_for_file: file_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DropdownFieldFull extends StatelessWidget {
-  String? hintText;
-  TextEditingController controller;
-  String? initialValue;
-  String? dropdownvalue;
-  List<String>? items;
-  EdgeInsetsGeometry? margin;
-  DropdownFieldFull(
+  final String? hintText;
+  final TextEditingController controller;
+  final String? initialValue;
+  final String? dropdownvalue;
+  final List<String>? items;
+  final EdgeInsetsGeometry? margin;
+  const DropdownFieldFull(
       {super.key,
       this.hintText,
       this.margin,
       this.initialValue,
       this.items,
-      this.dropdownvalue, required this.controller});
+      this.dropdownvalue,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    List<int> indexvalue = [0];
-    int index = 0;
-    var theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
       //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
@@ -62,9 +60,7 @@ class DropdownFieldFull extends StatelessWidget {
           // dropdownvalue = value!;
           controller.text = value!;
           for (int i = 0; i < items!.length; i++) {
-            if (value == items![i]) {
-              index = indexvalue[i];
-            }
+            if (value == items![i]) {}
           }
         },
       ),
@@ -72,15 +68,13 @@ class DropdownFieldFull extends StatelessWidget {
   }
 }
 
-class Dropdownprefix extends StatelessWidget {
+class Dropdownprefix extends StatefulWidget {
   final String? hintText;
   final String? initialValue;
   final String? dropdownvalue;
   final List<String>? items;
-  late TextEditingController controller;
-  // final Decoration? prefix;
   final EdgeInsetsGeometry? margin;
-  Dropdownprefix(
+  const Dropdownprefix(
       {Key? key,
       this.hintText,
       this.margin,
@@ -91,8 +85,14 @@ class Dropdownprefix extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<Dropdownprefix> createState() => _DropdownprefixState();
+}
+
+class _DropdownprefixState extends State<Dropdownprefix> {
+  late TextEditingController controller;
+
+  @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return Container(
       //    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
       //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
@@ -101,11 +101,11 @@ class Dropdownprefix extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
           border: Border.all(color: Boxborder, width: 1)),
       child: DropdownButtonFormField<String>(
-        value: dropdownvalue,
+        value: widget.dropdownvalue,
         //iconSize: 0.0,
         icon: const Icon(Icons.keyboard_arrow_down, color: Colors.grey),
         hint: Text(
-          hintText as String,
+          widget.hintText as String,
           style: GoogleFonts.kadwa(color: grey, fontSize: F16()),
         ),
         style: GoogleFonts.kadwa(color: black, fontSize: F16()),
@@ -117,11 +117,11 @@ class Dropdownprefix extends StatelessWidget {
             prefixIcon: Icon(
               Icons.keyboard_arrow_left,
             )),
-        items: items!.map<DropdownMenuItem<String>>((String value) {
+        items: widget.items!.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             // alignment: Alignment.centerRight,
-            child: new Text(
+            child: Text(
               value,
               style: GoogleFonts.kadwa(color: grey, fontSize: F16()),
             ),
@@ -140,7 +140,7 @@ class DescriptionLong extends StatelessWidget {
   final String? initialValue;
   final TextEditingController? controller;
   final EdgeInsetsGeometry? margin;
-  DescriptionLong(
+  const DescriptionLong(
       {Key? key,
       this.hintText,
       this.margin,
@@ -149,7 +149,6 @@ class DescriptionLong extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return Container(
         height: MediaQuery.of(context).size.height * 0.2,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
@@ -178,7 +177,7 @@ class DescriptionLong extends StatelessWidget {
 }
 
 class Description extends StatelessWidget {
-   String hintText;
+  String hintText;
   String initialValue;
   TextEditingController controller;
   final EdgeInsetsGeometry? margin;
@@ -191,7 +190,6 @@ class Description extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
@@ -200,7 +198,7 @@ class Description extends StatelessWidget {
             borderRadius: BorderRadius.circular(6),
             border: Border.all(color: Boxborder, width: 1)),
         child: TextFormField(
-          scrollPadding: EdgeInsets.only(bottom: 40),
+          scrollPadding: const EdgeInsets.only(bottom: 40),
           controller: controller,
           textInputAction: TextInputAction.newline,
           keyboardType: TextInputType.multiline,
@@ -226,7 +224,7 @@ class TextFeild extends StatelessWidget {
   final TextInputFormatter? inputFormatter;
   final TextEditingController? controller;
   final EdgeInsetsGeometry? margin;
-  TextFeild(
+  const TextFeild(
       {Key? key,
       this.hintText,
       this.margin,
@@ -237,7 +235,6 @@ class TextFeild extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
@@ -268,7 +265,7 @@ class TextFeildWhiteBorder extends StatelessWidget {
   final TextInputFormatter? inputFormatter;
   final TextEditingController? controller;
   final EdgeInsetsGeometry? margin;
-  TextFeildWhiteBorder(
+  const TextFeildWhiteBorder(
       {Key? key,
       this.hintText,
       this.margin,
@@ -279,7 +276,6 @@ class TextFeildWhiteBorder extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
@@ -315,7 +311,7 @@ class TextFeildGreyBorder extends StatelessWidget {
   final TextInputFormatter? inputFormatter;
   final TextEditingController? controller;
   final EdgeInsetsGeometry? margin;
-  TextFeildGreyBorder(
+  const TextFeildGreyBorder(
       {Key? key,
       this.hintText,
       this.margin,
@@ -326,7 +322,6 @@ class TextFeildGreyBorder extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
@@ -362,7 +357,7 @@ class TextFeildWhite extends StatelessWidget {
   final TextInputFormatter? inputFormatter;
   final TextEditingController? controller;
   final EdgeInsetsGeometry? margin;
-  TextFeildWhite(
+  const TextFeildWhite(
       {Key? key,
       this.hintText,
       this.margin,
@@ -373,7 +368,6 @@ class TextFeildWhite extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
@@ -410,7 +404,7 @@ class TextFeildNumber extends StatelessWidget {
   final List<String>? items;
   final TextEditingController? controller;
   final EdgeInsetsGeometry? margin;
-  TextFeildNumber(
+  const TextFeildNumber(
       {Key? key,
       this.hintText,
       this.margin,
@@ -421,7 +415,6 @@ class TextFeildNumber extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
@@ -433,7 +426,7 @@ class TextFeildNumber extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                   width: MediaQuery.of(context).size.width * 0.3,
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -466,10 +459,9 @@ class TextFeildNumber extends StatelessWidget {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 // alignment: Alignment.centerRight,
-                                child: new Text(
+                                child: Text(
                                   value,
-                                  style: TextStyle(
-                                      color: grey, fontFamily: 'Kadwa'),
+                                  style: GoogleFonts.kadwa(color: grey),
                                 ),
                               );
                             }).toList(),
@@ -519,7 +511,7 @@ class DropdownTime extends StatelessWidget {
   final List<String>? items;
   final Decoration? prefixicon;
   final EdgeInsetsGeometry? margin;
-  DropdownTime(
+  const DropdownTime(
       {Key? key,
       this.hintText,
       this.margin,
@@ -531,75 +523,72 @@ class DropdownTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
         //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
         decoration: BoxDecoration(
             // color: theme.backgroundColor,
             borderRadius: BorderRadius.circular(6),
             border: Border.all(color: Boxborder, width: 1)),
-        child: Container(
-          child: IntrinsicHeight(
-              child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: hintText,
-                    contentPadding: EdgeInsets.all(5),
-                    border: UnderlineInputBorder(borderSide: BorderSide.none),
-                    focusedBorder:
-                        UnderlineInputBorder(borderSide: BorderSide.none),
-                    enabledBorder:
-                        UnderlineInputBorder(borderSide: BorderSide.none),
-                  ),
+        child: IntrinsicHeight(
+            child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: TextFormField(
+                decoration: InputDecoration(
+                  hintText: hintText,
+                  contentPadding: const EdgeInsets.all(5),
+                  border: const UnderlineInputBorder(borderSide: BorderSide.none),
+                  focusedBorder:
+                      const UnderlineInputBorder(borderSide: BorderSide.none),
+                  enabledBorder:
+                      const UnderlineInputBorder(borderSide: BorderSide.none),
                 ),
               ),
-              SizedBox(
-                width: 3,
-              ),
-              VerticalDivider(
-                color: Boxborder,
-                thickness: 1,
-                endIndent: 8,
-                indent: 8,
-              ),
-              SizedBox(
-                width: 3,
-              ),
-              Expanded(
-                child: DropdownButtonFormField<String>(
-                  value: dropdownvalue,
-                  //iconSize: 0.0,
-                  icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+            ),
+            const SizedBox(
+              width: 3,
+            ),
+            VerticalDivider(
+              color: Boxborder,
+              thickness: 1,
+              endIndent: 8,
+              indent: 8,
+            ),
+            const SizedBox(
+              width: 3,
+            ),
+            Expanded(
+              child: DropdownButtonFormField<String>(
+                value: dropdownvalue,
+                //iconSize: 0.0,
+                icon: const Icon(Icons.keyboard_arrow_down, color: Colors.grey),
 
-                  style: GoogleFonts.kadwa(color: grey, fontSize: F16()),
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(5),
-                    border: UnderlineInputBorder(borderSide: BorderSide.none),
-                    focusedBorder:
-                        UnderlineInputBorder(borderSide: BorderSide.none),
-                    enabledBorder:
-                        UnderlineInputBorder(borderSide: BorderSide.none),
-                  ),
-                  items: items!.map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      // alignment: Alignment.centerRight,
-                      child: new Text(
-                        value,
-                        style: GoogleFonts.kadwa(color: grey, fontSize: F16()),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? value) {},
+                style: GoogleFonts.kadwa(color: grey, fontSize: F16()),
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.all(5),
+                  border: UnderlineInputBorder(borderSide: BorderSide.none),
+                  focusedBorder:
+                      UnderlineInputBorder(borderSide: BorderSide.none),
+                  enabledBorder:
+                      UnderlineInputBorder(borderSide: BorderSide.none),
                 ),
-              )
-            ],
-          )),
-        ));
+                items: items!.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    // alignment: Alignment.centerRight,
+                    child: Text(
+                      value,
+                      style: GoogleFonts.kadwa(color: grey, fontSize: F16()),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (String? value) {},
+              ),
+            )
+          ],
+        )));
   }
 }
 
@@ -607,10 +596,10 @@ class Dropdownshort extends StatelessWidget {
   final String? hintText;
 
   final String? initialValue;
-  late final String? dropdownvalue;
+  final String? dropdownvalue;
   final List<String>? items;
   final EdgeInsetsGeometry? margin;
-  Dropdownshort(
+  const Dropdownshort(
       {Key? key,
       this.hintText,
       this.margin,
@@ -621,8 +610,6 @@ class Dropdownshort extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<int> indexvalue = [0];
-    int index = 0;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
       //margin: margin ?? EdgeInsets.symmetric( vertical: 10),
@@ -648,7 +635,7 @@ class Dropdownshort extends StatelessWidget {
           return DropdownMenuItem<String>(
             value: value,
             // alignment: Alignment.centerRight,
-            child: new Text(
+            child: Text(
               value,
               style: GoogleFonts.kadwa(color: black, fontSize: F16()),
             ),

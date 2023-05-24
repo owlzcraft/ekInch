@@ -7,7 +7,7 @@ class GreyButton extends StatelessWidget {
   final bool active;
   final Function onPressed;
 
-  GreyButton(this.text, this.active, this.onPressed);
+  const GreyButton(this.text, this.active, this.onPressed, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +16,8 @@ class GreyButton extends StatelessWidget {
         width: Get.width / 1.13, //width of button
         child: ElevatedButton(
           onPressed: () {
-            print("_____pressed");
-            this.onPressed();
+            onPressed();
           },
-          child: Text(
-            text,
-            style: GoogleFonts.kadwa(
-                color: Colors.black,
-                fontSize: 27,
-                letterSpacing: 1,
-                fontWeight: FontWeight.w700,
-                height: 1.2),
-          ),
           style: ElevatedButton.styleFrom(
             foregroundColor: Colors.black, //change background color of button
             backgroundColor: (active)
@@ -38,6 +28,15 @@ class GreyButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(09.0),
             ),
             // backgroundColor: const Color(0xFFFEBA0F),
+          ),
+          child: Text(
+            text,
+            style: GoogleFonts.kadwa(
+                color: Colors.black,
+                fontSize: 27,
+                letterSpacing: 1,
+                fontWeight: FontWeight.w700,
+                height: 1.2),
           ),
         ));
   }

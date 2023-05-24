@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +9,8 @@ class Award_and_Certificate extends StatelessWidget {
   final String image;
   final String view;
   final String text;
-  Award_and_Certificate(
-      {this.image = "assets/image/ek-awrd.png",
+  const Award_and_Certificate(
+      {super.key, this.image = "assets/image/ek-awrd.png",
       this.view = "Best Electrician Work",
       this.text = "Award"});
 

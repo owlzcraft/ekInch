@@ -1,16 +1,18 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../custom_widget/font_size.dart';
 
 class SkillCard extends StatelessWidget {
-  String title;
-  SkillCard({super.key, required this.title});
+  final String title;
+  const SkillCard({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal:4.0,vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 6),
       child: Container(
         decoration: BoxDecoration(
             color: const Color.fromARGB(255, 209, 207, 207),

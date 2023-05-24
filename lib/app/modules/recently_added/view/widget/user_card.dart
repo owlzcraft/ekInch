@@ -24,7 +24,7 @@ UserCard(String image, String name, String profession) {
                 CircleAvatar(
                     radius: 25.sp,
                     backgroundImage:
-                        AssetImage("assets/images/profile_icon.png")),
+                        const AssetImage("assets/images/profile_icon.png")),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Column(

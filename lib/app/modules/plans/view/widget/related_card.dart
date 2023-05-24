@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/utils/math_utils.dart';

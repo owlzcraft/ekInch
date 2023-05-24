@@ -10,16 +10,17 @@ import '../../dashboard/widgets/navigation.dart';
 import '../../mobile/widget/yellow_button.dart';
 import '../../profile/widgets/profile_image.dart';
 import '../contoller/company_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CompanyView extends StatefulWidget {
-  String companyName;
-  String email;
-  String contact;
-  String address;
-  String photo;
-  bool oldUser;
+  final String companyName;
+  final String email;
+  final String contact;
+  final String address;
+  final String photo;
+  final bool oldUser;
 
-  CompanyView(
+  const CompanyView(
       {super.key,
       required this.companyName,
       required this.address,
@@ -62,8 +63,8 @@ class _CompanyViewState extends State<CompanyView> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              insetPadding: EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
+              insetPadding: const EdgeInsets.all(10),
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(
                     4.0,
@@ -71,59 +72,56 @@ class _CompanyViewState extends State<CompanyView> {
                 ),
               ),
               title: Text(
-                "Select Company Profile Pic",
+                AppLocalizations.of(context)!.selectCompanyProfilePic,
                 style: GoogleFonts.kadwa(
                     fontSize: F24(), fontWeight: FontWeight.w700),
               ),
-              content: Container(
-                child: SingleChildScrollView(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      InkWell(
-                        onTap: () {
-                          controller.pickProfileCamera();
-                        },
-                        child: Column(
-                          children: [
-                            Icon(
-                              Icons.camera_alt_outlined,
-                              size: 50.sp,
-                            ),
-                            Text(
-                              "Camera",
-                              style: GoogleFonts.kadwa(
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
+              content: SingleChildScrollView(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        controller.pickProfileCamera();
+                      },
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.camera_alt_outlined,
+                            size: 50.sp,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.camera,
+                            style:
+                                GoogleFonts.kadwa(fontWeight: FontWeight.w400),
+                          )
+                        ],
                       ),
-                      InkWell(
-                        onTap: () {
-                          controller.pickProfileGallery();
-                        },
-                        child: Column(
-                          children: [
-                            Icon(Icons.filter, size: 50.sp),
-                            Text(
-                              "Gallery",
-                              style: GoogleFonts.kadwa(
-                                  fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        controller.pickProfileGallery();
+                      },
+                      child: Column(
+                        children: [
+                          Icon(Icons.filter, size: 50.sp),
+                          Text(
+                            AppLocalizations.of(context)!.gallery,
+                            style:
+                                GoogleFonts.kadwa(fontWeight: FontWeight.w400),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
             );
           });
     }
 
-    String? selectedValue;
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -140,7 +138,7 @@ class _CompanyViewState extends State<CompanyView> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomTabView(9),
+        bottomNavigationBar: const BottomTabView(9),
         body: SingleChildScrollView(
             child: Column(children: [
           InkWell(
@@ -153,10 +151,7 @@ class _CompanyViewState extends State<CompanyView> {
             ),
           ),
           Text(
-            // LocalStorage.shared.getCompanyData()?.data?.name == null
-            //     ?
-            "${widget.companyName}",
-            // : "${LocalStorage.shared.getCompanyData()!.data?.name}",
+            widget.companyName,
             style: GoogleFonts.kadwa(
                 color: const Color(0xFF1A1D1E),
                 height: 1.2,
@@ -183,38 +178,27 @@ class _CompanyViewState extends State<CompanyView> {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: TextFieldWithIcon(
-                      // LocalStorage.shared.getCompanyData()?.data?.name == null
-                      //     ?
-                      "${widget.companyName}",
-                      // : "${LocalStorage.shared.getCompanyData()!.data?.name}",
+                      widget.companyName,
                       'assets/images/name_text_icon.png',
                       controller.companyName),
                 ),
                 TextFieldWithIcon(
-                    // LocalStorage.shared.getCompanyData()?.data?.email == null
-                    //     ?
-                    "${widget.email}",
-                    // : "${LocalStorage.shared.getCompanyData()!.data?.email}",
+                    widget.email,
                     'assets/images/name_text_icon.png',
                     controller.companyEmail),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 12.sp),
                   child: MobileTextFieldEdit(
                     context,
-                    false, "${widget.contact}",
+                    false,
+                    widget.contact,
                     controller.contact,
                     "",
-                    // LocalStorage.shared.getCompanyData()?.data?.contact == null
-                    // ?
-                    "${widget.contact}",
-                    // : "${LocalStorage.shared.getCompanyData()!.data?.contact}",
+                    widget.contact,
                   ),
                 ),
                 TextFieldWithIcon(
-                    // LocalStorage.shared.getCompanyData()?.data?.address == null
-                    // ?
-                    "${widget.address}",
-                    // : "${LocalStorage.shared.getCompanyData()!.data?.address}",
+                    widget.address,
                     'assets/images/location_text_icon.png',
                     controller.companyAddress),
                 // Padding(
@@ -278,7 +262,7 @@ class _CompanyViewState extends State<CompanyView> {
                   padding: EdgeInsets.symmetric(
                     vertical: 20.sp,
                   ),
-                  child: DynamicButton("Update", true, () {
+                  child: DynamicButton(AppLocalizations.of(context)!.update, true, () {
                     controller.updateCompanyProfile();
                   }),
                 ),

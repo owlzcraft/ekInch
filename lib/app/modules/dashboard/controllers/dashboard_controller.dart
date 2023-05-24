@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/models/categories_video.dart';
 import 'package:ekinch/app/models/recentlAdded.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,6 @@ import '../../../utils/localStorage.dart';
 // import 'package:video_thumbnail/video_thumbnail.dart';
 
 class DashboardController extends GetxController {
-  //TODO: Implement DashboardController
 // late VideoPlayerController videocontroller;
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
   late List<Data> ReelsListApi;
@@ -56,11 +57,9 @@ class DashboardController extends GetxController {
 
   //Get Reels
   Future<void> GetDashboard() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["page"] = 1;
           data["token"] = fcmToken;
@@ -92,11 +91,9 @@ class DashboardController extends GetxController {
 
   //Get Reels
   Future<void> GetRecentlyAdded() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
@@ -110,7 +107,7 @@ class DashboardController extends GetxController {
                   Get.to(DashboardView(
                     ReelsList: ReelsListApi,
                     RecentlyAddedList: RecentlyAddedListApi,
-                    CivilList: [],
+                    CivilList: const [],
                   ));
                   // GetCivilList();
                 },
@@ -122,12 +119,9 @@ class DashboardController extends GetxController {
 
   //Get Category Reels
   Future<void> GetCivilList() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
-
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -140,11 +134,9 @@ class DashboardController extends GetxController {
                 success: (value) {
                   if (value!.status == 200) {
                     CivilListApi = value.category!;
-                    print("*****************");
-                    // print(CivilListApi[0]);
                     Get.to(DashboardView(
                       ReelsList: ReelsListApi,
-                      RecentlyAddedList: [],
+                      RecentlyAddedList: const [],
                       CivilList: CivilListApi,
                     ));
                   } else if (value.status == 400) {
@@ -161,12 +153,10 @@ class DashboardController extends GetxController {
 
   //Get Categories
   Future<void> GetCategories() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     final userId = LocalStorage.shared.getnumber();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = userId;
           data["token"] = fcmToken;
@@ -256,15 +246,7 @@ class DashboardController extends GetxController {
     //       MaterialPageRoute(builder: (context) => PlayVideo(data: videoFile!)));
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void increment() => count.value++;
 }

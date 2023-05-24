@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, unrelated_type_equality_checks
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
@@ -7,27 +9,25 @@ import 'package:ekinch/app/modules/resume/view/widget/edit%20_textfield.dart';
 import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../widgets/math_utils.dart';
 import '../../../custom_widget/color.dart';
-import '../../../generated/assets.dart';
 import '../../job/form/views/widgets/dropdown.dart';
 
 class EditResume extends StatefulWidget {
-  String jobProfile;
-  String qualification;
-  String gender;
-  String exp;
-  String board;
-  String englishSpk;
-  String expTap;
-  String date;
-  String month;
-  String year;
-  EditResume(
+  final String jobProfile;
+  final String qualification;
+  final String gender;
+  final String exp;
+  final String board;
+  final String englishSpk;
+  final String expTap;
+  final String date;
+  final String month;
+  final String year;
+  const EditResume(
       {super.key,
       required this.board,
       required this.date,
@@ -58,30 +58,109 @@ class _EditResumeState extends State<EditResume> {
   }
 
   ResumeController controller = Get.put(ResumeController());
-  final List<String> professionList = [
-    "Electrician",
-    "Painter",
-    "Labour",
-    "Mechanic"
+  final List experienceList = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
+    '21',
+    '22',
+    '23',
+    '24',
+    '25',
+    '26',
+    '27',
+    '28',
+    '29',
+    '30',
+    '31',
+    '32',
+    '33',
+    '34',
+    '35',
+    '36',
+    '37',
+    '38',
+    '39',
+    '40',
+    '41',
+    '42',
+    '43',
+    '44',
+    '45',
+    '46',
+    '47',
+    '48',
+    '49',
+    '50'
   ];
-  final List<String> QualificationList = [
-    "10th Pass",
-    "12th Pass",
-    "Graduated",
-    "Other"
-  ];
-  final List<String> GenderList = ["Male", "Female", "Other"];
-  final List experienceList = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50']
-;
 
   @override
   Widget build(BuildContext context) {
+    final List<String> qualificationList = [
+      AppLocalizations.of(context)!.tenThPass,
+      AppLocalizations.of(context)!.twelvethPassAbove,
+      AppLocalizations.of(context)!.graduateAbove,
+      AppLocalizations.of(context)!.others
+    ];
+    final List<String> genderList = [
+      AppLocalizations.of(context)!.male,
+      AppLocalizations.of(context)!.female,
+      AppLocalizations.of(context)!.other
+    ];
+    final List<String> professionList = [
+      AppLocalizations.of(context)!.labour,
+      AppLocalizations.of(context)!.plastermistri,
+      AppLocalizations.of(context)!.tilesmistri,
+      AppLocalizations.of(context)!.plumber,
+      AppLocalizations.of(context)!.electrician,
+      AppLocalizations.of(context)!.painter,
+      AppLocalizations.of(context)!.carpenter,
+      AppLocalizations.of(context)!.welder,
+      AppLocalizations.of(context)!.barbender,
+      AppLocalizations.of(context)!.contractor,
+      AppLocalizations.of(context)!.dukandar,
+      AppLocalizations.of(context)!.customer,
+      AppLocalizations.of(context)!.engineer,
+      AppLocalizations.of(context)!.architect,
+      AppLocalizations.of(context)!.other
+    ];
+    var schoolMediums = [
+      AppLocalizations.of(context)!.hindi,
+      AppLocalizations.of(context)!.english,
+      AppLocalizations.of(context)!.others
+    ].obs;
+    var englishFluency = [
+      AppLocalizations.of(context)!.no,
+      AppLocalizations.of(context)!.goodEnglish,
+      AppLocalizations.of(context)!.fluentEnglish
+    ].obs;
+    var expData = [
+      AppLocalizations.of(context)!.fresher,
+      AppLocalizations.of(context)!.experience
+    ].obs;
     return Scaffold(
-      bottomNavigationBar: BottomTabView(2),
+      bottomNavigationBar: const BottomTabView(2),
       appBar: AppBar(
         automaticallyImplyLeading: true,
         title: Text(
-          "Edit Job Details",
+          AppLocalizations.of(context)!.editJobDetails,
           style: GoogleFonts.kadwa(
               color: Colors.white,
               fontSize: F22(),
@@ -177,8 +256,7 @@ class _EditResumeState extends State<EditResume> {
                                     "https://d3nypwrzdy6f4k.cloudfront.net/"
                                 ? const AssetImage(
                                     'assets/images/profile_icon.png')
-                                : NetworkImage(
-                                        "${LocalStorage.shared.getProfile()}")
+                                : NetworkImage(LocalStorage.shared.getProfile())
                                     as ImageProvider),
                         border: Border.all(color: KColors.greyLine, width: 2.0),
                       ),
@@ -231,22 +309,22 @@ class _EditResumeState extends State<EditResume> {
                 //   style: GoogleFonts.kadwa(
                 //       fontSize: getFontSize(22), color: const Color(0xFF636363)),
                 // ),
-                EditText("Job Profile"),
-                EditTextField("${widget.jobProfile}", professionList,
+                EditText(AppLocalizations.of(context)!.jobProfile),
+                EditTextField(context, widget.jobProfile, professionList,
                     controller.jobCategory),
-                EditText("Qualification"),
-                EditTextField("${widget.qualification}", QualificationList,
+                EditText(AppLocalizations.of(context)!.qualification),
+                EditTextField(context, widget.qualification, qualificationList,
                     controller.qualification),
-                EditText("Gender"),
+                EditText(AppLocalizations.of(context)!.gender),
                 EditTextField(
-                    "${widget.gender}", GenderList, controller.gender),
-                EditText("Experience"),
+                    context, widget.gender, genderList, controller.gender),
+                EditText(AppLocalizations.of(context)!.experience),
                 DropdownButtonFormField2(
                   decoration: InputDecoration(
                     suffix: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40.0),
                       child: Text(
-                        "Years",
+                        AppLocalizations.of(context)!.years,
                         style: GoogleFonts.kadwa(
                             fontSize: getFontSize(22),
                             color: const Color(0xFF636363)),
@@ -261,7 +339,7 @@ class _EditResumeState extends State<EditResume> {
                   ),
                   isExpanded: false,
                   hint: Text(
-                    "${widget.exp}",
+                    widget.exp,
                     style: GoogleFonts.kadwa(
                         fontSize: getFontSize(22),
                         color: const Color(0xFF636363)),
@@ -291,8 +369,10 @@ class _EditResumeState extends State<EditResume> {
                       .toList(),
                   validator: (value) {
                     if (value == null) {
-                      return 'Please Select Experience';
+                      return AppLocalizations.of(context)!
+                          .pleaseSelectExperience;
                     }
+                    return null;
                   },
                   onChanged: (value) {
                     controller.experience.text = value as String;
@@ -301,7 +381,7 @@ class _EditResumeState extends State<EditResume> {
                 Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 5),
                   child: Text(
-                    "My School Board Was ?*",
+                    AppLocalizations.of(context)!.mySchoolMediumWas,
                     style: GoogleFonts.kadwa(
                         fontWeight: FontWeight.w700, fontSize: F18()),
                   ),
@@ -309,15 +389,15 @@ class _EditResumeState extends State<EditResume> {
                 Obx(() {
                   return Row(
                     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: controller.schoolMediums.map((m) {
-                      controller.schoolBoard.text = controller
-                          .schoolMediums[controller.activeMedium.value];
-                      int index = controller.schoolMediums.indexOf(m);
+                    children: schoolMediums.map((m) {
+                      controller.schoolBoard.text =
+                          schoolMediums[controller.activeMedium.value];
+                      int index = schoolMediums.indexOf(m);
                       return GestureDetector(
                         onTap: () {
                           controller.activeMedium.value = index;
-                          controller.schoolBoard.text = controller
-                              .schoolMediums[controller.activeMedium.value];
+                          controller.schoolBoard.text =
+                              schoolMediums[controller.activeMedium.value];
                         },
                         child: Padding(
                           padding: (index == 0 || index == 1)
@@ -354,7 +434,7 @@ class _EditResumeState extends State<EditResume> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15, bottom: 5),
                   child: Text(
-                    "How i Speak English ?*",
+                    AppLocalizations.of(context)!.howiSpeakEnglish,
                     style: GoogleFonts.kadwa(
                         fontWeight: FontWeight.w700, fontSize: F18()),
                   ),
@@ -362,16 +442,16 @@ class _EditResumeState extends State<EditResume> {
                 Obx(() {
                   return Row(
                     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: controller.englishFluency.map((m) {
-                      int index = controller.englishFluency.indexOf(m);
-                      controller.englishLevel.text = controller
-                          .englishFluency[controller.activeFluency.value];
+                    children: englishFluency.map((m) {
+                      int index = englishFluency.indexOf(m);
+                      controller.englishLevel.text =
+                          englishFluency[controller.activeFluency.value];
                       return Expanded(
                         child: GestureDetector(
                           onTap: () {
                             controller.activeFluency.value = index;
-                            controller.englishLevel.text = controller
-                                .englishFluency[controller.activeFluency.value];
+                            controller.englishLevel.text =
+                                englishFluency[controller.activeFluency.value];
                           },
                           child: Padding(
                             padding: (index == 0 || index == 1)
@@ -399,7 +479,7 @@ class _EditResumeState extends State<EditResume> {
                                       fontWeight: FontWeight.w400),
                                 ),
                                 Text(
-                                  "English",
+                                  AppLocalizations.of(context)!.english,
                                   style: GoogleFonts.kadwa(
                                       height: 1.2,
                                       fontSize: F16(),
@@ -419,7 +499,7 @@ class _EditResumeState extends State<EditResume> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15, bottom: 5),
                   child: Text(
-                    "I’m Fresher/Experience*",
+                    AppLocalizations.of(context)!.imFresherExperience,
                     style: GoogleFonts.kadwa(
                         fontWeight: FontWeight.w700, fontSize: F18()),
                   ),
@@ -427,16 +507,16 @@ class _EditResumeState extends State<EditResume> {
                 Obx(() {
                   return Row(
                     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: controller.expData.map((m) {
-                      int index = controller.expData.indexOf(m);
+                    children: expData.map((m) {
+                      int index = expData.indexOf(m);
                       controller.experienceTap.text =
-                          controller.expData[controller.activeExp.value];
+                          expData[controller.activeExp.value];
                       return Expanded(
                         child: GestureDetector(
                           onTap: () {
                             controller.activeExp.value = index;
                             controller.experienceTap.text =
-                                controller.expData[controller.activeExp.value];
+                                expData[controller.activeExp.value];
                           },
                           child: Padding(
                             padding: (index == 0)
@@ -474,7 +554,7 @@ class _EditResumeState extends State<EditResume> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15, bottom: 5),
                   child: Text(
-                    "My Date Of Birth*",
+                    AppLocalizations.of(context)!.myDateOfBirth,
                     style: GoogleFonts.kadwa(
                         fontWeight: FontWeight.w700, fontSize: F18()),
                   ),
@@ -482,17 +562,33 @@ class _EditResumeState extends State<EditResume> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    CustomDropDown(controller.days, "${widget.date}", "Day", 1,
-                        0, controller.date),
-                    CustomDropDown(controller.monthNumber, "${widget.month}",
-                        "Month", 1, 4, controller.month),
-                    CustomDropDown(controller.years, "${widget.year}", "Year",
-                        1, 0, controller.year),
+                    CustomDropDown(
+                        controller.days,
+                        widget.date,
+                        AppLocalizations.of(context)!.day,
+                        1,
+                        0,
+                        controller.date),
+                    CustomDropDown(
+                        controller.monthNumber,
+                        widget.month,
+                        AppLocalizations.of(context)!.month,
+                        1,
+                        4,
+                        controller.month),
+                    CustomDropDown(
+                        controller.years,
+                        widget.year,
+                        AppLocalizations.of(context)!.year,
+                        1,
+                        0,
+                        controller.year),
                   ],
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: DynamicButton("Save", true, () {
+                  child: DynamicButton(
+                      AppLocalizations.of(context)!.saveC, true, () {
                     controller.UpdateGetForm();
                   }),
                 )

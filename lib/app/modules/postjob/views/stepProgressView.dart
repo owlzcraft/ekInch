@@ -1,7 +1,9 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
 
-class StepProgressView extends StatelessWidget {
+class StepProgressView extends StatefulWidget {
   StepProgressView(
     List<String> stepsText,
     int curStep,
@@ -23,8 +25,8 @@ class StepProgressView extends StatelessWidget {
         _dotRadius = dotRadius,
         _activeColor = activeColor,
         _inactiveColor = inactiveColor,
-        _headerStyle = headerStyle,
-        _stepStyle = stepsStyle,
+        // _headerStyle = headerStyle,
+        // _stepStyle = stepsStyle,
         assert(curStep > 0 == true && curStep <= stepsText.length),
         assert(width > 0),
         assert(height >= 2 * dotRadius),
@@ -32,54 +34,59 @@ class StepProgressView extends StatelessWidget {
         super(key: key);
 
   //height of the container
-  double? _height;
+  final double? _height;
   //width of the container
-  double? _width;
+  final double? _width;
   //container decoration
   BoxDecoration? decoration;
   //list of texts to be shown for each step
-  List<String>? _stepsText;
+  final List<String>? _stepsText;
   //cur step identifier
-  int? _curStep;
+  final int? _curStep;
   //active color
-  Color? _activeColor;
+  final Color? _activeColor;
   //in-active color
-  Color? _inactiveColor;
+  final Color? _inactiveColor;
   //dot radius
-  double? _dotRadius;
+  final double? _dotRadius;
   //container padding
   EdgeInsets? padding;
 
-  Icon? icon;
-  //line height
   double? lineHeight;
+
+  @override
+  State<StepProgressView> createState() => _StepProgressViewState();
+}
+
+class _StepProgressViewState extends State<StepProgressView> {
   //header textstyle
-  TextStyle? _headerStyle;
-  //steps text
-  TextStyle? _stepStyle;
+  Icon? icon;
 
   List<Widget> _buildDots() {
     var wids = <Widget>[];
-    _stepsText!.asMap().forEach((i, text) {
-      var circleColor =
-          (i == 0 || _curStep! >= i + 1) ? _activeColor : _inactiveColor;
+    widget._stepsText!.asMap().forEach((i, text) {
+      var circleColor = (i == 0 || widget._curStep! >= i + 1)
+          ? widget._activeColor
+          : widget._inactiveColor;
 
       //  var icon =  (i == 0 || _curStep! >= i + 1) ? Icon(Icons.check_rounded,color:black,size: 13,) : '';
 
-      var lineColor = _curStep! > i + 1 ? _activeColor : _inactiveColor;
+      var lineColor = widget._curStep! > i + 1
+          ? widget._activeColor
+          : widget._inactiveColor;
 
-      CircleAvatar b = (i == 0 || _curStep! >= i + 1)
+      CircleAvatar b = (i == 0 || widget._curStep! >= i + 1)
           ? CircleAvatar(
-              radius: _dotRadius,
+              radius: widget._dotRadius,
               backgroundColor: circleColor,
-              child: Icon(
+              child: const Icon(
                 Icons.check_rounded,
                 size: 13,
                 color: Colors.black,
               ),
             )
           : CircleAvatar(
-              radius: _dotRadius,
+              radius: widget._dotRadius,
               backgroundColor: circleColor,
               //child: Icon(Icons.check_rounded,size: 15,color: Colors.black,),
             );
@@ -94,11 +101,11 @@ class StepProgressView extends StatelessWidget {
           // )
           );
       //add a line separator
-      if (i != _stepsText!.length - 1) {
+      if (i != widget._stepsText!.length - 1) {
         wids.add(
           Expanded(
             child: Container(
-              height: lineHeight,
+              height: widget.lineHeight,
               color: lineColor,
             ),
           ),
@@ -111,8 +118,8 @@ class StepProgressView extends StatelessWidget {
 
   List<Widget> _buildText() {
     var wids = <Widget>[];
-    _stepsText!.asMap().forEach((i, text) {
-      Text a = (i == 0 || _curStep! >= i + 1)
+    widget._stepsText!.asMap().forEach((i, text) {
+      Text a = (i == 0 || widget._curStep! >= i + 1)
           ? Text(text,
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -133,22 +140,23 @@ class StepProgressView extends StatelessWidget {
     return wids;
   }
 
+  @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding,
-      height: this._height,
-      width: this._width,
-      decoration: this.decoration,
+      padding: widget.padding,
+      height: widget._height,
+      width: widget._width,
+      decoration: widget.decoration,
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 18.0, right: 18),
+              padding: const EdgeInsets.only(left: 18.0, right: 18),
               child: Row(
                 children: _buildDots(),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Row(

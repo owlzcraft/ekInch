@@ -1,36 +1,28 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
-import 'package:ekinch/app/modules/notication/view/widget/notifcation_card.dart';
 import 'package:ekinch/app/modules/payment/controller/payment_controller.dart';
 import 'package:ekinch/app/modules/payment/view/card.dart';
 import 'package:ekinch/app/modules/payment/view/debit_card_view.dart';
 import 'package:ekinch/app/modules/payment/view/qr_view.dart';
-import 'package:ekinch/app/modules/payment/view/widget/textField.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/bottomNavigate.wodget.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../../widgets/math_utils.dart';
 import '../../../custom_widget/color.dart';
 import '../../dashboard/widgets/navigation.dart';
 import '../../notication/view/notification_view.dart';
-import '../../referNearn/views/refer_nearn_view.dart';
 import '../../settings/views/settings_view.dart';
 
 class PaymentView extends StatefulWidget {
-  PaymentView({super.key});
+  const PaymentView({super.key});
 
   @override
   State<PaymentView> createState() => _PaymentViewState();
 }
 
 class _PaymentViewState extends State<PaymentView> {
-  GlobalKey<ScaffoldState> notDrawerKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> notDrawerKey =  GlobalKey<ScaffoldState>();
 
   PaymentController controller = Get.put(PaymentController());
   bool status = false;
@@ -38,13 +30,13 @@ class _PaymentViewState extends State<PaymentView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: notDrawerKey, drawer: SettingsView(),
+      key: notDrawerKey, drawer: const SettingsView(),
       // appBar: UpperBar("Records", "Records", true, true),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(190),
+        preferredSize: const Size.fromHeight(190),
         child: AppBar(
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(90),
+            preferredSize: const Size.fromHeight(90),
             child: Container(
               decoration: BoxDecoration(
                   color: Colors.black, border: Border.all(color: Colors.black)),
@@ -104,7 +96,7 @@ class _PaymentViewState extends State<PaymentView> {
           ),
           actions: [
             IconButton(
-              padding: EdgeInsetsDirectional.only(end: 9.11),
+              padding: const EdgeInsetsDirectional.only(end: 9.11),
               onPressed: (() => {Get.to(() => NotificationView())}),
               icon: SvgPicture.asset(Assets.notification),
             ),
@@ -139,7 +131,6 @@ class _PaymentViewState extends State<PaymentView> {
                     return Obx(() => GestureDetector(
                           onTap: () {
                             controller.activeCategory.value = index;
-                            print(controller.activeCategory.value);
                           },
                           child: PaymentCard(
                               data: e,
@@ -155,19 +146,18 @@ class _PaymentViewState extends State<PaymentView> {
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 30),
                 child: DynamicButton("Proceed", true, () {
                   if (controller.activeCategory.value == 0) {
-                    Get.to(DebitCardView());
+                    Get.to(const DebitCardView());
                   } else {
                     if (controller.activeCategory.value == 1) {
-                      Get.to(QrCardView());
+                      Get.to(const QrCardView());
                     } else {
-                      print("pending route");
                     }
                   }
                 }),
               ),
             ]),
       ),
-      bottomNavigationBar: BottomTabView(9),
+      bottomNavigationBar: const BottomTabView(9),
       // bottomNavigationBar: MyNavigator(),
     );
   }

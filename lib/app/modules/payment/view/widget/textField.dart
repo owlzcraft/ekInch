@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+// ignore_for_file: file_names, non_constant_identifier_names
 
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../custom_widget/color.dart';
 import '../../../../custom_widget/font_size.dart';
 
@@ -34,10 +31,10 @@ Widget TextFieldPayment(String label, String title) {
             labelText: label,
             fillColor: Colors.white,
             filled: true,
-            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
+            contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide(color: Colors.white, width: 0)),
+                borderSide: const BorderSide(color: Colors.white, width: 0)),
           ),
           style: GoogleFonts.lato(fontSize: F18(), color: Colors.black),
         ),

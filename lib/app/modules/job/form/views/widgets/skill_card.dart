@@ -3,10 +3,11 @@ import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SkillCard extends StatefulWidget {
-  String title;
-  List skillList;
+  final String title;
+  final List skillList;
   SkillCard({super.key, required this.title, required this.skillList});
   bool selected = false;
   @override
@@ -22,18 +23,16 @@ class _SkillCardState extends State<SkillCard> {
         onTap: () {
           setState(() {
             if (widget.selected) {
-              print(widget.title);
               widget.skillList.remove(widget.title);
               widget.selected = false;
             } else {
-              print(widget.skillList);
               widget.skillList.add(widget.title);
               widget.selected = true;
             }
           });
         },
         child: Container(
-          width: Get.width/1.1,
+          width: Get.width / 1.1,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
               border: Border.all(
@@ -51,12 +50,12 @@ class _SkillCardState extends State<SkillCard> {
                 ),
                 widget.selected
                     ? Text(
-                        "ADDED",
+                        AppLocalizations.of(context)!.aDDED,
                         style: GoogleFonts.kadwa(
                             fontSize: F18(), color: KColors.green),
                       )
                     : Text(
-                        "ADD",
+                        AppLocalizations.of(context)!.aDD,
                         style: GoogleFonts.kadwa(
                             fontSize: F18(), color: Colors.black),
                       )

@@ -1,10 +1,9 @@
-import 'package:ekinch/app/models/GetJobForm.dart';
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:ekinch/app/models/data_model.dart';
 import 'package:ekinch/app/models/job_application.dart';
 import 'package:ekinch/app/networking/api_result.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../widgets/loader.dart';
 import '../../../../../widgets/snack_bar.dart';
 import '../../../models/application_request.dart';
@@ -17,16 +16,13 @@ class JobPostListController extends GetxController {
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
    List<Data> jobList=[];
   List<DataR> applicationList=[];
-  // TextEditingController jobCategory = TextEditingController();
 
 //Job Post List
   Future<void> jobPostList() async {
-    print("**************************");
 
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -36,7 +32,6 @@ class JobPostListController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    print("done");
                     jobList = value.data!;
                     Get.off(JobApplicationListView(
                       companyAddress: value.company!.address.toString(),
@@ -58,11 +53,9 @@ class JobPostListController extends GetxController {
   }
 
   Future<void> CompanyDataStatus() async {
-    print("**************************");
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["userId"] = LocalStorage.shared.getnumber();
           data["token"] = fcmToken;
@@ -89,12 +82,10 @@ class JobPostListController extends GetxController {
   //Application list
   Future<void> applicationRequest(jobId, image, title, time, companyName,
       experience, location, language, salary, qualification) async {
-    print("**************************");
 
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -104,7 +95,6 @@ class JobPostListController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    print("done");
                     applicationList = value.data!;
                     Get.to(AllApplicationListView(
                       appreqList: applicationList,
@@ -132,7 +122,4 @@ class JobPostListController extends GetxController {
         loadingWidget: const LoadingIndicator());
   }
 
-  void onInit() {
-    super.onInit();
-  }
 }

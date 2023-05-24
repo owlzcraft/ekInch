@@ -1,10 +1,9 @@
-import 'package:ekinch/app/models/GetJobForm.dart';
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/models/available_job_list.dart';
-import 'package:ekinch/app/models/data_model.dart';
 import 'package:ekinch/app/models/msg_ok.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../widgets/loader.dart';
 import '../../../../../widgets/snack_bar.dart';
 import '../../../networking/api_result.dart';
@@ -18,7 +17,7 @@ class ApplyJobController extends GetxController {
   var activeCategory = 0.obs;
   int professionId = 0;
   TextEditingController filter = TextEditingController();
- 
+
 //Apply Job
   Future<void> ApplyJob(
       String jobId,
@@ -37,7 +36,6 @@ class ApplyJobController extends GetxController {
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -49,9 +47,6 @@ class ApplyJobController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    print(value.msg.toString());
-                    // GetJobList();
-                    // print("777777777777777777777777777");
                     Get.off(JobDescription(
                       address: address,
                       jobTime: jobTime,
@@ -69,7 +64,6 @@ class ApplyJobController extends GetxController {
                       subtitle: subtitle,
                     ));
                   } else if (value.ok == false) {
-                    // Get.back();
                     errorSnackbar(value.msg.toString());
                   } else {
                     errorSnackbar("Check Internet Connection");
@@ -127,12 +121,11 @@ class ApplyJobController extends GetxController {
       case "Other":
         professionId = 13;
         break;
-
+//need changes
       default:
     }
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -143,13 +136,11 @@ class ApplyJobController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    print(value.msg.toString());
                     Get.offAll(JobView(
-                      JobList: value.data,
+                      jobList: value.data,
                       filterValue: filter.text.toString(),
                     ));
                   } else if (value.ok == false) {
-                    // Get.back();
                     errorSnackbar(value.msg.toString());
                   } else {
                     errorSnackbar("Check Internet Connection");

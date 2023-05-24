@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+// ignore_for_file: non_constant_identifier_names
 
 import '../../widgets/math_utils.dart';
 

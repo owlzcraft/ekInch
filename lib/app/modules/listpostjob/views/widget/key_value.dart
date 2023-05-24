@@ -1,7 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../custom_widget/color.dart';
 
 CustomRow(BuildContext context, String key, String value) {
@@ -24,13 +25,13 @@ CustomRow(BuildContext context, String key, String value) {
       ),
       Expanded(
         child: Text(
-         value,
-         style: GoogleFonts.kadwa(
-             color: KColors.textGrey,
-             height: 1.3,
-             fontSize: F16(),
-             fontWeight: FontWeight.w400),
-          ),
+          value,
+          style: GoogleFonts.kadwa(
+              color: KColors.textGrey,
+              height: 1.3,
+              fontSize: F16(),
+              fontWeight: FontWeight.w400),
+        ),
       )
     ],
   );

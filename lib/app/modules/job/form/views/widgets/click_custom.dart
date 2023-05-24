@@ -1,11 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/add_skills.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/pop_up_exp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../../../widgets/math_utils.dart';
 import '../../../../../custom_widget/color.dart';
 
@@ -35,12 +35,12 @@ ClickAdd(
                     fontWeight: FontWeight.w700),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 2.9),
+                padding: const EdgeInsets.symmetric(vertical: 2.9),
                 child: Text(
                   subTitle,
                   style: GoogleFonts.kadwa(
                     height: 1.2,
-                    color: Color.fromARGB(255, 132, 131, 131),
+                    color: const Color.fromARGB(255, 132, 131, 131),
                     fontSize: F16(),
                   ),
                 ),
@@ -98,7 +98,7 @@ ClickAdd(
                                 borderRadius: BorderRadius.circular(100)),
                             child: Center(
                               child: Text(
-                                "Add",
+                                AppLocalizations.of(context)!.aDD,
                                 style: GoogleFonts.kadwa(
                                     color: Colors.black,
                                     fontSize: F18(),

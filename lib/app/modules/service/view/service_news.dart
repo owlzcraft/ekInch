@@ -1,16 +1,11 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:ekinch/app/modules/listpostjob/views/widget/key_value.dart';
-import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
 import 'package:ekinch/app/modules/service/view/widget/service_page.dart';
 import 'package:flutter/material.dart';
-import 'package:ekinch/app/modules/listpostjob/views/review.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
-import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
 import '../../../utils/localStorage.dart';
@@ -18,9 +13,10 @@ import '../../dashboard/widgets/services_news.widget.dart';
 import '../../notication/view/notification_view.dart';
 import '../../profile/views/profile_view.dart';
 import '../../settings/views/settings_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ServiceAndNews extends StatefulWidget {
-  ServiceAndNews({
+  const ServiceAndNews({
     super.key,
   });
 
@@ -31,10 +27,11 @@ class ServiceAndNews extends StatefulWidget {
 class ServiceAndNewsState extends State<ServiceAndNews>
     with TickerProviderStateMixin {
   TabController? _tabController;
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+  @override
   void initState() {
-    _tabController = new TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -66,7 +63,7 @@ class ServiceAndNewsState extends State<ServiceAndNews>
             ),
           ],
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(100),
+            preferredSize: const Size.fromHeight(100),
             child: Column(
               children: [
                 Padding(
@@ -96,10 +93,10 @@ class ServiceAndNewsState extends State<ServiceAndNews>
                         ],
                       ),
                       InkWell(
-                          onTap: () => {Get.to(ProfileView())},
+                          onTap: () => {Get.to(const ProfileView())},
                           child: CircleAvatar(
                             radius: 25,
-                            backgroundColor: Color(0xFFE0E0E0),
+                            backgroundColor: const Color(0xFFE0E0E0),
                             child: Container(
                               height: 60.sp,
                               width: 60.sp,
@@ -110,11 +107,10 @@ class ServiceAndNewsState extends State<ServiceAndNews>
                                     fit: BoxFit.cover,
                                     image: LocalStorage.shared.getProfile() ==
                                             "https://d3nypwrzdy6f4k.cloudfront.net/"
-                                        ? AssetImage(
+                                        ? const AssetImage(
                                             'assets/images/profile_icon.png')
-                                        : NetworkImage(
-                                                "${LocalStorage.shared.getProfile()}")
-                                            as ImageProvider),
+                                        : NetworkImage(LocalStorage.shared
+                                            .getProfile()) as ImageProvider),
                                 border: Border.all(
                                     color: KColors.greyLine, width: 2.0),
                               ),
@@ -129,7 +125,10 @@ class ServiceAndNewsState extends State<ServiceAndNews>
                   indicatorWeight: 3,
                   unselectedLabelStyle: GoogleFonts.kadwa(fontSize: F18()),
                   labelStyle: GoogleFonts.kadwa(fontSize: F18()),
-                  tabs: [Tab(text: "Services"), Tab(text: "News")],
+                  tabs: [
+                    Tab(text: AppLocalizations.of(context)!.services),
+                    Tab(text: AppLocalizations.of(context)!.news)
+                  ],
                 ),
               ],
             ),
@@ -139,9 +138,9 @@ class ServiceAndNewsState extends State<ServiceAndNews>
         body: TabBarView(
           controller: _tabController,
           children: [
-           ServicePage(),
- GridView.count(
-              padding: EdgeInsets.all(12.0),
+            const ServicePage(),
+            GridView.count(
+              padding: const EdgeInsets.all(12.0),
               crossAxisSpacing: 2.0,
               crossAxisCount: 2,
               children: <Widget>[
@@ -153,7 +152,7 @@ class ServiceAndNewsState extends State<ServiceAndNews>
                   "22 Oct, 2022",
                   "12:00 PM",
                 ),
-                  servicesAndNews(
+                servicesAndNews(
                   "Cement Material\nLaunch Online",
                   "",
                   true,
@@ -161,7 +160,7 @@ class ServiceAndNewsState extends State<ServiceAndNews>
                   "22 Oct, 2022",
                   "12:00 PM",
                 ),
-                  servicesAndNews(
+                servicesAndNews(
                   "Cement Material\nLaunch Online",
                   "",
                   true,
@@ -169,7 +168,7 @@ class ServiceAndNewsState extends State<ServiceAndNews>
                   "22 Oct, 2022",
                   "12:00 PM",
                 ),
-                  servicesAndNews(
+                servicesAndNews(
                   "Cement Material\nLaunch Online",
                   "",
                   true,
@@ -177,28 +176,31 @@ class ServiceAndNewsState extends State<ServiceAndNews>
                   "22 Oct, 2022",
                   "12:00 PM",
                 ),
-                  servicesAndNews(
+                servicesAndNews(
                   "Cement Material\nLaunch Online",
                   "",
                   true,
                   "assets/images/snnews1.png",
                   "22 Oct, 2022",
                   "12:00 PM",
-                ),  servicesAndNews(
+                ),
+                servicesAndNews(
                   "Cement Material\nLaunch Online",
                   "",
                   true,
                   "assets/images/snnews1.png",
                   "22 Oct, 2022",
                   "12:00 PM",
-                ),  servicesAndNews(
+                ),
+                servicesAndNews(
                   "Cement Material\nLaunch Online",
                   "",
                   true,
                   "assets/images/snnews1.png",
                   "22 Oct, 2022",
                   "12:00 PM",
-                ),  servicesAndNews(
+                ),
+                servicesAndNews(
                   "Cement Material\nLaunch Online",
                   "",
                   true,
@@ -207,7 +209,8 @@ class ServiceAndNewsState extends State<ServiceAndNews>
                   "12:00 PM",
                 ),
               ],
-            ),          ],
+            ),
+          ],
         ),
       ),
     );

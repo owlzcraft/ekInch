@@ -1,19 +1,14 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:ekinch/app/modules/awards_certificate.dart/view/widget/grid_view.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
-import 'package:ekinch/app/modules/listpostjob/views/widget/key_value.dart';
-import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
 import 'package:ekinch/app/modules/myJobs/view/widget/jobs.dart';
 import 'package:ekinch/app/modules/myJobs/view/widget/recent_jobs.dart';
 import 'package:flutter/material.dart';
-import 'package:ekinch/app/modules/listpostjob/views/review.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
-import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
 import '../../../models/job_applied_list.dart';
@@ -23,19 +18,19 @@ import '../../profile/views/profile_view.dart';
 import '../../settings/views/settings_view.dart';
 
 class MyJobsView extends StatefulWidget {
-  List<Data> jobAppliedList=[];
   MyJobsView({super.key, required this.jobAppliedList});
-
+  List<Data> jobAppliedList = [];
   @override
   MyJobsViewState createState() => MyJobsViewState();
 }
 
 class MyJobsViewState extends State<MyJobsView> with TickerProviderStateMixin {
   TabController? _tabController;
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+  @override
   void initState() {
-    _tabController = new TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -45,7 +40,7 @@ class MyJobsViewState extends State<MyJobsView> with TickerProviderStateMixin {
       length: 2,
       child: Scaffold(
         key: scaffoldKey,
-        bottomNavigationBar: BottomTabView(2),
+        bottomNavigationBar: const BottomTabView(2),
         drawer: const SettingsView(),
         appBar: AppBar(
           elevation: 0.0,
@@ -54,8 +49,7 @@ class MyJobsViewState extends State<MyJobsView> with TickerProviderStateMixin {
             icon: SvgPicture.asset(Assets.drawerIcon_white),
             onPressed: () {
               if (!scaffoldKey.currentState!.isDrawerOpen) {
-                //check if drawer is closed
-                scaffoldKey.currentState!.openDrawer(); //open drawer
+                scaffoldKey.currentState!.openDrawer();
               }
             },
           ),
@@ -98,7 +92,7 @@ class MyJobsViewState extends State<MyJobsView> with TickerProviderStateMixin {
                         ],
                       ),
                       InkWell(
-                          onTap: () => {Get.to(ProfileView())},
+                          onTap: () => {Get.to(const ProfileView())},
                           child: CircleAvatar(
                             radius: 25,
                             backgroundColor: const Color(0xFFE0E0E0),
@@ -114,9 +108,8 @@ class MyJobsViewState extends State<MyJobsView> with TickerProviderStateMixin {
                                             "https://d3nypwrzdy6f4k.cloudfront.net/"
                                         ? const AssetImage(
                                             'assets/images/profile_icon.png')
-                                        : NetworkImage(
-                                                "${LocalStorage.shared.getProfile()}")
-                                            as ImageProvider),
+                                        : NetworkImage(LocalStorage.shared
+                                            .getProfile()) as ImageProvider),
                                 border: Border.all(
                                     color: KColors.greyLine, width: 2.0),
                               ),
@@ -132,8 +125,8 @@ class MyJobsViewState extends State<MyJobsView> with TickerProviderStateMixin {
                   unselectedLabelStyle: GoogleFonts.kadwa(fontSize: F18()),
                   labelStyle: GoogleFonts.kadwa(fontSize: F18()),
                   tabs: [
-                    const Tab(text: "Job Applied"),
-                    const Tab(text: "Recent Job")
+                    Tab(text: AppLocalizations.of(context)!.jobsApplied),
+                    Tab(text: AppLocalizations.of(context)!.recentJobs)
                   ],
                 ),
               ],
@@ -147,7 +140,7 @@ class MyJobsViewState extends State<MyJobsView> with TickerProviderStateMixin {
               noData: false,
               JobAppliedList: widget.jobAppliedList,
             ),
-            RecentJobs()
+            const RecentJobs()
           ],
         ),
       ),

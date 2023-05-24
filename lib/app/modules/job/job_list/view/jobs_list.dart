@@ -11,20 +11,22 @@ import '../../../../custom_widget/color.dart';
 import '../../../../models/myJobModel.dart';
 import '../../../dashboard/widgets/navigation.dart';
 import '../../../settings/views/settings_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JobsList extends StatefulWidget {
-  JobsList({super.key, required this.userList});
-  List<Data> userList;
+  const JobsList({super.key, required this.userList});
+  final List<Data> userList;
   @override
   JobsListState createState() => JobsListState();
 }
 
 class JobsListState extends State<JobsList> with TickerProviderStateMixin {
   TabController? _tabController;
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+  @override
   void initState() {
-    _tabController = new TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -33,7 +35,7 @@ class JobsListState extends State<JobsList> with TickerProviderStateMixin {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        bottomNavigationBar: BottomTabView(2),
+        bottomNavigationBar: const BottomTabView(2),
         key: scaffoldKey,
         drawer: const SettingsView(),
         appBar: AppBar(
@@ -43,14 +45,13 @@ class JobsListState extends State<JobsList> with TickerProviderStateMixin {
             icon: SvgPicture.asset(Assets.drawerIcon_white),
             onPressed: () {
               if (!scaffoldKey.currentState!.isDrawerOpen) {
-                //check if drawer is closed
-                scaffoldKey.currentState!.openDrawer(); //open drawer
+                scaffoldKey.currentState!.openDrawer();
               }
             },
           ),
           backgroundColor: Colors.black,
           title: Text(
-            'Hire Mechanic',
+            AppLocalizations.of(context)!.hireMechanic,
             style:
                 GoogleFonts.kadwa(fontSize: F20(), fontWeight: FontWeight.w700),
           ),
@@ -70,8 +71,8 @@ class JobsListState extends State<JobsList> with TickerProviderStateMixin {
             unselectedLabelStyle: GoogleFonts.kadwa(fontSize: F18()),
             labelStyle: GoogleFonts.kadwa(fontSize: F18()),
             tabs: [
-              const Tab(text: "Available Users"),
-              const Tab(text: "Recent")
+              Tab(text: AppLocalizations.of(context)!.availableUsers),
+              Tab(text: AppLocalizations.of(context)!.recent)
             ],
           ),
         ),
@@ -102,7 +103,7 @@ class JobsListState extends State<JobsList> with TickerProviderStateMixin {
                         children: [
                           SvgPicture.asset(Assets.filter),
                           Text(
-                            "Sort",
+                            AppLocalizations.of(context)!.sort,
                             style: GoogleFonts.kadwa(
                                 color: KColors.textGrey,
                                 fontSize: F16(),
@@ -126,7 +127,7 @@ class JobsListState extends State<JobsList> with TickerProviderStateMixin {
                           children: [
                             SvgPicture.asset(Assets.filter),
                             Text(
-                              "Filter",
+                              AppLocalizations.of(context)!.filter,
                               style: GoogleFonts.kadwa(
                                   color: KColors.textGrey,
                                   fontSize: F16(),
@@ -146,7 +147,8 @@ class JobsListState extends State<JobsList> with TickerProviderStateMixin {
                         contactNumber: e.phoneNumber.toString(),
                         dob:
                             "${e.info!.ageDt}/${e.info!.ageMn}/${e.info!.ageYr}",
-                        experience: "${e.info!.expYr} years Experience",
+                        experience:
+                            "${e.info!.expYr} ${AppLocalizations.of(context)!.yearsExperience}",
                         gender: e.info!.gender.toString(),
                         language: e.info!.engProfi.toString(),
                         location: e.address.toString(),

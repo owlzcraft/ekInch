@@ -1,9 +1,8 @@
+import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/job/form/controllers/job.controller.dart';
 import 'package:ekinch/app/modules/postjob/controllers/postjob_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/generated/assets.dart';
-import 'package:ekinch/app/modules/job/form/views/details_form.dart';
-import 'package:ekinch/app/modules/job/jobInterested/views/job_interested_view.dart';
 import 'package:ekinch/app/modules/mobile/widget/black_button.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
 import 'package:ekinch/app/modules/notication/view/notification_view.dart';
@@ -12,21 +11,27 @@ import 'package:ekinch/app/modules/settings/views/settings_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../dashboard/widgets/navigation.dart';
 
-class JobLanding extends StatelessWidget {
-  JobLanding({super.key});
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+class JobLanding extends StatefulWidget {
+  const JobLanding({super.key});
+
+  @override
+  State<JobLanding> createState() => _JobLandingState();
+}
+
+class _JobLandingState extends State<JobLanding> {
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   GetJobController getJobcontroller = Get.put(GetJobController());
   PostjobController postJobController = Get.put(PostjobController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       drawer: const SettingsView(),
-      bottomNavigationBar: BottomTabView(2),
-      // bottomNavigationBar: MyNavigator(),
+      bottomNavigationBar: const BottomTabView(2),
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
@@ -35,8 +40,7 @@ class JobLanding extends StatelessWidget {
           icon: SvgPicture.asset(Assets.drawerIcon_black),
           onPressed: () {
             if (!scaffoldKey.currentState!.isDrawerOpen) {
-              //check if drawer is closed
-              scaffoldKey.currentState!.openDrawer(); //open drawer
+              scaffoldKey.currentState!.openDrawer();
             }
           },
         ),
@@ -52,7 +56,7 @@ class JobLanding extends StatelessWidget {
           ),
         ],
         title: Text(
-          'Jobs',
+          AppLocalizations.of(context)!.jobs,
           style: GoogleFonts.kadwa(
               fontWeight: FontWeight.w700, color: Colors.black),
         ),
@@ -76,33 +80,35 @@ class JobLanding extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "2 Lakh+ Mechanic Registered",
+                    AppLocalizations.of(context)!.jobs2lakh,
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.kadwa(
-                        fontSize: 20,
+                        fontSize: F20(),
                         fontWeight: FontWeight.w400,
-                        color: Color(0xFF767676)),
+                        color: const Color(0xFF767676)),
                   ),
-                  Text(
-                    "in Ek Inch",
-                    style: GoogleFonts.kadwa(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF767676)),
-                  ),
+                  // Text(
+                  //   "in Ek Inch",
+                  //   style: GoogleFonts.kadwa(
+                  //       fontSize: 20,
+                  //       fontWeight: FontWeight.w400,
+                  //       color: const Color(0xFF767676)),
+                  // ),
                 ],
               ),
             ),
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-              child: DynamicButton("Get Job", true, () {
+              child:
+                  DynamicButton(AppLocalizations.of(context)!.getJob, true, () {
                 getJobcontroller.CheckResumeStatusValue();
-                // Get.to(DetailsForm());
               }),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: BlackButton("Hire Mechanic", true, () {
+              child: BlackButton(
+                  AppLocalizations.of(context)!.hireMechanic, true, () {
                 postJobController.checkPostJobStatus();
               }),
             ),

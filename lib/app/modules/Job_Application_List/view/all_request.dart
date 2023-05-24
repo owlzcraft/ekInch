@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../custom_widget/color.dart';
 import '../../../generated/assets.dart';
 import '../../../models/application_request.dart';
@@ -24,10 +24,10 @@ class AllApplicationListView extends StatefulWidget {
   final String qualification;
   final String language;
   final String experience;
-  int jobId;
+  final int jobId;
   final String time;
-  List<DataR> appreqList;
-  AllApplicationListView({
+  final List<DataR> appreqList;
+  const AllApplicationListView({
     super.key,
     required this.appreqList,
     required this.jobId,
@@ -48,8 +48,9 @@ class AllApplicationListView extends StatefulWidget {
 
 class AllApplicationListViewState extends State<AllApplicationListView>
     with TickerProviderStateMixin {
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey =  GlobalKey<ScaffoldState>();
 
+  @override
   void initState() {
     super.initState();
   }
@@ -134,7 +135,7 @@ class AllApplicationListViewState extends State<AllApplicationListView>
       ),
       floatingActionButton: InkWell(
         onTap: () {
-          Get.to(JobInterestedView());
+          Get.to(const JobInterestedView());
         },
         child: CircleAvatar(
           radius: 25.sp,
@@ -146,84 +147,118 @@ class AllApplicationListViewState extends State<AllApplicationListView>
           ),
         ),
       ),
-      bottomNavigationBar: BottomTabView(2),
+      bottomNavigationBar: const BottomTabView(2),
       backgroundColor: KColors.greybg,
       body: Column(
         children: [
           Stack(
             children: [
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 13.0, vertical: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                        child: Text(
-                          widget.title,
-                          style: GoogleFonts.kadwa(
-                              height: 1.2,
-                              fontSize: F18(),
-                              fontWeight: FontWeight.w400),
-                        ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 13.0, vertical: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                      child: Text(
+                        widget.title,
+                        style: GoogleFonts.kadwa(
+                            height: 1.2,
+                            fontSize: F18(),
+                            fontWeight: FontWeight.w400),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              'assets/images/location.svg',
-                              alignment: Alignment.topLeft,
-                              matchTextDirection: true,
-                            ),
-                            Text(
-                              widget.location,
-                              style: GoogleFonts.kadwa(
-                                  fontSize: F14(),
-                                  color: KColors.textGrey,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
-                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            'assets/images/location.svg',
+                            alignment: Alignment.topLeft,
+                            matchTextDirection: true,
+                          ),
+                          Text(
+                            widget.location,
+                            style: GoogleFonts.kadwa(
+                                fontSize: F14(),
+                                color: KColors.textGrey,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 4.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 4.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 2.sp, right: 10.0),
+                                child: SvgPicture.asset(
+                                    'assets/images/money.svg'),
+                              ),
+                              Text(
+                                widget.salary,
+                                style: GoogleFonts.kadwa(
+                                    fontSize: F14(),
+                                    color: KColors.textGrey,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 12.0, right: 8.0),
+                                child: SvgPicture.asset(
+                                  'assets/images/seak.svg',
+                                  alignment: Alignment.centerLeft,
+                                ),
+                              ),
+                              Text(
+                                widget.language,
+                                style: GoogleFonts.kadwa(
+                                    fontSize: F14(),
+                                    color: KColors.textGrey,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(vertical: 2.0),
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
+                                SvgPicture.asset('assets/images/grad.svg'),
                                 Padding(
-                                  padding:
-                                      EdgeInsets.only(left: 2.sp, right: 10.0),
-                                  child: SvgPicture.asset(
-                                      'assets/images/money.svg'),
+                                  padding: const EdgeInsets.only(
+                                      right: 2.0, left: 5.0),
+                                  child: Text(
+                                    widget.qualification,
+                                    style: GoogleFonts.kadwa(
+                                        fontSize: F14(),
+                                        color: KColors.textGrey,
+                                        fontWeight: FontWeight.w400),
+                                  ),
                                 ),
                                 Text(
-                                  widget.salary,
+                                  ' - ',
                                   style: GoogleFonts.kadwa(
                                       fontSize: F14(),
                                       color: KColors.textGrey,
                                       fontWeight: FontWeight.w400),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 12.0, right: 8.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/seak.svg',
-                                    alignment: Alignment.centerLeft,
-                                  ),
-                                ),
                                 Text(
-                                  widget.language,
+                                  widget.experience,
                                   style: GoogleFonts.kadwa(
                                       fontSize: F14(),
                                       color: KColors.textGrey,
@@ -231,73 +266,37 @@ class AllApplicationListViewState extends State<AllApplicationListView>
                                 ),
                               ],
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 2.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset('assets/images/grad.svg'),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 2.0, left: 5.0),
-                                    child: Text(
-                                      widget.qualification,
-                                      style: GoogleFonts.kadwa(
-                                          fontSize: F14(),
-                                          color: KColors.textGrey,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ),
-                                  Text(
-                                    ' - ',
-                                    style: GoogleFonts.kadwa(
-                                        fontSize: F14(),
-                                        color: KColors.textGrey,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                  Text(
-                                    widget.experience,
-                                    style: GoogleFonts.kadwa(
-                                        fontSize: F14(),
-                                        color: KColors.textGrey,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "All Requests",
-                              style: GoogleFonts.kadwa(
-                                  fontSize: F18(),
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            Text(
-                              "Accepted",
-                              style: GoogleFonts.kadwa(
-                                  fontSize: F14(),
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                          ],
-                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.allRequest,
+                            style: GoogleFonts.kadwa(
+                                fontSize: F18(),
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.accepted,
+                            style: GoogleFonts.kadwa(
+                                fontSize: F14(),
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ],
                       ),
-                      const Divider(
-                        color: KColors.lightGrey,
-                        thickness: 1.5,
-                      ),
-                    ],
-                  ),
+                    ),
+                    const Divider(
+                      color: KColors.lightGrey,
+                      thickness: 1.5,
+                    ),
+                  ],
                 ),
               ),
               Positioned(
@@ -332,7 +331,7 @@ class AllApplicationListViewState extends State<AllApplicationListView>
                     .map((e) => ApproveDenyCard(
                         image: e.userImage.toString(),
                         experience:
-                            "${e.userInfo!.expYr.toString()} years Experience",
+                            "${e.userInfo!.expYr.toString()} ${AppLocalizations.of(context)!.yearsExperience}",
                         profession: e.userOccupation.toString(),
                         title: e.userName.toString()))
                     .toList()),

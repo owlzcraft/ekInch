@@ -1,19 +1,22 @@
+// ignore_for_file: file_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
-import 'package:ekinch/app/generated/assets.dart';
-import 'package:ekinch/app/modules/postjob/widgets/shortDropDown.dart';
 import 'package:ekinch/app/modules/referNearn/controllers/refer_nearn_controller.dart';
-import 'package:ekinch/app/modules/referNearn/views/statusWidget.dart';
-import 'package:ekinch/app/utils/math_utils.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class StatusScreen extends StatelessWidget {
-  StatusScreen({super.key});
+class StatusScreen extends StatefulWidget {
+  const StatusScreen({super.key});
 
-  TextEditingController _searchcontroller = TextEditingController();
+  @override
+  State<StatusScreen> createState() => _StatusScreenState();
+}
+
+class _StatusScreenState extends State<StatusScreen> {
   ReferNearnController controller = Get.put(ReferNearnController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +26,7 @@ class StatusScreen extends StatelessWidget {
         color: Colors.white,
         child: Center(
           child: Text(
-            "No Data",
+AppLocalizations.of(context)!.noData,
             style: GoogleFonts.kadwa(fontSize: F20(), color: Colors.grey),
           ),
         ),

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -42,7 +44,7 @@ class ImageSourceSheet extends StatelessWidget {
 
                 /// Capture image from camera
                 TextButton.icon(
-                  icon: Icon(Icons.camera_alt),
+                  icon: const Icon(Icons.camera_alt),
                   label: const Text("camera", style: TextStyle(fontSize: 16)),
                   onPressed: () async {
                     // Capture image from camera

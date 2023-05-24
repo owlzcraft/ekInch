@@ -7,33 +7,33 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../custom_widget/color.dart';
 import '../../../../custom_widget/font_size.dart';
 import '../../../../utils/localStorage.dart';
 import '../../controller/post_job_controller.dart';
 import '../jobDescription.dart';
 
-class JobApplicationCard extends StatelessWidget {
-  String image;
-  String title;
-  String subtitle;
-  String time;
-  String jobId;
-  String location;
-  String salary;
-  String qualification;
-  String language;
-  String require;
-  String jobInfo;
-  String experience;
-  String jobTime;
-  String views;
-  String companyName;
-  String address;
-  bool status;
+class JobApplicationCard extends StatefulWidget {
+  final String image;
+  final String title;
+  final String subtitle;
+  final String time;
+  final String jobId;
+  final String location;
+  final String salary;
+  final String qualification;
+  final String language;
+  final String require;
+  final String jobInfo;
+  final String experience;
+  final String jobTime;
+  final String views;
+  final String companyName;
+  final String address;
+  final bool status;
 
-  JobApplicationCard({
+  const JobApplicationCard({
     super.key,
     required this.image,
     required this.status,
@@ -53,6 +53,12 @@ class JobApplicationCard extends StatelessWidget {
     required this.address,
     required this.views,
   });
+
+  @override
+  State<JobApplicationCard> createState() => _JobApplicationCardState();
+}
+
+class _JobApplicationCardState extends State<JobApplicationCard> {
   ApplyJobController controller = Get.put(ApplyJobController());
 
   @override
@@ -62,21 +68,21 @@ class JobApplicationCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Get.to(JobDescription(
-            status: status,
-            company: companyName,
-            jobTitle: title,
-            subtitle: subtitle,
-            location: location,
-            salary: salary,
-            qualification: qualification,
-            language: language,
-            require: require,
-            jobInfo: jobInfo,
-            experience: experience,
-            jobTime: jobTime,
+            status: widget.status,
+            company: widget.companyName,
+            jobTitle: widget.title,
+            subtitle: widget.subtitle,
+            location: widget.location,
+            salary: widget.salary,
+            qualification: widget.qualification,
+            language: widget.language,
+            require: widget.require,
+            jobInfo: widget.jobInfo,
+            experience: widget.experience,
+            jobTime: widget.jobTime,
             // interviewTime: "interviewTime",
-            address: address,
-            jobId: jobId,
+            address: widget.address,
+            jobId: widget.jobId,
           ));
           // Get.to(JobDescription("UtraTech", title, subtitle, location, salary, qualification, language, "10am to 6pm   |  Mon to Sat ", "10am to 6pm | Friday", location));
         },
@@ -90,7 +96,7 @@ class JobApplicationCard extends StatelessWidget {
                       color: Colors.grey.withOpacity(0.2),
                       spreadRadius: 1,
                       blurRadius: 2,
-                      offset: Offset(0, 4),
+                      offset: const Offset(0, 4),
                     ),
                   ],
                   color: Colors.white,
@@ -115,7 +121,8 @@ class JobApplicationCard extends StatelessWidget {
                                         "https://d3nypwrzdy6f4k.cloudfront.net/"
                                     ? const AssetImage(
                                         'assets/images/profile_icon.png')
-                                    : NetworkImage("$image") as ImageProvider),
+                                    : NetworkImage(widget.image)
+                                        as ImageProvider),
                             border:
                                 Border.all(color: KColors.greyLine, width: 0.0),
                           ),
@@ -126,14 +133,14 @@ class JobApplicationCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                title,
+                                widget.title,
                                 style: GoogleFonts.kadwa(
                                     height: 1.3,
                                     fontSize: F18(),
                                     fontWeight: FontWeight.w400),
                               ),
                               Text(
-                                subtitle,
+                                widget.subtitle,
                                 style: GoogleFonts.kadwa(
                                     fontSize: F14(),
                                     color: KColors.textGrey,
@@ -153,7 +160,7 @@ class JobApplicationCard extends StatelessWidget {
                                         Padding(
                                           padding: EdgeInsets.only(left: 6.sp),
                                           child: Text(
-                                            qualification,
+                                            widget.qualification,
                                             style: GoogleFonts.kadwa(
                                                 fontSize: F14(),
                                                 color: KColors.textGrey,
@@ -168,7 +175,7 @@ class JobApplicationCard extends StatelessWidget {
                                               fontWeight: FontWeight.w400),
                                         ),
                                         Text(
-                                          experience,
+                                          widget.experience,
                                           style: GoogleFonts.kadwa(
                                               fontSize: F14(),
                                               color: KColors.textGrey,
@@ -188,7 +195,7 @@ class JobApplicationCard extends StatelessWidget {
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 10.sp),
                                             child: Text(
-                                              salary,
+                                              widget.salary,
                                               style: GoogleFonts.kadwa(
                                                   fontSize: F14(),
                                                   color: KColors.textGrey,
@@ -198,7 +205,7 @@ class JobApplicationCard extends StatelessWidget {
                                           SvgPicture.asset(
                                               'assets/images/location.svg'),
                                           Text(
-                                            location,
+                                            widget.location,
                                             style: GoogleFonts.kadwa(
                                                 fontSize: F14(),
                                                 color: KColors.textGrey,
@@ -219,7 +226,7 @@ class JobApplicationCard extends StatelessWidget {
                                             padding:
                                                 EdgeInsets.only(left: 6.sp),
                                             child: Text(
-                                              language,
+                                              widget.language,
                                               style: GoogleFonts.kadwa(
                                                   fontSize: F14(),
                                                   color: KColors.textGrey,
@@ -237,7 +244,7 @@ class JobApplicationCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: KColors.greyIcon,
                       thickness: 0.5,
                     ),
@@ -255,7 +262,7 @@ class JobApplicationCard extends StatelessWidget {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 6.0),
                             child: Text(
-                              views,
+                              widget.views,
                               style: GoogleFonts.kadwa(
                                 fontSize: F16(),
                                 color: KColors.textGrey,
@@ -268,28 +275,29 @@ class JobApplicationCard extends StatelessWidget {
                           flex: 2,
                           child: OutlinedButton(
                             style: OutlinedButton.styleFrom(
-                              side: BorderSide(color: Colors.black, width: 1),
-                              fixedSize: Size(130, 0),
-                              shape: StadiumBorder(),
+                              side: const BorderSide(
+                                  color: Colors.black, width: 1),
+                              fixedSize: const Size(130, 0),
+                              shape: const StadiumBorder(),
                             ),
                             onPressed: () {
                               controller.ApplyJob(
-                                  jobId,
-                                  address,
-                                  jobTime,
-                                  require,
-                                  location,
-                                  qualification,
-                                  language,
-                                  salary,
-                                  jobInfo,
-                                  title,
-                                  experience,
-                                  companyName,
-                                  subtitle);
+                                  widget.jobId,
+                                  widget.address,
+                                  widget.jobTime,
+                                  widget.require,
+                                  widget.location,
+                                  widget.qualification,
+                                  widget.language,
+                                  widget.salary,
+                                  widget.jobInfo,
+                                  widget.title,
+                                  widget.experience,
+                                  widget.companyName,
+                                  widget.subtitle);
                             },
                             child: Text(
-                              'Apply Now',
+                              AppLocalizations.of(context)!.applyNow,
                               style: GoogleFonts.kadwa(
                                   color: Colors.black,
                                   fontSize: F16(),
@@ -314,9 +322,9 @@ class JobApplicationCard extends StatelessWidget {
                     color: KColors.lightGrey,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 8.0),
+                    padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
-                      time,
+                      widget.time,
                       style: GoogleFonts.kadwa(
                           fontSize: F12(),
                           color: KColors.lightGrey,
@@ -330,6 +338,6 @@ class JobApplicationCard extends StatelessWidget {
         ),
       ),
     );
-    ;
+    
   }
 }

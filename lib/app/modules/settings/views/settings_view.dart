@@ -3,16 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/profile/views/profile_view.dart';
-import 'package:ekinch/widgets/math_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../utils/localStorage.dart';
-import '../controllers/settings_controller.dart';
 import '../widgets/settings_list_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsView extends StatefulWidget {
   const SettingsView({Key? key}) : super(key: key);
@@ -24,49 +21,49 @@ class SettingsView extends StatefulWidget {
 class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
-    var data_arr = [
+    var dataArr = [
       {
-        "title": "My Profile",
+        "title": AppLocalizations.of(context)!.myProfile,
         "img": "assets/images/person.png",
       },
       {
-        "title": "My Videos (Reels)",
+        "title": AppLocalizations.of(context)!.myVideosReels,
         "img": "assets/images/video.png",
       },
       {
-        "title": "My Company",
+        "title": AppLocalizations.of(context)!.myCompany,
         "img": "assets/images/bell.png",
       },
       {
-        "title": "My Jobs Application",
+        "title": AppLocalizations.of(context)!.myJobAPplication,
         "img": "assets/images/bell.png",
       },
       {
-        "title": "My Jobs",
+        "title": AppLocalizations.of(context)!.myJobs,
         "img": "assets/images/message.png",
       },
       {
-        "title": "My Resume",
+        "title": AppLocalizations.of(context)!.myResume,
         "img": "assets/images/person.png",
       },
       {
-        "title": "Notifications",
+        "title": AppLocalizations.of(context)!.notifications,
         "img": "assets/images/bell.png",
       },
       {
-        "title": "Share and Earn",
+        "title": AppLocalizations.of(context)!.share,
         "img": "assets/images/Share.png",
       },
       {
-        "title": "Feedback",
+        "title": AppLocalizations.of(context)!.feedback,
         "img": "assets/images/message.png",
       },
+      // {
+      //   "title": AppLocalizations.of(context)!.settings,
+      //   "img": "assets/images/settings.png",
+      // },
       {
-        "title": "Settings",
-        "img": "assets/images/settings.png",
-      },
-      {
-        "title": "Log Out",
+        "title": AppLocalizations.of(context)!.logOut,
         "img": "assets/images/logout.png",
       },
     ];
@@ -104,10 +101,10 @@ class _SettingsViewState extends State<SettingsView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     InkWell(
-                        onTap: () => {Get.to(ProfileView())},
+                        onTap: () => {Get.to(const ProfileView())},
                         child: CircleAvatar(
                           radius: 40.sp,
-                          backgroundColor: Color(0xFFE0E0E0),
+                          backgroundColor: const Color(0xFFE0E0E0),
                           child: Container(
                             height: 80.sp,
                             width: 80.sp,
@@ -118,10 +115,10 @@ class _SettingsViewState extends State<SettingsView> {
                                   fit: BoxFit.cover,
                                   image: LocalStorage.shared.getProfile() ==
                                           "https://d3nypwrzdy6f4k.cloudfront.net/"
-                                      ? AssetImage(
+                                      ? const AssetImage(
                                           'assets/images/profile_icon.png')
                                       : NetworkImage(
-                                              "${LocalStorage.shared.getProfile()}")
+                                              LocalStorage.shared.getProfile())
                                           as ImageProvider),
                               border: Border.all(
                                   color: KColors.greyLine, width: 2.0),
@@ -146,7 +143,7 @@ class _SettingsViewState extends State<SettingsView> {
                                   style: GoogleFonts.kadwa(
                                       fontSize: F22(),
                                       fontWeight: FontWeight.w400,
-                                      color: Color.fromARGB(255, 63, 61, 61)),
+                                      color: const Color.fromARGB(255, 63, 61, 61)),
                                 ),
                               ]),
                           Text(
@@ -155,7 +152,7 @@ class _SettingsViewState extends State<SettingsView> {
                                 height: 1.2,
                                 fontSize: F18(),
                                 fontWeight: FontWeight.w400,
-                                color: Color(0xFF6A6A6A)),
+                                color: const Color(0xFF6A6A6A)),
                           ),
                           Image.asset(
                             Assets.verified,
@@ -170,25 +167,23 @@ class _SettingsViewState extends State<SettingsView> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.sp),
                 child: Column(
-                  children: data_arr
+                  children: dataArr
                       .map((e) => SettingListItem(
                           e['img'].toString(), e['title'].toString()))
                       .toList(),
                 ),
               ),
-              // Container(
-              //   padding: EdgeInsets.symmetric(vertical: 40),
-              //   child:
+              
               SizedBox(
                 height: 30.sp,
               ),
               Center(
                 child: Text(
                   "V.7.8.33",
-                  style: GoogleFonts.kadwa(color: Color(0xFF272727)),
+                  style: GoogleFonts.kadwa(color: const Color(0xFF272727)),
                 ),
               ),
-              // )
+            
             ],
           ),
         ),

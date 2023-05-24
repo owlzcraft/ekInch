@@ -11,8 +11,14 @@ import '../../../custom_widget/font_size.dart';
 import '../../../generated/assets.dart';
 import '../../settings/views/settings_view.dart';
 
-class CertificateView extends StatelessWidget {
-  CertificateView({super.key});
+class CertificateView extends StatefulWidget {
+  const CertificateView({super.key});
+
+  @override
+  State<CertificateView> createState() => _CertificateViewState();
+}
+
+class _CertificateViewState extends State<CertificateView> {
   GlobalKey<ScaffoldState> notDrawerKey =  GlobalKey<ScaffoldState>();
 
   @override
@@ -49,7 +55,7 @@ class CertificateView extends StatelessWidget {
             },
           ),
         ),
-        bottomNavigationBar: BottomTabView(9),
+        bottomNavigationBar: const BottomTabView(9),
         body: SingleChildScrollView(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,

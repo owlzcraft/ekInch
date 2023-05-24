@@ -8,11 +8,11 @@ class AllReview extends StatefulWidget {
   const AllReview({Key? key}) : super(key: key);
 
   @override
-  _AllReviewState createState() => _AllReviewState();
+  AllReviewState createState() => AllReviewState();
 }
 
-class _AllReviewState extends State<AllReview> {
-  TextEditingController _searchcontroller = TextEditingController();
+class AllReviewState extends State<AllReview> {
+  final TextEditingController _searchcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,15 +24,15 @@ class _AllReviewState extends State<AllReview> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(Icons.arrow_back)),
+            child: const Icon(Icons.arrow_back)),
         //Icon(Icons.menu),
-        title: Text(
+        title: const Text(
           'Reviews',
           style: TextStyle(
               fontSize: 20, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),
         ),
         actions: [
-          Icon(
+          const Icon(
             Icons.share_outlined,
             size: 20,
           ),
@@ -41,7 +41,6 @@ class _AllReviewState extends State<AllReview> {
           )
         ],
       ),
-
       body: Column(
         children: [
           Stack(
@@ -49,168 +48,282 @@ class _AllReviewState extends State<AllReview> {
               Container(
                 height: 50,
                 color: black,
-                
               ),
               Padding(
-                  padding:
-                  EdgeInsets.only(left: 15.0, right: 10, top: 30, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: TextFeildWhiteBorder(
-                          controller: _searchcontroller,
-            
-                          hintText: 'Search name or date',
-                        ),
+                padding:
+                    const EdgeInsets.only(left: 15.0, right: 10, top: 30, bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: TextFeildWhiteBorder(
+                        controller: _searchcontroller,
+                        hintText: 'Search name or date',
                       ),
-                     
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0, top: 15, right: 15),
+            child: Card(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 10.0, top: 10, bottom: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'assets/images/nidhi_verma.png',
+                        height: 50,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.02,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Rahul Verma",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Kadwa',
+                                fontWeight: FontWeight.w700),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/whitestar.svg",
+                                  height: 12),
+                            ],
+                          ),
+                          Text(
+                            "Lorem Ipsum is simply dummy text of the \n printing and typesetting industry.",
+                            style: TextStyle(
+                                color: greylight,
+                                fontSize: 10,
+                                fontFamily: 'Kadwa',
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        "1 day ago",
+                        style: TextStyle(
+                            color: greylightdark,
+                            fontSize: 10,
+                            fontFamily: 'Kadwa',
+                            fontWeight: FontWeight.w400),
+                      ),
                     ],
                   ),
-                ),
-
-             
-            ],
-
+                )),
           ),
-
-        Padding(
-          padding: const EdgeInsets.only(left:15.0,top: 15,right: 15),
-          child: Card(elevation: 0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),child:
           Padding(
-            padding: const EdgeInsets.only(left:10.0,top: 10,bottom: 10),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset('assets/images/nidhi_verma.png',height: 50,),
-                SizedBox(width: MediaQuery.of(context).size.width*0.02,),
-Column(crossAxisAlignment: CrossAxisAlignment.start,
-
-  children: [
-  Text("Rahul Verma",style: TextStyle( fontSize: 16, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),),
-  Row(mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/whitestar.svg",height: 12),
-        ],
-      ),
-  
-Text("Lorem Ipsum is simply dummy text of the \n printing and typesetting industry.",style: TextStyle( color: greylight,fontSize: 10, fontFamily: 'Kadwa', fontWeight: FontWeight.w400),),
-  
-
-],),
-
-
-          Text("1 day ago",style: TextStyle(color: greylightdark,fontSize: 10, fontFamily: 'Kadwa', fontWeight: FontWeight.w400),),
-              ],),
-          ) ),
-        ),
-         Padding(
-          padding: const EdgeInsets.only(left:15.0,top: 15,right: 15),
-          child: Card(elevation: 0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),child:
+            padding: const EdgeInsets.only(left: 15.0, top: 15, right: 15),
+            child: Card(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 10.0, top: 10, bottom: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'assets/images/nidhi_verma.png',
+                        height: 50,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.02,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Rahul Verma",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Kadwa',
+                                fontWeight: FontWeight.w700),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/whitestar.svg",
+                                  height: 12),
+                            ],
+                          ),
+                          Text(
+                            "Lorem Ipsum is simply dummy text of the \n printing and typesetting industry.",
+                            style: TextStyle(
+                                color: greylight,
+                                fontSize: 10,
+                                fontFamily: 'Kadwa',
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        "1 day ago",
+                        style: TextStyle(
+                            color: greylightdark,
+                            fontSize: 10,
+                            fontFamily: 'Kadwa',
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                )),
+          ),
           Padding(
-            padding: const EdgeInsets.only(left:10.0,top: 10,bottom: 10),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset('assets/images/nidhi_verma.png',height: 50,),
-                SizedBox(width: MediaQuery.of(context).size.width*0.02,),
-Column(crossAxisAlignment: CrossAxisAlignment.start,
-
-  children: [
-  Text("Rahul Verma",style: TextStyle( fontSize: 16, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),),
-  Row(mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/whitestar.svg",height: 12),
-        ],
-      ),
-  
-Text("Lorem Ipsum is simply dummy text of the \n printing and typesetting industry.",style: TextStyle( color: greylight,fontSize: 10, fontFamily: 'Kadwa', fontWeight: FontWeight.w400),),
-  
-
-],),
-
-
-          Text("1 day ago",style: TextStyle(color: greylightdark,fontSize: 10, fontFamily: 'Kadwa', fontWeight: FontWeight.w400),),
-              ],),
-          ) ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left:15.0,top: 15,right: 15),
-          child: Card(elevation: 0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),child:
+            padding: const EdgeInsets.only(left: 15.0, top: 15, right: 15),
+            child: Card(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 10.0, top: 10, bottom: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'assets/images/nidhi_verma.png',
+                        height: 50,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.02,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Rahul Verma",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Kadwa',
+                                fontWeight: FontWeight.w700),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/whitestar.svg",
+                                  height: 12),
+                            ],
+                          ),
+                          Text(
+                            "Lorem Ipsum is simply dummy text of the \n printing and typesetting industry.",
+                            style: TextStyle(
+                                color: greylight,
+                                fontSize: 10,
+                                fontFamily: 'Kadwa',
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        "1 day ago",
+                        style: TextStyle(
+                            color: greylightdark,
+                            fontSize: 10,
+                            fontFamily: 'Kadwa',
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                )),
+          ),
           Padding(
-            padding: const EdgeInsets.only(left:10.0,top: 10,bottom: 10),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset('assets/images/nidhi_verma.png',height: 50,),
-                SizedBox(width: MediaQuery.of(context).size.width*0.02,),
-Column(crossAxisAlignment: CrossAxisAlignment.start,
-
-  children: [
-  Text("Rahul Verma",style: TextStyle( fontSize: 16, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),),
-  Row(mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/whitestar.svg",height: 12),
+            padding: const EdgeInsets.only(left: 15.0, top: 15, right: 15),
+            child: Card(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 10.0, top: 10, bottom: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        'assets/images/nidhi_verma.png',
+                        height: 50,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.02,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Rahul Verma",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Kadwa',
+                                fontWeight: FontWeight.w700),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/star.svg",
+                                  height: 12),
+                              SvgPicture.asset("assets/images/whitestar.svg",
+                                  height: 12),
+                            ],
+                          ),
+                          Text(
+                            "Lorem Ipsum is simply dummy text of the \n printing and typesetting industry.",
+                            style: TextStyle(
+                                color: greylight,
+                                fontSize: 10,
+                                fontFamily: 'Kadwa',
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        "1 day ago",
+                        style: TextStyle(
+                            color: greylightdark,
+                            fontSize: 10,
+                            fontFamily: 'Kadwa',
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                )),
+          ),
         ],
       ),
-  
-Text("Lorem Ipsum is simply dummy text of the \n printing and typesetting industry.",style: TextStyle( color: greylight,fontSize: 10, fontFamily: 'Kadwa', fontWeight: FontWeight.w400),),
-  
-
-],),
-
-
-          Text("1 day ago",style: TextStyle(color: greylightdark,fontSize: 10, fontFamily: 'Kadwa', fontWeight: FontWeight.w400),),
-              ],),
-          ) ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left:15.0,top: 15,right: 15),
-          child: Card(elevation: 0,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),child:
-          Padding(
-            padding: const EdgeInsets.only(left:10.0,top: 10,bottom: 10),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset('assets/images/nidhi_verma.png',height: 50,),
-                SizedBox(width: MediaQuery.of(context).size.width*0.02,),
-Column(crossAxisAlignment: CrossAxisAlignment.start,
-
-  children: [
-  Text("Rahul Verma",style: TextStyle( fontSize: 16, fontFamily: 'Kadwa', fontWeight: FontWeight.w700),),
-  Row(mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/star.svg",height: 12),
-        SvgPicture.asset("assets/images/whitestar.svg",height: 12),
-        ],
-      ),
-  
-Text("Lorem Ipsum is simply dummy text of the \n printing and typesetting industry.",style: TextStyle( color: greylight,fontSize: 10, fontFamily: 'Kadwa', fontWeight: FontWeight.w400),),
-  
-
-],),
-
-
-          Text("1 day ago",style: TextStyle(color: greylightdark,fontSize: 10, fontFamily: 'Kadwa', fontWeight: FontWeight.w400),),
-              ],),
-          ) ),
-        ),
-       
-        
-        ],
-      ),
-
     );
   }
 }

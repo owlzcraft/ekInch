@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../../custom_widget/color.dart';
-import '../../../generated/assets.dart';
 import '../../job/form/views/jobs_landing.dart';
 import '../../profile/views/profile_view.dart';
 import '../../records/views/records_view.dart';
 import '../../reels/views/reels_view.dart';
 import '../controllers/dashboard_controller.dart';
-import '../views/dashboard_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BottomTabView extends StatelessWidget {
   final int currentIndex;
-  BottomTabView(this.currentIndex);
+  const BottomTabView(this.currentIndex, {super.key});
 //  int _currentIndex = currentIndex;
 
   @override
@@ -27,7 +24,7 @@ class BottomTabView extends StatelessWidget {
         height: (MediaQuery.of(context).size.height / 10.1518987342).sp,
         padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 25.sp),
         decoration: BoxDecoration(
-          color: Color(0xffFFFFFF),
+          color: const Color(0xffFFFFFF),
           boxShadow: [
             BoxShadow(
               color: Colors.grey,
@@ -65,7 +62,7 @@ class BottomTabView extends StatelessWidget {
                                 .sp,
                           ),
                           Text(
-                            "Home",
+                            AppLocalizations.of(context)!.home,
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 fontWeight: FontWeight.w400,
@@ -79,30 +76,28 @@ class BottomTabView extends StatelessWidget {
                       onTap: () {
                         dashboardController.GetDashboard();
                       },
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Image.asset(
-                              "assets/images/home.png",
-                              color: KColors.greyIcon,
-                              width: (MediaQuery.of(context).size.width /
-                                      19.8879551821)
-                                  .sp,
-                              height: (MediaQuery.of(context).size.height /
-                                      42.1792618629)
-                                  .sp,
-                            ),
-                            Text(
-                              "Home",
-                              style: TextStyle(
-                                  fontSize: 10.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.grey,
-                                  fontFamily: "kadwa"),
-                            )
-                          ],
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset(
+                            "assets/images/home.png",
+                            color: KColors.greyIcon,
+                            width: (MediaQuery.of(context).size.width /
+                                    19.8879551821)
+                                .sp,
+                            height: (MediaQuery.of(context).size.height /
+                                    42.1792618629)
+                                .sp,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.home,
+                            style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey,
+                                fontFamily: "kadwa"),
+                          )
+                        ],
                       ),
                     )),
           GestureDetector(
@@ -131,7 +126,7 @@ class BottomTabView extends StatelessWidget {
                                 .sp,
                           ),
                           Text(
-                            "Library",
+                            AppLocalizations.of(context)!.librabry,
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 fontWeight: FontWeight.w400,
@@ -144,34 +139,32 @@ class BottomTabView extends StatelessWidget {
                   : InkWell(
                       onTap: () {
                         Get.to(
-                          ReelsView(),
+                          const ReelsView(),
                           transition: Transition.fadeIn,
                         );
                       },
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Image.asset(
-                              "assets/images/library.png",
-                              color: KColors.greyIcon,
-                              width: (MediaQuery.of(context).size.width /
-                                      19.8879551821)
-                                  .sp,
-                              height: (MediaQuery.of(context).size.height /
-                                      42.1792618629)
-                                  .sp,
-                            ),
-                            Text(
-                              "Library",
-                              style: TextStyle(
-                                  fontSize: 10.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.grey,
-                                  fontFamily: "kadwa"),
-                            )
-                          ],
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset(
+                            "assets/images/library.png",
+                            color: KColors.greyIcon,
+                            width: (MediaQuery.of(context).size.width /
+                                    19.8879551821)
+                                .sp,
+                            height: (MediaQuery.of(context).size.height /
+                                    42.1792618629)
+                                .sp,
+                          ),
+                          Text(
+                             AppLocalizations.of(context)!.librabry,
+                            style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey,
+                                fontFamily: "kadwa"),
+                          )
+                        ],
                       ),
                     )),
           GestureDetector(
@@ -200,7 +193,7 @@ class BottomTabView extends StatelessWidget {
                                 .sp,
                           ),
                           Text(
-                            "Jobs",
+                             AppLocalizations.of(context)!.jobs,
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 fontWeight: FontWeight.w400,
@@ -213,34 +206,32 @@ class BottomTabView extends StatelessWidget {
                   : InkWell(
                       onTap: () {
                         Get.to(
-                          JobLanding(),
+                          const JobLanding(),
                           transition: Transition.fadeIn,
                         );
                       },
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Image.asset(
-                              "assets/images/job.png",
-                              color: KColors.greyIcon,
-                              width: (MediaQuery.of(context).size.width /
-                                      19.8879551821)
-                                  .sp,
-                              height: (MediaQuery.of(context).size.height /
-                                      42.1792618629)
-                                  .sp,
-                            ),
-                            Text(
-                              "Jobs",
-                              style: TextStyle(
-                                  fontSize: 10.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.grey,
-                                  fontFamily: "kadwa"),
-                            )
-                          ],
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset(
+                            "assets/images/job.png",
+                            color: KColors.greyIcon,
+                            width: (MediaQuery.of(context).size.width /
+                                    19.8879551821)
+                                .sp,
+                            height: (MediaQuery.of(context).size.height /
+                                    42.1792618629)
+                                .sp,
+                          ),
+                          Text(
+                             AppLocalizations.of(context)!.jobs,
+                            style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey,
+                                fontFamily: "kadwa"),
+                          )
+                        ],
                       ),
                     )),
           GestureDetector(
@@ -269,7 +260,7 @@ class BottomTabView extends StatelessWidget {
                                 .sp,
                           ),
                           Text(
-                            "Records",
+                             AppLocalizations.of(context)!.records,
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 fontWeight: FontWeight.w400,
@@ -282,34 +273,32 @@ class BottomTabView extends StatelessWidget {
                   : InkWell(
                       onTap: () {
                         Get.to(
-                          RecordsView(),
+                          const RecordsView(),
                           transition: Transition.fadeIn,
                         );
                       },
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Image.asset(
-                              "assets/images/records.png",
-                              color: KColors.greyIcon,
-                              width: (MediaQuery.of(context).size.width /
-                                      19.8879551821)
-                                  .sp,
-                              height: (MediaQuery.of(context).size.height /
-                                      42.1792618629)
-                                  .sp,
-                            ),
-                            Text(
-                              "Records",
-                              style: TextStyle(
-                                  fontSize: 10.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.grey,
-                                  fontFamily: "kadwa"),
-                            )
-                          ],
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset(
+                            "assets/images/records.png",
+                            color: KColors.greyIcon,
+                            width: (MediaQuery.of(context).size.width /
+                                    19.8879551821)
+                                .sp,
+                            height: (MediaQuery.of(context).size.height /
+                                    42.1792618629)
+                                .sp,
+                          ),
+                          Text(
+                             AppLocalizations.of(context)!.records,
+                            style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey,
+                                fontFamily: "kadwa"),
+                          )
+                        ],
                       ),
                     )),
           GestureDetector(
@@ -338,7 +327,7 @@ class BottomTabView extends StatelessWidget {
                                 .sp,
                           ),
                           Text(
-                            "Profile",
+                             AppLocalizations.of(context)!.profile,
                             style: TextStyle(
                                 fontSize: 10.sp,
                                 fontWeight: FontWeight.w400,
@@ -351,34 +340,32 @@ class BottomTabView extends StatelessWidget {
                   : InkWell(
                       onTap: () {
                         Get.to(
-                          ProfileView(),
+                          const ProfileView(),
                           transition: Transition.fadeIn,
                         );
                       },
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Image.asset(
-                              "assets/images/profile.png",
-                              color: KColors.greyIcon,
-                              width: (MediaQuery.of(context).size.width /
-                                      19.8879551821)
-                                  .sp,
-                              height: (MediaQuery.of(context).size.height /
-                                      42.1792618629)
-                                  .sp,
-                            ),
-                            Text(
-                              "Profile",
-                              style: TextStyle(
-                                  fontSize: 10.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.grey,
-                                  fontFamily: "kadwa"),
-                            )
-                          ],
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset(
+                            "assets/images/profile.png",
+                            color: KColors.greyIcon,
+                            width: (MediaQuery.of(context).size.width /
+                                    19.8879551821)
+                                .sp,
+                            height: (MediaQuery.of(context).size.height /
+                                    42.1792618629)
+                                .sp,
+                          ),
+                          Text(
+                             AppLocalizations.of(context)!.profile,
+                            style: TextStyle(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey,
+                                fontFamily: "kadwa"),
+                          )
+                        ],
                       ),
                     )),
         ]));

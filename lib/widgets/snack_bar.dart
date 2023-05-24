@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/snackbar/snackbar_controller.dart';
-
 import '../app/custom_widget/color.dart';
 import 'math_utils.dart';
 
 void createSnackBar(String message, BuildContext context) {
   final snackBar =
-      new SnackBar(content: new Text(message), backgroundColor: Color(0xFFFEBA0F));
+       SnackBar(content: Text(message), backgroundColor: const Color(0xFFFEBA0F));
 
   // Find the Scaffold in the Widget tree and use it to show a SnackBar!
   ScaffoldMessenger.of(context).showSnackBar(snackBar);

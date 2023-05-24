@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/message/view/onetooneChat.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +25,7 @@ MessageCard(
         children: [
           CircleAvatar(
               radius: 20.sp,
-              backgroundImage: AssetImage("assets/images/profile_icon.png")),
+              backgroundImage: const AssetImage("assets/images/profile_icon.png")),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
@@ -36,7 +38,7 @@ MessageCard(
                       height: 1.2, fontSize: F16(), color: Colors.black),
                 ),
                 Text(
-                  "$subtitle",
+                  subtitle,
                   style: GoogleFonts.kadwa(
                       fontSize: F12(), color: KColors.textGrey),
                 )

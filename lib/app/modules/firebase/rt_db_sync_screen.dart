@@ -27,8 +27,6 @@ class RtDbSyncPageState extends State<RtDbSyncPage> {
             .child("-NR--LZ8q215X2tnGtDb")
             .onValue,
         builder: (BuildContext context, AsyncSnapshot<DatabaseEvent> snapshot) {
-          print("snapshot..........");
-          print(snapshot.data!.snapshot.exists);
           if (snapshot.hasData) {
             String data = snapshot.data!.snapshot.value.toString();
             return Scaffold(

@@ -1,5 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -24,11 +24,11 @@ AwardCertificateGrid(String path, String title, String subtitle) {
           height: getVerticalSize(220),
           width: getHorizontalSize(220),
           decoration: BoxDecoration(
-            boxShadow: [
-              const BoxShadow(
+            boxShadow:const [
+               BoxShadow(
                 color: Colors.black,
               ),
-              const BoxShadow(
+               BoxShadow(
                 color: Colors.black,
                 spreadRadius: -12.0,
                 blurRadius: 12.0,

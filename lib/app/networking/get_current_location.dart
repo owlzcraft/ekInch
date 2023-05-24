@@ -1,9 +1,10 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:geolocator/geolocator.dart';
 
 getCurrentLocation() async {
   var location = await Geolocator.getCurrentPosition();
-  print(location.latitude);
-  print(location.longitude);
+
   return {"latitude": location.latitude, "longitude": location.longitude};
 }
 

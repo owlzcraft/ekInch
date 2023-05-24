@@ -1,25 +1,22 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:ekinch/app/modules/reels/views/reel_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Video extends StatelessWidget {
   final String image;
   final int view;
   final String text;
-  Null Function() onTap;
-  Video(
-      {required this.image,
+  final Function() onTap;
+  const Video(
+      {super.key,
+      required this.image,
       required this.view,
       required this.text,
       required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.height);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Stack(
@@ -39,7 +36,7 @@ class Video extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.sp)),
             ),
           ),
-           Positioned(
+          Positioned(
               child: Container(
             decoration: BoxDecoration(
                 gradient: const LinearGradient(

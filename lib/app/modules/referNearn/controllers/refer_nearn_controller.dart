@@ -1,13 +1,7 @@
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:get/get.dart';
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:share/share.dart';
 
 class ReferNearnController extends GetxController {
-  //TODO: Implement ReferNearnController
-
   final count = 0.obs;
   var copied = false.obs;
   final referalCode = "D2BY6M";
@@ -89,21 +83,6 @@ class ReferNearnController extends GetxController {
   ];
 
   //share
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void increment() => count.value++;
 }

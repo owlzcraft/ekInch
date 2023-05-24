@@ -3,8 +3,6 @@ import 'package:permission_handler/permission_handler.dart';
 
 void checkPermission(context) async {
   final PermissionStatus status = await Permission.locationWhenInUse.request();
-  print("status");
-  print(status);
   if (status == PermissionStatus.granted) {
     // Location access granted
   } else if (status == PermissionStatus.permanentlyDenied ||
@@ -20,7 +18,7 @@ void checkPermission(context) async {
                   'This app needs location permission to function properly.'),
               actions: [
                 TextButton(
-                  child: Text('OK'),
+                  child: const Text('OK'),
                   onPressed: () => checkPermission(context),
                 ),
               ],

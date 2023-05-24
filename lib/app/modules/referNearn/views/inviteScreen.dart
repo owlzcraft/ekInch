@@ -1,24 +1,27 @@
-import 'package:clipboard/clipboard.dart';
-import 'package:dotted_border/dotted_border.dart';
+// ignore_for_file: file_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:ekinch/app/custom_widget/color.dart';
 import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
 import 'package:ekinch/app/modules/referNearn/controllers/refer_nearn_controller.dart';
-import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class InviteScreen extends StatelessWidget {
-  InviteScreen({super.key});
+class InviteScreen extends StatefulWidget {
+  const InviteScreen({super.key});
+
+  @override
+  State<InviteScreen> createState() => _InviteScreenState();
+}
+
+class _InviteScreenState extends State<InviteScreen> {
   ReferNearnController controller = Get.put(ReferNearnController());
+
   @override
   Widget build(BuildContext context) {
     showDataAlertWorking() {
@@ -26,8 +29,8 @@ class InviteScreen extends StatelessWidget {
           context: context,
           builder: (context) {
             return AlertDialog(
-              insetPadding: EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
+              insetPadding: const EdgeInsets.all(10),
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(
                     4.0,
@@ -35,44 +38,42 @@ class InviteScreen extends StatelessWidget {
                 ),
               ),
               title: Text(
-                "How it works",
+                AppLocalizations.of(context)!.referWork,
                 style: GoogleFonts.kadwa(
                     fontSize: 24.0, fontWeight: FontWeight.w400),
               ),
-              content: Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Text(
-                        "1. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                        style: GoogleFonts.kadwa(
-                            color: KColors.textGrey, fontSize: 14),
-                      ),
-                      Text(
-                        "2. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                        style: GoogleFonts.kadwa(
-                            color: KColors.textGrey, fontSize: 14),
-                      ),
-                      Text(
-                        "3. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                        style: GoogleFonts.kadwa(
-                            color: KColors.textGrey, fontSize: 14),
-                      ),
-                      Text(
-                        "4. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                        style: GoogleFonts.kadwa(
-                            color: KColors.textGrey, fontSize: 14),
-                      ),
-                      Text(
-                        "5. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                        style: GoogleFonts.kadwa(
-                            color: KColors.textGrey, fontSize: 14),
-                      )
-                    ],
-                  ),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(
+                      "1. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                      style: GoogleFonts.kadwa(
+                          color: KColors.textGrey, fontSize: 14),
+                    ),
+                    Text(
+                      "2. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                      style: GoogleFonts.kadwa(
+                          color: KColors.textGrey, fontSize: 14),
+                    ),
+                    Text(
+                      "3. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                      style: GoogleFonts.kadwa(
+                          color: KColors.textGrey, fontSize: 14),
+                    ),
+                    Text(
+                      "4. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                      style: GoogleFonts.kadwa(
+                          color: KColors.textGrey, fontSize: 14),
+                    ),
+                    Text(
+                      "5. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                      style: GoogleFonts.kadwa(
+                          color: KColors.textGrey, fontSize: 14),
+                    )
+                  ],
                 ),
               ),
             );
@@ -81,7 +82,7 @@ class InviteScreen extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Container(
-        decoration: BoxDecoration(color: Colors.white),
+        decoration: const BoxDecoration(color: Colors.white),
         child: Column(
           children: [
             Padding(
@@ -92,7 +93,7 @@ class InviteScreen extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20),
               child: Text(
-                "Invite your friends",
+                AppLocalizations.of(context)!.referT,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.kadwa(
                     fontWeight: FontWeight.w600, fontSize: F20()),
@@ -102,17 +103,17 @@ class InviteScreen extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
               child: Text(
-                "Share the code below or ask them  to enter it during they signup. Earn wehn they signup groovey app",
+                AppLocalizations.of(context)!.referS,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.kadwa(
                     fontSize: F16(),
                     fontWeight: FontWeight.w400,
-                    color: Color(0xFF4E4E4E)),
+                    color: const Color(0xFF4E4E4E)),
               ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 30.sp, horizontal: 16.sp),
-              child: DynamicButton("Start Refering", true, () {
+              child: DynamicButton(AppLocalizations.of(context)!.startRefering, true, () {
                 final RenderBox box = context.findRenderObject() as RenderBox;
                 Share.share(
                   'Check out this awesome app!',
@@ -165,9 +166,9 @@ class InviteScreen extends StatelessWidget {
                   showDataAlertWorking();
                 },
                 child: Text(
-                  "How does it work?",
+                  AppLocalizations.of(context)!.referWork,
                   style: GoogleFonts.poppins(
-                      color: Color(0xFF4F4F4F),
+                      color: const Color(0xFF4F4F4F),
                       decoration: TextDecoration.underline),
                 ),
               ),

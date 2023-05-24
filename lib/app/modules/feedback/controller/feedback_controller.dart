@@ -1,12 +1,10 @@
-import 'package:ekinch/app/models/GetJobForm.dart';
-import 'package:ekinch/app/models/available_job_list.dart';
-import 'package:ekinch/app/models/data_model.dart';
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/models/msg_ok.dart';
 import 'package:ekinch/app/modules/feedback/view/feedback_view.dart';
 import 'package:ekinch/app/networking/app_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../widgets/loader.dart';
 import '../../../../../widgets/snack_bar.dart';
 import '../../../models/get_feedback.dart';
@@ -15,18 +13,13 @@ import '../../../utils/localStorage.dart';
 
 class FeedbackController extends GetxController {
   final APIRepository apiRepository = APIRepository(isTokenRequired: true);
-
   double star = 5;
   TextEditingController feedback = TextEditingController();
-
 //Post Feedback
   Future<void> PostFeedback() async {
-    print("**************************");
-
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -39,7 +32,6 @@ class FeedbackController extends GetxController {
             value.when(
                 success: (value) {
                   if (value!.ok == true) {
-                    print("done");
                     errorSnackbar("Saved!");
                     GetFeedback();
                   } else if (value.ok == false) {
@@ -57,12 +49,10 @@ class FeedbackController extends GetxController {
 
   //Get Feedback
   Future<void> GetFeedback() async {
-    print("**************************");
 
     final fcmToken = LocalStorage.shared.getFCMToken();
     Get.showOverlay(
         asyncFunction: () async {
-          print(fcmToken);
           final Map<String, dynamic> data = <String, dynamic>{};
           data["token"] = fcmToken;
           data["userId"] = LocalStorage.shared.getnumber();
@@ -71,14 +61,12 @@ class FeedbackController extends GetxController {
               .then((ApiResult<GetFeedbackModel> value) {
             value.when(success: (value) {
               if (value!.ok == true) {
-                print("done");
                 Get.to(FeedbackView(
                     hint: value.data!.feedbackTxt.toString(),
                     initialStar: value.data!.star as double));
               }
             }, failure: (networkExceptions) {
-              errorSnackbar("Please Rate us!");
-              Get.to(FeedbackView(hint: "Comment", initialStar: 5));
+              Get.to(const FeedbackView(hint: "............", initialStar: 5));
             });
           });
         },

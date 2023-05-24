@@ -1,21 +1,16 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:ekinch/app/utils/math_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:country_code_picker/country_code_picker.dart';
-
 import 'package:get/get.dart';
 import 'package:getwidget/components/button/gf_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '../../../../widgets/snack_bar.dart';
 import '../../../custom_widget/color.dart';
 import '../controllers/mobile_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-// import '../widget/country_code_picker.dart';
 class MobileView extends StatefulWidget {
-  MobileView({super.key});
+  const MobileView({super.key});
   @override
   State<MobileView> createState() => _MobileViewState();
 }
@@ -24,7 +19,6 @@ class _MobileViewState extends State<MobileView> {
   MobileController signInController = Get.put(MobileController());
   var checked = false;
 
-  final _globalKey = GlobalKey<FormState>();
   checkButton() {
     if (checked) {
       checked = false;
@@ -34,7 +28,6 @@ class _MobileViewState extends State<MobileView> {
   }
 
   String initialCountry = 'IN';
-
   PhoneNumber number = PhoneNumber(isoCode: 'IN');
   @override
   Widget build(BuildContext context) {
@@ -47,7 +40,7 @@ class _MobileViewState extends State<MobileView> {
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
+          FocusScope.of(context).requestFocus(FocusNode());
         },
         child: SingleChildScrollView(
             child: Padding(
@@ -57,7 +50,7 @@ class _MobileViewState extends State<MobileView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Welcome to EkInch",
+                AppLocalizations.of(context)!.welcome,
                 style: GoogleFonts.kadwa(
                     fontWeight: FontWeight.w700,
                     fontSize: F32(),
@@ -66,7 +59,7 @@ class _MobileViewState extends State<MobileView> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15.0),
                 child: Text(
-                  "Enter your mobile number, We will\nsend you confirmation code",
+                  AppLocalizations.of(context)!.welcomeDesc,
                   style: GoogleFonts.kadwa(
                       fontWeight: FontWeight.normal,
                       fontSize: F22(),
@@ -86,15 +79,9 @@ class _MobileViewState extends State<MobileView> {
                   spaceBetweenSelectorAndTextField: 0,
                   initialValue: number,
                   maxLength: 10,
-                  hintText: "Enter your mobile",
-                  onInputChanged: (PhoneNumber number) {
-                    print(
-                        "********************************************$number");
-                    // signInController.mobileNumber.text = number ;
-                  },
-                  onInputValidated: (bool value) {
-                    print(value);
-                  },
+                  hintText: AppLocalizations.of(context)!.enterPhoneNumber,
+                  onInputChanged: (PhoneNumber number) {},
+                  onInputValidated: (bool value) {},
                   selectorConfig: const SelectorConfig(
                     selectorType: PhoneInputSelectorType.DROPDOWN,
                   ),
@@ -116,7 +103,7 @@ class _MobileViewState extends State<MobileView> {
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
                     child: Text(
-                  "OR",
+                  AppLocalizations.of(context)!.oR,
                   style: GoogleFonts.kadwa(
                       fontSize: F18(),
                       fontWeight: FontWeight.w400,
@@ -141,7 +128,7 @@ class _MobileViewState extends State<MobileView> {
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: Text(
-                            "Signup with Whatsapp",
+                            AppLocalizations.of(context)!.sign,
                             style: GoogleFonts.kadwa(
                                 fontSize: F20(),
                                 fontWeight: FontWeight.w400,
@@ -164,9 +151,9 @@ class _MobileViewState extends State<MobileView> {
                       child: Container(
                           // ignore: sort_child_properties_last
                           child: (checked)
-                              ? Icon(
+                              ? const Icon(
                                   Icons.check_box,
-                                  color: const Color(0xFFFEBA0F),
+                                  color: Color(0xFFFEBA0F),
                                   size: 16,
                                 )
                               : Container(),
@@ -184,7 +171,7 @@ class _MobileViewState extends State<MobileView> {
                     Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Text(
-                        ' I agree to the Terms & Conditions',
+                        AppLocalizations.of(context)!.term,
                         style: GoogleFonts.kadwa(
                             fontSize: F20(),
                             color: const Color(0xFF787878),
@@ -199,13 +186,14 @@ class _MobileViewState extends State<MobileView> {
                 child: GFButton(
                   onPressed: () {
                     (!checked)
-                        ? errorSnackbar("Please check the aggrement checkbox")
+                        ? errorSnackbar(AppLocalizations.of(context)!
+                            .pleasechecktheaggrementcheckbox)
                         : signInController.signInWithmobile();
                   },
                   color: KColors.orange,
                   fullWidthButton: true,
                   size: 50.2,
-                  text: "Continue",
+                  text: AppLocalizations.of(context)!.continueWord,
                   textStyle: GoogleFonts.kadwa(
                     color: Colors.black,
                     fontWeight: FontWeight.w700,
@@ -306,15 +294,5 @@ class _MobileViewState extends State<MobileView> {
     //         ]),
     //   ),
     // );
-
-    void check() {
-      final _isValid = _globalKey.currentState!.validate();
-      print(_isValid);
-      if (_isValid) {
-        //Get.to(RegisterView());
-      } else {
-        errorSnackbar("Please Enter OTP ");
-      }
-    }
   }
 }

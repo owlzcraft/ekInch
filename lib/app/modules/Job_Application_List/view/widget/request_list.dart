@@ -1,18 +1,12 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
-import 'package:ekinch/app/modules/Job_Application_List/view/widget/job_application_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../listpostjob/views/widget/job_application_card.dart';
-import '../../../myJobs/view/widget/job_applied_card.dart';
-import '../../../postjob/widgets/shortDropDown.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RequestList extends StatelessWidget {
-  bool noData;
-  RequestList({super.key, required this.noData});
+  final bool noData;
+  const RequestList({super.key, required this.noData});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +18,7 @@ class RequestList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Job Application Request",
+              AppLocalizations.of(context)!.jobApplicationsRequest,
               style: GoogleFonts.kadwa(fontSize: F16()),
             ),
             InkWell(
@@ -45,7 +39,7 @@ class RequestList extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 60.0),
                     child: Center(
                         child: Text(
-                      "No Jobs Applied",
+                      AppLocalizations.of(context)!.noJobsApplied,
                       style: GoogleFonts.kadwa(
                           fontSize: F18(), color: Colors.grey),
                     )),

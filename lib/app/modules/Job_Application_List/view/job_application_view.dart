@@ -16,11 +16,12 @@ import '../../job/jobInterested/views/job_interested_view.dart';
 import '../../notication/view/notification_view.dart';
 import '../../settings/views/settings_view.dart';
 import '../controller/jobApplicationController.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JobApplicationListView extends StatefulWidget {
-  String companyName;
-  String companyPhoto;
-  String companyAddress;
+  final String companyName;
+  final String companyPhoto;
+  final String companyAddress;
   List<Data> jobPostList;
 
   JobApplicationListView(
@@ -37,12 +38,13 @@ class JobApplicationListView extends StatefulWidget {
 class JobApplicationListViewState extends State<JobApplicationListView>
     with TickerProviderStateMixin {
   TabController? _tabController;
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   bool noData = false;
+  @override
   void initState() {
-    _tabController = new TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     super.initState();
-    if (widget.jobPostList.length == 0) {
+    if (widget.jobPostList.isEmpty) {
       setState(() {
         widget.jobPostList = [];
         noData = true;
@@ -69,8 +71,7 @@ class JobApplicationListViewState extends State<JobApplicationListView>
             icon: SvgPicture.asset(Assets.drawerIcon_white),
             onPressed: () {
               if (!scaffoldKey.currentState!.isDrawerOpen) {
-                //check if drawer is closed
-                scaffoldKey.currentState!.openDrawer(); //open drawer
+                scaffoldKey.currentState!.openDrawer();
               }
             },
           ),
@@ -99,7 +100,7 @@ class JobApplicationListViewState extends State<JobApplicationListView>
                             color: Colors.black,
                             image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage("${widget.companyPhoto}"))),
+                                image: NetworkImage(widget.companyPhoto))),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -107,7 +108,7 @@ class JobApplicationListViewState extends State<JobApplicationListView>
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("${widget.companyName}",
+                            Text(widget.companyName,
                                 style: GoogleFonts.kadwa(
                                     fontSize: F24(),
                                     color: Colors.white,
@@ -124,7 +125,7 @@ class JobApplicationListViewState extends State<JobApplicationListView>
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 3.0),
                                   child: Text(
-                                    "${widget.companyAddress}",
+                                    widget.companyAddress,
                                     style: GoogleFonts.kadwa(
                                         height: 1.2,
                                         fontSize: F14(),
@@ -147,7 +148,10 @@ class JobApplicationListViewState extends State<JobApplicationListView>
                     indicatorWeight: 3,
                     unselectedLabelStyle: GoogleFonts.kadwa(fontSize: F18()),
                     labelStyle: GoogleFonts.kadwa(fontSize: F18()),
-                    tabs: [Tab(text: "Jobs "), Tab(text: "Accepted Request")],
+                    tabs: [
+                      Tab(text: AppLocalizations.of(context)!.jobs),
+                      Tab(text: AppLocalizations.of(context)!.acceptedRequest)
+                    ],
                   ),
                 ),
               ],
@@ -156,7 +160,7 @@ class JobApplicationListViewState extends State<JobApplicationListView>
         ),
         floatingActionButton: InkWell(
           onTap: () {
-            Get.to(JobInterestedView());
+            Get.to(const JobInterestedView());
           },
           child: CircleAvatar(
             radius: 25.sp,
@@ -168,7 +172,7 @@ class JobApplicationListViewState extends State<JobApplicationListView>
             ),
           ),
         ),
-        bottomNavigationBar: BottomTabView(2),
+        bottomNavigationBar: const BottomTabView(2),
         backgroundColor: KColors.greybg,
         body: TabBarView(
           controller: _tabController,

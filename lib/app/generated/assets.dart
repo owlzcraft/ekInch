@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 class Assets {
   Assets._();
   static const String drawerIcon_black = 'assets/icons/drawerIcon_black.svg';

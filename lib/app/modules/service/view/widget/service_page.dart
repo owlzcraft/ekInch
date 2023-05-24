@@ -34,7 +34,7 @@ class ServicePage extends StatelessWidget {
             delegate: SliverChildListDelegate.fixed(
               [
                 GridView.count(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   padding: const EdgeInsets.symmetric(horizontal:12.0),

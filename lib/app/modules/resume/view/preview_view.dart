@@ -1,30 +1,17 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:ekinch/app/modules/dashboard/widgets/dashboard_profile.dart';
-import 'package:ekinch/app/modules/job/form/controllers/job.controller.dart';
-import 'package:ekinch/app/modules/job/form/views/details_form.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/click_custom.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/custom_job_form.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/pop_up_exp.dart';
-import 'package:ekinch/app/modules/job/form/views/widgets/skill_container.dart';
-import 'package:ekinch/app/modules/listpostjob/views/jobs_view.dart';
 import 'package:ekinch/app/modules/resume/controller/resume_controller.dart';
 import 'package:ekinch/app/modules/resume/view/editResume.dart';
 import 'package:ekinch/app/modules/resume/view/widget/skillCard.dart';
 import 'package:ekinch/app/utils/localStorage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/job/form/views/widgets/add_skills.dart';
-import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
-import 'package:ekinch/app/modules/notication/view/notification_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:getwidget/components/button/gf_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../../widgets/math_utils.dart';
-import '../../../../../widgets/snack_bar.dart';
 import '../../../custom_widget/color.dart';
 import '../../../custom_widget/font_size.dart';
 import '../../../generated/assets.dart';
@@ -32,20 +19,20 @@ import '../../dashboard/widgets/navigation.dart';
 import '../../settings/views/settings_view.dart';
 
 class GetJobPreviewView extends StatefulWidget {
-  String category;
-  String gender;
-  String dob;
-  String quali;
-  String experience;
-  String board;
-  String expTap;
-  String date;
-  String month;
-  String year;
-  String englishSpk;
-  List<String> skill;
+  final String category;
+  final String gender;
+  final String dob;
+  final String quali;
+  final String experience;
+  final String board;
+  final String expTap;
+  final String date;
+  final String month;
+  final String year;
+  final String englishSpk;
+  final List<String> skill;
 
-  GetJobPreviewView(
+  const GetJobPreviewView(
       {super.key,
       required this.category,
       required this.dob,
@@ -68,8 +55,58 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
   GlobalKey<ScaffoldState> notDrawerKey = GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   ResumeController controller = Get.put(ResumeController());
-  final List experienceList = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50']
-;
+  final List experienceList = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
+    '21',
+    '22',
+    '23',
+    '24',
+    '25',
+    '26',
+    '27',
+    '28',
+    '29',
+    '30',
+    '31',
+    '32',
+    '33',
+    '34',
+    '35',
+    '36',
+    '37',
+    '38',
+    '39',
+    '40',
+    '41',
+    '42',
+    '43',
+    '44',
+    '45',
+    '46',
+    '47',
+    '48',
+    '49',
+    '50'
+  ];
 
   Future showDataAlertExp(
       BuildContext context, String title, String subTitle, controller) async {
@@ -122,7 +159,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                         suffix: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 40.0),
                           child: Text(
-                            "Years",
+                            AppLocalizations.of(context)!.years,
                             style: GoogleFonts.kadwa(
                                 fontSize: getFontSize(22),
                                 color: const Color(0xFF636363)),
@@ -168,8 +205,10 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                           .toList(),
                       validator: (value) {
                         if (value == null) {
-                          return 'Please Select Experience';
+                          return AppLocalizations.of(context)!
+                              .pleaseSelectExperience;
                         }
+                        return null;
                       },
                       onChanged: (value) {
                         controller.value = value as String;
@@ -185,7 +224,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                       color: KColors.orange,
                       fullWidthButton: true,
                       size: 50.2,
-                      text: "Submit",
+                      text: AppLocalizations.of(context)!.submit,
                       textStyle: GoogleFonts.kadwa(
                         color: Colors.black,
                         fontWeight: FontWeight.w700,
@@ -205,13 +244,6 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
     return Scaffold(
       backgroundColor: Colors.white,
       key: notDrawerKey, drawer: const SettingsView(),
-      // appBar: PreferredSize(
-      //     preferredSize: Size.fromHeight(0),
-      //     child: AppBar(
-      //       automaticallyImplyLeading: false,
-      //       backgroundColor: Colors.black,
-      //     )),
-      // appBar: UpperBar("Records", "Records", true, true),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(200),
         child: AppBar(
@@ -236,8 +268,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                                   "https://d3nypwrzdy6f4k.cloudfront.net/"
                               ? const AssetImage(
                                   'assets/images/profile_icon.png')
-                              : NetworkImage(
-                                      "${LocalStorage.shared.getProfile()}")
+                              : NetworkImage(LocalStorage.shared.getProfile())
                                   as ImageProvider),
                       border: Border.all(color: KColors.greyLine, width: 2.0),
                     ),
@@ -300,7 +331,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                       borderRadius: BorderRadius.circular(6)),
                   child: Center(
                     child: Text(
-                      "Edit",
+                      AppLocalizations.of(context)!.edit,
                       style: GoogleFonts.kadwa(
                           fontSize: F14(), color: Colors.black),
                     ),
@@ -426,7 +457,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 16.0),
                                 child: Text(
-                                  "Basic Details",
+                                  AppLocalizations.of(context)!.basicDetails,
                                   style: GoogleFonts.kadwa(
                                       color: Colors.black,
                                       fontSize: F18(),
@@ -451,7 +482,8 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Job Profile Title",
+                                              AppLocalizations.of(context)!
+                                                  .jobProfileTitle,
                                               style: GoogleFonts.kadwa(
                                                   color: Colors.black,
                                                   fontSize: F18(),
@@ -465,7 +497,8 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                                                   fontWeight: FontWeight.w400),
                                             ),
                                             Text(
-                                              "Date of Birth",
+                                              AppLocalizations.of(context)!
+                                                  .dateOfBirth,
                                               style: GoogleFonts.kadwa(
                                                   color: Colors.black,
                                                   fontSize: F18(),
@@ -488,7 +521,8 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "Gender",
+                                                AppLocalizations.of(context)!
+                                                    .gender,
                                                 style: GoogleFonts.kadwa(
                                                     color: Colors.black,
                                                     fontSize: F18(),
@@ -504,7 +538,8 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                                                         FontWeight.w400),
                                               ),
                                               Text(
-                                                "Qualification",
+                                                AppLocalizations.of(context)!
+                                                    .qualification,
                                                 style: GoogleFonts.kadwa(
                                                     color: Colors.black,
                                                     fontSize: F18(),
@@ -552,7 +587,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Experience",
+                                AppLocalizations.of(context)!.experience,
                                 style: GoogleFonts.kadwa(
                                     color: Colors.black,
                                     fontSize: F18(),
@@ -611,14 +646,14 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "${widget.experience} years Experience",
+                                        "${widget.experience}${AppLocalizations.of(context)!.yearsExperience}",
                                         style: GoogleFonts.kadwa(
                                             color: Colors.black,
                                             fontSize: F18(),
                                             fontWeight: FontWeight.w700),
                                       ),
                                       Text(
-                                        "${widget.category}",
+                                        widget.category,
                                         style: GoogleFonts.kadwa(
                                             color: KColors.textGrey,
                                             height: 1.2,
@@ -656,7 +691,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Skills",
+                                AppLocalizations.of(context)!.skills,
                                 style: GoogleFonts.kadwa(
                                     color: Colors.black,
                                     fontSize: F18(),
@@ -666,7 +701,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                                 onTap: () {
                                   Get.to(
                                       AddSkillView(
-                                        addSkillList: [],
+                                        addSkillList: const [],
                                         resultList: controller.selectedSKills,
                                       ),
                                       arguments: "resume");
@@ -682,7 +717,7 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                                         horizontal: 2.0),
                                     child: Center(
                                       child: Text(
-                                        "Add More+",
+                                        AppLocalizations.of(context)!.addMore,
                                         style: GoogleFonts.kadwa(
                                             fontSize: F14(),
                                             color: Colors.black),
@@ -725,20 +760,11 @@ class GetJobPreviewViewState extends State<GetJobPreviewView> {
                   ),
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(
-              //       vertical: 16.0, horizontal: 12.0),
-              //   child: Center(
-              //     child: DynamicButton("Submit", true, () {
-              //       controller.GetJobForm();
-              //     }),
-              //   ),
-              // ),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomTabView(2),
+      bottomNavigationBar: const BottomTabView(2),
     );
   }
 }

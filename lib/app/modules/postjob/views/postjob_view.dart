@@ -1,21 +1,18 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:ekinch/app/modules/dashboard/widgets/navigation.dart';
-import 'package:ekinch/app/modules/listpostjob/controller/post_job_controller.dart';
 import 'package:ekinch/app/modules/postjob/views/post_job_view/PostDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:ekinch/app/modules/postjob/Style.dart';
-import 'package:ekinch/app/modules/postjob/views/post_job_view/CompanyDetails.dart';
 import 'package:ekinch/app/modules/postjob/views/post_job_view/JobDescriptions.dart';
 import 'package:ekinch/app/modules/postjob/views/stepProgressView.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../generated/assets.dart';
 import '../../settings/views/settings_view.dart';
 import '../controllers/postjob_controller.dart';
 import 'PostJobProfile.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PostjobView extends StatefulWidget {
   const PostjobView({super.key});
@@ -25,10 +22,9 @@ class PostjobView extends StatefulWidget {
 }
 
 class _PostjobViewState extends State<PostjobView> {
-  GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   PostjobController postJobController = Get.put(PostjobController());
   PageController controller = PageController(initialPage: 0);
-  final _stepsText = ["Job Details", "Job Descriptions"];
   final _stepCircleRadius = 8.0;
   final _stepProgressViewHeight = 110.0;
   final Color _activeColor = yellow;
@@ -45,8 +41,13 @@ class _PostjobViewState extends State<PostjobView> {
 
   int _curPage = 1;
   StepProgressView _getStepProgress() {
+    final stepsText = [
+      AppLocalizations.of(context)!.jobDetails,
+      AppLocalizations.of(context)!.jobDescriptions
+    ];
+
     return StepProgressView(
-      _stepsText,
+      stepsText,
       _curPage,
       _stepProgressViewHeight,
       _safeAreaSize.width,
@@ -69,7 +70,7 @@ class _PostjobViewState extends State<PostjobView> {
     var mediaQD = MediaQuery.of(context);
     _safeAreaSize = mediaQD.size;
     return Scaffold(
-        bottomNavigationBar: BottomTabView(2),
+        bottomNavigationBar: const BottomTabView(2),
         key: scaffoldKey,
         drawer: const SettingsView(),
         appBar: AppBar(
@@ -86,7 +87,7 @@ class _PostjobViewState extends State<PostjobView> {
             },
           ),
           title: Text(
-            'Post Job',
+            AppLocalizations.of(context)!.postJob,
             style:
                 GoogleFonts.kadwa(fontSize: F20(), fontWeight: FontWeight.w700),
           ),
@@ -94,7 +95,7 @@ class _PostjobViewState extends State<PostjobView> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(height: 100.0, child: _getStepProgress()),
+            SizedBox(height: 100.0, child: _getStepProgress()),
             Expanded(
               child: PageView(
                 controller: controller,
@@ -104,7 +105,7 @@ class _PostjobViewState extends State<PostjobView> {
                   });
                 },
                 children: <Widget>[
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +115,7 @@ class _PostjobViewState extends State<PostjobView> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16.0, vertical: 8.0),
                           child: Text(
-                            'Company Only',
+                            AppLocalizations.of(context)!.companyOnly,
                             style: GoogleFonts.kadwa(
                               fontSize: F24(),
                               color: Colors.black,
@@ -122,11 +123,11 @@ class _PostjobViewState extends State<PostjobView> {
                             ),
                           ),
                         ),
-                        Expanded(child: PostDetails()),
+                        const Expanded(child: PostDetails()),
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,7 +136,7 @@ class _PostjobViewState extends State<PostjobView> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Text(
-                            'Company Only',
+                            AppLocalizations.of(context)!.companyOnly,
                             style: GoogleFonts.kadwa(
                               fontSize: F20(),
                               color: Colors.black,
@@ -182,7 +183,7 @@ class _PostjobViewState extends State<PostjobView> {
                         onPressed: () {
                           if (_curPage == 2) {
                             Get.to(PostJobProfile(
-                              company: "Post Job",
+                              company: AppLocalizations.of(context)!.postJob,
                               jobTitle:
                                   "${postJobController.profession1.text.toString()} ${postJobController.profession2.text.toString()} ${postJobController.profession3.text.toString()}",
                               subtitle: " ",
@@ -199,13 +200,12 @@ class _PostjobViewState extends State<PostjobView> {
                               jobInfo:
                                   postJobController.description.text.toString(),
                               experience:
-                                  "${postJobController.exp1.text.toString()} years experience",
+                                  "${postJobController.exp1.text.toString()} ${AppLocalizations.of(context)!.yearsExperience}",
                               jobTime: postJobController.jobTmg.text.toString(),
                               // interviewTime: "",
                               // address: ""
                             ));
                           } else {
-                            print(_curPage);
                             controller.animateToPage(
                               _curPage,
                               curve: Curves.easeInOut,
@@ -216,7 +216,9 @@ class _PostjobViewState extends State<PostjobView> {
                         },
                         child: Center(
                           child: Text(
-                            _curPage == 2 ? 'Done' : 'Next',
+                            _curPage == 2
+                                ? AppLocalizations.of(context)!.done
+                                : AppLocalizations.of(context)!.next,
                             style: GoogleFonts.kadwa(
                                 color: black,
                                 fontSize: F18(),

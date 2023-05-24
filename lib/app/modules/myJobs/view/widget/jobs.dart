@@ -1,14 +1,14 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../models/job_applied_list.dart';
-import '../../../listpostjob/views/widget/job_application_card.dart';
 import '../../../postjob/widgets/shortDropDown.dart';
 import 'job_applied_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JobsApplied extends StatelessWidget {
   bool noData;
@@ -20,7 +20,8 @@ class JobsApplied extends StatelessWidget {
     return SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
-        padding: EdgeInsets.only(left: 15.0, right: 15, top: 10, bottom: 10),
+        padding:
+            const EdgeInsets.only(left: 15.0, right: 15, top: 10, bottom: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -28,7 +29,7 @@ class JobsApplied extends StatelessWidget {
               flex: 5,
               child: TextFeildGreyBorder(
                 // controller: _searchcontroller,
-                hintText: 'Search company by name',
+                hintText: AppLocalizations.of(context)!.searchCompanyByName,
               ),
             ),
             Expanded(
@@ -43,7 +44,7 @@ class JobsApplied extends StatelessWidget {
                   child: Center(
                     child: SvgPicture.asset(
                       "assets/images/shape.svg",
-                      color: Color.fromARGB(255, 81, 80, 80),
+                      color: const Color.fromARGB(255, 81, 80, 80),
                     ),
                   ),
                 ),
@@ -55,7 +56,7 @@ class JobsApplied extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Text(
-          "All Jobs List",
+          AppLocalizations.of(context)!.alljobList,
           style: GoogleFonts.kadwa(fontSize: F18()),
         ),
       ),
@@ -75,10 +76,10 @@ class JobsApplied extends StatelessWidget {
           //           )
 
           // :
-          child: (JobAppliedList.length == 0)
+          child: (JobAppliedList.isEmpty)
               ? Center(
                   child: Text(
-                    "No Data",
+                    AppLocalizations.of(context)!.noData,
                     style:
                         GoogleFonts.kadwa(fontSize: F18(), color: Colors.grey),
                   ),
@@ -91,11 +92,11 @@ class JobsApplied extends StatelessWidget {
                           language: e.job!.jobDetails[0].lngSpk.toString(),
                           location: e.job!.company.address.toString(),
                           qualification: e.job!.jobDetails[0].qual.toString(),
-                          salary: "${e.job!.jobDetails[0].slrStr.toString()}",
+                          salary: e.job!.jobDetails[0].slrStr.toString(),
                           subtitle: "",
                           time: "",
                           title: e.job!.title.toString(),
-                          views: "already applied"))
+                          views: AppLocalizations.of(context)!.alreadyApplied))
                       .toList()))
     ]));
   }

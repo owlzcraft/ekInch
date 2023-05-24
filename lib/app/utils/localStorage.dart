@@ -1,19 +1,20 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
-
-import 'package:ekinch/app/models/sign_in.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../models/company_profile.dart';
-import '../models/login_model.dart';
 import '../models/profile_model.dart';
 
 class LocalStorage {
+    
   static final GetStorage localBox = GetStorage();
   static final LocalStorage _singleton = LocalStorage._internal();
   factory LocalStorage() => _singleton;
   LocalStorage._internal();
   static LocalStorage get shared => _singleton;
-
+// static Future<void> init() async {
+//     await GetStorage.init();
+//   }
   void saveWalkthrough() {
     localBox.write("WALKTHROUGH", true);
   }
@@ -60,6 +61,13 @@ class LocalStorage {
       return userData;
     }
     return null;
+  }
+  void language(String value) {
+    localBox.write("lang", value);
+  }
+
+  int getLanguage() {
+    return localBox.read("lang");
   }
 
   void saveFCMTOKEN(String value) {

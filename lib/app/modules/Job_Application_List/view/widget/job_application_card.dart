@@ -1,38 +1,29 @@
-import 'package:ekinch/app/generated/assets.dart';
 import 'package:ekinch/app/modules/Job_Application_List/controller/jobApplicationController.dart';
-import 'package:ekinch/app/modules/Job_Application_List/view/all_request.dart';
-import 'package:ekinch/app/utils/localStorage.dart';
 import 'package:ekinch/app/utils/math_utils.dart';
-import 'package:ekinch/widgets/snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../../../widgets/loader.dart';
 import '../../../../custom_widget/color.dart';
 import '../../../../custom_widget/font_size.dart';
-import '../../../../models/application_request.dart';
-import '../../../../networking/api_result.dart';
-import '../../../../networking/app_repo.dart';
-import '../../../listpostjob/views/jobDescription.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class JobApplicationRequestCard extends StatelessWidget {
-  String companyName;
-  String image;
-  String title;
-  String subtitle;
-  String time;
-  String qualification;
-  String experience;
-  String salary;
-  String location;
-  String language;
-  String views;
-  int jobId;
-  bool open;
-  JobPostListController controller = Get.put(JobPostListController());
+  final String companyName;
+  final String image;
+  final String title;
+  final String subtitle;
+  final String time;
+  final String qualification;
+  final String experience;
+  final String salary;
+  final String location;
+  final String language;
+  final String views;
+  final int jobId;
+  final bool open;
+  final JobPostListController controller = Get.put(JobPostListController());
 
   JobApplicationRequestCard(
       {super.key,
@@ -56,8 +47,6 @@ class JobApplicationRequestCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: GestureDetector(
         onTap: () {
-          print("**************************");
-
           controller.applicationRequest(jobId, image, title, time, companyName,
               experience, location, language, salary, qualification);
         },
@@ -91,8 +80,7 @@ class JobApplicationRequestCard extends StatelessWidget {
                             color: Colors.black,
                             shape: BoxShape.rectangle,
                             image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage("$image") as ImageProvider),
+                                fit: BoxFit.cover, image: NetworkImage(image)),
                             border:
                                 Border.all(color: KColors.greyLine, width: 0.0),
                           ),
@@ -263,7 +251,7 @@ class JobApplicationRequestCard extends StatelessWidget {
                                   qualification);
                             },
                             child: Text(
-                              'View Request',
+                              AppLocalizations.of(context)!.viewRequest,
                               style: GoogleFonts.kadwa(
                                   color: Colors.black,
                                   fontSize: F16(),
@@ -297,7 +285,7 @@ class JobApplicationRequestCard extends StatelessWidget {
                                   const EdgeInsets.symmetric(horizontal: 2.0),
                               child: Center(
                                 child: Text(
-                                  "Open",
+                                  AppLocalizations.of(context)!.open,
                                   style: GoogleFonts.kadwa(
                                       fontSize: F12(), color: Colors.black),
                                 ),
@@ -309,13 +297,13 @@ class JobApplicationRequestCard extends StatelessWidget {
                             height: getVerticalSize(21),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(40),
-                                color: Color.fromARGB(255, 244, 129, 121)),
+                                color: const Color.fromARGB(255, 244, 129, 121)),
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 2.0),
                               child: Center(
                                 child: Text(
-                                  "Closed",
+                                  AppLocalizations.of(context)!.closed,
                                   style: GoogleFonts.kadwa(
                                       fontSize: F12(), color: Colors.black),
                                 ),

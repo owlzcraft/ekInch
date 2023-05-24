@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:dio/dio.dart';
 import 'package:ekinch/app/models/application_request.dart';
 import 'package:ekinch/app/models/data_model.dart';
@@ -17,7 +19,6 @@ import '../models/getCategories.dart';
 import '../models/get_feedback.dart';
 import '../models/job_applied_list.dart';
 import '../models/language_model.dart';
-import '../models/login_model.dart';
 import '../models/otp_model.dart';
 import '../models/profile_model.dart';
 import '../models/profile_pic.dart';
@@ -25,7 +26,6 @@ import '../models/recentlAdded.dart';
 import '../models/records_model.dart';
 import '../models/reel_model.dart';
 import '../models/update_getJob.dart';
-import '../utils/localStorage.dart';
 import 'api_result.dart';
 import 'dio_client.dart';
 import 'network_exceptions.dart';
@@ -73,7 +73,6 @@ class APIRepository {
   Future<ApiResult<LocalizationModel>> selectLanguage(
       Map<String, dynamic> data) async {
     try {
-      print("*********************************************");
       final response =
           await dioClient!.post(ServiceConstants.PROFILE, data: data);
       final LocalizationModel model = LocalizationModel.fromJson(response.data);
@@ -90,7 +89,6 @@ class APIRepository {
   ///Sign In
   Future<ApiResult<SignInModel>> login(Map<String, dynamic> data) async {
     try {
-      print("*********************************************");
       final response =
           await dioClient!.post(ServiceConstants.LOGIN, data: data);
       final SignInModel signInModel = SignInModel.fromJson(response.data);
@@ -108,7 +106,6 @@ class APIRepository {
 
   Future<ApiResult<OtpModel>> verifyOtp(Map<String, dynamic> data) async {
     try {
-      print("*********************************************");
       final response = await dioClient!.post(ServiceConstants.OTP, data: data);
       final OtpModel model = OtpModel.fromJson(response.data);
       return ApiResult.success(data: model);
@@ -125,7 +122,6 @@ class APIRepository {
 
   Future<ApiResult<ProfileModel>> register(Map<String, dynamic> data) async {
     try {
-      print("*********************************************");
       final response =
           await dioClient!.post(ServiceConstants.PROFILE, data: data);
       final ProfileModel model = ProfileModel.fromJson(response.data);
@@ -143,7 +139,6 @@ class APIRepository {
   Future<ApiResult<CompanyProfileModel>> updateCompanyProfile(
       Map<String, dynamic> data) async {
     try {
-      print("*********************************************");
       final response =
           await dioClient!.post(ServiceConstants.COMPANYPROFILE, data: data);
       final CompanyProfileModel model =
@@ -162,7 +157,6 @@ class APIRepository {
 
   Future<ApiResult<RecordsModel>> records(Map<String, dynamic> data) async {
     try {
-      print("*********************************************");
       final response =
           await dioClient!.post(ServiceConstants.RECORDS, data: data);
       final RecordsModel model = RecordsModel.fromJson(response.data);
@@ -175,16 +169,14 @@ class APIRepository {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
-   //Company Data Status
+  //Company Data Status
 
   Future<ApiResult<CheckStatusModel>> CompanyStatus(
       Map<String, dynamic> data) async {
     try {
-      print("*********************************************");
-      final response =
-          await dioClient!.post(ServiceConstants.COMPANYPROFILESTATUS, data: data);
-      final CheckStatusModel model =
-          CheckStatusModel.fromJson(response.data);
+      final response = await dioClient!
+          .post(ServiceConstants.COMPANYPROFILESTATUS, data: data);
+      final CheckStatusModel model = CheckStatusModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -199,7 +191,6 @@ class APIRepository {
 
   Future<ApiResult<OtpModel>> sendOtp(Map<String, dynamic> data) async {
     try {
-      print("*********************************************");
       final response =
           await dioClient!.post(ServiceConstants.SENDOTP, data: data);
       final OtpModel model = OtpModel.fromJson(response.data);
@@ -252,7 +243,8 @@ class APIRepository {
     try {
       final response = await dioClient!.post(ServiceConstants.COMPANYPROFILE,
           data: data, options: multiPartOptions());
-      final CompanyProfileModel model = CompanyProfileModel.fromJson(response.data);
+      final CompanyProfileModel model =
+          CompanyProfileModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -264,11 +256,12 @@ class APIRepository {
   }
 
   //Recently Added
-    Future<ApiResult<RecentlyAddedModel>> recentlyAdded(data) async {
+  Future<ApiResult<RecentlyAddedModel>> recentlyAdded(data) async {
     try {
       final response = await dioClient!.post(ServiceConstants.RECENTLYADDED,
           data: data, options: multiPartOptions());
-      final RecentlyAddedModel model = RecentlyAddedModel.fromJson(response.data);
+      final RecentlyAddedModel model =
+          RecentlyAddedModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -332,7 +325,7 @@ class APIRepository {
     }
   }
 
- //Post Feedback
+  //Post Feedback
 
   Future<ApiResult<FeedbackModel>> PostFeedback(
       Map<String, dynamic> data) async {
@@ -356,7 +349,8 @@ class APIRepository {
     try {
       final response =
           await dioClient!.post(ServiceConstants.APPLIEDJOBLIST, data: data);
-      final JobAppliedListModel model = JobAppliedListModel.fromJson(response.data);
+      final JobAppliedListModel model =
+          JobAppliedListModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -391,7 +385,8 @@ class APIRepository {
     try {
       final response =
           await dioClient!.post(ServiceConstants.AVAILABLEUSERLIST, data: data);
-      final AvailableUserModel model = AvailableUserModel.fromJson(response.data);
+      final AvailableUserModel model =
+          AvailableUserModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -406,8 +401,8 @@ class APIRepository {
   Future<ApiResult<CheckStatusModel>> checkPostJobStatus(
       Map<String, dynamic> data) async {
     try {
-      final response =
-          await dioClient!.post(ServiceConstants.CHECKPOSTJOBSTATUS, data: data);
+      final response = await dioClient!
+          .post(ServiceConstants.CHECKPOSTJOBSTATUS, data: data);
       final CheckStatusModel model = CheckStatusModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
@@ -418,10 +413,9 @@ class APIRepository {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
-   //Post Job
+  //Post Job
 
-  Future<ApiResult<FeedbackModel>> PostJob(
-      Map<String, dynamic> data) async {
+  Future<ApiResult<FeedbackModel>> PostJob(Map<String, dynamic> data) async {
     try {
       final response =
           await dioClient!.post(ServiceConstants.POSTJOB, data: data);
@@ -436,14 +430,15 @@ class APIRepository {
     }
   }
 
-  //Application Request List 
+  //Application Request List
 
   Future<ApiResult<ApplicationRequestModel>> ApplicationRequest(
       Map<String, dynamic> data) async {
     try {
-      final response =
-          await dioClient!.post(ServiceConstants.APPLICATIONREQUESTLIST, data: data);
-      final ApplicationRequestModel model = ApplicationRequestModel.fromJson(response.data);
+      final response = await dioClient!
+          .post(ServiceConstants.APPLICATIONREQUESTLIST, data: data);
+      final ApplicationRequestModel model =
+          ApplicationRequestModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -454,10 +449,9 @@ class APIRepository {
     }
   }
 
-   //Post Job list 
+  //Post Job list
 
-  Future<ApiResult<JobPostModel>> PostJobList(
-      Map<String, dynamic> data) async {
+  Future<ApiResult<JobPostModel>> PostJobList(Map<String, dynamic> data) async {
     try {
       final response =
           await dioClient!.post(ServiceConstants.MyJobs, data: data);
@@ -478,7 +472,8 @@ class APIRepository {
     try {
       final response =
           await dioClient!.post(ServiceConstants.GETJOBFORM, data: data);
-      final UpdateGetJobFormModel model = UpdateGetJobFormModel.fromJson(response.data);
+      final UpdateGetJobFormModel model =
+          UpdateGetJobFormModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -488,7 +483,7 @@ class APIRepository {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
-   //Get job form fill -Get details
+  //Get job form fill -Get details
 
   Future<ApiResult<GetJobFormModel>> FetchGetJobForm(
       Map<String, dynamic> data) async {
@@ -506,13 +501,13 @@ class APIRepository {
     }
   }
 
-  
   Future<ApiResult<AvailableJobsModel>> FilterJob(
       Map<String, dynamic> data) async {
     try {
       final response =
           await dioClient!.post(ServiceConstants.FILTERJOBS, data: data);
-      final AvailableJobsModel model = AvailableJobsModel.fromJson(response.data);
+      final AvailableJobsModel model =
+          AvailableJobsModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {
@@ -522,10 +517,9 @@ class APIRepository {
       return ApiResult.failure(error: NetworkExceptions.getDioException(e));
     }
   }
-   //Apply for Job
+  //Apply for Job
 
-  Future<ApiResult<FeedbackModel>> ApplyJob(
-      Map<String, dynamic> data) async {
+  Future<ApiResult<FeedbackModel>> ApplyJob(Map<String, dynamic> data) async {
     try {
       final response =
           await dioClient!.post(ServiceConstants.APPLYJOB, data: data);
