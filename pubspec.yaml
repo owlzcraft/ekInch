@@ -58,8 +58,8 @@ dependencies:
   share_plus: ^4.5.3
   # flutter_localization: ^0.1.10
   video_thumbnail: ^0.5.3
-  firebase_auth: ^4.2.2
-  firebase_core: ^2.7.1
+  firebase_auth: ^4.6.1
+  firebase_core: ^2.13.0
   firebase_database: ^10.0.15
   firebase_messaging: ^14.4.0
   flutter_local_notifications: ^14.0.0+1
