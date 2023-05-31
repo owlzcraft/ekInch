@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class PushNotificationService {
@@ -22,18 +23,20 @@ class PushNotificationService {
 // Also handle any interaction when the app is in the background via a
     // Stream listener
     // This function is called when the app is in the background and user clicks on the notification
-    // final bool isBadgeSupported = await FlutterAppBadger.isAppBadgeSupported();
+    final bool isBadgeSupported = await FlutterAppBadger.isAppBadgeSupported();
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      // FlutterAppBadger.removeBadge();
+      FlutterAppBadger.removeBadge();
       // print(message.notification.body);
       // Get.toNamed(NOTIFICATIOINS_ROUTE);
     });
 
-    // FirebaseMessaging.onBackgroundMessage((message) async {
-    //   if (isBadgeSupported) {
-    //     FlutterAppBadger.updateBadgeCount(1);
-    //   }
-    // });
+    FirebaseMessaging.onBackgroundMessage((message) async {
+      // print("===================");
+      // print(isBadgeSupported!);
+      if (isBadgeSupported) {
+        FlutterAppBadger.updateBadgeCount(1);
+      }
+    });
 
     await enableIOSNotifications();
     await registerNotificationListeners();

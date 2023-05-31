@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "951725074669",
+    "project_id": "ekinch-4a2ce",
+    "storage_bucket": "ekinch-4a2ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951725074669:android:8f51faf0a2eef877da44e4",
+        "android_client_info": {
+          "package_name": "com.ovolo.ekinch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "951725074669-hfp724t9jvcmsvtt7s1imca6fd6erqkv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ovolo.ekinch",
+            "certificate_hash": "0a7dac3b352d06b657bde8d9daea90aa9ae3f8b5"
+          }
+        },
+        {
+          "client_id": "951725074669-11rulljh0ge0p3jrd8fvbhs02qhftcll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiF1_r5nBD9Ij9KqtgUdAGIms9cEguP6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951725074669-11rulljh0ge0p3jrd8fvbhs02qhftcll.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

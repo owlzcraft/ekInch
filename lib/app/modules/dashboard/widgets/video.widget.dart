@@ -1,18 +1,23 @@
 import 'package:ekinch/app/custom_widget/font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../reels/views/reel_page.dart';
 
 class Video extends StatelessWidget {
   final String image;
   final int view;
   final String text;
   final Function() onTap;
+  final List reels;
   const Video(
       {super.key,
       required this.image,
       required this.view,
       required this.text,
+      required this.reels,
       required this.onTap});
 
   @override
@@ -23,7 +28,11 @@ class Video extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              // Get.to(ReelsPageFullScreen);
+              print("Fullllllllllllllllllll screen");
+
+              Get.to(ReelsPageFullScreen(
+                videos: reels,
+              ));
             },
             child: Container(
               width: (MediaQuery.of(context).size.width / 3.5).sp,

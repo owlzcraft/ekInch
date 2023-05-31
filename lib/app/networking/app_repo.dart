@@ -26,6 +26,7 @@ import '../models/recentlAdded.dart';
 import '../models/records_model.dart';
 import '../models/reel_model.dart';
 import '../models/update_getJob.dart';
+import '../models/upload_reel_model.dart';
 import 'api_result.dart';
 import 'dio_client.dart';
 import 'network_exceptions.dart';
@@ -91,6 +92,23 @@ class APIRepository {
     try {
       final response =
           await dioClient!.post(ServiceConstants.LOGIN, data: data);
+      final SignInModel signInModel = SignInModel.fromJson(response.data);
+      return ApiResult.success(data: signInModel);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+
+  //Update Firebase Cloud Messaging token API
+  Future<ApiResult<SignInModel>> updateFcmToken(
+      Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.UPDATEFCMTOKEN, data: data);
       final SignInModel signInModel = SignInModel.fromJson(response.data);
       return ApiResult.success(data: signInModel);
     } catch (e) {
@@ -279,6 +297,22 @@ class APIRepository {
       final response =
           await dioClient!.post(ServiceConstants.GETREELS, data: data);
       final ReelModel model = ReelModel.fromJson(response.data);
+      return ApiResult.success(data: model);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      errorSnackbar(getError(e));
+      return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+    }
+  }
+  //Upload Reel
+
+  Future<ApiResult<UploadReelModel>> uploadReel(Map<String, dynamic> data) async {
+    try {
+      final response =
+          await dioClient!.post(ServiceConstants.UPLOAD_REEL, data: data);
+      final UploadReelModel model = UploadReelModel.fromJson(response.data);
       return ApiResult.success(data: model);
     } catch (e) {
       if (kDebugMode) {

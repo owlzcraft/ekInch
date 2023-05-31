@@ -41,4 +41,6 @@ class MobileController extends GetxController {
         },
         loadingWidget: const LoadingIndicator());
   }
+
+  
 }

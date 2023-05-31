@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 CustomDropDown(List<String> list, String title, String select, int flex,
     double h, TextEditingController controller) {
   return Expanded(
@@ -14,7 +13,6 @@ CustomDropDown(List<String> list, String title, String select, int flex,
     child: Container(
       padding: EdgeInsets.symmetric(horizontal: h.sp),
       child: DropdownButtonFormField2(
-      
         alignment: Alignment.centerLeft,
         decoration: InputDecoration(
           isCollapsed: true,
@@ -42,7 +40,6 @@ CustomDropDown(List<String> list, String title, String select, int flex,
         ),
         items: list
             .map((item) => DropdownMenuItem<String>(
-              
                   value: item,
                   child: Text(
                     item,
@@ -57,9 +54,8 @@ CustomDropDown(List<String> list, String title, String select, int flex,
           }
           return null;
         },
-        onSaved: (value){
-                    controller.text = value as String;
-
+        onSaved: (value) {
+          controller.text = value as String;
         },
         onChanged: (value) {
           controller.text = value as String;

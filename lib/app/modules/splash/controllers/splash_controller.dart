@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable, unnecessary_null_comparison
 
 import 'dart:async';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../../routes/app_pages.dart';
@@ -14,12 +15,26 @@ class SplashController extends GetxController {
   final count = 0.obs;
   @override
   void onInit() {
+    print("inside oninti function");
     checkFirstTime();
     requestPermissions();
     Future.delayed(const Duration(seconds: 3), () {
       appRoute();
     });
+    // await fetchFCMToken();
     super.onInit();
+  }
+
+  fetchFCMToken() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    try {
+      String? token = await messaging.getToken();
+      print("FCM Token: $token");
+      return token;
+      // Do something with the FCM token
+    } catch (e) {
+      print("Error getting FCM token: $e");
+    }
   }
 
 //permission
@@ -35,19 +50,18 @@ class SplashController extends GetxController {
 //set local
   Future<void> checkFirstTime() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    isFirstTime = prefs.getBool('isFirstTime') as bool;
-    if (isFirstTime == null) {
-      isFirstTime = true;
-      prefs.setBool('isFirstTime', isFirstTime);
-    } else {
-      isFirstTime = false;
-    }
+    // isFirstTime = prefs.getBool('isFirstTime') as bool;
+    // if (isFirstTime == null) {
+    //   isFirstTime = true;
+    //   prefs.setBool('isFirstTime', isFirstTime);
+    // } else {
+    //   isFirstTime = false;
+    // }
   }
 
 //path
   Future<void> appRoute() async {
     if (isFirstTime) {
-
       if (LocalStorage.shared.isLoggedIn()) {
         dashboardController.GetDashboard();
       } else {
@@ -58,12 +72,12 @@ class SplashController extends GetxController {
         }
       }
     } else {
-      if (LocalStorage.shared.isWalkthroughComplete()==true) {
+      if (LocalStorage.shared.isWalkthroughComplete() == true) {
         // Get.to(DashboardView(ReelsList: [], RecentlyAddedList: [], CivilList: [],));
         dashboardController.GetDashboard();
         // Get.offAllNamed(Routes.HOME);
       } else {
-        if (LocalStorage.shared.isWalkthroughComplete()==true) {
+        if (LocalStorage.shared.isWalkthroughComplete() == true) {
           Get.offAllNamed(Routes.MOBILE);
         } else {
           Get.offAllNamed(Routes.LANGUAGE);
@@ -71,8 +85,6 @@ class SplashController extends GetxController {
       }
     }
   }
-
-
 
   void increment() => count.value++;
 }

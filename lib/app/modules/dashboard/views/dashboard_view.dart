@@ -1,5 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:ekinch/app/custom_widget/font_size.dart';
@@ -31,15 +34,17 @@ import '../../../models/categories_video.dart';
 import '../../../models/recentlAdded.dart';
 import '../../../models/reel_model.dart';
 import '../../../networking/api_result.dart';
+import '../../postjob/widgets/shortDropDown.dart';
 import '../controllers/dashboard_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class DashboardView extends StatefulWidget {
   List<Data> ReelsList;
   List<RData> RecentlyAddedList;
   List<RCategory> CivilList;
 
-   DashboardView(
+  DashboardView(
       {super.key,
       required this.ReelsList,
       required this.RecentlyAddedList,
@@ -53,7 +58,9 @@ class _DashboardStateView extends State<DashboardView>
     with TickerProviderStateMixin {
   DashboardController controller = Get.put(DashboardController());
   late TabController _tabController;
+  var thumbnail = '';
   late TabController _tabButtonController;
+  Uint8List videoThumb = base64Decode("");
 
   @override
   void initState() {
@@ -71,6 +78,7 @@ class _DashboardStateView extends State<DashboardView>
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    //Select video Modal
     showDataAlertProfile() {
       showDialog(
           context: context,
@@ -97,7 +105,16 @@ class _DashboardStateView extends State<DashboardView>
                   children: <Widget>[
                     InkWell(
                       onTap: () {
-                        controller.getVideoFromCamera();
+                        setState(() async {
+                          thumbnail = await controller.getVideoFromCamera();
+                          print("______________________________");
+                          print(thumbnail);
+                          videoThumb = base64Decode(thumbnail);
+                          // showDataAlertUploadVideo();
+                          Navigator.of(context).pop();
+                          // Navigator.of(context).pop();
+                          setState(() {});
+                        });
                       },
                       child: Column(
                         children: [
@@ -107,8 +124,8 @@ class _DashboardStateView extends State<DashboardView>
                           ),
                           Text(
                             AppLocalizations.of(context)!.camera,
-                            style: GoogleFonts.kadwa(
-                                fontWeight: FontWeight.w400),
+                            style:
+                                GoogleFonts.kadwa(fontWeight: FontWeight.w400),
                           )
                         ],
                       ),
@@ -122,8 +139,8 @@ class _DashboardStateView extends State<DashboardView>
                           Icon(Icons.filter, size: 50.sp),
                           Text(
                             AppLocalizations.of(context)!.gallery,
-                            style: GoogleFonts.kadwa(
-                                fontWeight: FontWeight.w400),
+                            style:
+                                GoogleFonts.kadwa(fontWeight: FontWeight.w400),
                           )
                         ],
                       ),
@@ -254,7 +271,8 @@ class _DashboardStateView extends State<DashboardView>
             );
           });
     }
-//payment page
+
+//Upload video modal
     // showDataAlertSubscribe(String title, String subtitle) {
     //   showDialog(
     //       context: context,
@@ -339,13 +357,13 @@ class _DashboardStateView extends State<DashboardView>
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TextFormField(
-                      autofocus: true,
+                      autofocus: false,
+                      controller: controller.title,
                       onChanged: (value) {},
                       decoration: InputDecoration(
-                        hintText:
-                            AppLocalizations.of(context)!.enterVideoTitle,
+                        hintText: AppLocalizations.of(context)!.enterVideoTitle,
                         hintStyle: GoogleFonts.kadwa(
-                            fontSize: F22(), fontWeight: FontWeight.w400),
+                            fontSize: F18(), fontWeight: FontWeight.w400),
                         contentPadding: EdgeInsets.symmetric(
                             vertical: 10.sp, horizontal: 10.sp),
                         focusedBorder: OutlineInputBorder(
@@ -353,13 +371,28 @@ class _DashboardStateView extends State<DashboardView>
                             borderSide:
                                 const BorderSide(color: Color(0xFFFEBA0F))),
                         border: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Color(0xFFCDCDCD)),
+                          borderSide: const BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(5),
                         ),
                       ),
                       style: GoogleFonts.kadwa(
-                          fontSize: F20(), color: const Color(0xFF636363)),
+                          fontSize: F18(), color: const Color(0xFF636363)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: DropdownFieldFull(
+                        controller: controller.reelCategory,
+                        hintText: AppLocalizations.of(context)!.selectCategory,
+                        items: [
+                          AppLocalizations.of(context)!.civil,
+                          AppLocalizations.of(context)!.wood,
+                          AppLocalizations.of(context)!.light,
+                          AppLocalizations.of(context)!.hospital,
+                          AppLocalizations.of(context)!.plumber,
+                          AppLocalizations.of(context)!.cast_iron_work,
+                          AppLocalizations.of(context)!.welding,
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 12.sp),
@@ -368,7 +401,7 @@ class _DashboardStateView extends State<DashboardView>
                           showDataAlertProfile();
                         },
                         child: DottedBorder(
-                          dashPattern: const[8, 4],
+                          dashPattern: const [8, 4],
                           color: const Color(0xFFCDCDCD),
                           strokeCap: StrokeCap.butt,
                           strokeWidth: 1,
@@ -376,25 +409,31 @@ class _DashboardStateView extends State<DashboardView>
                           child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 20.sp, vertical: 40.sp),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  AppLocalizations.of(context)!.uploadVideo,
-                                  style: GoogleFonts.kadwa(
-                                      fontSize: F24(),
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 8.sp),
-                                  child: Image.asset(
-                                    "assets/images/upload.png",
-                                    scale: 3.0,
+                            child: ((videoThumb as List).isEmpty)
+                                ? Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        AppLocalizations.of(context)!
+                                            .uploadVideo,
+                                        style: GoogleFonts.kadwa(
+                                            fontSize: F24(),
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8.sp),
+                                        child: Image.asset(
+                                          "assets/images/upload.png",
+                                          scale: 3.0,
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : Image.memory(
+                                    videoThumb,
+                                    scale: 1.5,
                                   ),
-                                )
-                              ],
-                            ),
                           ),
                         ),
                       ),
@@ -402,7 +441,14 @@ class _DashboardStateView extends State<DashboardView>
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 20.sp),
                       child: GFButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if ((videoThumb as List).isEmpty) {
+                            errorSnackbar('Please select a file to upload');
+                          } else {
+                            //Need change
+                            controller.uploadReel(context, thumbnail);
+                          }
+                        },
                         color: KColors.orange,
                         fullWidthButton: true,
                         size: 50.2,
@@ -514,14 +560,22 @@ class _DashboardStateView extends State<DashboardView>
                           ),
                         ),
                         Row(
-                          children: (widget.ReelsList)
-                              .map((e) => Video(
-                                    image: e.thumbnail,
-                                    view: e.view,
-                                    text: e.title,
-                                    onTap: () {},
-                                  ))
-                              .toList(),
+                          children: (widget.ReelsList).map((e) {
+                            var reelsArr = [e.reel];
+                            for (var i = 0; i < widget.ReelsList.length; i++) {
+                              if (!reelsArr
+                                  .contains(widget.ReelsList[i].reel)) {
+                                reelsArr.add(widget.ReelsList[i].reel);
+                              }
+                            }
+                            return Video(
+                              image: e.thumbnail,
+                              view: e.view,
+                              text: e.title,
+                              reels: reelsArr,
+                              onTap: () {},
+                            );
+                          }).toList(),
                         ),
                       ],
                     ),

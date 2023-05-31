@@ -1,4 +1,4 @@
-package com.example.ekinch
+package com.ovolo.ekinch
 
 import io.flutter.embedding.android.FlutterActivity
 

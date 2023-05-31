@@ -2,6 +2,7 @@
 
 import 'package:ekinch/app/modules/mobile/widget/yellow_button.dart';
 import 'package:ekinch/main.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -41,7 +42,6 @@ class _LanguageViewState extends State<LanguageView> {
                     onTap: () {
                       // changeLanguage('en');
                       if (LocalStorage.shared.isLoggedIn()) {
-
                         var lang = controller.lang_data
                             .firstWhere((element) => element['isActive'] == 1);
                         box.write("lang", lang['textT']);
@@ -144,7 +144,7 @@ class _LanguageViewState extends State<LanguageView> {
           Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-            child: DynamicButton("Continue", true, () {
+            child: DynamicButton("Continue", true, () async {
               var lang = controller.lang_data
                   .firstWhere((element) => element['isActive'] == 1);
               box.write("lang", lang['textT']);
